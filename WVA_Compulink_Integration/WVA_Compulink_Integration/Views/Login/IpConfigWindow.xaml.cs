@@ -38,8 +38,10 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
                 string actNum = ipConfigViewModel.GetActNum();
 
                 // Updates user settings to not show other account numbers if they don't want them to show up
-                bool blockExternalLocations = string.IsNullOrWhiteSpace(ActNumTextBox.Text.ToString()) && actNum == "" ? false : true;
-                ipConfigViewModel.UpdateSettingsAllowSingleAcct(blockExternalLocations);
+                if (!string.IsNullOrWhiteSpace(ActNumTextBox.Text.ToString()))
+                {
+                    ipConfigViewModel.BlockExternalLocations(true);
+                }
 
                 // Open login window if DSN and Api key has been set
                 if (ipConfig.Trim() != "" && apiKey.Trim() != "")

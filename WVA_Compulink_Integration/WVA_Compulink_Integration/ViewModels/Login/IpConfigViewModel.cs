@@ -22,7 +22,7 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
             catch 
             {
                 Directory.CreateDirectory(Paths.IpConfigDir);
-                File.Create(Paths.IpConfigFile);
+                File.Create(Paths.IpConfigFile).Close();
 
                 return "";
             }
@@ -37,7 +37,7 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
             catch
             {
                 Directory.CreateDirectory(Paths.ApiKeyDir);
-                File.Create(Paths.ApiKeyFile);
+                File.Create(Paths.ApiKeyFile).Close();
 
                 return "";
             }
@@ -52,13 +52,13 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
             catch 
             {
                 Directory.CreateDirectory(Paths.ActNumDir);
-                File.Create(Paths.ActNumFile);
+                File.Create(Paths.ActNumFile).Close();
 
                 return "";
             }
         }
 
-        public void UpdateSettingsAllowSingleAcct(bool blockExternalLocations)
+        public void BlockExternalLocations(bool blockExternalLocations)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
             } 
         }
 
-        private UserSettings GetUserSettings()
+        public UserSettings GetUserSettings()
         {
             var defaultSetting = new UserSettings()
             {
@@ -113,8 +113,7 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
                 if (!File.Exists(Paths.IpConfigFile))
                 {
                     Directory.CreateDirectory(Paths.IpConfigDir);
-                    var ipNumFile = File.Create(Paths.IpConfigFile);
-                    ipNumFile.Close();
+                    File.Create(Paths.IpConfigFile).Close();
                 }
 
                 File.WriteAllText(Paths.IpConfigFile, ipConfig);
@@ -123,8 +122,7 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
                 if (!File.Exists(Paths.ApiKeyFile))
                 {
                     Directory.CreateDirectory(Paths.ApiKeyDir);
-                    var apiKeyFile = File.Create(Paths.ApiKeyFile);
-                    apiKeyFile.Close();
+                    File.Create(Paths.ApiKeyFile).Close();
                 }
 
                 File.WriteAllText(Paths.ApiKeyFile, apiKey);
@@ -133,8 +131,7 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
                 if (!File.Exists(Paths.ActNumFile))
                 {
                     Directory.CreateDirectory(Paths.ActNumDir);
-                    var actNumFile = File.Create(Paths.ActNumFile);
-                    actNumFile.Close();
+                    File.Create(Paths.ActNumFile).Close();
                 }
 
                 File.WriteAllText(Paths.ActNumFile, actNum);

@@ -65,7 +65,6 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                     throw new NullReferenceException("Response returned null from endpoint while getting Compulink orders.");
 
                 var products = prescriptionWrapper?.Request?.Products;
-                var accounts = new SettingsViewModel().GetAvailableAccounts();
 
                 foreach (Prescription prescription in products)
                 {
@@ -86,7 +85,18 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                 }
 
                 ListPrescriptions.AddRange(Memory.Orders.CompulinkOrders);
+
+                // Set available accounts based on user settings
+                List<string> accounts = new List<string>();
+
+                if (UserData.Data.Settings.BlockExternalLocations)
+                    accounts.Add(UserData.Data.Account);
+                else
+                    accounts = new SettingsViewModel().GetAvailableAccounts();
+
                 SelAcctNumber.ItemsSource = accounts;
+
+                // Add updated rows to grid
                 OrdersDataGrid.ItemsSource = ListPrescriptions;
                 OrdersDataGrid.Items.Refresh();
             }
