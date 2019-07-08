@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="WVA_Compulink_Desktop_Integration.Views.OrdersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WVA_Compulink_Desktop_Integration.Views"
+             xmlns:viewmodels="clr-namespace:WVA_Compulink_Desktop_Integration.ViewModels.Orders"
+             xmlns:views="clr-namespace:WVA_Compulink_Desktop_Integration.Views.Orders"
+             mc:Ignorable="d" 
+             d:DesignHeight="520" 
+             d:DesignWidth="785">
+
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="ExamsButtonGroup" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightSlateGray" Offset="0.02"/>
+            <GradientStop Color="WhiteSmoke" Offset="0.22"/>
+            <GradientStop Color="LightSlateGray" Offset=".53"/>
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource ExamsButtonGroup}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontFamily" Value="Sitka Text"/>
+            <Setter Property="Width" Value="170"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" 
+                                    CornerRadius="3,3,3,3" 
+                                    BorderBrush="Black" 
+                                    BorderThickness="1.6,1.9,2.9,2.9">
+                                <Border.Background>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" 
+                                                                CenterY="0.5" 
+                                                                ScaleX="1.5" 
+                                                                ScaleY="1.5"/>
+                                                <TranslateTransform X="0.02" Y="0.3"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Offset="1" Color="#FF327EC3"/>
+                                        <GradientStop Offset="0.3" Color="#FF327EC3"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" 
+                                                  TextElement.FontWeight="Regular">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+
+                        <!-- TRIGGERS -->
+                        <ControlTemplate.Triggers>
+
+                            <!-- Mouse Over Trigger -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                            <RadialGradientBrush.RelativeTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform CenterX="0.5" 
+                                                                    CenterY="0.5"
+                                                                    ScaleX="2" 
+                                                                    ScaleY="2"/>
+                                                    <TranslateTransform X="0.02" Y="0.9"/>
+                                                </TransformGroup>
+                                            </RadialGradientBrush.RelativeTransform>
+                                            <GradientStop Color="#FF327EC3" Offset="1"/>
+                                            <GradientStop Color="White" Offset="0.3"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+
+                            <!-- Mouse Click Trigger -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                            <RadialGradientBrush.RelativeTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform CenterX="0.5" 
+                                                                    CenterY="0.5" 
+                                                                    ScaleX="2" 
+                                                                    ScaleY="2"/>
+                                                    <TranslateTransform X="0.02" Y="0.9"/>
+                                                </TransformGroup>
+                                            </RadialGradientBrush.RelativeTransform>
+                                            <GradientStop Color="White" Offset="1"/>
+                                            <GradientStop Color="{StaticResource WVA_Blue_Color}" Offset="0.3"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+
+                            <!-- Grid Trigger -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" 
+                                        TargetName="grid" 
+                                        Value="0.25"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Name="CompulinkOrdersViewTemplate" DataType="{x:Type viewmodels:CompulinkOrdersViewModel}">
+            <views:CompulinkOrders DataContext="{Binding ElementName=compulinkOrdersViewTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="WVAOrdersViewTemplate" DataType="{x:Type viewmodels:WVAOrdersViewModel}">
+            <views:WVAOrders DataContext="{Binding ElementName=wvaOrdersViewTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="OrderCreationViewTemplate" DataType="{x:Type viewmodels:OrderCreationViewModel}">
+            <views:OrderCreationView DataContext="{Binding ElementName=orderCreationViewTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="BatchOrderCreationViewTemplate" DataType="{x:Type viewmodels:BatchOrderCreationViewModel}">
+            <views:BatchOrderCreationView DataContext="{Binding ElementName=batchOrderCreationViewTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="ViewOrderDetailsViewTemplate" DataType="{x:Type viewmodels:ViewOrderDetailsViewModel}">
+            <views:ViewOrderDetails DataContext="{Binding ElementName=viewOrderDetailsViewTemplate}"/>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <!-- Main Grid -->
+    <Grid Background="Black">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Nav Bar Grid -->
+        <Grid Background="White"
+              Height="50" 
+              VerticalAlignment="Top" 
+              HorizontalAlignment="Stretch"
+              Grid.Row="0">
+
+            <!-- Row Definitions -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="5"/>
+            </Grid.RowDefinitions>
+
+            <!-- Column Definitions -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Search Patients Tab -->
+            <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                <Button x:Name="CompulinkOrdersButton" 
+                        Content="Compulink" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" 
+                        Click="CompulinkOrdersButton_Click" />
+            </StackPanel>
+
+            <Rectangle Name="Rect_1"
+                       Grid.Column="0" 
+                       Grid.Row="1"
+                       HorizontalAlignment="Left" 
+                       Height="5"   
+                       VerticalAlignment="Top"
+                       Width="250"
+                       Fill="#FF327EC3" />
+
+            <!-- Search Exams Tab -->
+            <Button x:Name="ShipToPatientButton" 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Content="WVA Orders" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center" 
+                    Click="WVA_OrdersButton_Click" />
+
+            <Rectangle Name="Rect_2"
+                       Grid.Column="1" 
+                       Grid.Row="1"
+                       HorizontalAlignment="Left" 
+                       Height="5"   
+                       VerticalAlignment="Top"
+                       Width="250"
+                       Fill="White" />
+
+            <Label Name="TabLabel"
+                   Content="Compulink Orders"
+                   FontSize="30"
+                   Grid.Column="2"
+                   Margin="0,0,10,0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right" 
+                   FontFamily="Sylfaen"/>
+
+        </Grid>
+
+        <Grid Background="White" 
+              Grid.Row="1" 
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch">
+
+            <ContentControl Name="OrdersContentControl"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch" 
+                            Content="{Binding}" 
+                            x:FieldModifier="public"/>
+
+        </Grid>
+    </Grid>
+   
+</UserControl>
+ 

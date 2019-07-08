@@ -1,0 +1,302 @@
+﻿<Window x:Class="WVA_Compulink_Desktop_Integration.Views.LoadingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:WVA_Compulink_Desktop_Integration.Views"
+        mc:Ignorable="d" 
+        Title="LoadingWindow" 
+        Height="243.478"
+        Width="426.087"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" 
+        WindowStyle="None" 
+        Topmost="True">
+    
+    <Window.Resources>
+        <Storyboard x:Key="CircleChase" SpeedRatio="0.75" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.875"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.13"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.38"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.63"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.75"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_3">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.875"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.13"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.38"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.63"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_4">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.63"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.13"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.38"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.5"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_5">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.63"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.13"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.38"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_6">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.375"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.63"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.13"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.255"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_7">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.38"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.63"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.13"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_8">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.125"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.38"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.63"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.88"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="_1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="0.13"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0.25"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0.38"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0.5"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.63"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0.75"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0.88"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="White"/>
+            <GradientStop Color="#FFB8D2EA" Offset="0.813"/>
+            <GradientStop Color="#FF88B3DC" Offset="1"/>
+            <GradientStop Color="#FF96BCE0" Offset="0.952"/>
+            <GradientStop Color="#FFCCDEF0" Offset="0.581"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource CircleChase}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid>
+        <Ellipse x:Name="_1" 
+                 Fill="#FF327EC3" 
+                 HorizontalAlignment="Left" 
+                 Height="14" 
+                 Margin="199,118,0,0"
+                 Stroke="#FF327EC3"
+                 VerticalAlignment="Top"
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+
+        <Ellipse x:Name="_2" 
+                 Fill="#FF327EC3" 
+                 HorizontalAlignment="Left" 
+                 Height="14" 
+                 Margin="227,118,0,0" 
+                 Stroke="#FF327EC3" 
+                 VerticalAlignment="Top" 
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5" 
+                 Opacity="0.875">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+
+        <Ellipse x:Name="_3" 
+                 Fill="#FF327EC3" 
+                 HorizontalAlignment="Left"
+                 Height="15" 
+                 Margin="244,135,0,0"
+                 Stroke="#FF327EC3"
+                 VerticalAlignment="Top" 
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5" 
+                 Opacity="0.75">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+
+        <Ellipse x:Name="_4" 
+                 Fill="#FF327EC3"
+                 HorizontalAlignment="Left"
+                 Height="14" 
+                 Margin="244,156,0,0"
+                 Stroke="#FF327EC3" 
+                 VerticalAlignment="Top"
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5" 
+                 Opacity="0.675">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+
+        <Ellipse x:Name="_5" 
+                 Fill="#FF327EC3" 
+                 HorizontalAlignment="Left" 
+                 Height="13" 
+                 Margin="227,173,0,0"
+                 Stroke="#FF327EC3"
+                 VerticalAlignment="Top" 
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5"
+                 Opacity="0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+
+        <Ellipse x:Name="_6"
+                 Fill="#FF327EC3" 
+                 HorizontalAlignment="Left"
+                 Height="13"
+                 Margin="199,173,0,0"
+                 Stroke="#FF327EC3"
+                 VerticalAlignment="Top" 
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5"
+                 Opacity="0.375">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+
+        <Ellipse x:Name="_7"
+                 Fill="#FF327EC3" 
+                 HorizontalAlignment="Left" 
+                 Height="14" 
+                 Margin="180,155,0,0" 
+                 Stroke="#FF327EC3" 
+                 VerticalAlignment="Top" 
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5"
+                 Opacity="0.25">
+
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+
+        <Ellipse x:Name="_8" 
+                 Fill="#FF327EC3" 
+                 HorizontalAlignment="Left" 
+                 Height="14" 
+                 Margin="180,134,0,0" 
+                 Stroke="#FF327EC3"
+                 VerticalAlignment="Top" 
+                 Width="19" 
+                 RenderTransformOrigin="0.5,0.5"
+                 Opacity="0.125">
+
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+
+        <Image Source="/Resources/logo-plain-vector-72.png"
+               HorizontalAlignment="Left" 
+               Height="109"
+               Margin="105,10,0,0" 
+               VerticalAlignment="Top"
+               Width="236"/>
+
+        <Label Content="Loading Data..."
+               HorizontalAlignment="Left"
+               Margin="133,195,0,0"
+               VerticalAlignment="Top"
+               Height="36" 
+               Width="181" 
+               FontSize="24"
+               FontFamily="Sitka Text"/>
+
+    </Grid>
+
+</Window>

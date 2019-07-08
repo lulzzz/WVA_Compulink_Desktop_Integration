@@ -1,0 +1,9 @@
+﻿<Application x:Class="WVA_Compulink_Desktop_Integration.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WVA_Compulink_Desktop_Integration"
+             StartupUri="Views/Login/IpConfigWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="/Views/ResourceDict/Styles.xaml" />
+    </Application.Resources>
+</Application>

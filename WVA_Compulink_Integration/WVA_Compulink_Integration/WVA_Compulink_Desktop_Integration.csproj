@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\squirrel.windows.1.9.1\build\squirrel.windows.props" Condition="Exists('..\packages\squirrel.windows.1.9.1\build\squirrel.windows.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B541E139-EC1A-4B1F-B705-FB6B6F7A57EC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WVA_Compulink_Desktop_Integration</RootNamespace>
+    <AssemblyName>WVA_Compulink_Desktop_Integration</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet, Version=1.1.0.0, Culture=neutral, PublicKeyToken=1d14d6e5194e7f4a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.MsDelta, Version=1.1.0.0, Culture=neutral, PublicKeyToken=46b2138a390abf55, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.MsDelta.dll</HintPath>
+    </Reference>
+    <Reference Include="DeltaCompressionDotNet.PatchApi, Version=1.1.0.0, Culture=neutral, PublicKeyToken=3e8888ee913ed789, processorArchitecture=MSIL">
+      <HintPath>..\packages\DeltaCompressionDotNet.1.1.0\lib\net20\DeltaCompressionDotNet.PatchApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Squirrel, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\squirrel.windows.1.9.1\lib\Net45\NuGet.Squirrel.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Squirrel, Version=1.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\squirrel.windows.1.9.1\lib\Net45\Squirrel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.111.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Errors\Error.cs" />
+    <Compile Include="Errors\JsonError.cs" />
+    <Compile Include="Memory\ListPatients.cs" />
+    <Compile Include="Memory\Orders.cs" />
+    <Compile Include="Memory\UserData.cs" />
+    <Compile Include="Memory\WvaProducts.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Exams\Exam.cs" />
+    <Compile Include="Models\OrderStatus\FromApi\StatusResponse.cs" />
+    <Compile Include="Models\OrderStatus\ToApi\RequestWrapper.cs" />
+    <Compile Include="Models\OrderStatus\ToApi\StatusRequest.cs" />
+    <Compile Include="Models\Orders\ItemDetail.cs" />
+    <Compile Include="Models\Orders\Out\Item.cs" />
+    <Compile Include="Models\Orders\Out\Order.cs" />
+    <Compile Include="Models\Orders\Out\OrderDetail.cs" />
+    <Compile Include="Models\Orders\Out\OutOrder.cs" />
+    <Compile Include="Models\Orders\Out\OutOrderWrapper.cs" />
+    <Compile Include="Models\Orders\Out\ProductDetails.cs" />
+    <Compile Include="Models\Orders\ShippingTypes.cs" />
+    <Compile Include="Models\Patients\Patient.cs" />
+    <Compile Include="Models\Prescriptions\Prescription.cs" />
+    <Compile Include="Models\Prescriptions\PrescriptionRequest.cs" />
+    <Compile Include="Models\Prescriptions\PrescriptionWrapper.cs" />
+    <Compile Include="Models\ProductParameters\Base\Parameter.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Add.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Axis.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Basecurve.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Color.cs" />
+    <Compile Include="Models\ProductParameters\Derived\CustomerID.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Cylinder.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Diameter.cs" />
+    <Compile Include="Models\ProductParameters\Derived\ID.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Multifocal.cs" />
+    <Compile Include="Models\ProductParameters\Derived\ProductKey.cs" />
+    <Compile Include="Models\ProductParameters\Derived\SKU.cs" />
+    <Compile Include="Models\ProductParameters\Derived\Sphere.cs" />
+    <Compile Include="Models\ProductParameters\Derived\UPC.cs" />
+    <Compile Include="Models\Products\Product.cs" />
+    <Compile Include="Models\Products\ProductCrossRefDict.cs" />
+    <Compile Include="Models\Products\ProductIn\ProductIn.cs" />
+    <Compile Include="Models\Products\ProductItem.cs" />
+    <Compile Include="Models\Products\ProductOut\ProductOut.cs" />
+    <Compile Include="Models\Products\ProductOut\RequestOut.cs" />
+    <Compile Include="Models\Requests\OutRequest.cs" />
+    <Compile Include="Models\Responses\OrderErrors.cs" />
+    <Compile Include="Models\Responses\OrderResponse.cs" />
+    <Compile Include="Models\Responses\Response.cs" />
+    <Compile Include="Models\Responses\ResponseData.cs" />
+    <Compile Include="Models\Users\ProductMatcher.cs" />
+    <Compile Include="Models\Users\User.cs" />
+    <Compile Include="Models\Users\UserSettings.cs" />
+    <Compile Include="Models\Users\VerifyUser.cs" />
+    <Compile Include="Models\Validations\Emails\EmailValidationCode.cs" />
+    <Compile Include="Models\Validations\Emails\EmailValidationSend.cs" />
+    <Compile Include="Models\Validations\ProductValidation.cs" />
+    <Compile Include="Models\Validations\ValidationDetail.cs" />
+    <Compile Include="Models\Validations\ValidationProducts.cs" />
+    <Compile Include="Models\Validations\ValidationResponse.cs" />
+    <Compile Include="Models\Validations\ValidationWrapper.cs" />
+    <Compile Include="Models\Validations\Validator.cs" />
+    <Compile Include="ProductMatcher\MatcherProduct.cs" />
+    <Compile Include="ProductMatcher\MatchProduct.cs" />
+    <Compile Include="ProductMatcher\NewDescriptionMatcher.cs" />
+    <Compile Include="ProductMatcher\ProductPredictions\Database.cs" />
+    <Compile Include="ProductMatcher\ProductPredictions\Models\Product.cs" />
+    <Compile Include="ProductMatcher\ProductPredictions\ProductPrediction.cs" />
+    <Compile Include="ProductMatcher\ProductPredictions\SqliteDataAccess.cs" />
+    <Compile Include="Security\Crypto.cs" />
+    <Compile Include="Updates\Updater.cs" />
+    <Compile Include="Utility\Actions\ActionData.cs" />
+    <Compile Include="Utility\Actions\ActionLogger.cs" />
+    <Compile Include="Utility\Files\Paths.cs" />
+    <Compile Include="Utility\UI_Tools\DatagridTools.cs" />
+    <Compile Include="ViewModels\Login\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Login\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModels\Login\IpConfigViewModel.cs" />
+    <Compile Include="ViewModels\Login\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\Orders\BatchOrderCreationUserControlViewModel.cs" />
+    <Compile Include="ViewModels\Orders\BatchOrderCreationViewModel.cs" />
+    <Compile Include="ViewModels\Orders\CompulinkOrdersViewModel.cs" />
+    <Compile Include="ViewModels\Orders\OrderCreationViewModel.cs" />
+    <Compile Include="ViewModels\Orders\ViewOrderDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Orders\WVAOrdersViewModel.cs" />
+    <Compile Include="ViewModels\Registration\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Views\LoadingWindow.xaml.cs">
+      <DependentUpon>LoadingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\ForgotPasswordWindow.xaml.cs">
+      <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\IpConfigWindow.xaml.cs">
+      <DependentUpon>IpConfigWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersView.xaml.cs">
+      <DependentUpon>OrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\BatchOrderCreationView.xaml.cs">
+      <DependentUpon>BatchOrderCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\BatchOrderLayoutUserControl.xaml.cs">
+      <DependentUpon>BatchOrderLayoutUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\CompulinkOrders.xaml.cs">
+      <DependentUpon>CompulinkOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\OrderCreationView.xaml.cs">
+      <DependentUpon>OrderCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\ViewOrderDetails.xaml.cs">
+      <DependentUpon>ViewOrderDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders\WVAOrders.xaml.cs">
+      <DependentUpon>WVAOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Registration\RegistrationWindow.xaml.cs">
+      <DependentUpon>RegistrationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WindowErrors\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WebTools\API.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Views\LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\ForgotPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\IpConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Orders\BatchOrderCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Orders\BatchOrderLayoutUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Orders\CompulinkOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Orders\OrderCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Orders\ViewOrderDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Orders\WVAOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Registration\RegistrationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResourceDict\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WindowErrors\ErrorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CheckMarkCircle.png" />
+    <Resource Include="Resources\CloseButton.png" />
+    <Resource Include="Resources\icons8-available-updates-48.png" />
+    <Resource Include="Resources\icons8-available-updates-filled-48.png" />
+    <Resource Include="Resources\icons8-Reset-64.png" />
+    <Resource Include="Resources\logo-plain-vector-72-white.png" />
+    <Resource Include="Resources\logo-plain-vector-72.png" />
+    <Resource Include="Resources\logo_plain_vector_72_48x48_C1K_icon.ico" />
+    <Resource Include="Resources\logo_plain_vector_72_P0X_icon.ico" />
+    <Resource Include="Resources\logo_plain_vector_72_white_TMD_icon.ico" />
+    <Resource Include="Resources\WarningSign.png" />
+    <Resource Include="Resources\WVA_Scan_Banner.PNG" />
+    <Resource Include="Resources\wva_square_logo.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\squirrel.windows.1.9.1\build\squirrel.windows.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\squirrel.windows.1.9.1\build\squirrel.windows.props'))" />
+    <Error Condition="!Exists('..\packages\squirrel.windows.1.9.1\build\squirrel.windows.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\squirrel.windows.1.9.1\build\squirrel.windows.targets'))" />
+  </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net46\System.Data.SQLite.Core.targets')" />
+  <Import Project="..\packages\squirrel.windows.1.9.1\build\squirrel.windows.targets" Condition="Exists('..\packages\squirrel.windows.1.9.1\build\squirrel.windows.targets')" />
+</Project>
