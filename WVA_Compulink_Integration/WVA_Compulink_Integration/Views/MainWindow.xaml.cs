@@ -32,6 +32,7 @@ namespace WVA_Compulink_Desktop_Integration.Views
             InitializeComponent();
             mainViewModel = new MainViewModel();
             mainViewModel.Update();
+            mainViewModel.SetupDatabase();
             mainViewModel.CheckForProductPredictionUpdates();
             SetUpApp();
             Task.Run(() => StartInactivityTimer());

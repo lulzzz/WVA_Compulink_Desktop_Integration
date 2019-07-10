@@ -19,7 +19,6 @@ C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Inte
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\bin\Debug\Squirrel.pdb
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\bin\Debug\System.Data.SQLite.xml
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\bin\Debug\System.Data.SQLite.dll.config
-C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.csprojAssemblyReference.cache
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\Views\ResourceDict\Styles.baml
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\Views\LoadingWindow.g.cs
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\Views\Login\ChangePasswordWindow.g.cs
@@ -70,3 +69,4 @@ C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Inte
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.Properties.Resources.resources
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.exe
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.pdb
+C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.csprojAssemblyReference.cache

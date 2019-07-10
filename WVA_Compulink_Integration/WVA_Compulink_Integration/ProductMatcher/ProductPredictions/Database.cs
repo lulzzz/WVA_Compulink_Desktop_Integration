@@ -135,15 +135,17 @@ namespace WVA_Compulink_Desktop_Integration.MatchFinder.ProductPredictions
             }
         }
 
-        public static void CreateCompulinkProduct(string compulinkProduct, string wvaProduct)
+        public static bool CreateCompulinkProduct(string compulinkProduct, string wvaProduct)
         {
             try
             {
                 SqliteDataAccess.CreateCompulinkProduct(compulinkProduct, wvaProduct);
+                return true;
             }
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
+                return false;
             }
         }
 

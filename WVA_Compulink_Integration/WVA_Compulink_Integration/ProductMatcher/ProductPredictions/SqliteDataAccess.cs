@@ -145,10 +145,5 @@ namespace WVA_Compulink_Desktop_Integration.ProductMatcher.ProductPredictions
             return $@"Data Source={Paths.ProductDatabaseFile};Version=3;";
         }
 
-        public static void InsertProduct(string compulinkProduct, string wvaProduct, int numPicks)
-        {
-
-        }
-
     }
 }

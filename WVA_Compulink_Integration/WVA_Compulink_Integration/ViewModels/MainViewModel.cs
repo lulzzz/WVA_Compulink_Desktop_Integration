@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WVA_Compulink_Desktop_Integration.Models.Products;
+using WVA_Compulink_Desktop_Integration.MatchFinder.ProductPredictions;
 
 namespace WVA_Compulink_Desktop_Integration.ViewModels
 {
@@ -20,6 +21,11 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels
         {
             // Start the updater on a new thread
             Task.Run(() => Updater.CheckForUpdates());
+        }
+
+        public void SetupDatabase()
+        {
+            Database.SetUpDatabase();
         }
 
         public void CheckForProductPredictionUpdates()

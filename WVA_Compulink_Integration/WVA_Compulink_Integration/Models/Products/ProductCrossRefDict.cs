@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Compulink_Desktop_Integration.Errors;
 using WVA_Compulink_Desktop_Integration.MatchFinder.ProductPredictions;
 using WVA_Compulink_Desktop_Integration.ProductMatcher.ProductPredictions;
 using WVA_Compulink_Desktop_Integration.Utility.Files;
@@ -15,30 +16,49 @@ namespace WVA_Compulink_Desktop_Integration.Models.Products
     {
         public static void CheckForUpdates()
         {
-            if (File.Exists(Paths.ProductCrossRefFile))
+            try
             {
-                RunDataInjection(GetProductCrossRef());
-                DeleteCrossRefFile();
+                string[] files = Directory.GetDirectories(Paths.AppBasePath);
+
+                foreach (string file in files)
+                {
+                    string crossRefFile = file + @"\ProductCrossRef.json";
+
+                    if (file.Contains("app-") && File.Exists(crossRefFile))
+                    {
+                        bool successful = RunDataInjection(GetProductCrossRef(crossRefFile));
+
+                        if (successful)
+                            DeleteCrossRefFile(crossRefFile);
+                    }
+                }
+            }
+            catch (Exception x)
+            {
+                Error.ReportOrLog(x);
             }
         }
 
-        private static void RunDataInjection(Dictionary<string, string> products)
+        private static bool RunDataInjection(Dictionary<string, string> products)
         {
+            bool successful = true;
             foreach (KeyValuePair<string, string> productPair in products)
             {
-                Database.CreateCompulinkProduct(productPair.Key, productPair.Value);
+                successful = Database.CreateCompulinkProduct(productPair.Key, productPair.Value);
             }
+
+            return successful;
         }
 
-        private static void DeleteCrossRefFile()
+        private static void DeleteCrossRefFile(string path)
         {
-            if (File.Exists(Paths.ProductCrossRefFile))
-                File.Delete(Paths.ProductCrossRefFile);
+            if (File.Exists(path))
+                File.Delete(path);
         }
 
-        private static Dictionary<string, string> GetProductCrossRef()
+        private static Dictionary<string, string> GetProductCrossRef(string path)
         {
-            var strCrossRef = File.ReadAllText(Paths.ProductCrossRefFile);
+            var strCrossRef = File.ReadAllText(path);
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(strCrossRef);
         }
     }
