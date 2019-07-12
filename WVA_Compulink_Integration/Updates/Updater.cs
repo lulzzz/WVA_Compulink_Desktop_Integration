@@ -14,7 +14,7 @@ namespace WVA_Compulink_Desktop_Integration.Updates
         {
             try
             {
-                using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/WVATeam/Compulink_WVA_Compulink_Desktop_Integration").Result)
+                using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/WVATeam/WVA_Compulink_Desktop_Integration").Result)
                 {
                     var updateInfo = mgr.CheckForUpdate().Result;
                     if (updateInfo.ReleasesToApply.Any())

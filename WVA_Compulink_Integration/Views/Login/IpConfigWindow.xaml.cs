@@ -42,6 +42,10 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
                 {
                     ipConfigViewModel.BlockExternalLocations(true);
                 }
+                else
+                {
+                    ipConfigViewModel.BlockExternalLocations(false);
+                }
 
                 // Open login window if DSN and Api key has been set
                 if (ipConfig.Trim() != "" && apiKey.Trim() != "")

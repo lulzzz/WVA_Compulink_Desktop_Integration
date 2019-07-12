@@ -41,7 +41,7 @@ namespace WVA_Compulink_Desktop_Integration.Views
         {
             try
             {
-                DeleteBlankCompulinkOrdersCheckBox.IsChecked = UserData.Data?.Settings?.DeleteBlankCompulinkOrders;
+                DeleteBlankCompulinkOrdersCheckBox.IsChecked = UserData.Data?.Settings?.DeleteBlankCompulinkOrders ?? false;
 
                 // Subscribe to AccountTextBox event delegate
                 IsVisibleChanged += new DependencyPropertyChangedEventHandler(AvailableActsComboBox_IsVisibleChanged);
@@ -54,7 +54,7 @@ namespace WVA_Compulink_Desktop_Integration.Views
         
         private void CheckActNumberVisibility()
         {
-            if (UserData.Data.Settings.BlockExternalLocations)
+            if (UserData.Data?.Settings?.BlockExternalLocations ?? false)
             {
                 ActNumLabel.Visibility = Visibility.Hidden;
                 AvailableActsComboBox.Visibility = Visibility.Hidden;
