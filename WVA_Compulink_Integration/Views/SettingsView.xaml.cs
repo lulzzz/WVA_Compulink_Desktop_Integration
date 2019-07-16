@@ -70,7 +70,7 @@ namespace WVA_Compulink_Desktop_Integration.Views
 
                 // Check for nulls 
                 if (availableActs == null || availableActs.ToString().Trim() == "" || availableActs?.Count < 1)
-                    throw new NullReferenceException("No available account numbers detected.");
+                    return;
 
                 // Add accounts to combo box
                 foreach (string account in availableActs)

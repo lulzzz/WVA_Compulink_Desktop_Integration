@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WVA_Compulink_Desktop_Integration.Errors;
+using WVA_Compulink_Desktop_Integration.Utility.Files;
 using WVA_Compulink_Desktop_Integration.ViewModels.Login;
 
 namespace WVA_Compulink_Desktop_Integration.Views.Login
@@ -27,6 +29,7 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
             ipConfigViewModel = new IpConfigViewModel();
             IpConfigTextBox.Focus();
             CheckFields();
+            DeleteOldApp();
         }
 
         private void CheckFields()
@@ -42,10 +45,6 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
                 {
                     ipConfigViewModel.BlockExternalLocations(true);
                 }
-                else
-                {
-                    ipConfigViewModel.BlockExternalLocations(false);
-                }
 
                 // Open login window if DSN and Api key has been set
                 if (ipConfig.Trim() != "" && apiKey.Trim() != "")
@@ -59,6 +58,29 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
             {
                 Error.ReportOrLog(x);
             }
+        }
+
+        private void DeleteOldApp()
+        {
+            try
+            {
+                // Delete shortcut
+                File.Delete(Paths.DesktopDir + "\\FentonEC_Desktop.lnk");
+
+                // Delete old app
+                foreach (FileInfo file in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetFiles())
+                    file.Delete();
+
+                foreach (DirectoryInfo dir in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetDirectories())
+                    dir.Delete(true);
+
+                Directory.Delete(Paths.AppDataLocal + @"\FentonEC_Desktop");
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+
         }
 
         private void IpConfigTextBox_KeyUp(object sender, KeyEventArgs e)

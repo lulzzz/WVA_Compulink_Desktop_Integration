@@ -14,6 +14,7 @@ namespace WVA_Compulink_Desktop_Integration.Utility.Files
         public static readonly string AppDataLocal              = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private static readonly string PublicDocs               = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
         private static readonly string AppName                  = Assembly.GetCallingAssembly().GetName().Name.ToString();
+        public static readonly string DesktopDir                = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
 
         /* ---------------------------------------- APP DATA --------------------------------------------------------- */
