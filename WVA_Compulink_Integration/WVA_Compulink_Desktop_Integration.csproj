@@ -197,6 +197,9 @@
     <Compile Include="Views\LoadingWindow.xaml.cs">
       <DependentUpon>LoadingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Login\AccountSetupWindow.xaml.cs">
+      <DependentUpon>AccountSetupWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login\ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
@@ -277,6 +280,10 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Views\LoadingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Login\AccountSetupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

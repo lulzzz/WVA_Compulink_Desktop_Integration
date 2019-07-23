@@ -18,7 +18,19 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels
         {
             try
             {
-                string endpoint = $"http://{UserData.Data?.DSN}/api/user/get-acts";
+                return File.ReadAllLines(Paths.AvailableActsFile).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<string> GetAllAvailableAccounts(string dsn)
+        {
+            try
+            {
+                string endpoint = $"http://{dsn}/api/user/get-acts";
                 string response = API.Get(endpoint, out string httpStatus);
                 return JsonConvert.DeserializeObject<List<string>>(response);
             }

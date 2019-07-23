@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WVA_Compulink_Desktop_Integration.Errors;
 using WVA_Compulink_Desktop_Integration.Utility.Files;
+using WVA_Compulink_Desktop_Integration.ViewModels;
 using WVA_Compulink_Desktop_Integration.ViewModels.Login;
 
 namespace WVA_Compulink_Desktop_Integration.Views.Login
@@ -31,7 +32,7 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
             CheckFields();
             DeleteOldApp();
         }
-
+    
         private void CheckFields()
         {
             try
@@ -49,8 +50,7 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
                 // Open login window if DSN and Api key has been set
                 if (ipConfig.Trim() != "" && apiKey.Trim() != "")
                 {
-                    LoginWindow loginWindow = new LoginWindow();
-                    loginWindow.Show();
+                    new AccountSetupWindow();
                     Close();
                 }
             }
@@ -65,16 +65,21 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
             try
             {
                 // Delete shortcut
-                File.Delete(Paths.DesktopDir + "\\FentonEC_Desktop.lnk");
+                if (File.Exists(Paths.DesktopDir + "\\FentonEC_Desktop.lnk"))
+                    File.Delete(Paths.DesktopDir + "\\FentonEC_Desktop.lnk");
 
-                // Delete old app
-                foreach (FileInfo file in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetFiles())
-                    file.Delete();
+                // Delete all remains of the disgusting FentonEC desktop integration
+                if (Directory.Exists(Paths.AppDataLocal + @"\FentonEC_Desktop"))
+                {
+                    foreach (FileInfo file in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetFiles())
+                        file.Delete();
 
-                foreach (DirectoryInfo dir in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetDirectories())
-                    dir.Delete(true);
+                    foreach (DirectoryInfo dir in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetDirectories())
+                        dir.Delete(true);
 
-                Directory.Delete(Paths.AppDataLocal + @"\FentonEC_Desktop");
+                    if (Directory.Exists(Paths.AppDataLocal + @"\FentonEC_Desktop"))
+                        Directory.Delete(Paths.AppDataLocal + @"\FentonEC_Desktop");
+                }
             }
             catch (Exception ex)
             {

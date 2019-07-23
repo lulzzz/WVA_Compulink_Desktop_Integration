@@ -1,18 +1,16 @@
-﻿<Window x:Class="WVA_Compulink_Desktop_Integration.Views.Login.IpConfigWindow"
+﻿<Window x:Class="WVA_Compulink_Desktop_Integration.Views.Login.AccountSetupWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WVA_Compulink_Desktop_Integration.Views.Login"
-        mc:Ignorable="d" 
-        Title="IpConfigWindow"
+        mc:Ignorable="d"
         Height="325" 
         Width="500" 
         WindowStyle="None" 
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Background="White">
-
 
     <Window.Resources>
         <LinearGradientBrush x:Key="LoginButtonGroup"  EndPoint="0.5,1" StartPoint="0.5,0">
@@ -144,92 +142,58 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <Image Source="/Resources/WVA_Scan_Banner.PNG"
-               Margin="0,0,0,0"
-               VerticalAlignment="Top"/>
+        <StackPanel Margin="50,0,50,0"
+                    VerticalAlignment="Center">
+            
+            <TextBlock Name="ActNumLabel"
+                       Margin="0,0,0,10"
+                       Text="Check account numbers below that this client app will be allowed to have access to."
+                       FontFamily="Sitka Text"
+                       TextWrapping="Wrap"
+                       FontSize="18"
+                       HorizontalAlignment="Left"/>
 
-        <StackPanel Name="BaseStackPanel" 
-            HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Margin="0,40,0,0">
+            <DataGrid Name="AvailableActsTable"
+                      HeadersVisibility="None"
+                      Width="150"
+                      ItemsSource="{Binding AvailableActs}"
+                      Background="Transparent"
+                      AutoGenerateColumns="False"
+                      CanUserResizeRows="False"
+                      CanUserAddRows="False"
+                      FontWeight="DemiBold"
+                      BorderThickness="1" 
+                      IsReadOnly="False"
+                      FontFamily="Sitka Text"
+                      FontSize="18"
+                      MaxHeight="156"
+                      BeginningEdit="AvailableActsTable_BeginningEdit">
+                
+                    <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=AccountNumber}" Width="*"   Header="MF"          MinWidth="60" />
 
-            <Label Name="IpConfigLabel"
-                   Content="IP:Port#"
-                   FontFamily="Sitka Text"
-                   FontSize="20"
-                   Height="28"/>
+                    <DataGridTemplateColumn Width="35" Header="Accessible" IsReadOnly="False">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsChecked="{Binding Path=IsChecked, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                
+            </DataGrid>
 
-            <TextBox Name="IpConfigTextBox"
-                     MaxLength="30"                
-                     Height="30"
-                     Margin="0,0,0,0" 
-                     TextWrapping="Wrap"                
-                     Width="320" 
-                     FontSize="17" 
-                     TabIndex="1"
-                     KeyUp="IpConfigTextBox_KeyUp"/>
 
-            <Label Name="ApiKeyLabel"
-                   Content="API Key:"
-                   FontFamily="Sitka Text"
-                   FontSize="20"
-                   Height="32"/>
-
-            <TextBox Name="ApiKeyTextBox"
-                     MaxLength="50"                
-                     Height="30"
-                     Margin="0,0,0,0" 
-                     TextWrapping="NoWrap"                
-                     Width="320" 
-                     FontSize="17" 
-                     TabIndex="2"
-                     KeyUp="ApiKeyTextBox_KeyUp"/>
-
-            <Label Name="ActNumLabel"
-                   Content="WVA Account:"
-                   FontFamily="Sitka Text"
-                   FontSize="20"
-                   Height="32"/>
-
-            <TextBox Name="ActNumTextBox"
-                     MaxLength="50"                
-                     Height="30"
-                     Margin="0,0,0,0" 
-                     TextWrapping="NoWrap"                
-                     Width="320" 
-                     FontSize="17" 
-                     TabIndex="2"
-                     KeyUp="ActNumTextBox_KeyUp"/>
-
-           
-
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        Margin="0,10,0,0">
-
-                <Button x:Name="SubmitButton" 
-                        Content="Submit" 
-                        HorizontalAlignment="Center" 
-                        Margin="0,0,10,0"
-                        Width="94"
-                        FontSize="22"
-                        Height="35" 
-                        TabIndex="3" 
-                        Panel.ZIndex="1"
-                        Click="SubmitButton_Click"/>
-
-                <Button x:Name="CloseButton" 
-                        Content="Close" 
-                        HorizontalAlignment="Center" 
-                        Margin="0,0,0,0"
-                        Width="94"
-                        FontSize="22"
-                        Height="35" 
-                        TabIndex="4" 
-                        Panel.ZIndex="1"
-                        Click="CloseButton_Click"/>
-            </StackPanel>
-
+            <Button x:Name="ContinueButton" 
+                    Content="Continue" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,10,0,0"
+                    Width="120"
+                    FontSize="22"
+                    Height="35" 
+                    TabIndex="3" 
+                    Panel.ZIndex="1"
+                    Click="ContinueButton_Click"/>
         </StackPanel>
 
     </Grid>

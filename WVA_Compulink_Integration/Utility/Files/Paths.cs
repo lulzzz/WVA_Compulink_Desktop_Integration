@@ -20,18 +20,19 @@ namespace WVA_Compulink_Desktop_Integration.Utility.Files
         /* ---------------------------------------- APP DATA --------------------------------------------------------- */
 
         // DIRECTORIES 
-        public static readonly string TempDir = $@"{AppDataLocal}\{AppName}\Temp\";
-        public static readonly string DataDir = $@"{AppDataLocal}\{AppName}\Data\";
-        public static readonly string ErrorLogDir = $@"{AppDataLocal}\{AppName}\ErrorLog\";
-        public static readonly string ActNumDir = $@"{AppDataLocal}\{AppName}\ActNum\";
-        public static readonly string AppBasePath = $@"{AppDataLocal}\{AppName}\";
+        public static readonly string TempDir                   = $@"{AppDataLocal}\{AppName}\Temp\";
+        public static readonly string DataDir                   = $@"{AppDataLocal}\{AppName}\Data\";
+        public static readonly string ErrorLogDir               = $@"{AppDataLocal}\{AppName}\ErrorLog\";
+        public static readonly string ActNumDir                 = $@"{AppDataLocal}\{AppName}\ActNum\";
+        public static readonly string AppBasePath               = $@"{AppDataLocal}\{AppName}\";
 
         // FILES
-        public static readonly string ActNumFile = $@"{AppDataLocal}\{AppName}\ActNum\ActNum.txt";
-        public static readonly string ProductDatabaseFile = $@"{AppDataLocal}\{AppName}\Data\ProductPrediction.sqlite";
-        public static readonly string UserSettingsFile = $@"{AppDataLocal}\{AppName}\Data\Settings.json";
-        public static readonly string PrevTimePassChangeFile = $@"{AppDataLocal}\{AppName}\Temp\PrevTimePassChange.txt";
-        public static readonly string AppExecFile = $@"{AppDataLocal}\{AppName}\{AppName}.exe";
+        public static readonly string ActNumFile                = $@"{AppDataLocal}\{AppName}\ActNum\ActNum.txt";
+        public static readonly string ProductDatabaseFile       = $@"{AppDataLocal}\{AppName}\Data\ProductPrediction.sqlite";
+        public static readonly string UserSettingsFile          = $@"{AppDataLocal}\{AppName}\Data\Settings.json";
+        public static readonly string PrevTimePassChangeFile    = $@"{AppDataLocal}\{AppName}\Temp\PrevTimePassChange.txt";
+        public static readonly string AppExecFile               = $@"{AppDataLocal}\{AppName}\{AppName}.exe";
+        public static readonly string AvailableActsFile         = $@"{AppDataLocal}\{AppName}\ActNum\AvailableActs.txt";
 
 
         /* ---------------------------------------- PUBLIC DOCS --------------------------------------------------------- */
