@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WVA_Compulink_Desktop_Integration.Errors;
 using WVA_Compulink_Desktop_Integration.Utility.Files;
 using WVA_Compulink_Desktop_Integration.ViewModels;
 
@@ -39,60 +40,103 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
 
         private void SetUpAvailableActsFile()
         {
-            if (!Directory.Exists(Paths.ActNumDir))
-                Directory.CreateDirectory(Paths.ActNumDir);
+            try
+            {
+                if (!Directory.Exists(Paths.ActNumDir))
+                    Directory.CreateDirectory(Paths.ActNumDir);
 
-            if (!File.Exists(Paths.AvailableActsFile))
-                File.Create(Paths.AvailableActsFile).Close();
+                if (!File.Exists(Paths.AvailableActsFile))
+                    File.Create(Paths.AvailableActsFile).Close();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private void SetUpAvailableAccounts()
         {
-            string dsn = File.ReadAllText(Paths.IpConfigFile).Trim();
-            List<string> availableAccounts = new SettingsViewModel().GetAllAvailableAccounts(dsn);
-
-            foreach (string account in availableAccounts)
+            try
             {
-                var item = new AvailableAccount()
-                {
-                    IsChecked = false,
-                    AccountNumber = account
-                };
+                string dsn = File.ReadAllText(Paths.IpConfigFile).Trim();
+                List<string> availableAccounts = new SettingsViewModel().GetAllAvailableAccounts(dsn);
 
-                AvailableActsTable.Items.Add(item);
+                foreach (string account in availableAccounts)
+                {
+                    var item = new AvailableAccount()
+                    {
+                        IsChecked = false,
+                        AccountNumber = account
+                    };
+
+                    AvailableActsTable.Items.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
         }
 
         private void SetSelectedAccounts()
         {
-            foreach (AvailableAccount row in AvailableActsTable.Items)
-                if (row.IsChecked)
-                    File.AppendAllText(Paths.AvailableActsFile, row.AccountNumber + "\n");
+            try
+            {
+                foreach (AvailableAccount row in AvailableActsTable.Items)
+                    if (row.IsChecked)
+                        File.AppendAllText(Paths.AvailableActsFile, row.AccountNumber + "\n");
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private bool AvailableAccountsSet()
         {
-            var accounts = File.ReadAllLines(Paths.AvailableActsFile).ToList();
-                accounts.RemoveAll(x => string.IsNullOrWhiteSpace(x));
+            try
+            {
+                var accounts = File.ReadAllLines(Paths.AvailableActsFile).ToList();
+                    accounts.RemoveAll(x => string.IsNullOrWhiteSpace(x));
 
-            return accounts.Count > 0 ? true : false;
+                return accounts.Count > 0 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return false;
+            }
         }
 
         private void GoToLogin()
         {
-            new LoginWindow().Show();
-            Close();
+            try
+            {
+                new LoginWindow().Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private void ContinueButton_Click(object sender, RoutedEventArgs e)
         {
-            File.WriteAllText(Paths.AvailableActsFile, ""); // Reset the file since SetSelectedAccounts appends to any existing text
-            SetSelectedAccounts();
+            try
+            {
+                File.WriteAllText(Paths.AvailableActsFile, ""); // Reset the file since SetSelectedAccounts appends to any existing text
+                SetSelectedAccounts();
 
-            if (AvailableAccountsSet())
-                GoToLogin();
-            else
-                MessageBox.Show("You must select at least one account number", "", MessageBoxButton.OK);
+                if (AvailableAccountsSet())
+                    GoToLogin();
+                else
+                    MessageBox.Show("You must select at least one account number", "", MessageBoxButton.OK);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private void AvailableActsTable_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
@@ -106,6 +150,4 @@ namespace WVA_Compulink_Desktop_Integration.Views.Login
         public string AccountNumber { get; set; }
         public bool IsChecked { get; set; }
     }
-
-
 }
