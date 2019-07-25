@@ -87,12 +87,9 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                 ListPrescriptions.AddRange(Memory.Orders.CompulinkOrders);
 
                 // Set available accounts based on user settings
-                List<string> accounts = new List<string>();
+                var accounts = new List<string>();
 
-                if (UserData.Data.Settings.BlockExternalLocations)
-                    accounts.Add(UserData.Data.Account);
-                else
-                    accounts = new SettingsViewModel().GetAvailableAccounts();
+                accounts = new SettingsViewModel().GetAvailableAccounts();
 
                 SelAcctNumber.ItemsSource = accounts;
 

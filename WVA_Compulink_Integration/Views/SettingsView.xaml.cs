@@ -33,7 +33,6 @@ namespace WVA_Compulink_Desktop_Integration.Views
         {
             InitializeComponent();
             SetUpUI();
-            CheckActNumberVisibility();
             SetUpWvaAccountNumber();
         }
 
@@ -51,16 +50,7 @@ namespace WVA_Compulink_Desktop_Integration.Views
                 DeleteBlankCompulinkOrdersCheckBox.IsChecked = false;
             }
         }
-        
-        private void CheckActNumberVisibility()
-        {
-            if (UserData.Data?.Settings?.BlockExternalLocations ?? false)
-            {
-                ActNumLabel.Visibility = Visibility.Hidden;
-                AvailableActsComboBox.Visibility = Visibility.Hidden;
-            }
-        }
-
+             
         private void SetUpWvaAccountNumber()
         {
             try

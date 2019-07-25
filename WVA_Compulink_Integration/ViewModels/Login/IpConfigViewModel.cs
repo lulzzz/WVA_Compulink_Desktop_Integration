@@ -64,8 +64,6 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
             {
                 var settings = GetUserSettings();
 
-                settings.BlockExternalLocations = blockExternalLocations;
-
                 string writeSettings = JsonConvert.SerializeObject(settings);
                 File.WriteAllText(Paths.UserSettingsFile, writeSettings);
             }
@@ -80,7 +78,6 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
             var defaultSetting = new UserSettings()
             {
                 DeleteBlankCompulinkOrders = false,
-                BlockExternalLocations = false,
                 ProductMatcher = new Models.Users.ProductMatcher()
                 {
                     CharSequenceMaxScore = 40,

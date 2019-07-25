@@ -10,8 +10,6 @@ namespace WVA_Compulink_Desktop_Integration.Models.Users
     {
         public bool DeleteBlankCompulinkOrders { get; set; } = false;
 
-        public bool BlockExternalLocations { get; set; } = true;
-
         public ProductMatcher ProductMatcher { get; set; }
     }
 }
