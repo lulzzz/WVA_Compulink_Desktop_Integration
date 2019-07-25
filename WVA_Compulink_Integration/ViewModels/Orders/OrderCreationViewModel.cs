@@ -70,7 +70,7 @@ namespace WVA_Compulink_Desktop_Integration.ViewModels.Orders
         {
             Order = order;
             Prescriptions = listPrescriptions;
-            OrderName = OrderName;
+            OrderName = orderName;
         }
 
         public static Order GetOrder(string orderName)

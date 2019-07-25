@@ -54,8 +54,8 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
             try
             {
                 MatchPercentLabel.Content = $"Match Percent: {Convert.ToInt16(MinScoreAdjustSlider.Value)}%";
-                SetUpOrdersDataGrid();
                 DetermineViewMode();
+                SetUpOrdersDataGrid();
                 SetUpWvaAccountNumber();
                 FindProductMatches();
                 SetMenuItems();
