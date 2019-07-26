@@ -22,6 +22,7 @@ using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
 using WVA_Compulink_Desktop_Integration.Utility.Actions;
 using WVA_Compulink_Desktop_Integration.ViewModels;
 using WVA_Compulink_Desktop_Integration.ViewModels.Orders;
+using WVA_Compulink_Desktop_Integration.Models.ProductParameters.Derived;
 
 namespace WVA_Compulink_Desktop_Integration.Views.Orders
 {
@@ -73,13 +74,13 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                     // Clean up Compulink data
                     p.AccountNumber = UserData.Data.Account;
                     p._CustomerID.Value = prescription?._CustomerID?.Value ?? null;
-                    p.BaseCurve = prescription.BaseCurve.Trim().Replace(" ", "");
-                    p.Diameter = prescription.Diameter.Trim().Replace(" ", "");
-                    p.Add = prescription.Add.Trim().Replace(" ", "");
-                    p.Axis = prescription.Axis.Trim().Replace(" ", "");
-                    p.Multifocal = prescription.Multifocal.Trim().Replace(" ", "");
-                    p.Sphere = prescription.Sphere.Trim().Replace(" ", "");
-                    p.Cylinder = prescription.Cylinder.Trim().Replace(" ", "");
+                    p.BaseCurve = prescription?.BaseCurve?.Trim()?.Replace(" ", "");
+                    p.Diameter = prescription?.Diameter?.Trim()?.Replace(" ", "");
+                    p.Add = prescription?.Add?.Trim()?.Replace(" ", "");
+                    p.Axis = prescription?.Axis?.Trim()?.Replace(" ", "");
+                    p.Multifocal = prescription?.Multifocal?.Trim()?.Replace(" ", "");
+                    p.Sphere = prescription?.Sphere?.Trim()?.Replace(" ", "");
+                    p.Cylinder = prescription?.Cylinder?.Trim()?.Replace(" ", "");
 
                     Memory.Orders.CompulinkOrders.Add(p);
                 }
@@ -178,6 +179,49 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                 }
 
                 return prescriptionWrapper;
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return null;
+            }
+        }
+
+        private async Task<PrescriptionWrapper> GetTestCompulinkOrders()
+        {
+            try
+            {
+                var wrapper = new PrescriptionWrapper()
+                {
+                    Request = new PrescriptionRequest()
+                    {
+                        Products = new List<Prescription>()
+                        {
+                            new Prescription()
+                            {
+                                _CustomerID = new CustomerID() { Value = "" },
+                                FirstName = "Evan",
+                                LastName = "Taylor",
+                                Eye = "R",
+                                Product = "Air optix sphere",
+                                Quantity = "1",
+                                BaseCurve = "8.6"
+                            },
+                            new Prescription()
+                            {
+                                _CustomerID = new CustomerID() { Value = "" },
+                                FirstName = "Evan",
+                                LastName = "Taylor",
+                                Eye = "L",
+                                Product = "Air optix sphere",
+                                Quantity = "1",
+                                BaseCurve = "8.6"
+                            }
+                        }
+                    }   
+                };
+
+                return wrapper;
             }
             catch (Exception ex)
             {

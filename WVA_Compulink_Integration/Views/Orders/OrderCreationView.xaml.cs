@@ -176,6 +176,9 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
         // Purpose of this overload is so product can be changed before it's commited from cell edit event
         private void FindProductMatches(string product, int rowToUpdate, double matchScore = 30, bool overrideNumPicks = false)
         {
+            if (string.IsNullOrWhiteSpace(product))
+                return;
+
             double MatchScore;
             if (overrideNumPicks)
                 MatchScore = matchScore;
@@ -1366,9 +1369,12 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
             try
             {
                 if (e.EditAction == DataGridEditAction.Commit)
-                {
-                    FindProductMatches((e.EditingElement as TextBox).Text.ToString(), e.Row.GetIndex());
-                    SetMenuItems();
+               {
+                    if (SelectedColumn == 3)
+                    {
+                        FindProductMatches((e.EditingElement as TextBox).Text.ToString(), e.Row.GetIndex());
+                        SetMenuItems();
+                    }
                 }
             }
             catch (Exception x)

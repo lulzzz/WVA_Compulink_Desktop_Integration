@@ -140,6 +140,6 @@ C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Inte
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.csproj.CopyComplete
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.exe
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.pdb
-C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.csprojAssemblyReference.cache
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Login\AccountSetupWindow.g.cs
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Login\AccountSetupWindow.baml
+C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Compulink_Desktop_Integration.csprojAssemblyReference.cache
