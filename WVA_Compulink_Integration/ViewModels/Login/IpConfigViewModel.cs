@@ -1,15 +1,15 @@
-﻿using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Utility.Files;
+﻿using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Utility.Files;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Compulink_Desktop_Integration.Models.Users;
+using WVA_Connect_CDI.Models.Users;
 using Newtonsoft.Json;
 
-namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
+namespace WVA_Connect_CDI.ViewModels.Login
 {
     public class IpConfigViewModel
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Models.ProductParameters.Base
+namespace WVA_Connect_CDI.Models.ProductParameters.Base
 {
     public class Parameter
     {

@@ -1,11 +1,11 @@
-﻿using WVA_Compulink_Desktop_Integration.Models.ProductParameters.Base;
+﻿using WVA_Connect_CDI.Models.ProductParameters.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Models.ProductParameters.Derived
+namespace WVA_Connect_CDI.Models.ProductParameters.Derived
 {
     public class Diameter : Parameter
     {

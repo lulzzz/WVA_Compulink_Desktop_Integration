@@ -12,11 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WVA_Compulink_Desktop_Integration.Models.Orders.Out;
-using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
-using WVA_Compulink_Desktop_Integration.ViewModels.Orders;
+using WVA_Connect_CDI.Models.Orders.Out;
+using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.ViewModels.Orders;
 
-namespace WVA_Compulink_Desktop_Integration.Views
+namespace WVA_Connect_CDI.Views
 {
     public partial class OrdersView : UserControl
     {

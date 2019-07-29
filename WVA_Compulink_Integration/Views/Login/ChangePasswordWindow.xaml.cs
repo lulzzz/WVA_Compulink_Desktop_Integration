@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Models.Responses;
-using WVA_Compulink_Desktop_Integration.ViewModels.Login;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Models.Responses;
+using WVA_Connect_CDI.ViewModels.Login;
 
-namespace WVA_Compulink_Desktop_Integration.Views.Login
+namespace WVA_Connect_CDI.Views.Login
 {
     public partial class ChangePasswordWindow : Window
     {

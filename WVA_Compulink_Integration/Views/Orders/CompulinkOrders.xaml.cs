@@ -15,16 +15,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using WVA_Compulink_Desktop_Integration.WebTools;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
-using WVA_Compulink_Desktop_Integration.Utility.Actions;
-using WVA_Compulink_Desktop_Integration.ViewModels;
-using WVA_Compulink_Desktop_Integration.ViewModels.Orders;
-using WVA_Compulink_Desktop_Integration.Models.ProductParameters.Derived;
+using WVA_Connect_CDI.WebTools;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.Utility.Actions;
+using WVA_Connect_CDI.ViewModels;
+using WVA_Connect_CDI.ViewModels.Orders;
+using WVA_Connect_CDI.Models.ProductParameters.Derived;
 
-namespace WVA_Compulink_Desktop_Integration.Views.Orders
+namespace WVA_Connect_CDI.Views.Orders
 {
     public partial class CompulinkOrders : UserControl
     {
@@ -60,7 +60,7 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                 Memory.Orders.CompulinkOrders.Clear();
                 ListPrescriptions.Clear();
 
-                var prescriptionWrapper = await GetCompulinkOrders();
+                var prescriptionWrapper = await GetTestCompulinkOrders();
 
                 if (prescriptionWrapper == null)
                     throw new NullReferenceException("Response returned null from endpoint while getting Compulink orders.");
@@ -199,7 +199,7 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                         {
                             new Prescription()
                             {
-                                _CustomerID = new CustomerID() { Value = "" },
+                                _CustomerID = new CustomerID() { Value = "75532" },
                                 FirstName = "Evan",
                                 LastName = "Taylor",
                                 Eye = "R",
@@ -209,7 +209,7 @@ namespace WVA_Compulink_Desktop_Integration.Views.Orders
                             },
                             new Prescription()
                             {
-                                _CustomerID = new CustomerID() { Value = "" },
+                                _CustomerID = new CustomerID() { Value = "75532" },
                                 FirstName = "Evan",
                                 LastName = "Taylor",
                                 Eye = "L",

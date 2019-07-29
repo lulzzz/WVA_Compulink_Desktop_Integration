@@ -1,15 +1,15 @@
-﻿using WVA_Compulink_Desktop_Integration.WebTools;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.MatchFinder;
-using WVA_Compulink_Desktop_Integration.MatchFinder.ProductPredictions;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.Orders;
-using WVA_Compulink_Desktop_Integration.Models.Orders.Out;
-using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
-using WVA_Compulink_Desktop_Integration.Models.ProductParameters.Derived;
-using WVA_Compulink_Desktop_Integration.Models.Products;
-using WVA_Compulink_Desktop_Integration.Models.Responses;
-using WVA_Compulink_Desktop_Integration.Models.Validations;
+﻿using WVA_Connect_CDI.WebTools;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.MatchFinder;
+using WVA_Connect_CDI.MatchFinder.ProductPredictions;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.Orders;
+using WVA_Connect_CDI.Models.Orders.Out;
+using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.Models.ProductParameters.Derived;
+using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.Models.Responses;
+using WVA_Connect_CDI.Models.Validations;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -19,7 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace WVA_Compulink_Desktop_Integration.ViewModels.Orders
+namespace WVA_Connect_CDI.ViewModels.Orders
 {
     class OrderCreationViewModel
     {

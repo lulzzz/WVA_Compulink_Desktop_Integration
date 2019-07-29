@@ -1,19 +1,19 @@
-﻿using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.Products.ProductOut;
-using WVA_Compulink_Desktop_Integration.Updates;
-using WVA_Compulink_Desktop_Integration.Utility.Actions;
-using WVA_Compulink_Desktop_Integration.Utility.Files;
+﻿using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.Products.ProductOut;
+using WVA_Connect_CDI.Updates;
+using WVA_Connect_CDI.Utility.Actions;
+using WVA_Connect_CDI.Utility.Files;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Compulink_Desktop_Integration.Models.Products;
-using WVA_Compulink_Desktop_Integration.MatchFinder.ProductPredictions;
+using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.MatchFinder.ProductPredictions;
 
-namespace WVA_Compulink_Desktop_Integration.ViewModels
+namespace WVA_Connect_CDI.ViewModels
 {
     public class MainViewModel
     {

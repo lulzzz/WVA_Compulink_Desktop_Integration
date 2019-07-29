@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WVA_Compulink_Desktop_Integration.Views
+namespace WVA_Connect_CDI.Views
 {
     /// <summary>
     /// Interaction logic for LoadingWindow.xaml

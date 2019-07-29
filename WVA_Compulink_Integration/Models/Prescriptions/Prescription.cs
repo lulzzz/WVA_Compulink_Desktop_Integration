@@ -1,13 +1,13 @@
-﻿using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.ProductParameters.Derived;
-using WVA_Compulink_Desktop_Integration.ViewModels;
+﻿using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.ProductParameters.Derived;
+using WVA_Connect_CDI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Models.Prescriptions
+namespace WVA_Connect_CDI.Models.Prescriptions
 {
     public class Prescription
     {

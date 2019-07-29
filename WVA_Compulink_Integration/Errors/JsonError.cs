@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Errors
+namespace WVA_Connect_CDI.Errors
 {
     class JsonError
     {

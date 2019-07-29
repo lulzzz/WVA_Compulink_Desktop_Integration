@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.ProductMatcher.ProductPredictions.Models
+namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models
 {
     public class Product
     {

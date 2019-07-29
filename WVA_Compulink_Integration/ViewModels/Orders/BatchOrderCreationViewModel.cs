@@ -1,9 +1,9 @@
-﻿using WVA_Compulink_Desktop_Integration.WebTools;
-using WVA_Compulink_Desktop_Integration.MatchFinder;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.Orders.Out;
-using WVA_Compulink_Desktop_Integration.Models.Patients;
-using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
+﻿using WVA_Connect_CDI.WebTools;
+using WVA_Connect_CDI.MatchFinder;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.Orders.Out;
+using WVA_Connect_CDI.Models.Patients;
+using WVA_Connect_CDI.Models.Prescriptions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.ViewModels.Orders
+namespace WVA_Connect_CDI.ViewModels.Orders
 {
     class BatchOrderCreationViewModel : OrderCreationViewModel
     {

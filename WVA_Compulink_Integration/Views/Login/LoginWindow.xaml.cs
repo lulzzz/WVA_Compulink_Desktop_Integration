@@ -14,13 +14,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.Users;
-using WVA_Compulink_Desktop_Integration.ViewModels.Login;
-using WVA_Compulink_Desktop_Integration.Views.Registration;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.Users;
+using WVA_Connect_CDI.ViewModels.Login;
+using WVA_Connect_CDI.Views.Registration;
 
-namespace WVA_Compulink_Desktop_Integration.Views.Login
+namespace WVA_Connect_CDI.Views.Login
 {
     public partial class LoginWindow : Window
     {

@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace WVA_Compulink_Desktop_Integration.Utility.UI_Tools
+namespace WVA_Connect_CDI.Utility.UI_Tools
 {
     public static class DatagridTools
     {

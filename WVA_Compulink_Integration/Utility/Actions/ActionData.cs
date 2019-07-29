@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Utility.Actions
+namespace WVA_Connect_CDI.Utility.Actions
 {
     class ActionData
     {

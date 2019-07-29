@@ -12,11 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.ViewModels.Registration;
-using WVA_Compulink_Desktop_Integration.Views.Login;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.ViewModels.Registration;
+using WVA_Connect_CDI.Views.Login;
 
-namespace WVA_Compulink_Desktop_Integration.Views.Registration
+namespace WVA_Connect_CDI.Views.Registration
 {
     public partial class RegistrationWindow : Window
     {

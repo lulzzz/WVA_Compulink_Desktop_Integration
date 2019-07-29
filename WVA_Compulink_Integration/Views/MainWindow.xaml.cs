@@ -7,12 +7,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Utility.Actions;
-using WVA_Compulink_Desktop_Integration.ViewModels;
-using WVA_Compulink_Desktop_Integration.Views.Login;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Utility.Actions;
+using WVA_Connect_CDI.ViewModels;
+using WVA_Connect_CDI.Views.Login;
 
-namespace WVA_Compulink_Desktop_Integration.Views
+namespace WVA_Connect_CDI.Views
 {
     public partial class MainWindow : Window
     {

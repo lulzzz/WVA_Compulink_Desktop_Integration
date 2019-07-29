@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Models.Responses
+namespace WVA_Connect_CDI.Models.Responses
 {
     public class ResponseData
     {

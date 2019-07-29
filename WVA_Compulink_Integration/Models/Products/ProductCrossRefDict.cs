@@ -5,12 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.MatchFinder.ProductPredictions;
-using WVA_Compulink_Desktop_Integration.ProductMatcher.ProductPredictions;
-using WVA_Compulink_Desktop_Integration.Utility.Files;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.MatchFinder.ProductPredictions;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions;
+using WVA_Connect_CDI.Utility.Files;
 
-namespace WVA_Compulink_Desktop_Integration.Models.Products
+namespace WVA_Connect_CDI.Models.Products
 {
     class ProductCrossRefDict
     {

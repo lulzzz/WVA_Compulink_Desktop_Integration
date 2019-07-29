@@ -10,15 +10,15 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.Orders.Out;
-using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
-using WVA_Compulink_Desktop_Integration.Utility.Actions;
-using WVA_Compulink_Desktop_Integration.ViewModels.Orders;
-using WVA_Compulink_Desktop_Integration.WebTools;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.Orders.Out;
+using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.Utility.Actions;
+using WVA_Connect_CDI.ViewModels.Orders;
+using WVA_Connect_CDI.WebTools;
 
-namespace WVA_Compulink_Desktop_Integration.Views.Orders
+namespace WVA_Connect_CDI.Views.Orders
 {
     public partial class WVAOrders : UserControl
     {

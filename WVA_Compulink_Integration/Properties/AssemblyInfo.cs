@@ -7,12 +7,16 @@ using System.Windows;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WVA_Compulink_Desktop_Integration")]
+
+
+
+
+[assembly: AssemblyTitle("WVA_Connect_CDI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WVA_Compulink_Desktop_Integration")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyProduct("WVA_Connect_CDI")]
+[assembly: AssemblyCopyright("Copyright © Wisconsin Vision Associates 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

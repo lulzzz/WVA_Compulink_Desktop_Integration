@@ -12,11 +12,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Utility.Files;
-using WVA_Compulink_Desktop_Integration.ViewModels;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Utility.Files;
+using WVA_Connect_CDI.ViewModels;
 
-namespace WVA_Compulink_Desktop_Integration.Views.Login
+namespace WVA_Connect_CDI.Views.Login
 {
     /// <summary>
     /// Interaction logic for AccountSetupWindow.xaml

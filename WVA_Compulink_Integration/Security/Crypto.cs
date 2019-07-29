@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Security
+namespace WVA_Connect_CDI.Security
 {
     class Crypto
     {

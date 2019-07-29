@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Models.Patients
+namespace WVA_Connect_CDI.Models.Patients
 {
     class Patient
     {

@@ -1,7 +1,7 @@
-﻿using WVA_Compulink_Desktop_Integration.WebTools;
-using WVA_Compulink_Desktop_Integration.Models.Products;
-using WVA_Compulink_Desktop_Integration.Models.Products.ProductIn;
-using WVA_Compulink_Desktop_Integration.Models.Products.ProductOut;
+﻿using WVA_Connect_CDI.WebTools;
+using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.Models.Products.ProductIn;
+using WVA_Connect_CDI.Models.Products.ProductOut;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Memory
+namespace WVA_Connect_CDI.Memory
 {
     class WvaProducts
     {

@@ -1,8 +1,8 @@
-﻿using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.Memory;
-using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
-using WVA_Compulink_Desktop_Integration.Models.Products;
-using WVA_Compulink_Desktop_Integration.ViewModels;
+﻿using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.MatchFinder
+namespace WVA_Connect_CDI.MatchFinder
 {
     class NewDescriptionMatcher
     {

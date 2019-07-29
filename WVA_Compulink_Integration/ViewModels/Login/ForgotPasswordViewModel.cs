@@ -1,8 +1,8 @@
-﻿using WVA_Compulink_Desktop_Integration.WebTools;
-using WVA_Compulink_Desktop_Integration.Models.Responses;
-using WVA_Compulink_Desktop_Integration.Models.Users;
-using WVA_Compulink_Desktop_Integration.Models.Validations.Emails;
-using WVA_Compulink_Desktop_Integration.Utility.Files;
+﻿using WVA_Connect_CDI.WebTools;
+using WVA_Connect_CDI.Models.Responses;
+using WVA_Connect_CDI.Models.Users;
+using WVA_Connect_CDI.Models.Validations.Emails;
+using WVA_Connect_CDI.Utility.Files;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.ViewModels.Login
+namespace WVA_Connect_CDI.ViewModels.Login
 {
     public class ForgotPasswordViewModel
     {

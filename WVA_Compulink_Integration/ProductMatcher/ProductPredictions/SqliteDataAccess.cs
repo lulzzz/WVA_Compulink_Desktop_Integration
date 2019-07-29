@@ -7,11 +7,11 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Compulink_Desktop_Integration.Errors;
-using WVA_Compulink_Desktop_Integration.ProductMatcher.ProductPredictions.Models;
-using WVA_Compulink_Desktop_Integration.Utility.Files;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.Utility.Files;
 
-namespace WVA_Compulink_Desktop_Integration.ProductMatcher.ProductPredictions
+namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
 {
     //  
     // NOTE: This class ONLY handles direct SQL queries. It is not intended to handle any other logic - that is taken care of in the Database class.

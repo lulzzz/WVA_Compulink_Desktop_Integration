@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WVA_Compulink_Desktop_Integration
+namespace WVA_Connect_CDI
 {
     /// <summary>
     /// Interaction logic for App.xaml

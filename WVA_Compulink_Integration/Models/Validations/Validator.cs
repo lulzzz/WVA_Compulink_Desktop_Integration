@@ -1,11 +1,11 @@
-﻿using WVA_Compulink_Desktop_Integration.Models.ProductParameters.Derived;
+﻿using WVA_Connect_CDI.Models.ProductParameters.Derived;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Models.Validations
+namespace WVA_Connect_CDI.Models.Validations
 {
     class Validator
     {

@@ -1,7 +1,7 @@
-﻿using WVA_Compulink_Desktop_Integration.WebTools;
-using WVA_Compulink_Desktop_Integration.Models.Users;
-using WVA_Compulink_Desktop_Integration.Security;
-using WVA_Compulink_Desktop_Integration.Utility.Files;
+﻿using WVA_Connect_CDI.WebTools;
+using WVA_Connect_CDI.Models.Users;
+using WVA_Connect_CDI.Security;
+using WVA_Connect_CDI.Utility.Files;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.ViewModels.Registration
+namespace WVA_Connect_CDI.ViewModels.Registration
 {
     public class RegistrationViewModel
     {

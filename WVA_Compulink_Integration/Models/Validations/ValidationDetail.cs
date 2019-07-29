@@ -1,13 +1,13 @@
-﻿using WVA_Compulink_Desktop_Integration.Models.Orders;
+﻿using WVA_Connect_CDI.Models.Orders;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Compulink_Desktop_Integration.Errors;
+using WVA_Connect_CDI.Errors;
 
-namespace WVA_Compulink_Desktop_Integration.Models.Validations
+namespace WVA_Connect_CDI.Models.Validations
 {
     class ValidationDetail : ItemDetail 
     {

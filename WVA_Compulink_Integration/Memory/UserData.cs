@@ -1,11 +1,11 @@
-﻿using WVA_Compulink_Desktop_Integration.Models.Users;
+﻿using WVA_Connect_CDI.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.Memory
+namespace WVA_Connect_CDI.Memory
 {
     class UserData
     {

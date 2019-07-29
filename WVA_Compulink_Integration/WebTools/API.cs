@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Compulink_Desktop_Integration.Errors;
+using WVA_Connect_CDI.Errors;
 
-namespace WVA_Compulink_Desktop_Integration.WebTools
+namespace WVA_Connect_CDI.WebTools
 {
     class API
     {

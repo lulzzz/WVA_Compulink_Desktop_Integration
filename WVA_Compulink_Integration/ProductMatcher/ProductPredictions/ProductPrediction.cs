@@ -1,12 +1,12 @@
-﻿using WVA_Compulink_Desktop_Integration.Models.Prescriptions;
-using WVA_Compulink_Desktop_Integration.Models.Products;
+﻿using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.Models.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WVA_Compulink_Desktop_Integration.MatchFinder.ProductPredictions
+namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
 {
     class ProductPrediction
     {

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WVA_Compulink_Desktop_Integration.Views.WindowErrors
+namespace WVA_Connect_CDI.Views.WindowErrors
 {
     public partial class ErrorWindow : Window
     {
