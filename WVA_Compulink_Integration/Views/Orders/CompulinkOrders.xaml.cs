@@ -60,7 +60,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 Memory.Orders.CompulinkOrders.Clear();
                 ListPrescriptions.Clear();
 
-                var prescriptionWrapper = await GetTestCompulinkOrders();
+                var prescriptionWrapper = await GetCompulinkOrders();
 
                 if (prescriptionWrapper == null)
                     throw new NullReferenceException("Response returned null from endpoint while getting Compulink orders.");
