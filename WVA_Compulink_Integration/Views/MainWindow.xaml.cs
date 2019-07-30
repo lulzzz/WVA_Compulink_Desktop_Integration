@@ -121,7 +121,7 @@ namespace WVA_Connect_CDI.Views
                 if (!ProductsLoaded)
                 {
                     // If products list did not load correctly, this error window will pop up and we leave the method, not opening the OrdersViewModel
-                    new MessageWindow("WVA products not loaded! Please see error log in 'AppData\\Roaming\\WVA Compulink Integration\\ErrorLog' for more details.").Show();
+                    new MessageWindow("WVA products not loaded! Please see error log for more details.").Show();
                     return;
                 }
 

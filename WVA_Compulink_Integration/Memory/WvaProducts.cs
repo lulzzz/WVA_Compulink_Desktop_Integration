@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.Errors;
+using System.Windows;
+using System.IO;
 
 namespace WVA_Connect_CDI.Memory
 {
@@ -26,7 +29,10 @@ namespace WVA_Connect_CDI.Memory
             else if (productIn.Status == "SUCCESS")
                 ListProducts = productIn.Products;
             else
+            {
+                Error.Log($"Respons: FAIL when getting products. Error Message:{productIn.Message}");
                 throw new Exception($"Error getting WVA products. Status: {productIn.Status} -- Message: {productIn.Message}");
+            }
         }
     }
 }
