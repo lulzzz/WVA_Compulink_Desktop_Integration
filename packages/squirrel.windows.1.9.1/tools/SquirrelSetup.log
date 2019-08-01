@@ -1,170 +1,29 @@
-﻿2019-07-10 14:14:44> Program: Starting Squirrel Updater: --releasify WVA_Compulink_Desktop_Integration.1.1.0.nupkg --setupicon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-10 14:14:44> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-10 14:14:44> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'WVA_Compulink_Desktop_Integration.1.1.0.nupkg'.
-File name: 'WVA_Compulink_Desktop_Integration.1.1.0.nupkg'
-   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
-   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
-   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
-   at Squirrel.Update.Program.executeCommandLine(String[] args)
-   at Squirrel.Update.Program.main(String[] args)
-2019-07-10 14:25:05> Program: Starting Squirrel Updater: --releasify WVA_Compulink_Desktop_Integration.1.1.0.nupkg --setupicon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-10 14:25:05> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-10 14:25:05> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'WVA_Compulink_Desktop_Integration.1.1.0.nupkg'.
-File name: 'WVA_Compulink_Desktop_Integration.1.1.0.nupkg'
-   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
-   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
-   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
-   at Squirrel.Update.Program.executeCommandLine(String[] args)
-   at Squirrel.Update.Program.main(String[] args)
-2019-07-10 14:27:05> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0.nupkg --setupicon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-10 14:27:05> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-10 14:27:05> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg
-2019-07-10 14:27:05> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration-1.1.0-full.nupkg
-2019-07-10 14:27:05> ReleasePackage: Extracting dependent packages: []
-2019-07-10 14:27:05> ReleasePackage: Removing unnecessary data
-2019-07-10 14:27:05> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempα\WVA_Compulink_Desktop_Integration.nuspec
-2019-07-10 14:27:06> Program: Building embedded zip file for Setup.exe
-2019-07-12 13:55:55> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0.nupkg --SetupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-12 13:55:55> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-12 13:55:55> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg
-2019-07-12 13:55:55> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration-1.1.0-full.nupkg
-2019-07-12 13:55:55> ReleasePackage: Extracting dependent packages: []
-2019-07-12 13:55:55> ReleasePackage: Removing unnecessary data
-2019-07-12 13:55:55> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Compulink_Desktop_Integration.nuspec
-2019-07-12 13:55:56> Program: Building embedded zip file for Setup.exe
-2019-07-12 16:14:34> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0.nupkg --SetupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-12 16:14:34> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-12 16:14:34> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg
-2019-07-12 16:14:34> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration-1.1.0-full.nupkg
-2019-07-12 16:14:34> ReleasePackage: Extracting dependent packages: []
-2019-07-12 16:14:34> ReleasePackage: Removing unnecessary data
-2019-07-12 16:14:34> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Compulink_Desktop_Integration.nuspec
-2019-07-12 16:14:35> Program: Building embedded zip file for Setup.exe
-2019-07-12 16:34:52> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0.nupkg --SetupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-12 16:34:52> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-12 16:34:52> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg
-2019-07-12 16:34:52> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration-1.1.0-full.nupkg
-2019-07-12 16:34:52> ReleasePackage: Extracting dependent packages: []
-2019-07-12 16:34:52> ReleasePackage: Removing unnecessary data
-2019-07-12 16:34:52> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Compulink_Desktop_Integration.nuspec
-2019-07-12 16:34:53> Program: Building embedded zip file for Setup.exe
-2019-07-15 11:41:43> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0 --SetupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-15 11:41:43> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-15 11:41:43> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'Versions\WVA_Compulink_Desktop_Integration.1.1.0'.
-File name: 'Versions\WVA_Compulink_Desktop_Integration.1.1.0'
-   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
-   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
-   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
-   at Squirrel.Update.Program.executeCommandLine(String[] args)
-   at Squirrel.Update.Program.main(String[] args)
-2019-07-15 11:41:58> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0.nupkg --SetupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-15 11:41:58> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-15 11:41:58> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg
-2019-07-15 11:41:58> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration-1.1.0-full.nupkg
-2019-07-15 11:41:58> ReleasePackage: Extracting dependent packages: []
-2019-07-15 11:41:58> ReleasePackage: Removing unnecessary data
-2019-07-15 11:41:58> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Compulink_Desktop_Integration.nuspec
-2019-07-15 11:41:58> Program: Building embedded zip file for Setup.exe
-2019-07-16 14:40:27> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0.nupkg --SetupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-16 14:40:27> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-16 14:40:27> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg
-2019-07-16 14:40:27> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration-1.1.0-full.nupkg
-2019-07-16 14:40:27> ReleasePackage: Extracting dependent packages: []
-2019-07-16 14:40:27> ReleasePackage: Removing unnecessary data
-2019-07-16 14:40:27> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Compulink_Desktop_Integration.nuspec
-2019-07-16 14:40:28> Program: Building embedded zip file for Setup.exe
-2019-07-29 09:03:45> Program: Starting Squirrel Updater: --releasify Versions\WVA_Compulink_Desktop_Integration.1.1.0.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-29 09:03:45> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-29 09:03:45> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg
-2019-07-29 09:03:45> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration.1.1.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Compulink_Desktop_Integration-1.1.0-full.nupkg
-2019-07-29 09:03:46> ReleasePackage: Extracting dependent packages: []
-2019-07-29 09:03:46> ReleasePackage: Removing unnecessary data
-2019-07-29 09:03:46> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Compulink_Desktop_Integration.nuspec
-2019-07-29 09:03:46> Program: Building embedded zip file for Setup.exe
-2019-07-30 08:43:45> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI-1.2.0.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-30 08:43:45> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-30 08:43:45> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'Versions\WVA_Connect_CDI-1.2.0.nupkg'.
-File name: 'Versions\WVA_Connect_CDI-1.2.0.nupkg'
-   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
-   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
-   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
-   at Squirrel.Update.Program.executeCommandLine(String[] args)
-   at Squirrel.Update.Program.main(String[] args)
-2019-07-30 08:44:01> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.0.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-30 08:44:01> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-30 08:44:01> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.0.nupkg
-2019-07-30 08:44:01> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.0-full.nupkg
-2019-07-30 08:44:01> ReleasePackage: Extracting dependent packages: []
-2019-07-30 08:44:01> ReleasePackage: Removing unnecessary data
-2019-07-30 08:44:01> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
-2019-07-30 08:44:02> Program: Building embedded zip file for Setup.exe
-2019-07-30 08:50:32> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.0.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-30 08:50:32> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-30 08:50:32> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.0.nupkg
-2019-07-30 08:50:33> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.0.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.0-full.nupkg
-2019-07-30 08:50:33> ReleasePackage: Extracting dependent packages: []
-2019-07-30 08:50:33> ReleasePackage: Removing unnecessary data
-2019-07-30 08:50:33> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
-2019-07-30 08:50:33> Program: Building embedded zip file for Setup.exe
-2019-07-30 13:17:27> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.1.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-30 13:17:27> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-30 13:17:27> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.1.nupkg
-2019-07-30 13:17:27> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.1.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.1-full.nupkg
-2019-07-30 13:17:27> ReleasePackage: Extracting dependent packages: []
-2019-07-30 13:17:27> ReleasePackage: Removing unnecessary data
-2019-07-30 13:17:27> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
-2019-07-30 13:17:28> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.0-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.1-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
-2019-07-30 13:17:28> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
-2019-07-30 13:17:29> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
-2019-07-30 13:17:29> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
-2019-07-30 13:17:29> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-07-30 13:17:29> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-07-30 13:17:30> Program: Building embedded zip file for Setup.exe
-2019-07-30 16:03:55> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.1.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-07-30 16:03:55> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-07-30 16:03:55> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.1.nupkg
-2019-07-30 16:03:55> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.1.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.1-full.nupkg
-2019-07-30 16:03:55> ReleasePackage: Extracting dependent packages: []
-2019-07-30 16:03:55> ReleasePackage: Removing unnecessary data
-2019-07-30 16:03:55> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
-2019-07-30 16:03:56> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.0-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.1-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
-2019-07-30 16:03:56> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
-2019-07-30 16:03:57> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
-2019-07-30 16:03:57> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
-2019-07-30 16:03:57> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-07-30 16:03:57> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-07-30 16:03:57> Program: Building embedded zip file for Setup.exe
+﻿2019-08-01 09:58:55> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 09:58:55> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 09:58:55> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 09:58:55> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 09:58:56> ReleasePackage: Extracting dependent packages: []
+2019-08-01 09:58:56> ReleasePackage: Removing unnecessary data
+2019-08-01 09:58:56> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 09:58:56> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 09:58:57> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 09:58:58> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 09:58:58> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-08-01 09:58:58> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 09:58:58> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 09:58:58> Program: Building embedded zip file for Setup.exe
