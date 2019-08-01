@@ -1,62 +1,32 @@
-﻿2019-08-01 09:58:55> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-08-01 09:58:55> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-08-01 09:58:55> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
-2019-08-01 09:58:55> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
-2019-08-01 09:58:56> ReleasePackage: Extracting dependent packages: []
-2019-08-01 09:58:56> ReleasePackage: Removing unnecessary data
-2019-08-01 09:58:56> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
-2019-08-01 09:58:56> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
-2019-08-01 09:58:57> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
-2019-08-01 09:58:58> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
-2019-08-01 09:58:58> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
-2019-08-01 09:58:58> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-08-01 09:58:58> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-08-01 09:58:58> Program: Building embedded zip file for Setup.exe
-2019-08-01 10:13:50> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
-2019-08-01 10:13:50> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
-2019-08-01 10:13:50> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
-2019-08-01 10:13:50> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
-2019-08-01 10:13:50> ReleasePackage: Extracting dependent packages: []
-2019-08-01 10:13:50> ReleasePackage: Removing unnecessary data
-2019-08-01 10:13:50> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
-2019-08-01 10:13:50> Utility: The file .\StubExecutable.exe does not exist
-2019-08-01 10:13:51> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
-2019-08-01 10:13:51> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
-2019-08-01 10:13:52> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
-2019-08-01 10:13:52> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
-2019-08-01 10:13:52> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
-2019-08-01 10:13:52> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
-2019-08-01 10:13:52> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
-2019-08-01 10:13:52> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
-2019-08-01 10:13:52> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-08-01 10:13:52> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
-2019-08-01 10:13:53> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'.
+﻿2019-08-01 10:35:01> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 10:35:01> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 10:35:01> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 10:35:01> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 10:35:02> ReleasePackage: Extracting dependent packages: []
+2019-08-01 10:35:02> ReleasePackage: Removing unnecessary data
+2019-08-01 10:35:02> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 10:35:02> Utility: The file .\StubExecutable.exe does not exist
+2019-08-01 10:35:02> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:35:03> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:35:04> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'.
 File name: 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'
    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
    at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
@@ -64,3 +34,209 @@ File name: 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packag
    at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
    at Squirrel.Update.Program.executeCommandLine(String[] args)
    at Squirrel.Update.Program.main(String[] args)
+2019-08-01 10:39:08> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 10:39:08> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 10:39:08> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 10:39:08> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 10:39:09> ReleasePackage: Extracting dependent packages: []
+2019-08-01 10:39:09> ReleasePackage: Removing unnecessary data
+2019-08-01 10:39:09> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 10:39:09> Utility: The file .\StubExecutable.exe does not exist
+2019-08-01 10:39:09> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 10:39:10> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 10:39:11> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 10:39:11> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-08-01 10:39:11> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:39:11> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:39:11> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'.
+File name: 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
+   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+2019-08-01 10:40:15> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 10:40:15> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 10:40:15> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 10:40:15> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 10:40:15> ReleasePackage: Extracting dependent packages: []
+2019-08-01 10:40:15> ReleasePackage: Removing unnecessary data
+2019-08-01 10:40:15> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 10:40:15> Utility: The file .\StubExecutable.exe does not exist
+2019-08-01 10:40:16> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 10:40:16> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 10:40:17> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 10:40:17> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-08-01 10:40:17> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:40:17> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:40:18> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'.
+File name: 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
+   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+2019-08-01 10:40:55> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 10:40:55> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 10:40:55> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 10:40:55> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 10:40:56> ReleasePackage: Extracting dependent packages: []
+2019-08-01 10:40:56> ReleasePackage: Removing unnecessary data
+2019-08-01 10:40:56> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 10:40:56> Utility: The file .\StubExecutable.exe does not exist
+2019-08-01 10:40:56> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 10:40:57> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 10:40:57> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-08-01 10:40:58> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:40:58> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:40:58> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'.
+File name: 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
+   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+2019-08-01 10:59:52> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 10:59:52> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 10:59:52> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 10:59:52> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 10:59:53> ReleasePackage: Extracting dependent packages: []
+2019-08-01 10:59:53> ReleasePackage: Removing unnecessary data
+2019-08-01 10:59:53> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 10:59:53> Utility: The file .\StubExecutable.exe does not exist
+2019-08-01 10:59:53> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 10:59:54> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 10:59:54> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-08-01 10:59:55> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:59:55> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 10:59:55> Unhandled exception: System.IO.FileNotFoundException: Could not find file 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'.
+File name: 'C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe'
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   at System.IO.File.Copy(String sourceFileName, String destFileName, Boolean overwrite)
+   at Squirrel.Update.Program.Releasify(String package, String targetDir, String packagesDir, String bootstrapperExe, String backgroundGif, String signingOpts, String baseUrl, String setupIcon, Boolean generateMsi, String frameworkVersion, Boolean generateDeltas)
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+2019-08-01 11:00:43> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 11:00:43> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 11:00:43> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 11:00:44> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 11:00:44> ReleasePackage: Extracting dependent packages: []
+2019-08-01 11:00:44> ReleasePackage: Removing unnecessary data
+2019-08-01 11:00:44> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 11:00:44> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 11:00:45> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 11:00:46> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 11:00:46> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-08-01 11:00:46> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 11:00:46> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 11:00:46> Program: Building embedded zip file for Setup.exe
+2019-08-01 11:04:15> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.2.nupkg --setupIcon C:\Users\evan\Desktop\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-08-01 11:04:15> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-08-01 11:04:15> Program: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg
+2019-08-01 11:04:15> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.2.nupkg => C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg
+2019-08-01 11:04:16> ReleasePackage: Extracting dependent packages: []
+2019-08-01 11:04:16> ReleasePackage: Removing unnecessary data
+2019-08-01 11:04:16> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempε\WVA_Connect_CDI.nuspec
+2019-08-01 11:04:16> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.1-full.nupkg and C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.2-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempζ
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-08-01 11:04:17> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI.exe
+2019-08-01 11:04:18> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-08-01 11:04:18> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempε\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempζ\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-08-01 11:04:18> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 11:04:18> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-08-01 11:04:18> Program: Building embedded zip file for Setup.exe
