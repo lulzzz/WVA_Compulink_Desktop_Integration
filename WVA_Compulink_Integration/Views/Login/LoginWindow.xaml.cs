@@ -46,11 +46,14 @@ namespace WVA_Connect_CDI.Views.Login
             {
                 string myImageName = System.IO.Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().Location);
                 int mySessionId = Process.GetProcessesByName(myImageName).First().SessionId;
-                List<Process> openProcesses = Process.GetProcessesByName(myImageName).ToList();
+                int myPID = Process.GetCurrentProcess().Id;
 
-                foreach (Process process in openProcesses)
-                    if (process.SessionId == mySessionId)
+                foreach (Process process in Process.GetProcessesByName(myImageName).ToList())
+                    if (process.SessionId == mySessionId && process.Id != myPID)
+                    {
+                        Error.Log("Existing instance detected with same SessionId. Closing application!");
                         Environment.Exit(0);
+                    }
             }
             catch (Exception ex)
             {
