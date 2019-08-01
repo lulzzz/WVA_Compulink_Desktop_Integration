@@ -1226,6 +1226,14 @@ namespace WVA_Connect_CDI.Views.Orders
                 else
                 {
                     new MessageWindow($"Order creation has failed with the following message: {response.Message}").Show();
+
+                    // Order was still created so navigate out of this view
+                    if (response.Message.Contains("WVA order was still created"))
+                    {
+                        foreach (Window window in Application.Current.Windows)
+                            if (window.GetType() == typeof(MainWindow))
+                                (window as MainWindow).MainContentControl.DataContext = new OrdersView(null, null, "WVAOrders");
+                    }
                 }
             }
             catch (Exception x)

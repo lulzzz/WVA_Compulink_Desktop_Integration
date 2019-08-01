@@ -44,10 +44,13 @@ namespace WVA_Connect_CDI.Views.Login
         {
             try
             {
-                if (Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().Location)).Count() > 1)
-                {
-                    Environment.Exit(0);
-                }
+                string myImageName = System.IO.Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().Location);
+                int mySessionId = Process.GetProcessesByName(myImageName).First().SessionId;
+                List<Process> openProcesses = Process.GetProcessesByName(myImageName).ToList();
+
+                foreach (Process process in openProcesses)
+                    if (process.SessionId == mySessionId)
+                        Environment.Exit(0);
             }
             catch (Exception ex)
             {

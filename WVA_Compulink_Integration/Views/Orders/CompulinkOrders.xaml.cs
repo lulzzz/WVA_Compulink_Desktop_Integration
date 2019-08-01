@@ -199,23 +199,31 @@ namespace WVA_Connect_CDI.Views.Orders
                         {
                             new Prescription()
                             {
-                                _CustomerID = new CustomerID() { Value = "75532" },
-                                FirstName = "Evan",
-                                LastName = "Taylor",
+                                _CustomerID = new CustomerID() { Value = "64865" },
+                                FirstName = "Jennifer",
+                                LastName = "Lo",
                                 Eye = "R",
-                                Product = "Air optix sphere",
+                                Product = "AIR OPTIX PLUS HYDRAGLYDE - 6PK",
                                 Quantity = "1",
-                                BaseCurve = "8.6"
+                                BaseCurve = "8.6",
+                                Diameter = "14.2",
+                                Sphere = "-4.00",
+                                LensRx = "77162"
                             },
                             new Prescription()
                             {
-                                _CustomerID = new CustomerID() { Value = "75532" },
-                                FirstName = "Evan",
-                                LastName = "Taylor",
+                                _CustomerID = new CustomerID() { Value = "64865" },
+                                FirstName = "Jennifer",
+                                LastName = "Lo",
                                 Eye = "L",
-                                Product = "Air optix sphere",
+                                Product = "AIR OPTIX HYDRAGLYDE FOR ASTIG ",
                                 Quantity = "1",
-                                BaseCurve = "8.6"
+                                BaseCurve = "8.7",
+                                Diameter = "14.5",
+                                Sphere = "-3.50",
+                                Cylinder = "-1.25",
+                                Axis = "140",
+                                LensRx = "77162"
                             }
                         }
                     }   
