@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Updates;
 using WVA_Connect_CDI.Utility.Files;
 using WVA_Connect_CDI.ViewModels;
 using WVA_Connect_CDI.ViewModels.Login;
@@ -26,6 +27,7 @@ namespace WVA_Connect_CDI.Views.Login
 
         public IpConfigWindow()
         {
+            Task.Run(() => Updater.CheckForUpdates());
             InitializeComponent();
             ipConfigViewModel = new IpConfigViewModel();
             IpConfigTextBox.Focus();

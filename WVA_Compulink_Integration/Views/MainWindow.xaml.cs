@@ -31,7 +31,7 @@ namespace WVA_Connect_CDI.Views
         {
             InitializeComponent();
             mainViewModel = new MainViewModel();
-            mainViewModel.Update();
+            //mainViewModel.Update();
             mainViewModel.SetupDatabase();
             mainViewModel.CheckForProductPredictionUpdates();
             SetUpApp();
