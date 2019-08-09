@@ -353,6 +353,30 @@ namespace WVA_Connect_CDI.Views.Orders
             DoBTextBox.Text = "";
         }
 
+        private string RemoveUnsafeChars(string originalString)
+        {
+            return originalString.Replace("<", "")
+                                 .Replace(">", "")
+                                 .Replace("'", "")
+                                 .Replace("\"", "")
+                                 .Replace("|", "")
+                                 .Replace(";", "")
+                                 .Replace("\\", "")
+                                 .Replace("~", "")
+                                 .Replace("{", "")
+                                 .Replace("}", "")
+                                 .Replace("[", "")
+                                 .Replace("]", "")
+                                 .Replace("%", "")
+                                 .Replace("*", "")
+                                 .Replace("=", "")
+                                 .Replace("^", "")
+                                 .Replace("$", "")
+                                 .Replace("+", "")
+                                 .Replace("?", "")
+                                 .Replace("&", "");
+        }
+
         private void SetUpStpFields()
         {
             try
@@ -369,13 +393,13 @@ namespace WVA_Connect_CDI.Views.Orders
 
                 if (patient != null)
                 {
-                    CityTextBox.Text = patient.City;
-                    StateComboBox.Text = patient.State;
-                    AddressTextBox.Text = patient.Street;
-                    AddresseeTextBox.Text = patient.FullName;
-                    ZipTextBox.Text = patient.Zip.Replace("-", "");
-                    DoBTextBox.Text = patient.DoB;
-                    PhoneTextBox.Text = patient.Phone;
+                    CityTextBox.Text = RemoveUnsafeChars(patient.City);
+                    StateComboBox.Text = RemoveUnsafeChars(patient.State);
+                    AddressTextBox.Text = RemoveUnsafeChars(patient.Street);
+                    AddresseeTextBox.Text = RemoveUnsafeChars(patient.FullName);
+                    ZipTextBox.Text = RemoveUnsafeChars(patient.Zip.Replace("-", ""));
+                    DoBTextBox.Text = RemoveUnsafeChars(patient.DoB);
+                    PhoneTextBox.Text = RemoveUnsafeChars(patient.Phone);
                 }
                 else
                 {
