@@ -355,6 +355,9 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private string RemoveUnsafeChars(string originalString)
         {
+            if (originalString == null)
+                return "";
+
             return originalString.Replace("<", "")
                                  .Replace(">", "")
                                  .Replace("'", "")
@@ -397,7 +400,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     StateComboBox.Text = RemoveUnsafeChars(patient.State);
                     AddressTextBox.Text = RemoveUnsafeChars(patient.Street);
                     AddresseeTextBox.Text = RemoveUnsafeChars(patient.FullName);
-                    ZipTextBox.Text = RemoveUnsafeChars(patient.Zip.Replace("-", ""));
+                    ZipTextBox.Text = RemoveUnsafeChars(patient?.Zip?.Replace("-", "") ?? "");
                     DoBTextBox.Text = RemoveUnsafeChars(patient.DoB);
                     PhoneTextBox.Text = RemoveUnsafeChars(patient.Phone);
                 }
