@@ -39,7 +39,15 @@ namespace WVA_Connect_CDI.Models.Products
             bool successful = true;
             foreach (KeyValuePair<string, string> productPair in products)
             {
-                successful = Database.CreateCompulinkProduct(productPair.Key, productPair.Value);
+                try
+                {
+                    successful = Database.CreateCompulinkProduct(productPair.Key, productPair.Value);
+                }
+                catch (Exception ex)
+                {
+                    Error.Log(ex.ToString());
+                    successful = false;
+                }
             }
 
             return successful;
