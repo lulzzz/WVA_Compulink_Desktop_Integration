@@ -18,19 +18,14 @@ namespace WVA_Connect_CDI.Models.Products
         {
             try
             {
-                string[] files = Directory.GetDirectories(Paths.AppBasePath);
+                string crossRefFile = $@"{Paths.TempDir}ProductCrossRef.json";
 
-                foreach (string file in files)
+                if (File.Exists(crossRefFile))
                 {
-                    string crossRefFile = file + @"\ProductCrossRef.json";
+                    bool successful = RunDataInjection(GetProductCrossRef(crossRefFile));
 
-                    if (file.Contains("app-") && File.Exists(crossRefFile))
-                    {
-                        bool successful = RunDataInjection(GetProductCrossRef(crossRefFile));
-
-                        if (successful)
-                            DeleteCrossRefFile(crossRefFile);
-                    }
+                    if (successful)
+                        DeleteCrossRefFile(crossRefFile);
                 }
             }
             catch (Exception x)
