@@ -57,6 +57,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 DetermineViewMode();
                 SetUpOrdersDataGrid();
                 SetUpWvaAccountNumber();
+                CleanProductData();
                 FindProductMatches();
                 SetMenuItems();
                 Verify();
@@ -396,13 +397,13 @@ namespace WVA_Connect_CDI.Views.Orders
 
                 if (patient != null)
                 {
-                    CityTextBox.Text = RemoveUnsafeChars(patient.City);
-                    StateComboBox.Text = RemoveUnsafeChars(patient.State);
-                    AddressTextBox.Text = RemoveUnsafeChars(patient.Street);
-                    AddresseeTextBox.Text = RemoveUnsafeChars(patient.FullName);
+                    CityTextBox.Text = RemoveUnsafeChars(patient?.City);
+                    StateComboBox.Text = RemoveUnsafeChars(patient?.State);
+                    AddressTextBox.Text = RemoveUnsafeChars(patient?.Street);
+                    AddresseeTextBox.Text = RemoveUnsafeChars(patient?.FullName);
                     ZipTextBox.Text = RemoveUnsafeChars(patient?.Zip?.Replace("-", "") ?? "");
-                    DoBTextBox.Text = RemoveUnsafeChars(patient.DoB);
-                    PhoneTextBox.Text = RemoveUnsafeChars(patient.Phone);
+                    DoBTextBox.Text = RemoveUnsafeChars(patient?.DoB);
+                    PhoneTextBox.Text = RemoveUnsafeChars(patient?.Phone);
                 }
                 else
                 {
@@ -510,6 +511,20 @@ namespace WVA_Connect_CDI.Views.Orders
             {
                 Error.ReportOrLog(ex);
             }
+        }
+
+        private void CleanProductData()
+        {
+            for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+            {
+                OrderCreationViewModel.Prescriptions[i].Product = OrderCreationViewModel.Prescriptions[i]?.Product.Replace("Daily Wear", "")
+                                                                                                                   .Replace("Disposable", "")
+                                                                                                                   .Replace("Gas Permanents", "")
+                                                                                                                   .Replace("Extended Wear", "")
+                                                                                                                   .Replace("One Day", "");
+            }
+
+            OrdersDataGrid.Items.Refresh();
         }
 
         private void SetMenuItems()

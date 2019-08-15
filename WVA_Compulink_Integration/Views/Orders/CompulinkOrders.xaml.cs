@@ -60,7 +60,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 Memory.Orders.CompulinkOrders.Clear();
                 ListPrescriptions.Clear();
 
-                var prescriptionWrapper = await GetCompulinkOrders();
+                var prescriptionWrapper = await GetTestCompulinkOrders();
 
                 if (prescriptionWrapper == null)
                     throw new NullReferenceException("Response returned null from endpoint while getting Compulink orders.");
@@ -203,7 +203,7 @@ namespace WVA_Connect_CDI.Views.Orders
                                 FirstName = "Jennifer",
                                 LastName = "Lo",
                                 Eye = "R",
-                                Product = "AIR OPTIX PLUS HYDRAGLYDE - 6PK",
+                                Product = "AIR OPTIX PLUS HYDRAGLYDE - 6PK Daily Wear",
                                 Quantity = "1",
                                 BaseCurve = "8.6",
                                 Diameter = "14.2",
@@ -216,7 +216,7 @@ namespace WVA_Connect_CDI.Views.Orders
                                 FirstName = "Jennifer",
                                 LastName = "Lo",
                                 Eye = "L",
-                                Product = "AIR OPTIX HYDRAGLYDE FOR ASTIG ",
+                                Product = "AIR OPTIX HYDRAGLYDE FOR ASTIG Toric",
                                 Quantity = "1",
                                 BaseCurve = "8.7",
                                 Diameter = "14.5",
