@@ -14,7 +14,19 @@ namespace WVA_Connect_CDI.Views.Login
     {
         private string DSN { get; set; }
         private string UserName { get; set; }
+        private bool ShouldRedirectToMainWindow { get; set; } = false;
         ChangePasswordViewModel changePasswordViewModel;
+
+        // If view instantiated under this constructor, force this view to spawn a new 
+        // instance of MainWindow after password has been successfully changed
+        public ChangePasswordWindow(string userName, bool redirectToMainWindow = false)
+        {
+            ShouldRedirectToMainWindow = redirectToMainWindow;
+            InitializeComponent();
+            changePasswordViewModel = new ChangePasswordViewModel();
+            UserName = userName;
+            DSN = changePasswordViewModel.GetDSN();
+        }
 
         public ChangePasswordWindow(string userName)
         {
@@ -60,6 +72,11 @@ namespace WVA_Connect_CDI.Views.Login
                 {
                     changePasswordViewModel.LogTimePassChanged();
                     new MessageWindow("\t\tPassword updated!").Show();
+
+                    // Opens MainWindow if this view has been notified to redirect to main window
+                    if (ShouldRedirectToMainWindow)
+                        new MainWindow().Show();
+
                     Close();
                 }
                 else

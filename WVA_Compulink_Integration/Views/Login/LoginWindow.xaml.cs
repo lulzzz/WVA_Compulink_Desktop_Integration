@@ -66,7 +66,7 @@ namespace WVA_Connect_CDI.Views.Login
             try
             {
                 // Make NotifyLabel visible if necessary.
-                NotifyLabel.Visibility = Visibility.Visible;
+                //NotifyLabel.Visibility = Visibility.Visible;
 
                 // Verify user's credentials through the api and return verifiedUser object. 
                 User loginUserResponse = loginViewModel.LoginUser(UsernameTextBox.Text, PasswordTextBox.Password);
@@ -87,9 +87,13 @@ namespace WVA_Connect_CDI.Views.Login
                     UserData.Data = loginUserResponse;
                     UserData.Data.Settings = loginViewModel.GetUserSettings();
 
-                    // Let user continue into application
-                    new MainWindow().Show();
+                    if (loginUserResponse.RequiresPasswordChange) // Forces user to change password before continuing
+                        new ChangePasswordWindow(loginUserResponse.UserName, true).Show();
+                    else // Redirects user to main app 
+                        new MainWindow().Show();
+                    
                     Close();
+
                 }
                 else
                     throw new Exception("Server was unable to provide a sufficient response.");
