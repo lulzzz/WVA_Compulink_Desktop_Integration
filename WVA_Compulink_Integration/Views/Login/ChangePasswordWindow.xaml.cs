@@ -50,6 +50,7 @@ namespace WVA_Connect_CDI.Views.Login
                 {
                     MessageLabel.Visibility = Visibility.Visible;
                     MessageLabel.Text = "Passwords must match!";
+                    Height = 370;
                     return;
                 }
 
@@ -58,7 +59,7 @@ namespace WVA_Connect_CDI.Views.Login
                 {
                     MessageLabel.Visibility = Visibility.Visible;
                     MessageLabel.Text = "Password must be a minimum of 8 characters, have one capital letter, and contain at least one number.";
-                    Height = 350;
+                    Height = 370;
                     return;
                 }
 

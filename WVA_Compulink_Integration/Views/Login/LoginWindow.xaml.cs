@@ -93,7 +93,6 @@ namespace WVA_Connect_CDI.Views.Login
                         new MainWindow().Show();
                     
                     Close();
-
                 }
                 else
                     throw new Exception("Server was unable to provide a sufficient response.");

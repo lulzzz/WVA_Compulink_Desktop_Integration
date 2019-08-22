@@ -17,12 +17,6 @@ namespace WVA_Connect_CDI.ViewModels
 {
     public class MainViewModel
     {
-        public void Update()
-        {
-            // Start the updater on a new thread
-            Task.Run(() => Updater.CheckForUpdates());
-        }
-
         public void SetupDatabase()
         {
             Database.SetUpDatabase();

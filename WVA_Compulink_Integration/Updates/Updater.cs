@@ -10,6 +10,7 @@ namespace WVA_Connect_CDI.Updates
 {
     class Updater
     {
+        // This is called asychronously in IpConfigWindow, the first view that spawns for the application
         public static async Task CheckForUpdates()
         {
             try
