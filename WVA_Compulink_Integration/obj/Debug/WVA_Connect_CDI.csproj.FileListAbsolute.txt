@@ -71,4 +71,3 @@ C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Inte
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.csproj.CopyComplete
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.exe
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.pdb
-C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.csprojAssemblyReference.cache
