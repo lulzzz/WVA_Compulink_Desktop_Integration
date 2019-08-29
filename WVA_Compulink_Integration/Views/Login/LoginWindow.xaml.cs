@@ -65,9 +65,6 @@ namespace WVA_Connect_CDI.Views.Login
         {
             try
             {
-                // Make NotifyLabel visible if necessary.
-                //NotifyLabel.Visibility = Visibility.Visible;
-
                 // Verify user's credentials through the api and return verifiedUser object. 
                 User loginUserResponse = loginViewModel.LoginUser(UsernameTextBox.Text, PasswordTextBox.Password);
 

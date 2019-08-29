@@ -18,6 +18,7 @@ namespace WVA_Connect_CDI.Models.Users
         public string DSN { get; set; }
         public string Status { get; set; }
         public string Message { get; set; }
+        public int RoleId { get; set; }
         public bool RequiresPasswordChange { get; set; }
         public string[] AvailableActs { get; set; }
         public UserSettings Settings { get; set; }
