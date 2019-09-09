@@ -11,12 +11,9 @@ namespace WVA_Connect_CDI.Security
     {
         public static string ConvertToHash(string inputString)
         {
-            // Check for null or blank data
-            if (inputString == null || inputString.Trim() == "")
+            // Check for null, blank, or invalid data
+            if (inputString == null || inputString.Trim() == "" || inputString.Length < 6)
                 return null;
-
-            if (inputString.Length < 6)
-                throw new Exception("'inputString' must be at least 6 characters");
 
             using (SHA256 sha256Hash = SHA256.Create())
             {

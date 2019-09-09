@@ -42,7 +42,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
                 User user = new User()
                 {
                     UserName = username,
-                    Password = Crypto.ConvertToHash(password),
+                    Password = Crypto.ConvertToHash(password) ?? "",
                 };
 
                 string dsn = File.ReadAllText(Paths.IpConfigFile).Trim();

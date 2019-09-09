@@ -69,7 +69,7 @@ namespace WVA_Connect_CDI.Views.Login
                 User loginUserResponse = loginViewModel.LoginUser(UsernameTextBox.Text, PasswordTextBox.Password);
 
                 if (loginUserResponse == null)
-                    throw new Exception("Null response from endpoint while logging in user!");
+                    throw new Exception("No response from endpoint while logging in user!");
 
                 // Check login credentials                 
                 if (loginUserResponse.Status == "ERROR" || loginUserResponse.Status == "FAIL")

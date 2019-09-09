@@ -152,13 +152,13 @@
                     Margin="0,20,0,0">
 
             <Label  Content="Username" 
-                HorizontalAlignment="Left" 
-                Margin="0,00,0,0" 
-                VerticalAlignment="Top"
-                Width="100" 
-                FontSize="20" 
-                Height="34" 
-                TabIndex="0"/>
+                    HorizontalAlignment="Left" 
+                    Margin="0,00,0,0" 
+                    VerticalAlignment="Top"
+                    Width="100" 
+                    FontSize="20" 
+                    Height="34" 
+                    TabIndex="0"/>
 
             <TextBox x:Name="UsernameTextBox"
                      MaxLength="20"
@@ -209,16 +209,16 @@
         </StackPanel>
 
         <TextBlock x:Name="NotifyLabel" 
-                       Text="" 
-                       HorizontalAlignment="Center"
-                       Margin="0,30,0,0" 
-                       VerticalAlignment="Bottom" 
-                       FontSize="15" 
-                       MaxWidth="260"
-                       Height="65"
-                       TextWrapping="Wrap"
-                       Visibility="Hidden"
-                       Focusable="False"/>
+                   Text="" 
+                   HorizontalAlignment="Center"
+                   Margin="0,30,0,0" 
+                   VerticalAlignment="Bottom" 
+                   FontSize="15" 
+                   MaxWidth="260"
+                   Height="60"
+                   TextWrapping="Wrap"
+                   Visibility="Hidden"
+                   Focusable="False"/>
 
         <TextBlock x:Name="CreateAccountLink" 
                    Margin="0,0,5,5"                  

@@ -43,7 +43,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             switch (shipID)
             {
-                case "1":
+                case "1": 
                     return "Standard";
                 case "D":
                     return "UPS Ground";

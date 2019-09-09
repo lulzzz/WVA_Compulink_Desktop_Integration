@@ -76,7 +76,7 @@ namespace WVA_Connect_CDI.Views.Login
                 if (UserEmail == null || UserEmail == "")
                 {
                     MessageLabel.Visibility = Visibility.Visible;
-                    MessageLabel.Content = "Username not found!";
+                    MessageLabel.Content = "Bad response from server!";
                     return;
                 }
 
