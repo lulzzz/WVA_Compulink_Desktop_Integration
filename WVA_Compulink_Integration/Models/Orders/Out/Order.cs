@@ -19,7 +19,11 @@ namespace WVA_Connect_CDI.Models.Orders.Out
         public string CreatedDate { get; set; }
 
         [JsonProperty("quantity")]
-        public int Quantity { get; set; }
+        public int Quantity
+        {
+            get { return GetQuantity(); } // Loop through Items and check their quantity to determine the order quantity
+            set { Quantity = value; }
+        }
 
         [JsonProperty("wva_store_id")]
         public string WvaStoreID { get; set; }
@@ -58,7 +62,11 @@ namespace WVA_Connect_CDI.Models.Orders.Out
         public string PoNumber { get; set; }
 
         [JsonProperty("shipping_method")]
-        public string ShippingMethod { get; set; }
+        private string shippingMethod;
+        public string ShippingMethod {
+            get { return GetShippingString(shippingMethod); }
+            set { shippingMethod = value; }
+        }
 
         [JsonProperty("ship_to_patient")]
         public string ShipToPatient { get; set; }
@@ -83,5 +91,36 @@ namespace WVA_Connect_CDI.Models.Orders.Out
 
         [JsonProperty("items")]
         public List<Item> Items { get; set; }
+
+        private int GetQuantity()
+        {
+            int quantity = 0;
+
+            foreach (Item item in Items)
+            {
+                try { quantity += Convert.ToInt32(item.Quantity); }
+                finally { }
+            }
+
+            return quantity;
+        }
+
+        private string GetShippingString(string shipID)
+        {
+            switch (shipID)
+            {
+                case "1":
+                    return "Standard";
+                case "D":
+                    return "UPS Ground";
+                case "J":
+                    return "UPS 2nd Day Air";
+                case "P":
+                    return "UPS Next Day Air";
+                default:
+                    return shipID;
+            }
+        }
+
     }
 }
