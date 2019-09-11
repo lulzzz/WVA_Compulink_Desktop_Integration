@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.Utility.Actions;
 
 namespace WVA_Connect_CDI.Errors
 {
@@ -16,18 +17,25 @@ namespace WVA_Connect_CDI.Errors
     {
         public static void ReportOrLog(Exception e)
         {
-            JsonError error = new JsonError()
+            try
             {
-                ActNum = UserData.Data?.Account,
-                Error = e.ToString(),
-                Application = Assembly.GetCallingAssembly().GetName().Name,
-                AppVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString(),
-                UserName = Environment.UserName,
-                MachineName = Environment.MachineName
-            };
+                JsonError error = new JsonError()
+                {
+                    ActNum = UserData.Data?.Account,
+                    Error = e.ToString(),
+                    Application = Assembly.GetCallingAssembly().GetName().Name,
+                    AppVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString(),
+                    UserName = Environment.UserName,
+                    MachineName = Environment.MachineName
+                };
 
-            if (!ErrorReported(error))
-                Log(error.Error);
+                if (!ErrorReported(error))
+                    Log(error.Error);
+            }
+            finally
+            {
+                ActionLogger.ReportAllDataNow();
+            }
         }
 
         private static bool ErrorReported(JsonError error)

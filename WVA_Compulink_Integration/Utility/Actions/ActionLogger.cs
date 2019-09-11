@@ -173,13 +173,11 @@ namespace WVA_Connect_CDI.Utility.Actions
 
         public static void ReportAllDataNow()
         {
-            var listActionData = GetAllData();
             string data = "";
+            var listActionData = GetAllData();
 
             foreach (ActionData d in listActionData)
-            {
                 data += d.Content;
-            }
 
             // Don't report if there is not data (user clicks button multiple times)
             if (data.Trim() != "")
