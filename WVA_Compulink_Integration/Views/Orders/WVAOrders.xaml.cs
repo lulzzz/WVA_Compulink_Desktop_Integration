@@ -39,23 +39,6 @@ namespace WVA_Connect_CDI.Views.Orders
             RefreshOrders();
         }
 
-        private string GetShippingString(string shipID)
-        {
-            switch (shipID)
-            {
-                case "1": 
-                    return "Standard";
-                case "D":
-                    return "UPS Ground";
-                case "J":
-                    return "UPS 2nd Day Air";
-                case "P":
-                    return "UPS Next Day Air";
-                default:
-                    return shipID;
-            }
-        }
-
         private void SearchOrders(string searchString)
         {
             List<Order> tempList = new List<Order>();
@@ -94,15 +77,19 @@ namespace WVA_Connect_CDI.Views.Orders
                 }
             }
             catch { }
-        }
+        } 
 
-        //  Return this account's orders from the server 
-        private List<Order> GetWVAOrders()
+        /// <summary>
+        /// Get orders for given account. Send empty/null value to get all orders
+        /// </summary>
+        /// <param name="accountNumber"></param>
+        /// <returns></returns>
+        private List<Order> GetWvaOrders(string accountNumber)
         {
             try
             {
                 string dsn = UserData.Data.DSN;
-                string endpoint = $"http://{dsn}/api/order/get-orders/" + $"{UserData.Data.Account}";
+                string endpoint = $"http://{dsn}/api/order/get-orders/" + $"{accountNumber}";
                 string strOrders = API.Get(endpoint, out string httpStatus);
 
                 if (strOrders == null || strOrders == "")
@@ -134,17 +121,6 @@ namespace WVA_Connect_CDI.Views.Orders
                         continue;
                 }
 
-                // Find number of items in the order and set the quantity
-                int quantity = 0;
-                foreach (var detail in order.Items)
-                {
-                    try { quantity += Convert.ToInt32(detail.Quantity); }
-                    catch { continue; }
-                }
-
-                order.Quantity = quantity;
-                order.ShippingMethod = GetShippingString(order.ShippingMethod);
-
                 returnList.Add(order);
             }
 
@@ -156,7 +132,10 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private List<Order> GetFilteredOrders()
         {
-            return RemoveOldOrders(GetWVAOrders());
+            if (UserData.Data?.RoleId == 1 || UserData.Data?.RoleId == 3)
+                return GetWvaOrders(null);  
+            else
+                return RemoveOldOrders(GetWvaOrders(UserData.Data.Account)); // Get all orders for this account not older than a week
         }
 
         private List<Order> SetUpOrdersDataGrid()
