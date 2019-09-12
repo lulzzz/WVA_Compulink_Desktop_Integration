@@ -5,13 +5,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using WVA_Connect_CDI.Errors;
@@ -29,7 +26,6 @@ using WVA_Connect_CDI.Models.Validations;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.Utility.Files;
 using WVA_Connect_CDI.Utility.UI_Tools;
-using WVA_Connect_CDI.ViewModels;
 using WVA_Connect_CDI.ViewModels.Orders;
 using WVA_Connect_CDI.WebTools;
 
@@ -283,9 +279,9 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void AutoFillStpItems()
         {
-            AddresseeTextBox.Text = OrderCreationViewModel.Order.Name_1;
-            AddressTextBox.Text = OrderCreationViewModel.Order.StreetAddr_1;
-            Suite_AptTextBox.Text = OrderCreationViewModel.Order.StreetAddr_2;
+            AddresseeTextBox.Text = OrderCreationViewModel.Order.Name1;
+            AddressTextBox.Text = OrderCreationViewModel.Order.StreetAddr1;
+            Suite_AptTextBox.Text = OrderCreationViewModel.Order.StreetAddr2;
             CityTextBox.Text = OrderCreationViewModel.Order.City;
             StateComboBox.Text = OrderCreationViewModel.Order.State;
             ZipTextBox.Text = OrderCreationViewModel.Order.Zip;
@@ -443,9 +439,9 @@ namespace WVA_Connect_CDI.Views.Orders
             }
 
             // Left column
-            AddresseeTextBox.Text = OrderCreationViewModel.Order.Name_1 ?? "";
-            AddressTextBox.Text = OrderCreationViewModel.Order.StreetAddr_1 ?? "";
-            Suite_AptTextBox.Text = OrderCreationViewModel.Order.StreetAddr_2 ?? "";
+            AddresseeTextBox.Text = OrderCreationViewModel.Order.Name1 ?? "";
+            AddressTextBox.Text = OrderCreationViewModel.Order.StreetAddr1 ?? "";
+            Suite_AptTextBox.Text = OrderCreationViewModel.Order.StreetAddr2 ?? "";
             CityTextBox.Text = OrderCreationViewModel.Order.City ?? "";
             StateComboBox.Text = OrderCreationViewModel.Order.State ?? "";
             ZipTextBox.Text = OrderCreationViewModel.Order.Zip ?? "";
@@ -485,7 +481,8 @@ namespace WVA_Connect_CDI.Views.Orders
                     Add = OrderCreationViewModel.Order.Items[i].ProductDetail.Add,
                     Color = OrderCreationViewModel.Order.Items[i].ProductDetail.Color,
                     Multifocal = OrderCreationViewModel.Order.Items[i].ProductDetail.Multifocal,
-                    LensRx = OrderCreationViewModel.Order.Items[i].ProductDetail.LensRx
+                    LensRx = OrderCreationViewModel.Order.Items[i].ProductDetail.LensRx,
+                    IsShipToPat = OrderCreationViewModel.Order.ShipToPatient == "Y" ? true : false 
                 };
 
                 OrderCreationViewModel.Prescriptions.Add(prescription);
@@ -1115,9 +1112,9 @@ namespace WVA_Connect_CDI.Views.Orders
 
                 if (StateComboBox.Visibility == Visibility.Visible)
                 {
-                    order.Name_1 = AddresseeTextBox.Text;
-                    order.StreetAddr_1 = AddressTextBox.Text;
-                    order.StreetAddr_2 = Suite_AptTextBox.Text;
+                    order.Name1 = AddresseeTextBox.Text;
+                    order.StreetAddr1 = AddressTextBox.Text;
+                    order.StreetAddr2 = Suite_AptTextBox.Text;
                     order.State = StateComboBox.Text.Length > 2 ? StateComboBox.Text.Substring(StateComboBox.Text.Length - 2) : StateComboBox.Text;
                     order.City = CityTextBox.Text;
                     order.Zip = ZipTextBox.Text;

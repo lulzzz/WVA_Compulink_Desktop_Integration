@@ -43,11 +43,11 @@ namespace WVA_Connect_CDI.Views.Orders
                 OrderIDLabel.Content = $"WVA Order ID: {o.WvaStoreID}";
 
                 // Sub-header (if value is not null or blank, add it to a stack panel column so the view scales smoothly)
-                if (o.Name_1 != null && o.Name_1.Trim() != "")
-                    StackPanelAddLeftChild($"Addressee: {o.Name_1}");
+                if (o.Name1 != null && o.Name1.Trim() != "")
+                    StackPanelAddLeftChild($"Addressee: {o.Name1}");
 
-                if (o.StreetAddr_1 != null && o.StreetAddr_1.Trim() != "")
-                    StackPanelAddLeftChild($"Address: {o.StreetAddr_1}");
+                if (o.StreetAddr1 != null && o.StreetAddr1.Trim() != "")
+                    StackPanelAddLeftChild($"Address: {o.StreetAddr1}");
 
                 if (o.ShippingMethod != null && o.ShippingMethod.Trim() != "")
                     StackPanelAddLeftChild($"Ship Type: {o.ShippingMethod}");
@@ -64,8 +64,8 @@ namespace WVA_Connect_CDI.Views.Orders
                 if (o.Zip != null && o.Zip.Trim() != "")
                     StackPanelAddRightChild($"Zip: {o.Zip}");
 
-                if (o.StreetAddr_2 != null && o.StreetAddr_2.Trim() != "")
-                    StackPanelAddRightChild($"Suite/Apt: {o.StreetAddr_2}");
+                if (o.StreetAddr2 != null && o.StreetAddr2.Trim() != "")
+                    StackPanelAddRightChild($"Suite/Apt: {o.StreetAddr2}");
 
                 // Grid items
                 foreach (Item item in ViewOrderDetailsViewModel.SelectedOrder.Items)

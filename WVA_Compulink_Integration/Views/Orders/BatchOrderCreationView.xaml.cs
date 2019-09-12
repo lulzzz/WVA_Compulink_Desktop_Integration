@@ -87,8 +87,8 @@ namespace WVA_Connect_CDI.Views.Orders
                     if (order.ShipToPatient == "Y")
                     {
                         var patient = CompulinkOrdersViewModel.GetPatientInfo(prescription._CustomerID.Value);
-                        order.Name_1 = patient.FullName ?? "";
-                        order.StreetAddr_1 = patient.Street ?? "";
+                        order.Name1 = patient.FullName ?? "";
+                        order.StreetAddr1 = patient.Street ?? "";
                         order.State = patient.State ?? "";
                         order.City = patient.City ?? "";
                         order.Zip = patient.Zip ?? "";

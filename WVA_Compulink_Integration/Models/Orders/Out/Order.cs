@@ -35,16 +35,16 @@ namespace WVA_Connect_CDI.Models.Orders.Out
         public string DoB { get; set; }
 
         [JsonProperty("name_1")]
-        public string Name_1 { get; set; }
+        public string Name1 { get; set; }
 
         [JsonProperty("name_2")]
-        public string Name_2 { get; set; }
+        public string Name2 { get; set; }
 
         [JsonProperty("street_address_1")]
-        public string StreetAddr_1 { get; set; }
+        public string StreetAddr1 { get; set; }
 
         [JsonProperty("street_address_2")]
-        public string StreetAddr_2 { get; set; }
+        public string StreetAddr2 { get; set; }
 
         [JsonProperty("city")]
         public string City { get; set; }
