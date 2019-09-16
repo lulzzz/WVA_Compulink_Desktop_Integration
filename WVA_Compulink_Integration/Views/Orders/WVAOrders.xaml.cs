@@ -60,7 +60,7 @@ namespace WVA_Connect_CDI.Views.Orders
                         tempList = ListOrders.Where(x => x.ShipToPatient.ToLower().Contains(searchString.ToLower())).ToList();
                         break;
                     case 4:
-                        tempList = ListOrders.Where(x => x.PoNumber.ToLower().Contains(searchString.ToLower())).ToList();
+                        tempList = ListOrders.Where(x => x.CustomerID.ToLower().Contains(searchString.ToLower())).ToList();
                         break;
                     case 5:
                         tempList = ListOrders.Where(x => x.OrderedBy.ToLower().Contains(searchString.ToLower())).ToList();

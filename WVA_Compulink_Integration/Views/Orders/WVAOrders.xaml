@@ -188,7 +188,7 @@
                     Ship To Patient
                 </ComboBoxItem>
                 <ComboBoxItem>
-                    PO Number
+                    Account Number
                 </ComboBoxItem>
                 <ComboBoxItem>
                     Ordered By
