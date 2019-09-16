@@ -254,7 +254,7 @@
                 <DataGridTextColumn Binding="{Binding Path=OrderName}"      Width="*"   Header="Order Name" MinWidth="200"/>
                 <DataGridTextColumn Binding="{Binding Path=CreatedDate}"    Width="140" Header="Created Date" MinWidth="120"/>
                 <DataGridTextColumn Binding="{Binding Path=ShipToPatient}"  Width="35"  Header="STP" />
-                <DataGridTextColumn Binding="{Binding Path=PoNumber}"       Width="75"  Header="PO Number" MinWidth="75"/>
+                <DataGridTextColumn Binding="{Binding Path=CustomerID}"     Width="35"  Header="Acct" MinWidth="35"/>
                 <DataGridTextColumn Binding="{Binding Path=OrderedBy}"      Width="80"  Header="Ordered By" />
                 <DataGridTextColumn Binding="{Binding Path=Quantity}"       Width="35"  Header="Qty" />
                 <DataGridTextColumn Binding="{Binding Path=Status}"         Width="80"  Header="Status" />
