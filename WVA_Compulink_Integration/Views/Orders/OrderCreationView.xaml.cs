@@ -64,11 +64,6 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
-        private void AutosaveOrder()
-        {
-            new Thread(AutoSaveOrderAsync).Start();
-        }
-
         private void AutoSaveOrderAsync()
         {
             int numEr = 0;
@@ -234,14 +229,6 @@ namespace WVA_Connect_CDI.Views.Orders
         // =======================================================================================================================
         // ================================== UI Related Methods =================================================================
         // =======================================================================================================================
-
-        private void SetUpShippingComboBox()
-        {
-            foreach (string shipType in ShippingTypes.ListShippingTypes)
-            {
-                ShippingTypeComboBox.Items.Add(shipType);
-            }
-        }
 
         private string GetShippingTypeID(string shipType)
         {
@@ -910,14 +897,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
-                string dsn = UserData.Data.DSN;
-                string endpoint = $"http://{dsn}/api/order/get-orders/" + $"{UserData.Data.Account}";
-                string strOrders = API.Get(endpoint, out string httpStatus);
-
-                if (strOrders == null || strOrders == "")
-                    throw new NullReferenceException();
-
-                var listOrders = JsonConvert.DeserializeObject<List<Order>>(strOrders);
+                var listOrders = OrderCreationViewModel.GetOrders(UserData.Data.Account);
                 var order = GetCompleteOrder().OutOrder.PatientOrder;
                 var tempList = new List<Order>();
                 var cutOffTime = DateTime.Now.AddDays(-1);
@@ -1581,6 +1561,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 Error.ReportOrLog(ex);
             }
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -1657,7 +1638,5 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             MatchPercentLabel.Content = $"Match Percent: {Convert.ToInt16(MinScoreAdjustSlider.Value)}%";
         }
-
-       
     }
 }

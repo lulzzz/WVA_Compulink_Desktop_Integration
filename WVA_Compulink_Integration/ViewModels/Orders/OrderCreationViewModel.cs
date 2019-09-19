@@ -87,6 +87,20 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return order;
         }
 
+        public static List<Order> GetOrders(string account)
+        {
+            string dsn = UserData.Data.DSN;
+            string endpoint = $"http://{dsn}/api/order/get-orders/{account}";
+            string strOrders = API.Get(endpoint, out string httpStatus);
+
+            if (strOrders == null || strOrders == "")
+                throw new NullReferenceException();
+
+            var listOrders = JsonConvert.DeserializeObject<List<Order>>(strOrders);
+
+            return listOrders
+        }
+
         public static OrderResponse CreateOrder(OutOrderWrapper outOrderWrapper)
         {
             string dsn = UserData.Data.DSN;

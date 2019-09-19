@@ -21,6 +21,7 @@ namespace WVA_Connect_CDI.Views
 
         [DllImport("user32.dll")]
         public static extern Boolean GetLastInputInfo(ref tagLASTINPUTINFO plii);
+
         public struct tagLASTINPUTINFO
         {
             public uint cbSize;
