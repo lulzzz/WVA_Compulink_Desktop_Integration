@@ -23,9 +23,9 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 {
     class OrderCreationViewModel
     {
-        public static Order Order { get; set; }
-        public static List<Prescription> Prescriptions { get; set; }
-        public static string OrderName { get; set; }
+        public Order Order { get; set; }
+        public List<Prescription> Prescriptions { get; set; }
+        public string OrderName { get; set; }
 
         public OrderCreationViewModel()
         {
@@ -73,7 +73,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             OrderName = orderName;
         }
 
-        public static Order GetOrder(string orderName)
+        public Order GetOrder(string orderName)
         {
             string dsn = UserData.Data.DSN;
             string endpoint = $"http://{dsn}/api/order/exists/";
@@ -87,7 +87,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return order;
         }
 
-        public static List<Order> GetOrders(string account)
+        public List<Order> GetOrders(string account)
         {
             string dsn = UserData.Data.DSN;
             string endpoint = $"http://{dsn}/api/order/get-orders/{account}";
@@ -98,10 +98,10 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 
             var listOrders = JsonConvert.DeserializeObject<List<Order>>(strOrders);
 
-            return listOrders
+            return listOrders;
         }
 
-        public static OrderResponse CreateOrder(OutOrderWrapper outOrderWrapper)
+        public OrderResponse CreateOrder(OutOrderWrapper outOrderWrapper)
         {
             string dsn = UserData.Data.DSN;
             string endpoint = $"http://{dsn}/api/order/submit/";
@@ -111,7 +111,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return response;
         }
 
-        public static OrderResponse DeleteOrder(string orderName)
+        public OrderResponse DeleteOrder(string orderName)
         {
             string dsn = UserData.Data.DSN;
             string endpoint = $"http://{dsn}/api/order/delete/";
@@ -121,7 +121,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return response;
         }
 
-        public static OrderResponse SaveOrder(OutOrderWrapper outOrderWrapper)
+        public OrderResponse SaveOrder(OutOrderWrapper outOrderWrapper)
         {
             if (outOrderWrapper?.OutOrder?.PatientOrder?.OrderName == null || outOrderWrapper?.OutOrder?.PatientOrder?.OrderName.Trim() == "")
                 return null;
@@ -134,14 +134,14 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return response;
         }
 
-        public static ValidationResponse ValidateOrder(ValidationWrapper validationWrapper)
+        public ValidationResponse ValidateOrder(ValidationWrapper validationWrapper)
         {
             string endpoint = "https://orders.wisvis.com/validations";
             string strValidatedProducts = API.Post(endpoint, validationWrapper);
             return JsonConvert.DeserializeObject<ValidationResponse>(strValidatedProducts);
         }
 
-        public static string GetShippingString(string shipID)
+        public string GetShippingString(string shipID)
         {
             switch (shipID)
             {
@@ -158,7 +158,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             }
         }
 
-        public static string GetShippingTypeID(string shipType)
+        public string GetShippingTypeID(string shipType)
         {
             switch (shipType)
             {
@@ -175,7 +175,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             }
         }
 
-        public static bool OrderExists(string orderName)
+        public bool OrderExists(string orderName)
         {
             // Make sure they do not add a batch order to an existing order
             var existingOrder = GetOrder(orderName);

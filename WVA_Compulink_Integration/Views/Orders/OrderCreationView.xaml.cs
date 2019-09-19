@@ -38,9 +38,11 @@ namespace WVA_Connect_CDI.Views.Orders
         public int SelectedColumn { get; set; }
         public static string ViewMode { get; set; }
         public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
+        OrderCreationViewModel orderCreationViewModel;
 
         public OrderCreationView()
         {
+            orderCreationViewModel = new OrderCreationViewModel();
             InitializeComponent();
             SetUpUI();
         }
@@ -75,7 +77,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     {
                         Mouse.OverrideCursor = Cursors.Wait;
                         OutOrderWrapper order = GetCompleteOrder();
-                        OrderCreationViewModel.SaveOrder(order);
+                        orderCreationViewModel.SaveOrder(order);
                         Mouse.OverrideCursor = Cursors.Arrow;
                     });
                 }
@@ -96,12 +98,12 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void DetermineViewMode()
         {
-            if (OrderCreationViewModel.Order != null)
+            if (orderCreationViewModel.Order != null)
             {
                 ViewMode = "edit";
                 SetUpEditOrder();
             }
-            else if (OrderCreationViewModel.Prescriptions != null)
+            else if (orderCreationViewModel.Prescriptions != null)
             {
                 ViewMode = "new";
                 SetUpNewOrder();
@@ -152,7 +154,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     if (matchProducts?.Count > 0)
                     {
                         ListMatchedProducts.Add(matchProducts);
-                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        orderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
                     }
                     else
                         ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
@@ -213,7 +215,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     if (matchProducts?.Count > 0)
                     {
                         ListMatchedProducts.Add(matchProducts);
-                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        orderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
                     }
                     else
                         ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
@@ -249,7 +251,7 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void SetUpOrdersDataGrid()
         {
-            OrdersDataGrid.ItemsSource = OrderCreationViewModel.Prescriptions;
+            OrdersDataGrid.ItemsSource = orderCreationViewModel.Prescriptions;
         }
 
         private string AssignCellColor(string prodValue, bool isValid, string errorMessage, bool canBeValidated)
@@ -266,14 +268,14 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void AutoFillStpItems()
         {
-            AddresseeTextBox.Text = OrderCreationViewModel.Order.Name1;
-            AddressTextBox.Text = OrderCreationViewModel.Order.StreetAddr1;
-            Suite_AptTextBox.Text = OrderCreationViewModel.Order.StreetAddr2;
-            CityTextBox.Text = OrderCreationViewModel.Order.City;
-            StateComboBox.Text = OrderCreationViewModel.Order.State;
-            ZipTextBox.Text = OrderCreationViewModel.Order.Zip;
-            PhoneTextBox.Text = OrderCreationViewModel.Order.Phone;
-            DoBTextBox.Text = OrderCreationViewModel.Order.DoB;
+            AddresseeTextBox.Text   = orderCreationViewModel.Order.Name1;
+            AddressTextBox.Text     = orderCreationViewModel.Order.StreetAddr1;
+            Suite_AptTextBox.Text   = orderCreationViewModel.Order.StreetAddr2;
+            CityTextBox.Text        = orderCreationViewModel.Order.City;
+            StateComboBox.Text      = orderCreationViewModel.Order.State;
+            ZipTextBox.Text         = orderCreationViewModel.Order.Zip;
+            PhoneTextBox.Text       = orderCreationViewModel.Order.Phone;
+            DoBTextBox.Text         = orderCreationViewModel.Order.DoB;
         }
 
         private void HideStpItems()
@@ -317,7 +319,7 @@ namespace WVA_Connect_CDI.Views.Orders
         private void ClearView()
         {
             // Empty datagrid
-            OrderCreationViewModel.Prescriptions.Clear();
+            orderCreationViewModel.Prescriptions.Clear();
             OrdersDataGrid.Items.Refresh();
 
             // Clear right column
@@ -369,7 +371,7 @@ namespace WVA_Connect_CDI.Views.Orders
             try
             {
                 string dsn = UserData.Data?.DSN;
-                string id = OrderCreationViewModel.Prescriptions[0]._CustomerID?.Value;
+                string id = orderCreationViewModel.Prescriptions[0]._CustomerID?.Value;
 
                 if (id == null)
                     return;
@@ -402,12 +404,12 @@ namespace WVA_Connect_CDI.Views.Orders
         private void SetUpNewOrder()
         {
             // Autofill some user information      
-            OrderNameTextBox.Text = OrderCreationViewModel.OrderName ?? "";
+            OrderNameTextBox.Text = orderCreationViewModel.OrderName ?? "";
             ActNumTextBox.Text = UserData.Data?.Account ?? "";
             OrderedByTextBox.Text = UserData.Data?.UserName ?? "";
 
             // Hide STP fields if order not STP
-            if (!OrderCreationViewModel.Prescriptions[0].IsShipToPat)
+            if (!orderCreationViewModel.Prescriptions[0].IsShipToPat)
                 HideStpItems();
             else
                 SetUpStpFields();
@@ -415,7 +417,7 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void SetUpEditOrder()
         {
-            if (OrderCreationViewModel.Order.ShipToPatient == "Y")
+            if (orderCreationViewModel.Order.ShipToPatient == "Y")
             {
                 ShowStpItems();
                 AutoFillStpItems();
@@ -426,53 +428,53 @@ namespace WVA_Connect_CDI.Views.Orders
             }
 
             // Left column
-            AddresseeTextBox.Text = OrderCreationViewModel.Order.Name1 ?? "";
-            AddressTextBox.Text = OrderCreationViewModel.Order.StreetAddr1 ?? "";
-            Suite_AptTextBox.Text = OrderCreationViewModel.Order.StreetAddr2 ?? "";
-            CityTextBox.Text = OrderCreationViewModel.Order.City ?? "";
-            StateComboBox.Text = OrderCreationViewModel.Order.State ?? "";
-            ZipTextBox.Text = OrderCreationViewModel.Order.Zip ?? "";
-            PhoneTextBox.Text = OrderCreationViewModel.Order.Phone ?? "";
-            DoBTextBox.Text = OrderCreationViewModel.Order.DoB ?? "";
+            AddresseeTextBox.Text   = orderCreationViewModel.Order.Name1 ?? "";
+            AddressTextBox.Text     = orderCreationViewModel.Order.StreetAddr1 ?? "";
+            Suite_AptTextBox.Text   = orderCreationViewModel.Order.StreetAddr2 ?? "";
+            CityTextBox.Text        = orderCreationViewModel.Order.City ?? "";
+            StateComboBox.Text      = orderCreationViewModel.Order.State ?? "";
+            ZipTextBox.Text         = orderCreationViewModel.Order.Zip ?? "";
+            PhoneTextBox.Text       = orderCreationViewModel.Order.Phone ?? "";
+            DoBTextBox.Text         = orderCreationViewModel.Order.DoB ?? "";
 
             // Right column
-            OrderNameTextBox.Text = OrderCreationViewModel.Order.OrderName ?? "";
-            ActNumTextBox.Text = UserData.Data?.Account;
-            OrderedByTextBox.Text = UserData.Data.UserName ?? "";
-            PoNumberTextBox.Text = OrderCreationViewModel.Order.PoNumber ?? "";
-            ShippingTypeComboBox.Text = OrderCreationViewModel.Order.ShippingMethod ?? "";
+            OrderNameTextBox.Text       = orderCreationViewModel.Order.OrderName ?? "";
+            ActNumTextBox.Text          = UserData.Data?.Account;
+            OrderedByTextBox.Text       = UserData.Data.UserName ?? "";
+            PoNumberTextBox.Text        = orderCreationViewModel.Order.PoNumber ?? "";
+            ShippingTypeComboBox.Text   = orderCreationViewModel.Order.ShippingMethod ?? "";
 
             // If there are no items then exit
-            if (OrderCreationViewModel.Order.Items == null || OrderCreationViewModel.Order.Items?.Count == 0)
+            if (orderCreationViewModel.Order.Items == null || orderCreationViewModel.Order.Items?.Count == 0)
                 return;
 
             // Datagrid rows
-            for (int i = 0; i < OrderCreationViewModel.Order.Items.Count; i++)
+            for (int i = 0; i < orderCreationViewModel.Order.Items.Count; i++)
             {
                 Prescription prescription = new Prescription()
                 {
                     // If product has been reviewed, show 'checked' image next to product name
-                    ProductImagePath = OrderCreationViewModel.Order.Items[i].ProductDetail.ProductReviewed ? @"/Resources/CheckMarkCircle.png" : null,
-                    FirstName = OrderCreationViewModel.Order.Items[i].FirstName,
-                    _CustomerID = new CustomerID() { Value = OrderCreationViewModel.Order.Items[i].PatientID },
-                    LastName = OrderCreationViewModel.Order.Items[i].LastName,
-                    Eye = OrderCreationViewModel.Order.Items[i].Eye,
-                    Quantity = OrderCreationViewModel.Order.Items[i].Quantity,
-                    Product = OrderCreationViewModel.Order.Items[i].ProductDetail.Name,
-                    ProductCode = OrderCreationViewModel.Order.Items[i].ProductDetail.ProductKey,
-                    BaseCurve = OrderCreationViewModel.Order.Items[i].ProductDetail.BaseCurve,
-                    Diameter = OrderCreationViewModel.Order.Items[i].ProductDetail.Diameter,
-                    Sphere = OrderCreationViewModel.Order.Items[i].ProductDetail.Sphere,
-                    Cylinder = OrderCreationViewModel.Order.Items[i].ProductDetail.Cylinder,
-                    Axis = OrderCreationViewModel.Order.Items[i].ProductDetail.Axis,
-                    Add = OrderCreationViewModel.Order.Items[i].ProductDetail.Add,
-                    Color = OrderCreationViewModel.Order.Items[i].ProductDetail.Color,
-                    Multifocal = OrderCreationViewModel.Order.Items[i].ProductDetail.Multifocal,
-                    LensRx = OrderCreationViewModel.Order.Items[i].ProductDetail.LensRx,
-                    IsShipToPat = OrderCreationViewModel.Order.ShipToPatient == "Y" ? true : false 
+                    ProductImagePath    = orderCreationViewModel.Order.Items[i].ProductDetail.ProductReviewed ? @"/Resources/CheckMarkCircle.png" : null,
+                    FirstName           = orderCreationViewModel.Order.Items[i].FirstName,
+                    _CustomerID         = new CustomerID() { Value = orderCreationViewModel.Order.Items[i].PatientID },
+                    LastName            = orderCreationViewModel.Order.Items[i].LastName,
+                    Eye                 = orderCreationViewModel.Order.Items[i].Eye,
+                    Quantity            = orderCreationViewModel.Order.Items[i].Quantity,
+                    Product             = orderCreationViewModel.Order.Items[i].ProductDetail.Name,
+                    ProductCode         = orderCreationViewModel.Order.Items[i].ProductDetail.ProductKey,
+                    BaseCurve           = orderCreationViewModel.Order.Items[i].ProductDetail.BaseCurve,
+                    Diameter            = orderCreationViewModel.Order.Items[i].ProductDetail.Diameter,
+                    Sphere              = orderCreationViewModel.Order.Items[i].ProductDetail.Sphere,
+                    Cylinder            = orderCreationViewModel.Order.Items[i].ProductDetail.Cylinder,
+                    Axis                = orderCreationViewModel.Order.Items[i].ProductDetail.Axis,
+                    Add                 = orderCreationViewModel.Order.Items[i].ProductDetail.Add,
+                    Color               = orderCreationViewModel.Order.Items[i].ProductDetail.Color,
+                    Multifocal          = orderCreationViewModel.Order.Items[i].ProductDetail.Multifocal,
+                    LensRx              = orderCreationViewModel.Order.Items[i].ProductDetail.LensRx,
+                    IsShipToPat         = orderCreationViewModel.Order.ShipToPatient == "Y" ? true : false 
                 };
 
-                OrderCreationViewModel.Prescriptions.Add(prescription);
+                orderCreationViewModel.Prescriptions.Add(prescription);
             }
         }
 
@@ -501,11 +503,11 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
             {
-                OrderCreationViewModel.Prescriptions[i].Product = OrderCreationViewModel.Prescriptions[i]?.Product.Replace("Daily Wear", "")
-                                                                                                                   .Replace("Disposable", "")
-                                                                                                                   .Replace("Gas Permanents", "")
-                                                                                                                   .Replace("Extended Wear", "")
-                                                                                                                   .Replace("One Day", "");
+                orderCreationViewModel.Prescriptions[i].Product = orderCreationViewModel.Prescriptions[i]?.Product.Replace("Daily Wear", "")
+                                                                                                                  .Replace("Disposable", "")
+                                                                                                                  .Replace("Gas Permanents", "")
+                                                                                                                  .Replace("Extended Wear", "")
+                                                                                                                  .Replace("One Day", "");
             }
 
             OrdersDataGrid.Items.Refresh();
@@ -555,8 +557,8 @@ namespace WVA_Connect_CDI.Views.Orders
                             WVA_OrdersContextMenu.Items.Add(moreMatchesMenuItem);
                             break;
                         case 5: // If column is a 'BaseCurve'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].BaseCurveValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].BaseCurveValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].BaseCurveValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].BaseCurveValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -567,7 +569,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].BaseCurveValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].BaseCurveValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -576,8 +578,8 @@ namespace WVA_Connect_CDI.Views.Orders
                                 throw new Exception("No Valid Items");
                             break;
                         case 6: // If column is a 'Diameter'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].DiameterValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].DiameterValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].DiameterValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].DiameterValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -588,7 +590,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].DiameterValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].DiameterValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -597,8 +599,8 @@ namespace WVA_Connect_CDI.Views.Orders
                                 throw new Exception("No Valid Items");
                             break;
                         case 7: // If column is a 'Sphere'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].SphereValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].SphereValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].SphereValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].SphereValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -609,7 +611,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].SphereValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].SphereValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -618,8 +620,8 @@ namespace WVA_Connect_CDI.Views.Orders
                                 throw new Exception("No Valid Items");
                             break;
                         case 8: // If column is a 'Cylinder'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].CylinderValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].CylinderValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].CylinderValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].CylinderValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -630,7 +632,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].CylinderValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].CylinderValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -639,8 +641,8 @@ namespace WVA_Connect_CDI.Views.Orders
                                 throw new Exception("No Valid Items");
                             break;
                         case 9: // If column is a 'Axis'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].AxisValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].AxisValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].AxisValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].AxisValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -651,7 +653,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].AxisValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].AxisValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -660,8 +662,8 @@ namespace WVA_Connect_CDI.Views.Orders
                                 throw new Exception("No Valid Items");
                             break;
                         case 10: // If column is a 'Add'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].AddValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].AddValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].AddValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].AddValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -672,7 +674,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].AddValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].AddValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -681,8 +683,8 @@ namespace WVA_Connect_CDI.Views.Orders
                                 throw new Exception("No Valid Items");
                             break;
                         case 11: // If column is a 'Color'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].ColorValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].ColorValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].ColorValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].ColorValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -693,7 +695,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].ColorValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].ColorValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -702,8 +704,8 @@ namespace WVA_Connect_CDI.Views.Orders
                                 throw new Exception("No Valid Items");
                             break;
                         case 12: // If column is a 'Multifocal'
-                            if (OrderCreationViewModel.Prescriptions[SelectedRow].MultifocalValidItems != null)
-                                ValidItemsCount = OrderCreationViewModel.Prescriptions[SelectedRow].MultifocalValidItems.Count;
+                            if (orderCreationViewModel.Prescriptions[SelectedRow].MultifocalValidItems != null)
+                                ValidItemsCount = orderCreationViewModel.Prescriptions[SelectedRow].MultifocalValidItems.Count;
                             else
                             {
                                 SetNotAvailableMenuItem();
@@ -714,7 +716,7 @@ namespace WVA_Connect_CDI.Views.Orders
                             {
                                 for (int i = 0; i < ValidItemsCount; i++)
                                 {
-                                    MenuItem menuItem = new MenuItem() { Header = OrderCreationViewModel.Prescriptions[SelectedRow].MultifocalValidItems[i] };
+                                    MenuItem menuItem = new MenuItem() { Header = orderCreationViewModel.Prescriptions[SelectedRow].MultifocalValidItems[i] };
                                     menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                     WVA_OrdersContextMenu.Items.Add(menuItem);
                                 }
@@ -897,7 +899,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
-                var listOrders = OrderCreationViewModel.GetOrders(UserData.Data.Account);
+                var listOrders = orderCreationViewModel.GetOrders(UserData.Data.Account);
                 var order = GetCompleteOrder().OutOrder.PatientOrder;
                 var tempList = new List<Order>();
                 var cutOffTime = DateTime.Now.AddDays(-1);
@@ -973,13 +975,9 @@ namespace WVA_Connect_CDI.Views.Orders
                 };
 
                 foreach (ValidationDetail validationDetail in listValidations)
-                {
                     validationWrapper.Request.ProductsToValidate.Add(new ValidationDetail(validationDetail));
-                }
 
-                string endpoint = "https://orders.wisvis.com/validations";
-                string strValidatedProducts = API.Post(endpoint, validationWrapper);
-                var validationResponse = JsonConvert.DeserializeObject<ValidationResponse>(strValidatedProducts);
+                var validationResponse = orderCreationViewModel.ValidateOrder(validationWrapper);
 
                 if (validationResponse.Status == "FAIL" && validationResponse.Message != "Invalid")
                     throw new Exception($"An error has occurred while validating products. Status: {validationResponse.Status} -- Message: {validationResponse.Message}");
@@ -992,61 +990,61 @@ namespace WVA_Connect_CDI.Views.Orders
                     var prescription = new Prescription()
                     {
                         // These properties don't need to be validated
-                        ProductImagePath = OrderCreationViewModel.Prescriptions[i].ProductImagePath,
-                        IsChecked = OrderCreationViewModel.Prescriptions[i].IsChecked,
-                        FirstName = OrderCreationViewModel.Prescriptions[i].FirstName,
-                        LastName = OrderCreationViewModel.Prescriptions[i].LastName,
-                        Patient = OrderCreationViewModel.Prescriptions[i].Patient,
-                        Eye = OrderCreationViewModel.Prescriptions[i].Eye,
-                        Quantity = OrderCreationViewModel.Prescriptions[i].Quantity,
-                        Date = OrderCreationViewModel.Prescriptions[i].Date,
-                        _CustomerID = OrderCreationViewModel.Prescriptions[i]._CustomerID,
-                        IsShipToPat = OrderCreationViewModel.Prescriptions[i].IsShipToPat,
-                        LensRx = OrderCreationViewModel.Prescriptions[i].LensRx,
+                        ProductImagePath = orderCreationViewModel.Prescriptions[i].ProductImagePath,
+                        IsChecked = orderCreationViewModel.Prescriptions[i].IsChecked,
+                        FirstName = orderCreationViewModel.Prescriptions[i].FirstName,
+                        LastName = orderCreationViewModel.Prescriptions[i].LastName,
+                        Patient = orderCreationViewModel.Prescriptions[i].Patient,
+                        Eye = orderCreationViewModel.Prescriptions[i].Eye,
+                        Quantity = orderCreationViewModel.Prescriptions[i].Quantity,
+                        Date = orderCreationViewModel.Prescriptions[i].Date,
+                        _CustomerID = orderCreationViewModel.Prescriptions[i]._CustomerID,
+                        IsShipToPat = orderCreationViewModel.Prescriptions[i].IsShipToPat,
+                        LensRx = orderCreationViewModel.Prescriptions[i].LensRx,
 
                         // If prods[i].Property.Value == null change field to old value, else change to new value
                         CanBeValidated = prods[i].CanBeValidated,
-                        Product = prods[i].Description ?? OrderCreationViewModel.Prescriptions[i].Product,
-                        ProductCode = Validator.CheckIfValid(prods[i]._ProductKey) ? prods[i]._ProductKey?.Value : OrderCreationViewModel.Prescriptions[i].ProductCode,
+                        Product = prods[i].Description ?? orderCreationViewModel.Prescriptions[i].Product,
+                        ProductCode = Validator.CheckIfValid(prods[i]._ProductKey) ? prods[i]._ProductKey?.Value : orderCreationViewModel.Prescriptions[i].ProductCode,
 
                         // NOTE: to help explain ternary statements below for cell colors
                         // If property is null || is blank && errorMessage is null then cell color = White 
                         // If property isValid then cell color = Green
                         // If property not isValid then cell color = Red
                         BaseCurveValidItems = prods[i]._BaseCurve.ValidItems,
-                        BaseCurve = Validator.CheckIfValid(prods[i]._BaseCurve) ? prods[i]._BaseCurve.Value : OrderCreationViewModel.Prescriptions[i].BaseCurve,
+                        BaseCurve = Validator.CheckIfValid(prods[i]._BaseCurve) ? prods[i]._BaseCurve.Value : orderCreationViewModel.Prescriptions[i].BaseCurve,
                         BaseCurveCellColor = AssignCellColor(prodValue: prods[i]._BaseCurve?.Value?.Trim(), isValid: prods[i]._BaseCurve.IsValid, errorMessage: prods[i]._BaseCurve.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
 
                         DiameterValidItems = prods[i]._Diameter.ValidItems,
-                        Diameter = Validator.CheckIfValid(prods[i]._Diameter) ? prods[i]._Diameter.Value : OrderCreationViewModel.Prescriptions[i].Diameter,
+                        Diameter = Validator.CheckIfValid(prods[i]._Diameter) ? prods[i]._Diameter.Value : orderCreationViewModel.Prescriptions[i].Diameter,
                         DiameterCellColor = AssignCellColor(prodValue: prods[i]._Diameter?.Value?.Trim(), isValid: prods[i]._Diameter.IsValid, errorMessage: prods[i]._Diameter.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
 
                         SphereValidItems = prods[i]._Sphere.ValidItems,
-                        Sphere = Validator.CheckIfValid(prods[i]._Sphere) ? prods[i]._Sphere.Value : OrderCreationViewModel.Prescriptions[i].Sphere,
+                        Sphere = Validator.CheckIfValid(prods[i]._Sphere) ? prods[i]._Sphere.Value : orderCreationViewModel.Prescriptions[i].Sphere,
                         SphereCellColor = AssignCellColor(prodValue: prods[i]._Sphere?.Value?.Trim(), isValid: prods[i]._Sphere.IsValid, errorMessage: prods[i]._Sphere.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
 
                         CylinderValidItems = prods[i]._Cylinder.ValidItems,
-                        Cylinder = Validator.CheckIfValid(prods[i]._Cylinder) ? prods[i]._Cylinder.Value : OrderCreationViewModel.Prescriptions[i].Cylinder,
+                        Cylinder = Validator.CheckIfValid(prods[i]._Cylinder) ? prods[i]._Cylinder.Value : orderCreationViewModel.Prescriptions[i].Cylinder,
                         CylinderCellColor = AssignCellColor(prodValue: prods[i]._Cylinder?.Value?.Trim(), isValid: prods[i]._Cylinder.IsValid, errorMessage: prods[i]._Cylinder.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
 
                         AxisValidItems = prods[i]._Axis.ValidItems,
-                        Axis = Validator.CheckIfValid(prods[i]._Axis) ? prods[i]._Axis.Value : OrderCreationViewModel.Prescriptions[i].Axis,
+                        Axis = Validator.CheckIfValid(prods[i]._Axis) ? prods[i]._Axis.Value : orderCreationViewModel.Prescriptions[i].Axis,
                         AxisCellColor = AssignCellColor(prodValue: prods[i]._Axis?.Value?.Trim(), isValid: prods[i]._Axis.IsValid, errorMessage: prods[i]._Axis.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
 
                         AddValidItems = prods[i]._Add.ValidItems,
-                        Add = Validator.CheckIfValid(prods[i]._Add) ? prods[i]._Add.Value : OrderCreationViewModel.Prescriptions[i].Add,
+                        Add = Validator.CheckIfValid(prods[i]._Add) ? prods[i]._Add.Value : orderCreationViewModel.Prescriptions[i].Add,
                         AddCellColor = AssignCellColor(prodValue: prods[i]._Add?.Value?.Trim(), isValid: prods[i]._Add.IsValid, errorMessage: prods[i]._Add.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
 
                         ColorValidItems = prods[i]._Color.ValidItems,
-                        Color = Validator.CheckIfValid(prods[i]._Color) ? prods[i]._Color.Value : OrderCreationViewModel.Prescriptions[i].Color,
+                        Color = Validator.CheckIfValid(prods[i]._Color) ? prods[i]._Color.Value : orderCreationViewModel.Prescriptions[i].Color,
                         ColorCellColor = AssignCellColor(prodValue: prods[i]._Color?.Value?.Trim(), isValid: prods[i]._Color.IsValid, errorMessage: prods[i]._Color.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
 
                         MultifocalValidItems = prods[i]._Multifocal.ValidItems,
-                        Multifocal = Validator.CheckIfValid(prods[i]._Multifocal) ? prods[i]._Multifocal.Value : OrderCreationViewModel.Prescriptions[i].Multifocal,
+                        Multifocal = Validator.CheckIfValid(prods[i]._Multifocal) ? prods[i]._Multifocal.Value : orderCreationViewModel.Prescriptions[i].Multifocal,
                         MultifocalCellColor = AssignCellColor(prodValue: prods[i]._Multifocal?.Value?.Trim(), isValid: prods[i]._Multifocal.IsValid, errorMessage: prods[i]._Multifocal.ErrorMessage, canBeValidated: prods[i].CanBeValidated),
                     };
 
-                    OrderCreationViewModel.Prescriptions[i] = prescription;
+                    orderCreationViewModel.Prescriptions[i] = prescription;
                 }
 
                 OrdersDataGrid.Items.Refresh();
@@ -1064,7 +1062,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
-                Order order = OrderCreationViewModel.Order;
+                Order order = orderCreationViewModel.Order;
 
                 if (order == null)
                     order = new Order { Items = new List<Item>() };
@@ -1087,7 +1085,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 order.PoNumber = PoNumberTextBox.Text;
                 order.ShippingMethod = GetShippingTypeID(ShippingTypeComboBox.Text);
 
-                try { order.ShipToPatient = OrderCreationViewModel.Prescriptions[0].IsShipToPat ? "Y" : "N"; }
+                try { order.ShipToPatient = orderCreationViewModel.Prescriptions[0].IsShipToPat ? "Y" : "N"; }
                 catch { order.ShipToPatient = ""; }
 
                 if (StateComboBox.Visibility == Visibility.Visible)
@@ -1159,7 +1157,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
-                Response response = OrderCreationViewModel.SaveOrder(outOrderWrapper);
+                Response response = orderCreationViewModel.SaveOrder(outOrderWrapper);
 
                 if (response.Status == "SUCCESS")
                 {
@@ -1177,7 +1175,7 @@ namespace WVA_Connect_CDI.Views.Orders
         private string DeleteOrder()
         {
             string orderName = OrderNameTextBox.Text;
-            Response response = OrderCreationViewModel.DeleteOrder(orderName);
+            Response response = orderCreationViewModel.DeleteOrder(orderName);
 
             if (response.Status == "SUCCESS")
             {
@@ -1215,7 +1213,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     return;
                 }
 
-                OrderResponse response = OrderCreationViewModel.CreateOrder(outOrderWrapper);
+                OrderResponse response = orderCreationViewModel.CreateOrder(outOrderWrapper);
 
                 if (response == null)
                     throw new Exception("Null response from api on order creation.");
@@ -1268,58 +1266,58 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void AutoFillParameterCells(int row)
         {
-            if (OrderCreationViewModel.Prescriptions.Count > 0)
+            if (orderCreationViewModel.Prescriptions.Count > 0)
             {
                 FindProductMatches();
                 SetMenuItems();
                 Verify();
 
-                if (OrderCreationViewModel.Prescriptions[row]?.BaseCurveValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.BaseCurveValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 5).Content = OrderCreationViewModel.Prescriptions[row]?.BaseCurveValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].BaseCurve = OrderCreationViewModel.Prescriptions[row]?.BaseCurveValidItems[0];
+                    OrdersDataGrid.GetCell(row, 5).Content = orderCreationViewModel.Prescriptions[row]?.BaseCurveValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].BaseCurve = orderCreationViewModel.Prescriptions[row]?.BaseCurveValidItems[0];
                 }
 
-                if (OrderCreationViewModel.Prescriptions[row]?.DiameterValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.DiameterValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 6).Content = OrderCreationViewModel.Prescriptions[row].DiameterValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].Diameter = OrderCreationViewModel.Prescriptions[row].DiameterValidItems[0];
+                    OrdersDataGrid.GetCell(row, 6).Content = orderCreationViewModel.Prescriptions[row].DiameterValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].Diameter = orderCreationViewModel.Prescriptions[row].DiameterValidItems[0];
                 }
 
-                if (OrderCreationViewModel.Prescriptions[row]?.SphereValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.SphereValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 7).Content = OrderCreationViewModel.Prescriptions[row].SphereValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].Sphere = OrderCreationViewModel.Prescriptions[row].SphereValidItems[0];
+                    OrdersDataGrid.GetCell(row, 7).Content = orderCreationViewModel.Prescriptions[row].SphereValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].Sphere = orderCreationViewModel.Prescriptions[row].SphereValidItems[0];
                 }
 
-                if (OrderCreationViewModel.Prescriptions[row]?.CylinderValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.CylinderValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 8).Content = OrderCreationViewModel.Prescriptions[row].CylinderValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].Cylinder = OrderCreationViewModel.Prescriptions[row].CylinderValidItems[0];
+                    OrdersDataGrid.GetCell(row, 8).Content = orderCreationViewModel.Prescriptions[row].CylinderValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].Cylinder = orderCreationViewModel.Prescriptions[row].CylinderValidItems[0];
                 }
 
-                if (OrderCreationViewModel.Prescriptions[row]?.AxisValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.AxisValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 9).Content = OrderCreationViewModel.Prescriptions[row].AxisValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].Axis = OrderCreationViewModel.Prescriptions[row].AxisValidItems[0];
+                    OrdersDataGrid.GetCell(row, 9).Content = orderCreationViewModel.Prescriptions[row].AxisValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].Axis = orderCreationViewModel.Prescriptions[row].AxisValidItems[0];
                 }
 
-                if (OrderCreationViewModel.Prescriptions[row]?.AddValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.AddValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 10).Content = OrderCreationViewModel.Prescriptions[row].AddValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].Add = OrderCreationViewModel.Prescriptions[row].AddValidItems[0];
+                    OrdersDataGrid.GetCell(row, 10).Content = orderCreationViewModel.Prescriptions[row].AddValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].Add = orderCreationViewModel.Prescriptions[row].AddValidItems[0];
                 }
 
-                if (OrderCreationViewModel.Prescriptions[row]?.ColorValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.ColorValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 11).Content = OrderCreationViewModel.Prescriptions[row].ColorValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].Color = OrderCreationViewModel.Prescriptions[row].ColorValidItems[0];
+                    OrdersDataGrid.GetCell(row, 11).Content = orderCreationViewModel.Prescriptions[row].ColorValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].Color = orderCreationViewModel.Prescriptions[row].ColorValidItems[0];
                 }
 
-                if (OrderCreationViewModel.Prescriptions[row]?.MultifocalValidItems?.Count == 1)
+                if (orderCreationViewModel.Prescriptions[row]?.MultifocalValidItems?.Count == 1)
                 {
-                    OrdersDataGrid.GetCell(row, 12).Content = OrderCreationViewModel.Prescriptions[row].MultifocalValidItems[0];
-                    OrderCreationViewModel.Prescriptions[row].Multifocal = OrderCreationViewModel.Prescriptions[row].MultifocalValidItems[0];
+                    OrdersDataGrid.GetCell(row, 12).Content = orderCreationViewModel.Prescriptions[row].MultifocalValidItems[0];
+                    orderCreationViewModel.Prescriptions[row].Multifocal = orderCreationViewModel.Prescriptions[row].MultifocalValidItems[0];
                 }
             }
         }
@@ -1361,26 +1359,26 @@ namespace WVA_Connect_CDI.Views.Orders
                 if (column <= 4)
                 {
                     string compulinkProduct = (OrdersDataGrid.CurrentItem as Prescription).Product;
-                    OrderCreationViewModel.Prescriptions[row].Product = selectedItem;
-                    OrderCreationViewModel.Prescriptions[row].ProductImagePath = @"/Resources/CheckMarkCircle.png";
+                    orderCreationViewModel.Prescriptions[row].Product = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].ProductImagePath = @"/Resources/CheckMarkCircle.png";
                     ProductPrediction.LearnProduct(compulinkProduct, selectedItem);
                 }
                 if (column == 5)
-                    OrderCreationViewModel.Prescriptions[row].BaseCurve = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].BaseCurve = selectedItem;
                 if (column == 6)
-                    OrderCreationViewModel.Prescriptions[row].Diameter = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].Diameter = selectedItem;
                 if (column == 7)
-                    OrderCreationViewModel.Prescriptions[row].Sphere = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].Sphere = selectedItem;
                 if (column == 8)
-                    OrderCreationViewModel.Prescriptions[row].Cylinder = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].Cylinder = selectedItem;
                 if (column == 9)
-                    OrderCreationViewModel.Prescriptions[row].Axis = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].Axis = selectedItem;
                 if (column == 10)
-                    OrderCreationViewModel.Prescriptions[row].Add = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].Add = selectedItem;
                 if (column == 11)
-                    OrderCreationViewModel.Prescriptions[row].Color = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].Color = selectedItem;
                 if (column == 12)
-                    OrderCreationViewModel.Prescriptions[row].Multifocal = selectedItem;
+                    orderCreationViewModel.Prescriptions[row].Multifocal = selectedItem;
 
                 AutoFillParameterCells(row);
                 Verify();
@@ -1543,13 +1541,13 @@ namespace WVA_Connect_CDI.Views.Orders
             try
             {
                 OutOrderWrapper outOrderWrapper = GetCompleteOrder();
-                OrderCreationViewModel.SaveOrder(outOrderWrapper);
+                orderCreationViewModel.SaveOrder(outOrderWrapper);
 
                 string location = GetType().FullName + "." + nameof(UserControl_Unloaded);
                 string actionMessage = null;
 
-                if (OrderCreationViewModel.Order != null && OrderCreationViewModel.Order?.OrderName.Trim() != "")
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+                if (orderCreationViewModel.Order != null && orderCreationViewModel.Order?.OrderName.Trim() != "")
+                    actionMessage = $"<Order.ID={orderCreationViewModel.Order?.ID}> <Order.Name={orderCreationViewModel.Order?.OrderName}>";
 
                 if (actionMessage == null)
                     ActionLogger.Log(location);
@@ -1570,8 +1568,8 @@ namespace WVA_Connect_CDI.Views.Orders
                 string location = GetType().FullName + "." + nameof(UserControl_Loaded);
                 string actionMessage = null;
 
-                if (OrderCreationViewModel.Order != null)
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+                if (orderCreationViewModel.Order != null)
+                    actionMessage = $"<Order.ID={orderCreationViewModel.Order?.ID}> <Order.Name={orderCreationViewModel.Order?.OrderName}>";
 
                 if (actionMessage == null)
                     ActionLogger.Log(location);
