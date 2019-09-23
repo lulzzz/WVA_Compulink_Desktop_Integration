@@ -37,8 +37,8 @@ namespace WVA_Connect_CDI.Views.Orders
         public int SelectedRow { get; set; }
         public int SelectedColumn { get; set; }
         public static string ViewMode { get; set; }
-        public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
-        readonly OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
+        //public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
+        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
 
         public OrderCreationView()
         {
@@ -55,7 +55,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 SetUpOrdersDataGrid();
                 SetUpWvaAccountNumber();
                 CleanProductData();
-                FindProductMatches();
+                orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions());
                 SetMenuItems();
                 Verify();
             }
@@ -97,7 +97,7 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void DetermineViewMode()
         {
-            if (OrderCreationViewModel.Order != null)
+            if (orderCreationViewModel.Order != null)
             {
                 ViewMode = "edit";
                 SetUpEditOrder();
@@ -107,86 +107,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 ViewMode = "new";
                 SetUpNewOrder();
             }
-        }
-
-        // =======================================================================================================================
-        // ================================== Match Algorithm ====================================================================
-        // =======================================================================================================================
-
-        private void FindProductMatches(double matchScore = 30, bool limitReturnedResults = false)
-        {
-            // Reset list of matched products 
-            ListMatchedProducts.Clear();
-
-            // Loop through product names list and pass each one into matcher algorithm 
-            int index = 0;
-
-            foreach (Prescription prescription in GetDataGridPrescriptions())
-            {
-                try
-                {
-                    // Trim exta white space off of product name
-                    prescription.Product = prescription.Product.Trim();
-
-                    // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, WvaProducts.ListProducts, limitReturnedResults);
-
-                    if (matchProducts?.Count > 0)
-                    {
-                        ListMatchedProducts.Add(matchProducts);
-                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
-                    }
-                    else
-                        ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
-                }
-                finally
-                {
-                    index++;
-                }
-            }
-        }
-
-        // Purpose of this overload is so product can be changed before it's commited from cell edit event
-        private void FindProductMatches(string product, int rowToUpdate, double matchScore = 30, bool overrideNumPicks = false)
-        {
-            if (string.IsNullOrWhiteSpace(product))
-                return;
-
-            // Reset list of matched products 
-            ListMatchedProducts.Clear();
-
-            var compulinkProducts = GetDataGridPrescriptions();
-
-            // Update prescription object with new product
-            compulinkProducts[rowToUpdate].Product = product;
-
-            // Loop through product names list and pass each one into matcher algorithm 
-            int index = 0;
-
-            foreach (Prescription prescription in compulinkProducts)
-            {
-                try
-                {
-                    // Trim exta white space off of product name
-                    prescription.Product = prescription.Product.Trim();
-
-                    // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, WvaProducts.ListProducts, overrideNumPicks);
-
-                    if (matchProducts?.Count > 0)
-                    {
-                        ListMatchedProducts.Add(matchProducts);
-                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
-                    }
-                    else
-                        ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
-                }
-                finally
-                {
-                    index++;
-                }
-            }
-        }
+        }    
 
         // Gets items in datagrid and converts them to a list of prescriptions
         private List<Prescription> GetDataGridPrescriptions()
@@ -222,14 +143,14 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void AutoFillStpItems()
         {
-            AddresseeTextBox.Text   = OrderCreationViewModel.Order.Name1;
-            AddressTextBox.Text     = OrderCreationViewModel.Order.StreetAddr1;
-            Suite_AptTextBox.Text   = OrderCreationViewModel.Order.StreetAddr2;
-            CityTextBox.Text        = OrderCreationViewModel.Order.City;
-            StateComboBox.Text      = OrderCreationViewModel.Order.State;
-            ZipTextBox.Text         = OrderCreationViewModel.Order.Zip;
-            PhoneTextBox.Text       = OrderCreationViewModel.Order.Phone;
-            DoBTextBox.Text         = OrderCreationViewModel.Order.DoB;
+            AddresseeTextBox.Text   = orderCreationViewModel.Order.Name1;
+            AddressTextBox.Text     = orderCreationViewModel.Order.StreetAddr1;
+            Suite_AptTextBox.Text   = orderCreationViewModel.Order.StreetAddr2;
+            CityTextBox.Text        = orderCreationViewModel.Order.City;
+            StateComboBox.Text      = orderCreationViewModel.Order.State;
+            ZipTextBox.Text         = orderCreationViewModel.Order.Zip;
+            PhoneTextBox.Text       = orderCreationViewModel.Order.Phone;
+            DoBTextBox.Text         = orderCreationViewModel.Order.DoB;
         }
 
         private void HideStpItems()
@@ -371,7 +292,7 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void SetUpEditOrder()
         {
-            if (OrderCreationViewModel.Order.ShipToPatient == "Y")
+            if (orderCreationViewModel.Order.ShipToPatient == "Y")
             {
                 ShowStpItems();
                 AutoFillStpItems();
@@ -382,50 +303,50 @@ namespace WVA_Connect_CDI.Views.Orders
             }
 
             // Left column
-            AddresseeTextBox.Text   = OrderCreationViewModel.Order.Name1 ?? "";
-            AddressTextBox.Text     = OrderCreationViewModel.Order.StreetAddr1 ?? "";
-            Suite_AptTextBox.Text   = OrderCreationViewModel.Order.StreetAddr2 ?? "";
-            CityTextBox.Text        = OrderCreationViewModel.Order.City ?? "";
-            StateComboBox.Text      = OrderCreationViewModel.Order.State ?? "";
-            ZipTextBox.Text         = OrderCreationViewModel.Order.Zip ?? "";
-            PhoneTextBox.Text       = OrderCreationViewModel.Order.Phone ?? "";
-            DoBTextBox.Text         = OrderCreationViewModel.Order.DoB ?? "";
+            AddresseeTextBox.Text   = orderCreationViewModel.Order.Name1 ?? "";
+            AddressTextBox.Text     = orderCreationViewModel.Order.StreetAddr1 ?? "";
+            Suite_AptTextBox.Text   = orderCreationViewModel.Order.StreetAddr2 ?? "";
+            CityTextBox.Text        = orderCreationViewModel.Order.City ?? "";
+            StateComboBox.Text      = orderCreationViewModel.Order.State ?? "";
+            ZipTextBox.Text         = orderCreationViewModel.Order.Zip ?? "";
+            PhoneTextBox.Text       = orderCreationViewModel.Order.Phone ?? "";
+            DoBTextBox.Text         = orderCreationViewModel.Order.DoB ?? "";
 
             // Right column
-            OrderNameTextBox.Text       = OrderCreationViewModel.Order.OrderName ?? "";
+            OrderNameTextBox.Text       = orderCreationViewModel.Order.OrderName ?? "";
             ActNumTextBox.Text          = UserData.Data?.Account;
             OrderedByTextBox.Text       = UserData.Data.UserName ?? "";
-            PoNumberTextBox.Text        = OrderCreationViewModel.Order.PoNumber ?? "";
-            ShippingTypeComboBox.Text   = OrderCreationViewModel.Order.ShippingMethod ?? "";
+            PoNumberTextBox.Text        = orderCreationViewModel.Order.PoNumber ?? "";
+            ShippingTypeComboBox.Text   = orderCreationViewModel.Order.ShippingMethod ?? "";
 
             // If there are no items then exit
-            if (OrderCreationViewModel.Order.Items == null || OrderCreationViewModel.Order.Items?.Count == 0)
+            if (orderCreationViewModel.Order.Items == null || orderCreationViewModel.Order.Items?.Count == 0)
                 return;
 
             // Datagrid rows
-            for (int i = 0; i < OrderCreationViewModel.Order.Items.Count; i++)
+            for (int i = 0; i < orderCreationViewModel.Order.Items.Count; i++)
             {
                 Prescription prescription = new Prescription()
                 {
                     // If product has been reviewed, show 'checked' image next to product name
-                    ProductImagePath    = OrderCreationViewModel.Order.Items[i].ProductDetail.ProductReviewed ? @"/Resources/CheckMarkCircle.png" : null,
-                    FirstName           = OrderCreationViewModel.Order.Items[i].FirstName,
-                    _CustomerID         = new CustomerID() { Value = OrderCreationViewModel.Order.Items[i].PatientID },
-                    LastName            = OrderCreationViewModel.Order.Items[i].LastName,
-                    Eye                 = OrderCreationViewModel.Order.Items[i].Eye,
-                    Quantity            = OrderCreationViewModel.Order.Items[i].Quantity,
-                    Product             = OrderCreationViewModel.Order.Items[i].ProductDetail.Name,
-                    ProductCode         = OrderCreationViewModel.Order.Items[i].ProductDetail.ProductKey,
-                    BaseCurve           = OrderCreationViewModel.Order.Items[i].ProductDetail.BaseCurve,
-                    Diameter            = OrderCreationViewModel.Order.Items[i].ProductDetail.Diameter,
-                    Sphere              = OrderCreationViewModel.Order.Items[i].ProductDetail.Sphere,
-                    Cylinder            = OrderCreationViewModel.Order.Items[i].ProductDetail.Cylinder,
-                    Axis                = OrderCreationViewModel.Order.Items[i].ProductDetail.Axis,
-                    Add                 = OrderCreationViewModel.Order.Items[i].ProductDetail.Add,
-                    Color               = OrderCreationViewModel.Order.Items[i].ProductDetail.Color,
-                    Multifocal          = OrderCreationViewModel.Order.Items[i].ProductDetail.Multifocal,
-                    LensRx              = OrderCreationViewModel.Order.Items[i].ProductDetail.LensRx,
-                    IsShipToPat         = OrderCreationViewModel.Order.ShipToPatient == "Y" ? true : false 
+                    ProductImagePath    = orderCreationViewModel.Order.Items[i].ProductDetail.ProductReviewed ? @"/Resources/CheckMarkCircle.png" : null,
+                    FirstName           = orderCreationViewModel.Order.Items[i].FirstName,
+                    _CustomerID         = new CustomerID() { Value = orderCreationViewModel.Order.Items[i].PatientID },
+                    LastName            = orderCreationViewModel.Order.Items[i].LastName,
+                    Eye                 = orderCreationViewModel.Order.Items[i].Eye,
+                    Quantity            = orderCreationViewModel.Order.Items[i].Quantity,
+                    Product             = orderCreationViewModel.Order.Items[i].ProductDetail.Name,
+                    ProductCode         = orderCreationViewModel.Order.Items[i].ProductDetail.ProductKey,
+                    BaseCurve           = orderCreationViewModel.Order.Items[i].ProductDetail.BaseCurve,
+                    Diameter            = orderCreationViewModel.Order.Items[i].ProductDetail.Diameter,
+                    Sphere              = orderCreationViewModel.Order.Items[i].ProductDetail.Sphere,
+                    Cylinder            = orderCreationViewModel.Order.Items[i].ProductDetail.Cylinder,
+                    Axis                = orderCreationViewModel.Order.Items[i].ProductDetail.Axis,
+                    Add                 = orderCreationViewModel.Order.Items[i].ProductDetail.Add,
+                    Color               = orderCreationViewModel.Order.Items[i].ProductDetail.Color,
+                    Multifocal          = orderCreationViewModel.Order.Items[i].ProductDetail.Multifocal,
+                    LensRx              = orderCreationViewModel.Order.Items[i].ProductDetail.LensRx,
+                    IsShipToPat         = orderCreationViewModel.Order.ShipToPatient == "Y" ? true : false 
                 };
 
                 OrderCreationViewModel.Prescriptions.Add(prescription);
@@ -473,7 +394,7 @@ namespace WVA_Connect_CDI.Views.Orders
             {
                 // If products list isn't loaded or an error occurs in DescriptionMatcher and 
                 // 'ListMatchedProducts' can't be loaded then leave so no errors will occur
-                if (ListMatchedProducts == null || ListMatchedProducts.Count == 0)
+                if (orderCreationViewModel.ListMatchedProducts == null || orderCreationViewModel.ListMatchedProducts.Count == 0)
                     return;
 
                 // Reset the products ContextMenu
@@ -498,7 +419,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     switch (SelectedColumn)
                     {
                         case 3: // If column is a 'Product'
-                            foreach (MatchProduct match in ListMatchedProducts[SelectedRow])
+                            foreach (MatchProduct match in orderCreationViewModel.ListMatchedProducts[SelectedRow])
                             {
                                 MenuItem menuItem = new MenuItem() { Header = match.Name };
                                 menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
@@ -1016,7 +937,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
-                Order order = OrderCreationViewModel.Order;
+                Order order = orderCreationViewModel.Order;
 
                 if (order == null)
                     order = new Order { Items = new List<Item>() };
@@ -1222,7 +1143,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             if (OrderCreationViewModel.Prescriptions.Count > 0)
             {
-                FindProductMatches();
+                orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions());
                 SetMenuItems();
                 Verify();
 
@@ -1294,7 +1215,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     MinScoreAdjustSlider.Value -= 10;
                     MatchPercentLabel.Content = $"Match Percent: {Convert.ToInt16(MinScoreAdjustSlider.Value)}%";
 
-                    FindProductMatches(Convert.ToInt16(MinScoreAdjustSlider.Value), true);
+                    orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions(), Convert.ToInt16(MinScoreAdjustSlider.Value), true);
                     SetMenuItems();
                     WVA_OrdersContextMenu.IsOpen = true;
                     return;
@@ -1351,7 +1272,7 @@ namespace WVA_Connect_CDI.Views.Orders
                {
                     if (SelectedColumn == 3)
                     {
-                        FindProductMatches((e.EditingElement as TextBox).Text.ToString(), e.Row.GetIndex());
+                        orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions(), (e.EditingElement as TextBox).Text.ToString(), e.Row.GetIndex());
                         SetMenuItems();
                     }
                 }
@@ -1381,7 +1302,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 MatchPercentLabel.Content = $"Match Percent: {Convert.ToInt16(MinScoreAdjustSlider.Value)}%";
                 if (WVA_OrdersContextMenu.Items.Count > 0)
                 {
-                    FindProductMatches();
+                    orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions());
                     SetMenuItems();
                 }
             }
@@ -1397,7 +1318,7 @@ namespace WVA_Connect_CDI.Views.Orders
             {
                 MatchPercentLabel.Content = $"Match Percent: {Convert.ToInt16(60)}%";
                 MinScoreAdjustSlider.Value = 60;
-                FindProductMatches();
+                orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions());
                 SetMenuItems();
                 Verify();
             }
@@ -1499,8 +1420,8 @@ namespace WVA_Connect_CDI.Views.Orders
                 string location = GetType().FullName + "." + nameof(UserControl_Unloaded);
                 string actionMessage = null;
 
-                if (OrderCreationViewModel.Order != null && OrderCreationViewModel.Order?.OrderName.Trim() != "")
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+                if (orderCreationViewModel.Order != null && orderCreationViewModel.Order?.OrderName.Trim() != "")
+                    actionMessage = $"<Order.ID={orderCreationViewModel.Order?.ID}> <Order.Name={orderCreationViewModel.Order?.OrderName}>";
 
                 if (actionMessage == null)
                     ActionLogger.Log(location);
@@ -1521,8 +1442,8 @@ namespace WVA_Connect_CDI.Views.Orders
                 string location = GetType().FullName + "." + nameof(UserControl_Loaded);
                 string actionMessage = null;
 
-                if (OrderCreationViewModel.Order != null)
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+                if (orderCreationViewModel.Order != null)
+                    actionMessage = $"<Order.ID={orderCreationViewModel.Order?.ID}> <Order.Name={orderCreationViewModel.Order?.OrderName}>";
 
                 if (actionMessage == null)
                     ActionLogger.Log(location);

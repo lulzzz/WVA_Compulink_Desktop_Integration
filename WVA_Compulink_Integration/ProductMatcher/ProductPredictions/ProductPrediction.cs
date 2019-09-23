@@ -37,7 +37,7 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             else
             {
                 //Get wva products that are similarly matched with the compulink product
-                List<MatchProduct> listMatches = GetMatches(prescription, wvaProducts, limitReturnedResults);
+                var listMatches = GetMatches(prescription, wvaProducts, limitReturnedResults);
 
                 return listMatches;
             }
@@ -130,14 +130,14 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             // If 0 numPicks show all matches (no confidence)
             else
             {
-                listMatches = NewDescriptionMatcher.FindMatch(prescription, wvaProducts, MatchScore);
+                listMatches = DescriptionMatcher.FindMatch(prescription, wvaProducts, MatchScore);
                 return listMatches;
             }
         }
 
         private static List<MatchProduct> FilterList(int countLimit, Prescription prescription, List<Product> wvaProducts = null, MatchProduct suggestedProduct = null)
         {
-            List<MatchProduct> listMatches = new List<MatchProduct>();
+            var listMatches = new List<MatchProduct>();
 
             if (suggestedProduct != null)
             {
@@ -149,13 +149,11 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
 
             if (wvaProducts != null)
-                listMatches.AddRange(NewDescriptionMatcher.FindMatch(prescription, wvaProducts, MatchScore));
+                listMatches.AddRange(DescriptionMatcher.FindMatch(prescription, wvaProducts, MatchScore));
 
             // Remove match product in list that is the same as the suggested product
             if (listMatches.Count > 1)
-            {
                 listMatches = listMatches.GroupBy(x => x.Name).Select(x => x.First()).ToList();
-            }
 
             // Get only top x matches
             for (int i = listMatches.Count; i > countLimit; i--)

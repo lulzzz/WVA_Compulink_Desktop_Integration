@@ -25,9 +25,10 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 {
     class OrderCreationViewModel
     {
-        public static Order Order { get; set; }
+        public Order Order { get; set; }
         public static List<Prescription> Prescriptions { get; set; }
         public static string OrderName { get; set; }
+        public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
 
         public OrderCreationViewModel()
         {
@@ -152,6 +153,79 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                 return false;
             else
                 return true;
+        }
+
+        public void FindProductMatches(List<Prescription> prescriptions, double matchScore = 30, bool limitReturnedResults = false)
+        {
+            // Reset list of matched products 
+            ListMatchedProducts.Clear();
+
+            // Loop through product names list and pass each one into matcher algorithm 
+            int index = 0;
+
+            foreach (Prescription prescription in prescriptions)
+            {
+                try
+                {
+                    // Trim exta white space off of product name
+                    prescription.Product = prescription.Product.Trim();
+
+                    // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
+                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, WvaProducts.ListProducts, limitReturnedResults);
+
+                    if (matchProducts?.Count > 0)
+                    {
+                        ListMatchedProducts.Add(matchProducts);
+                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                    }
+                    else
+                        ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
+                }
+                finally
+                {
+                    index++;
+                }
+            }
+        }
+
+        // Purpose of this overload is so product can be changed before it's commited from cell edit event
+        public void FindProductMatches(List<Prescription> prescriptions, string product, int rowToUpdate, double matchScore = 30, bool overrideNumPicks = false)
+        {
+            if (string.IsNullOrWhiteSpace(product))
+                return;
+
+            // Reset list of matched products 
+            ListMatchedProducts.Clear();
+
+            // Update prescription object with new product
+            prescriptions[rowToUpdate].Product = product;
+
+            // Loop through product names list and pass each one into matcher algorithm 
+            int index = 0;
+
+            foreach (Prescription prescription in prescriptions)
+            {
+                try
+                {
+                    // Trim exta white space off of product name
+                    prescription.Product = prescription.Product.Trim();
+
+                    // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
+                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, WvaProducts.ListProducts, overrideNumPicks);
+
+                    if (matchProducts?.Count > 0)
+                    {
+                        ListMatchedProducts.Add(matchProducts);
+                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                    }
+                    else
+                        ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
+                }
+                finally
+                {
+                    index++;
+                }
+            }
         }
 
     }

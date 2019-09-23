@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.MatchFinder
 {
-    class NewDescriptionMatcher
+    class DescriptionMatcher
     {
         // Pulls from user settings config file loaded after login 
-        private static int CharSeqMaxScore = UserData.Data.Settings.ProductMatcher.CharSequenceMaxScore;
-        private static int WordMaxScore = UserData.Data.Settings.ProductMatcher.SameWordMaxScore;
-        private static int SkuTypeMaxScore = UserData.Data.Settings.ProductMatcher.SkuTypeMaxScore;
+        private static int CharSeqMaxScore  = UserData.Data.Settings.ProductMatcher.CharSequenceMaxScore;
+        private static int WordMaxScore     = UserData.Data.Settings.ProductMatcher.SameWordMaxScore;
+        private static int SkuTypeMaxScore  = UserData.Data.Settings.ProductMatcher.SkuTypeMaxScore;
         private static int QuantityMaxScore = UserData.Data.Settings.ProductMatcher.QuantityMaxScore; 
 
         public static List<MatchProduct> FindMatch(Prescription prescription, List<Product> listProducts, double minimumScore)
@@ -79,7 +79,7 @@ namespace WVA_Connect_CDI.MatchFinder
         //              Build a Matcher Object 
         // ----------------------------------------------------------------------------------------------------
 
-        static MatcherProduct BuildMatcherObject(Prescription compulinkPrescription, string wisVisProduct)
+        private static MatcherProduct BuildMatcherObject(Prescription compulinkPrescription, string wisVisProduct)
         {
             // Null check 
             if (compulinkPrescription == null || string.IsNullOrWhiteSpace(wisVisProduct))
@@ -111,7 +111,7 @@ namespace WVA_Connect_CDI.MatchFinder
         //              Product String Manipulation
         // ----------------------------------------------------------------------------------------------------
 
-        static string SanitizeProductName(string productName)
+        private static string SanitizeProductName(string productName)
         {
             productName = RemoveGarbage(productName);
             productName = AdjustProductName(productName);
@@ -122,7 +122,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return productName;
         }
 
-        static string RemoveGarbage(string productName)
+        private static string RemoveGarbage(string productName)
         {
             // Null check
             if (productName == null)
@@ -165,7 +165,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return productName;
         }
 
-        static string AdjustProductName(string originalString)
+        private static string AdjustProductName(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -198,7 +198,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return originalString;
         }
 
-        static string AdjustSKUType(string originalString)
+        private static string AdjustSKUType(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -228,7 +228,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return originalString.Trim();
         }
 
-        static string AdjustQuantity(string originalString)
+        private static string AdjustQuantity(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -243,7 +243,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return originalString;
         }
 
-        static string BoostDullProducts(string originalString)
+        private static string BoostDullProducts(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -259,7 +259,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return originalString;
         }
 
-        static MatcherProduct SetQuantity(MatcherProduct matcherProduct)
+        private static MatcherProduct SetQuantity(MatcherProduct matcherProduct)
         {
             // Null check
             if (matcherProduct == null)
@@ -282,7 +282,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return matcherProduct;
         }
 
-        static string RemoveQuantityFromProductName(string productName)
+        private static string RemoveQuantityFromProductName(string productName)
         {
             // Null check
             if (productName == null)
@@ -298,7 +298,7 @@ namespace WVA_Connect_CDI.MatchFinder
                               .Replace("trial", "");
         }
 
-        static string ReplaceLastOccurrence(string source, string find, string replace)
+        private static string ReplaceLastOccurrence(string source, string find, string replace)
         {
             // Check for null input
             if (source == null || find == null || replace == null)
@@ -317,12 +317,12 @@ namespace WVA_Connect_CDI.MatchFinder
         //              Core Match Functions
         // ----------------------------------------------------------------------------------------------------
 
-        static double GetCharacterSequenceMatchScore(string compulinkProductName, string wisVisProductName)
+        private static double GetCharacterSequenceMatchScore(string compulinkProductName, string wvaProductName)
         {
             var a_charList = compulinkProductName.ToCharArray().ToList();
             a_charList.RemoveAll(x => x.Equals(' '));
 
-            var b_charList = wisVisProductName.ToCharArray().ToList();
+            var b_charList = wvaProductName.ToCharArray().ToList();
             b_charList.RemoveAll(x => x.Equals(' '));
 
             double score = 0;
@@ -351,7 +351,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return CharSeqMaxScore * (score / a_charList.Count);
         }
 
-        static double GetWordMatchScore(string compulinkProductName, string wvaProductName)
+        private static double GetWordMatchScore(string compulinkProductName, string wvaProductName)
         {
             List<string> a_Words = compulinkProductName.Split(' ').ToList();
             List<string> b_Words = wvaProductName.Split(' ').ToList();
@@ -365,7 +365,7 @@ namespace WVA_Connect_CDI.MatchFinder
             return (WordMaxScore * ((double)sharedWords.Count() / a_Words.Count()));
         }
 
-        static double GetSkuTypeMatchScore(string compulinkProductSKU, string wvaProductSKU)
+        private static double GetSkuTypeMatchScore(string compulinkProductSKU, string wvaProductSKU)
         {
             if (compulinkProductSKU == wvaProductSKU)
                 return SkuTypeMaxScore;
@@ -373,23 +373,23 @@ namespace WVA_Connect_CDI.MatchFinder
                 return 0;
         }
 
-        static double GetQuantityMatchScore(string prodToMatch, string wisVisProduct)
+        private static double GetQuantityMatchScore(string prodToMatch, string wvaProduct)
         {
             // Null check
-            if (prodToMatch == null || wisVisProduct == null)
+            if (prodToMatch == null || wvaProduct == null)
                 return 0;
 
-            if (prodToMatch.Contains("90") && wisVisProduct.Contains("90"))
+            if (prodToMatch.Contains("90") && wvaProduct.Contains("90"))
                 return QuantityMaxScore;
-            else if (prodToMatch.Contains("30") && wisVisProduct.Contains("30"))
+            else if (prodToMatch.Contains("30") && wvaProduct.Contains("30"))
                 return QuantityMaxScore;
-            else if (prodToMatch.Contains("24") && wisVisProduct.Contains("24"))
+            else if (prodToMatch.Contains("24") && wvaProduct.Contains("24"))
                 return QuantityMaxScore;
-            else if (prodToMatch.Contains("12") && wisVisProduct.Contains("12"))
+            else if (prodToMatch.Contains("12") && wvaProduct.Contains("12"))
                 return QuantityMaxScore;
-            else if ((prodToMatch.Contains("6") && !prodToMatch.Contains("trial")) && (wisVisProduct.Contains("6") && !wisVisProduct.Contains("trial")))
+            else if ((prodToMatch.Contains("6") && !prodToMatch.Contains("trial")) && (wvaProduct.Contains("6") && !wvaProduct.Contains("trial")))
                 return QuantityMaxScore;
-            else if (prodToMatch.Contains("trial") && wisVisProduct.Contains("trial"))
+            else if (prodToMatch.Contains("trial") && wvaProduct.Contains("trial"))
                 return QuantityMaxScore;
             else
                 return 0;
@@ -399,7 +399,7 @@ namespace WVA_Connect_CDI.MatchFinder
         //              Helper Functions
         // ----------------------------------------------------------------------------------------------------
 
-        static string GetSkuType(Prescription p)
+        private static string GetSkuType(Prescription p)
         {
             // These params are required by all products. If one is null, something is wrong
             if (string.IsNullOrWhiteSpace(p.BaseCurve) || string.IsNullOrWhiteSpace(p.Sphere))
@@ -441,7 +441,7 @@ namespace WVA_Connect_CDI.MatchFinder
                 return null;
         }
 
-        static string GetSkuType(string productName)
+        private static string GetSkuType(string productName)
         {
             // Null check
             if (productName == null)
@@ -469,21 +469,19 @@ namespace WVA_Connect_CDI.MatchFinder
                 return null;
         }
 
-        static string GetProductKey(string productName, List<Product> listProducts)
+        private static string GetProductKey(string productName, List<Product> listProducts)
         {
             if (listProducts == null || listProducts?.Count > 1 || productName == null || productName.Trim() == "")
                 return null;
 
             foreach (Product prod in listProducts)
-            {
                 if (productName == prod.Description)
                     return prod.ProductKey;
-            }
 
             return null;
         }
 
-        static MatcherProduct AverageOutCharSequenceToWordMatchScores(MatcherProduct matcherProduct)
+        private static MatcherProduct AverageOutCharSequenceToWordMatchScores(MatcherProduct matcherProduct)
         {
             // The purpose of this is to balance out character sequence and word match score.
             // Gives products with no spaces in them the ability to have a high score instead of needing to be spelled and spaced out correctly 

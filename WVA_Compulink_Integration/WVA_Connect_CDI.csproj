@@ -169,7 +169,7 @@
     <Compile Include="Models\Validations\Validator.cs" />
     <Compile Include="ProductMatcher\MatcherProduct.cs" />
     <Compile Include="ProductMatcher\MatchProduct.cs" />
-    <Compile Include="ProductMatcher\NewDescriptionMatcher.cs" />
+    <Compile Include="ProductMatcher\DescriptionMatcher.cs" />
     <Compile Include="ProductMatcher\ProductPredictions\Database.cs" />
     <Compile Include="ProductMatcher\ProductPredictions\Models\Product.cs" />
     <Compile Include="ProductMatcher\ProductPredictions\ProductPrediction.cs" />
