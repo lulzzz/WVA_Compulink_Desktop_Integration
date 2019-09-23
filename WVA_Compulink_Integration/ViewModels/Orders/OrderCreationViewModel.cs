@@ -18,6 +18,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using WVA_Connect_CDI.Utility.UI_Tools;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
@@ -82,7 +83,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 
             // Change shipping code into a readable string value
             if (order != null)
-                order.ShippingMethod = GetShippingString(order.ShippingMethod);
+                order.ShippingMethod = ShippingTools.GetShippingString(order.ShippingMethod);
 
             return order;
         }
@@ -139,40 +140,6 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             string endpoint = "https://orders.wisvis.com/validations";
             string strValidatedProducts = API.Post(endpoint, validationWrapper);
             return JsonConvert.DeserializeObject<ValidationResponse>(strValidatedProducts);
-        }
-
-        public string GetShippingString(string shipID)
-        {
-            switch (shipID)
-            {
-                case "1":
-                    return "Standard";
-                case "D":
-                    return "UPS Ground";
-                case "J":
-                    return "UPS 2nd Day Air";
-                case "P":
-                    return "UPS Next Day Air";
-                default:
-                    return shipID;
-            }
-        }
-
-        public string GetShippingTypeID(string shipType)
-        {
-            switch (shipType)
-            {
-                case "Standard":
-                    return "1";
-                case "UPS Ground":
-                    return "D";
-                case "UPS 2nd Day Air":
-                    return "J";
-                case "UPS Next Day Air":
-                    return "P";
-                default:
-                    return shipType;
-            }
         }
 
         public bool OrderExists(string orderName)

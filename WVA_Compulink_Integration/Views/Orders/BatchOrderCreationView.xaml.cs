@@ -20,6 +20,7 @@ using WVA_Connect_CDI.Models.Orders.Out;
 using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.Models.Responses;
 using WVA_Connect_CDI.Utility.Actions;
+using WVA_Connect_CDI.Utility.UI_Tools;
 using WVA_Connect_CDI.ViewModels.Orders;
 
 namespace WVA_Connect_CDI.Views.Orders
@@ -75,7 +76,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 {
                     OrderName = childGrid.OrderNameLabel.Content.ToString(),
                     OrderedBy = OrderedByTextBox.Text,
-                    ShippingMethod = orderCreationViewModel.GetShippingTypeID(ShippingTypeComboBox.Text),
+                    ShippingMethod = ShippingTools.GetShippingTypeID(ShippingTypeComboBox.Text),
                     ShipToPatient = childGrid.OrderTypeLabel.Content.ToString().ToLower().Contains("patient") ? "Y" : "N",
                 };
 
