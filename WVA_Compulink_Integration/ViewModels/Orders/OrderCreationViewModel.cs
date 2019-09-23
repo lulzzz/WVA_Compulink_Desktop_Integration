@@ -19,6 +19,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using WVA_Connect_CDI.Utility.UI_Tools;
+using WVA_Connect_CDI.Utility.Files;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
@@ -137,7 +138,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 
         public ValidationResponse ValidateOrder(ValidationWrapper validationWrapper)
         {
-            string endpoint = "https://orders.wisvis.com/validations";
+            string endpoint = AppPath.WisVisValidations;
             string strValidatedProducts = API.Post(endpoint, validationWrapper);
             return JsonConvert.DeserializeObject<ValidationResponse>(strValidatedProducts);
         }

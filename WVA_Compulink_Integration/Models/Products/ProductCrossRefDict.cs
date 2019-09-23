@@ -18,7 +18,7 @@ namespace WVA_Connect_CDI.Models.Products
         {
             try
             {
-                string crossRefFile = $@"{Paths.TempDir}ProductCrossRef.json";
+                string crossRefFile = $@"{AppPath.TempDir}ProductCrossRef.json";
 
                 if (File.Exists(crossRefFile))
                 {

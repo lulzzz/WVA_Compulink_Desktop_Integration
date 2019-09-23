@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.Utility.Files;
 
 namespace WVA_Connect_CDI.Updates
 {
@@ -15,7 +16,7 @@ namespace WVA_Connect_CDI.Updates
         {
             try
             {
-                using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/WVATeam/WVA_Compulink_Desktop_Integration").Result)
+                using (var mgr = UpdateManager.GitHubUpdateManager(AppPath.WisVisCdiRepo).Result)
                 {
                     var updateInfo = mgr.CheckForUpdate().Result;
                     if (updateInfo.ReleasesToApply.Any())

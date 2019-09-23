@@ -17,12 +17,12 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                return File.ReadAllText(Paths.IpConfigFile);
+                return File.ReadAllText(AppPath.IpConfigFile);
             }
             catch 
             {
-                Directory.CreateDirectory(Paths.IpConfigDir);
-                File.Create(Paths.IpConfigFile).Close();
+                Directory.CreateDirectory(AppPath.IpConfigDir);
+                File.Create(AppPath.IpConfigFile).Close();
 
                 return "";
             }
@@ -32,12 +32,12 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                return File.ReadAllText(Paths.ApiKeyFile);
+                return File.ReadAllText(AppPath.ApiKeyFile);
             }
             catch
             {
-                Directory.CreateDirectory(Paths.ApiKeyDir);
-                File.Create(Paths.ApiKeyFile).Close();
+                Directory.CreateDirectory(AppPath.ApiKeyDir);
+                File.Create(AppPath.ApiKeyFile).Close();
 
                 return "";
             }
@@ -47,12 +47,12 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                return File.ReadAllText(Paths.ActNumFile);
+                return File.ReadAllText(AppPath.ActNumFile);
             }
             catch 
             {
-                Directory.CreateDirectory(Paths.ActNumDir);
-                File.Create(Paths.ActNumFile).Close();
+                Directory.CreateDirectory(AppPath.ActNumDir);
+                File.Create(AppPath.ActNumFile).Close();
 
                 return "";
             }
@@ -65,7 +65,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
                 var settings = GetUserSettings();
 
                 string writeSettings = JsonConvert.SerializeObject(settings);
-                File.WriteAllText(Paths.UserSettingsFile, writeSettings);
+                File.WriteAllText(AppPath.UserSettingsFile, writeSettings);
             }
             catch (Exception ex)
             {
@@ -89,17 +89,17 @@ namespace WVA_Connect_CDI.ViewModels.Login
 
             string defaultSettings = JsonConvert.SerializeObject(defaultSetting);
 
-            if (!Directory.Exists(Paths.DataDir))
-                Directory.CreateDirectory(Paths.DataDir);
+            if (!Directory.Exists(AppPath.DataDir))
+                Directory.CreateDirectory(AppPath.DataDir);
 
             // If there is no user settings file, create a new one using default parameters
-            if (!File.Exists(Paths.UserSettingsFile))
+            if (!File.Exists(AppPath.UserSettingsFile))
             {
-                File.Create(Paths.UserSettingsFile).Close();
-                File.WriteAllText(Paths.UserSettingsFile, defaultSettings);
+                File.Create(AppPath.UserSettingsFile).Close();
+                File.WriteAllText(AppPath.UserSettingsFile, defaultSettings);
             }
 
-            return JsonConvert.DeserializeObject<UserSettings>(File.ReadAllText($@"{Paths.UserSettingsFile}"));
+            return JsonConvert.DeserializeObject<UserSettings>(File.ReadAllText($@"{AppPath.UserSettingsFile}"));
         }
 
         public void WriteToFiles(string ipConfig, string apiKey, string actNum)
@@ -107,31 +107,31 @@ namespace WVA_Connect_CDI.ViewModels.Login
             try
             {
                 // Write to ipConfig file
-                if (!File.Exists(Paths.IpConfigFile))
+                if (!File.Exists(AppPath.IpConfigFile))
                 {
-                    Directory.CreateDirectory(Paths.IpConfigDir);
-                    File.Create(Paths.IpConfigFile).Close();
+                    Directory.CreateDirectory(AppPath.IpConfigDir);
+                    File.Create(AppPath.IpConfigFile).Close();
                 }
 
-                File.WriteAllText(Paths.IpConfigFile, ipConfig);
+                File.WriteAllText(AppPath.IpConfigFile, ipConfig);
 
                 // Write to apiKey file
-                if (!File.Exists(Paths.ApiKeyFile))
+                if (!File.Exists(AppPath.ApiKeyFile))
                 {
-                    Directory.CreateDirectory(Paths.ApiKeyDir);
-                    File.Create(Paths.ApiKeyFile).Close();
+                    Directory.CreateDirectory(AppPath.ApiKeyDir);
+                    File.Create(AppPath.ApiKeyFile).Close();
                 }
 
-                File.WriteAllText(Paths.ApiKeyFile, apiKey);
+                File.WriteAllText(AppPath.ApiKeyFile, apiKey);
 
                 // Write to actNum file
-                if (!File.Exists(Paths.ActNumFile))
+                if (!File.Exists(AppPath.ActNumFile))
                 {
-                    Directory.CreateDirectory(Paths.ActNumDir);
-                    File.Create(Paths.ActNumFile).Close();
+                    Directory.CreateDirectory(AppPath.ActNumDir);
+                    File.Create(AppPath.ActNumFile).Close();
                 }
 
-                File.WriteAllText(Paths.ActNumFile, actNum);
+                File.WriteAllText(AppPath.ActNumFile, actNum);
             }
             catch (Exception ex)
             {

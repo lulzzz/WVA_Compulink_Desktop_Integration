@@ -20,15 +20,15 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                return File.ReadAllText(Paths.IpConfigFile).Trim();
+                return File.ReadAllText(AppPath.IpConfigFile).Trim();
             }
             catch (FileNotFoundException)
             {
-                if (!Directory.Exists(Paths.IpConfigDir))
-                    Directory.CreateDirectory(Paths.IpConfigDir);
+                if (!Directory.Exists(AppPath.IpConfigDir))
+                    Directory.CreateDirectory(AppPath.IpConfigDir);
 
-                if (!File.Exists(Paths.IpConfigFile))
-                    File.Create(Paths.IpConfigFile);
+                if (!File.Exists(AppPath.IpConfigFile))
+                    File.Create(AppPath.IpConfigFile);
 
                 return "";
             }
@@ -88,11 +88,11 @@ namespace WVA_Connect_CDI.ViewModels.Login
 
         public void LogTimePassChanged()
         {
-            if (!Directory.Exists(Paths.TempDir))
-                Directory.CreateDirectory(Paths.TempDir);
+            if (!Directory.Exists(AppPath.TempDir))
+                Directory.CreateDirectory(AppPath.TempDir);
 
             string timeNow = DateTime.Now.ToString();
-            File.WriteAllText(Paths.PrevTimePassChangeFile, timeNow);
+            File.WriteAllText(AppPath.PrevTimePassChangeFile, timeNow);
         }
     }
 }

@@ -20,13 +20,13 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                if (File.Exists(Paths.PrevTimePassChangeFile))
+                if (File.Exists(AppPath.PrevTimePassChangeFile))
                 {
-                    DateTime passChangedDate = Convert.ToDateTime(File.ReadAllText(Paths.PrevTimePassChangeFile));
+                    DateTime passChangedDate = Convert.ToDateTime(File.ReadAllText(AppPath.PrevTimePassChangeFile));
                     DateTime deleteTime = DateTime.Now.AddDays(-1);
 
                     if (passChangedDate <= deleteTime)
-                        File.Delete(Paths.PrevTimePassChangeFile);
+                        File.Delete(AppPath.PrevTimePassChangeFile);
                 }
             }
             catch (Exception ex)
@@ -45,7 +45,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
                     Password = Crypto.ConvertToHash(password) ?? "",
                 };
 
-                string dsn = File.ReadAllText(Paths.IpConfigFile).Trim();
+                string dsn = File.ReadAllText(AppPath.IpConfigFile).Trim();
                 string endpoint = $"http://{dsn}/api/User/login";
                 string loginResponse = API.Post(endpoint, user);
                 User userLoginResponse = JsonConvert.DeserializeObject<User>(loginResponse);
@@ -77,16 +77,16 @@ namespace WVA_Connect_CDI.ViewModels.Login
 
                 string defaultSettings = JsonConvert.SerializeObject(defaultSetting);
 
-                if (!Directory.Exists(Paths.DataDir))
-                    Directory.CreateDirectory(Paths.DataDir);
+                if (!Directory.Exists(AppPath.DataDir))
+                    Directory.CreateDirectory(AppPath.DataDir);
 
-                if (!File.Exists(Paths.UserSettingsFile))
+                if (!File.Exists(AppPath.UserSettingsFile))
                 {
-                    File.Create(Paths.UserSettingsFile).Close();
-                    File.WriteAllText(Paths.UserSettingsFile, defaultSettings);
+                    File.Create(AppPath.UserSettingsFile).Close();
+                    File.WriteAllText(AppPath.UserSettingsFile, defaultSettings);
                 }
 
-                return JsonConvert.DeserializeObject<UserSettings>(File.ReadAllText($@"{Paths.UserSettingsFile}"));
+                return JsonConvert.DeserializeObject<UserSettings>(File.ReadAllText($@"{AppPath.UserSettingsFile}"));
             }
             catch (Exception ex)
             {
@@ -97,9 +97,9 @@ namespace WVA_Connect_CDI.ViewModels.Login
 
         public bool PasswordChangedRecently()
         {
-            if (File.Exists(Paths.PrevTimePassChangeFile))
+            if (File.Exists(AppPath.PrevTimePassChangeFile))
             {
-                string fileText = File.ReadAllText(Paths.PrevTimePassChangeFile);
+                string fileText = File.ReadAllText(AppPath.PrevTimePassChangeFile);
 
                 if (fileText == null || fileText.Trim() == "")
                     return false;

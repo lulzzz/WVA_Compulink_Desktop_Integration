@@ -18,7 +18,7 @@ namespace WVA_Connect_CDI.ViewModels
         {
             try
             {
-                return File.ReadAllLines(Paths.AvailableActsFile).ToList();
+                return File.ReadAllLines(AppPath.AvailableActsFile).ToList();
             }
             catch (Exception)
             {
@@ -50,13 +50,13 @@ namespace WVA_Connect_CDI.ViewModels
                 // Updates user settings in settings file
                 string userSettings = JsonConvert.SerializeObject(UserData.Data?.Settings);
 
-                if (!Directory.Exists(Paths.DataDir))
-                    Directory.CreateDirectory(Paths.DataDir);
+                if (!Directory.Exists(AppPath.DataDir))
+                    Directory.CreateDirectory(AppPath.DataDir);
 
-                if (!File.Exists(Paths.UserSettingsFile))
-                    File.Create(Paths.UserSettingsFile).Close();
+                if (!File.Exists(AppPath.UserSettingsFile))
+                    File.Create(AppPath.UserSettingsFile).Close();
 
-                File.WriteAllText(Paths.UserSettingsFile, userSettings);
+                File.WriteAllText(AppPath.UserSettingsFile, userSettings);
             }
             catch (Exception ex)
             {

@@ -49,18 +49,18 @@ namespace WVA_Connect_CDI.ViewModels
             try
             {
                 // Create ActNum file path if not already
-                if (!Directory.Exists(Paths.ActNumDir))
-                    Directory.CreateDirectory(Paths.ActNumDir);
+                if (!Directory.Exists(AppPath.ActNumDir))
+                    Directory.CreateDirectory(AppPath.ActNumDir);
 
-                if (!File.Exists(Paths.ActNumFile))
+                if (!File.Exists(AppPath.ActNumFile))
                 {
-                    var file = File.Create(Paths.ActNumFile);
+                    var file = File.Create(AppPath.ActNumFile);
                     file.Close();
                 }
 
-                UserData.Data.Account = File.ReadAllText(Paths.ActNumFile).Trim();
-                UserData.Data.ApiKey = File.ReadAllText(Paths.ApiKeyFile).Trim();
-                UserData.Data.DSN = File.ReadAllText(Paths.IpConfigFile).Trim();
+                UserData.Data.Account = File.ReadAllText(AppPath.ActNumFile).Trim();
+                UserData.Data.ApiKey = File.ReadAllText(AppPath.ApiKeyFile).Trim();
+                UserData.Data.DSN = File.ReadAllText(AppPath.IpConfigFile).Trim();
             }
             catch (Exception x)
             {

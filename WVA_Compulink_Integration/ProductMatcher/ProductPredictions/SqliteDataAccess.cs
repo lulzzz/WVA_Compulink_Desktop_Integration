@@ -142,7 +142,7 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
 
         private static string GetDbConnectionString(string id = "Default")
         {
-            return $@"Data Source={Paths.ProductDatabaseFile};Version=3;";
+            return $@"Data Source={AppPath.ProductDatabaseFile};Version=3;";
         }
 
     }

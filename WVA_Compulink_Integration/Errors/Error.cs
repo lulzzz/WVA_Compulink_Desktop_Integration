@@ -65,18 +65,18 @@ namespace WVA_Connect_CDI.Errors
             {
                 string time = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
 
-                if (!Directory.Exists(Paths.ErrorLogDir))
+                if (!Directory.Exists(AppPath.ErrorLogDir))
                 {
-                    Directory.CreateDirectory(Paths.ErrorLogDir);
+                    Directory.CreateDirectory(AppPath.ErrorLogDir);
                 }
 
-                if (!File.Exists(Paths.ErrorLogDir + $@"\Error_{time}.txt"))
+                if (!File.Exists(AppPath.ErrorLogDir + $@"\Error_{time}.txt"))
                 {
-                    var file = File.Create(Paths.ErrorLogDir + $@"\Error_{time}.txt");
+                    var file = File.Create(AppPath.ErrorLogDir + $@"\Error_{time}.txt");
                     file.Close();
                 }
 
-                using (StreamWriter writer = new StreamWriter((Paths.ErrorLogDir + $@"\Error_{time}.txt"), true))
+                using (StreamWriter writer = new StreamWriter((AppPath.ErrorLogDir + $@"\Error_{time}.txt"), true))
                 {
                     writer.WriteLine("-----------------------------------------------------------------------------------");
                     writer.WriteLine("");

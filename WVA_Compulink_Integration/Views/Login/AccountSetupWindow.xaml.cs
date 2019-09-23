@@ -42,11 +42,11 @@ namespace WVA_Connect_CDI.Views.Login
         {
             try
             {
-                if (!Directory.Exists(Paths.ActNumDir))
-                    Directory.CreateDirectory(Paths.ActNumDir);
+                if (!Directory.Exists(AppPath.ActNumDir))
+                    Directory.CreateDirectory(AppPath.ActNumDir);
 
-                if (!File.Exists(Paths.AvailableActsFile))
-                    File.Create(Paths.AvailableActsFile).Close();
+                if (!File.Exists(AppPath.AvailableActsFile))
+                    File.Create(AppPath.AvailableActsFile).Close();
             }
             catch (Exception ex)
             {
@@ -58,7 +58,7 @@ namespace WVA_Connect_CDI.Views.Login
         {
             try
             {
-                string dsn = File.ReadAllText(Paths.IpConfigFile).Trim();
+                string dsn = File.ReadAllText(AppPath.IpConfigFile).Trim();
                 List<string> availableAccounts = new SettingsViewModel().GetAllAvailableAccounts(dsn);
 
                 foreach (string account in availableAccounts)
@@ -84,7 +84,7 @@ namespace WVA_Connect_CDI.Views.Login
             {
                 foreach (AvailableAccount row in AvailableActsTable.Items)
                     if (row.IsChecked)
-                        File.AppendAllText(Paths.AvailableActsFile, row.AccountNumber + "\n");
+                        File.AppendAllText(AppPath.AvailableActsFile, row.AccountNumber + "\n");
             }
             catch (Exception ex)
             {
@@ -96,7 +96,7 @@ namespace WVA_Connect_CDI.Views.Login
         {
             try
             {
-                var accounts = File.ReadAllLines(Paths.AvailableActsFile).ToList();
+                var accounts = File.ReadAllLines(AppPath.AvailableActsFile).ToList();
                     accounts.RemoveAll(x => string.IsNullOrWhiteSpace(x));
 
                 return accounts.Count > 0 ? true : false;
@@ -125,7 +125,7 @@ namespace WVA_Connect_CDI.Views.Login
         {
             try
             {
-                File.WriteAllText(Paths.AvailableActsFile, ""); // Reset the file since SetSelectedAccounts appends to any existing text
+                File.WriteAllText(AppPath.AvailableActsFile, ""); // Reset the file since SetSelectedAccounts appends to any existing text
                 SetSelectedAccounts();
 
                 if (AvailableAccountsSet())

@@ -41,8 +41,8 @@ namespace WVA_Connect_CDI.Utility.Actions
         {
             string file = GetLogFileName();
 
-            if (!Directory.Exists(Paths.TempDir))
-                Directory.CreateDirectory(Paths.TempDir);
+            if (!Directory.Exists(AppPath.TempDir))
+                Directory.CreateDirectory(AppPath.TempDir);
 
             if (!File.Exists(file))
                 File.Create(file).Close(); ;
@@ -50,7 +50,7 @@ namespace WVA_Connect_CDI.Utility.Actions
 
         private static string GetLogFileName()
         {
-            return $"{Paths.TempDir}CDI_Action_Log_{DateTime.Today.ToString("MM-dd-yy")}.txt";
+            return $"{AppPath.TempDir}CDI_Action_Log_{DateTime.Today.ToString("MM-dd-yy")}.txt";
         }
 
         private static string GetFileContents(string actionLocation)
@@ -98,7 +98,7 @@ namespace WVA_Connect_CDI.Utility.Actions
             {
                 List<ActionData> listActionData = new List<ActionData>();
 
-                var files = Directory.EnumerateFiles(Paths.TempDir, "CDI_Action_Log*").Where(x => !x.Contains(DateTime.Today.ToString("MM-dd-yy")));
+                var files = Directory.EnumerateFiles(AppPath.TempDir, "CDI_Action_Log*").Where(x => !x.Contains(DateTime.Today.ToString("MM-dd-yy")));
 
                 foreach (string file in files)
                 {
@@ -123,7 +123,7 @@ namespace WVA_Connect_CDI.Utility.Actions
             {
                 List<ActionData> listActionData = new List<ActionData>();
 
-                var files = Directory.EnumerateFiles(Paths.TempDir, "CDI_Action_Log*");
+                var files = Directory.EnumerateFiles(AppPath.TempDir, "CDI_Action_Log*");
 
                 foreach (string file in files)
                 {
@@ -160,7 +160,7 @@ namespace WVA_Connect_CDI.Utility.Actions
                     AppVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString()
                 };
 
-                string strResponse = API.Post(Paths.WisVisErrors, dataMessage);
+                string strResponse = API.Post(AppPath.WisVisErrors, dataMessage);
                 var response = JsonConvert.DeserializeObject<Response>(strResponse);
 
                 return response.Status == "SUCCESS" ? true : false;

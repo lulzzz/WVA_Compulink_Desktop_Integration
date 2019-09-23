@@ -178,7 +178,7 @@
     <Compile Include="Updates\Updater.cs" />
     <Compile Include="Utility\Actions\ActionData.cs" />
     <Compile Include="Utility\Actions\ActionLogger.cs" />
-    <Compile Include="Utility\Files\Paths.cs" />
+    <Compile Include="Utility\Paths\AppPath.cs" />
     <Compile Include="Utility\UI_Tools\DatagridTools.cs" />
     <Compile Include="Utility\UI_Tools\ShippingTools.cs" />
     <Compile Include="ViewModels\Login\ChangePasswordViewModel.cs" />

@@ -203,23 +203,6 @@ namespace WVA_Connect_CDI.Views.Orders
         // ================================== UI Related Methods =================================================================
         // =======================================================================================================================
 
-        private string GetShippingTypeID(string shipType)
-        {
-            switch (shipType)
-            {
-                case "Standard":
-                    return "1";
-                case "UPS Ground":
-                    return "D";
-                case "UPS 2nd Day Air":
-                    return "J";
-                case "UPS Next Day Air":
-                    return "P";
-                default:
-                    return shipType;
-            }
-        }
-
         private void SetUpOrdersDataGrid()
         {
             OrdersDataGrid.ItemsSource = OrderCreationViewModel.Prescriptions;
@@ -454,15 +437,15 @@ namespace WVA_Connect_CDI.Views.Orders
             try
             {
                 // Pull account number from file if its there
-                ActNumTextBox.Text = File.ReadAllText(Paths.ActNumFile).Trim();
+                ActNumTextBox.Text = File.ReadAllText(AppPath.ActNumFile).Trim();
             }
             catch (FileNotFoundException)
             {
-                if (!Directory.Exists(Paths.ActNumDir))
-                    Directory.CreateDirectory(Paths.ActNumDir);
+                if (!Directory.Exists(AppPath.ActNumDir))
+                    Directory.CreateDirectory(AppPath.ActNumDir);
 
-                if (!File.Exists(Paths.ActNumFile))
-                    File.Create(Paths.ActNumFile);
+                if (!File.Exists(AppPath.ActNumFile))
+                    File.Create(AppPath.ActNumFile);
             }
             catch (Exception ex)
             {
@@ -1054,7 +1037,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 order.CustomerID = ActNumTextBox.Text;
                 order.OrderedBy = OrderedByTextBox.Text;
                 order.PoNumber = PoNumberTextBox.Text;
-                order.ShippingMethod = GetShippingTypeID(ShippingTypeComboBox.Text);
+                order.ShippingMethod = ShippingTools.GetShippingTypeID(ShippingTypeComboBox.Text);
 
                 try { order.ShipToPatient = OrderCreationViewModel.Prescriptions[0].IsShipToPat ? "Y" : "N"; }
                 catch { order.ShipToPatient = ""; }

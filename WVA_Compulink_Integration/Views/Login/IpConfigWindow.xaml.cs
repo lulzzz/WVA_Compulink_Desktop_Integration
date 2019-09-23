@@ -67,20 +67,20 @@ namespace WVA_Connect_CDI.Views.Login
             try
             {
                 // Delete shortcut
-                if (File.Exists(Paths.DesktopDir + "\\FentonEC_Desktop.lnk"))
-                    File.Delete(Paths.DesktopDir + "\\FentonEC_Desktop.lnk");
+                if (File.Exists(AppPath.DesktopDir + "\\FentonEC_Desktop.lnk"))
+                    File.Delete(AppPath.DesktopDir + "\\FentonEC_Desktop.lnk");
 
                 // Delete all remains of the disgusting FentonEC desktop integration
-                if (Directory.Exists(Paths.AppDataLocal + @"\FentonEC_Desktop"))
+                if (Directory.Exists(AppPath.AppDataLocal + @"\FentonEC_Desktop"))
                 {
-                    foreach (FileInfo file in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetFiles())
+                    foreach (FileInfo file in new DirectoryInfo(AppPath.AppDataLocal + @"\FentonEC_Desktop").GetFiles())
                         file.Delete();
 
-                    foreach (DirectoryInfo dir in new DirectoryInfo(Paths.AppDataLocal + @"\FentonEC_Desktop").GetDirectories())
+                    foreach (DirectoryInfo dir in new DirectoryInfo(AppPath.AppDataLocal + @"\FentonEC_Desktop").GetDirectories())
                         dir.Delete(true);
 
-                    if (Directory.Exists(Paths.AppDataLocal + @"\FentonEC_Desktop"))
-                        Directory.Delete(Paths.AppDataLocal + @"\FentonEC_Desktop");
+                    if (Directory.Exists(AppPath.AppDataLocal + @"\FentonEC_Desktop"))
+                        Directory.Delete(AppPath.AppDataLocal + @"\FentonEC_Desktop");
                 }
             }
             catch (Exception ex)

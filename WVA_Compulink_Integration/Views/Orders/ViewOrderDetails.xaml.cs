@@ -189,7 +189,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 }
             };
 
-            string statusEndpoint = Paths.WisVisOrderStatus;
+            string statusEndpoint = AppPath.WisVisOrderStatus;
             string strStatusResponse = API.Post(statusEndpoint, request);
 
             if (strStatusResponse == null || strStatusResponse.Trim() == "")

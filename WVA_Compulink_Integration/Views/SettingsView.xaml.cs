@@ -67,7 +67,7 @@ namespace WVA_Connect_CDI.Views
                     AvailableActsComboBox.Items.Add(account);
 
                 // Pull account number from file if its there
-                string actNum = File.ReadAllText(Paths.ActNumFile).Trim();
+                string actNum = File.ReadAllText(AppPath.ActNumFile).Trim();
 
                 // Select their account number if it's been set already in the drop down
                 for (int i = 0; i < availableActs.Count; i++)
@@ -78,11 +78,11 @@ namespace WVA_Connect_CDI.Views
             }
             catch (FileNotFoundException)
             {
-                if (!Directory.Exists(Paths.ActNumDir))
-                    Directory.CreateDirectory(Paths.ActNumDir);
+                if (!Directory.Exists(AppPath.ActNumDir))
+                    Directory.CreateDirectory(AppPath.ActNumDir);
 
-                if (!File.Exists(Paths.ActNumFile))
-                    File.Create(Paths.ActNumFile);
+                if (!File.Exists(AppPath.ActNumFile))
+                    File.Create(AppPath.ActNumFile);
 
                 SetUpWvaAccountNumber();
             }
@@ -117,14 +117,14 @@ namespace WVA_Connect_CDI.Views
         {
             try
             {
-                if (!File.Exists(Paths.ActNumFile))
+                if (!File.Exists(AppPath.ActNumFile))
                 {
-                    Directory.CreateDirectory(Paths.ActNumDir);
-                    var actNumFile = File.Create(Paths.ActNumFile);
+                    Directory.CreateDirectory(AppPath.ActNumDir);
+                    var actNumFile = File.Create(AppPath.ActNumFile);
                     actNumFile.Close();
                 }
 
-                File.WriteAllText(Paths.ActNumFile, (sender as ComboBox).SelectedItem as string);
+                File.WriteAllText(AppPath.ActNumFile, (sender as ComboBox).SelectedItem as string);
             }
             catch (Exception x)
             {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Utility.Files
 {
-    class Paths
+    class AppPath
     {
         /* ---------------------------------------- ROOT PATHS --------------------------------------------------------- */
 
@@ -52,5 +52,7 @@ namespace WVA_Connect_CDI.Utility.Files
         public static readonly string WisVisOrders              = $@"{WisVisBase}/orders";
         public static readonly string WisVisOrderStatus         = $@"https://orders.wisvis.com/order_status";
         public static readonly string WisVisErrors              = $@"https://ws2.wisvis.com/aws/scanner/error_handler.rb";
+        public static readonly string WisVisValidations         = $@"https://orders.wisvis.com/validations";
+        public static readonly string WisVisCdiRepo             = $@"https://github.com/WVATeam/WVA_Compulink_Desktop_Integration";
     }
 }

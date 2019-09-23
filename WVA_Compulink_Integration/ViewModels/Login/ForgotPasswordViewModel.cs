@@ -19,15 +19,15 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                return File.ReadAllText(Paths.ApiKeyFile).Trim();
+                return File.ReadAllText(AppPath.ApiKeyFile).Trim();
             }
             catch
             {
-                if (!Directory.Exists(Paths.ApiKeyDir))
-                    Directory.CreateDirectory(Paths.ApiKeyDir);
+                if (!Directory.Exists(AppPath.ApiKeyDir))
+                    Directory.CreateDirectory(AppPath.ApiKeyDir);
 
-                if (!File.Exists(Paths.ApiKeyFile))
-                    File.Create(Paths.ApiKeyFile);
+                if (!File.Exists(AppPath.ApiKeyFile))
+                    File.Create(AppPath.ApiKeyFile);
 
                 return "";
             }
@@ -37,15 +37,15 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                return File.ReadAllText(Paths.IpConfigFile).Trim();
+                return File.ReadAllText(AppPath.IpConfigFile).Trim();
             }
             catch
             {
-                if (!Directory.Exists(Paths.IpConfigDir))
-                    Directory.CreateDirectory(Paths.IpConfigDir);
+                if (!Directory.Exists(AppPath.IpConfigDir))
+                    Directory.CreateDirectory(AppPath.IpConfigDir);
 
-                if (!File.Exists(Paths.IpConfigFile))
-                    File.Create(Paths.IpConfigFile);
+                if (!File.Exists(AppPath.IpConfigFile))
+                    File.Create(AppPath.IpConfigFile);
 
                 return "";
             }

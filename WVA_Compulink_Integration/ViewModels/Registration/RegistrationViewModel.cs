@@ -73,7 +73,7 @@ namespace WVA_Connect_CDI.ViewModels.Registration
                 ApiKey = ""
             };
 
-            string dsn = File.ReadAllText(Paths.IpConfigFile).Trim();
+            string dsn = File.ReadAllText(AppPath.IpConfigFile).Trim();
             string endpoint = $"http://{dsn}/api/User/register";
             string registerResponse = API.Post(endpoint, user);
             User userRegisterResponse = JsonConvert.DeserializeObject<User>(registerResponse);

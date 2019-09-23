@@ -23,13 +23,13 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             try
             {
                 // Create the path to the product database file if it doesn't exists already
-                if (!Directory.Exists($"{Paths.DataDir}"))
-                    Directory.CreateDirectory($"{Paths.DataDir}");
+                if (!Directory.Exists($"{AppPath.DataDir}"))
+                    Directory.CreateDirectory($"{AppPath.DataDir}");
 
                 // Create product database file if it's not created already and set up table
-                if (!File.Exists($"{Paths.ProductDatabaseFile}"))
+                if (!File.Exists($"{AppPath.ProductDatabaseFile}"))
                 {
-                    SQLiteConnection.CreateFile($"{Paths.ProductDatabaseFile}");
+                    SQLiteConnection.CreateFile($"{AppPath.ProductDatabaseFile}");
                     SqliteDataAccess.CreateProductsTable();
                 }
 
