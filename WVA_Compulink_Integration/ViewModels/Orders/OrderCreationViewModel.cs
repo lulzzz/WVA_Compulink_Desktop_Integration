@@ -25,10 +25,13 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 {
     class OrderCreationViewModel
     {
-        public Order Order { get; set; }
+        public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
+
+        // <note> These MUST remain static! They are accessed from other classes to properly load this view
+        public static Order Order { get; set; }
         public static List<Prescription> Prescriptions { get; set; }
         public static string OrderName { get; set; }
-        public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
+        // </note>
 
         public OrderCreationViewModel()
         {

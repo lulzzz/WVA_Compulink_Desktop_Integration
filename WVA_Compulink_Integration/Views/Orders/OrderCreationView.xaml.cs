@@ -37,7 +37,6 @@ namespace WVA_Connect_CDI.Views.Orders
         public int SelectedRow { get; set; }
         public int SelectedColumn { get; set; }
         public static string ViewMode { get; set; }
-        //public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
         OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
 
         public OrderCreationView()
@@ -97,7 +96,7 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void DetermineViewMode()
         {
-            if (orderCreationViewModel.Order != null)
+            if (OrderCreationViewModel.Order != null)
             {
                 ViewMode = "edit";
                 SetUpEditOrder();
@@ -143,14 +142,14 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void AutoFillStpItems()
         {
-            AddresseeTextBox.Text   = orderCreationViewModel.Order.Name1;
-            AddressTextBox.Text     = orderCreationViewModel.Order.StreetAddr1;
-            Suite_AptTextBox.Text   = orderCreationViewModel.Order.StreetAddr2;
-            CityTextBox.Text        = orderCreationViewModel.Order.City;
-            StateComboBox.Text      = orderCreationViewModel.Order.State;
-            ZipTextBox.Text         = orderCreationViewModel.Order.Zip;
-            PhoneTextBox.Text       = orderCreationViewModel.Order.Phone;
-            DoBTextBox.Text         = orderCreationViewModel.Order.DoB;
+            AddresseeTextBox.Text   = OrderCreationViewModel.Order.Name1;
+            AddressTextBox.Text     = OrderCreationViewModel.Order.StreetAddr1;
+            Suite_AptTextBox.Text   = OrderCreationViewModel.Order.StreetAddr2;
+            CityTextBox.Text        = OrderCreationViewModel.Order.City;
+            StateComboBox.Text      = OrderCreationViewModel.Order.State;
+            ZipTextBox.Text         = OrderCreationViewModel.Order.Zip;
+            PhoneTextBox.Text       = OrderCreationViewModel.Order.Phone;
+            DoBTextBox.Text         = OrderCreationViewModel.Order.DoB;
         }
 
         private void HideStpItems()
@@ -292,7 +291,7 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void SetUpEditOrder()
         {
-            if (orderCreationViewModel.Order.ShipToPatient == "Y")
+            if (OrderCreationViewModel.Order.ShipToPatient == "Y")
             {
                 ShowStpItems();
                 AutoFillStpItems();
@@ -303,50 +302,50 @@ namespace WVA_Connect_CDI.Views.Orders
             }
 
             // Left column
-            AddresseeTextBox.Text   = orderCreationViewModel.Order.Name1 ?? "";
-            AddressTextBox.Text     = orderCreationViewModel.Order.StreetAddr1 ?? "";
-            Suite_AptTextBox.Text   = orderCreationViewModel.Order.StreetAddr2 ?? "";
-            CityTextBox.Text        = orderCreationViewModel.Order.City ?? "";
-            StateComboBox.Text      = orderCreationViewModel.Order.State ?? "";
-            ZipTextBox.Text         = orderCreationViewModel.Order.Zip ?? "";
-            PhoneTextBox.Text       = orderCreationViewModel.Order.Phone ?? "";
-            DoBTextBox.Text         = orderCreationViewModel.Order.DoB ?? "";
+            AddresseeTextBox.Text   = OrderCreationViewModel.Order.Name1 ?? "";
+            AddressTextBox.Text     = OrderCreationViewModel.Order.StreetAddr1 ?? "";
+            Suite_AptTextBox.Text   = OrderCreationViewModel.Order.StreetAddr2 ?? "";
+            CityTextBox.Text        = OrderCreationViewModel.Order.City ?? "";
+            StateComboBox.Text      = OrderCreationViewModel.Order.State ?? "";
+            ZipTextBox.Text         = OrderCreationViewModel.Order.Zip ?? "";
+            PhoneTextBox.Text       = OrderCreationViewModel.Order.Phone ?? "";
+            DoBTextBox.Text         = OrderCreationViewModel.Order.DoB ?? "";
 
             // Right column
-            OrderNameTextBox.Text       = orderCreationViewModel.Order.OrderName ?? "";
+            OrderNameTextBox.Text       = OrderCreationViewModel.Order.OrderName ?? "";
             ActNumTextBox.Text          = UserData.Data?.Account;
             OrderedByTextBox.Text       = UserData.Data.UserName ?? "";
-            PoNumberTextBox.Text        = orderCreationViewModel.Order.PoNumber ?? "";
-            ShippingTypeComboBox.Text   = orderCreationViewModel.Order.ShippingMethod ?? "";
+            PoNumberTextBox.Text        = OrderCreationViewModel.Order.PoNumber ?? "";
+            ShippingTypeComboBox.Text   = OrderCreationViewModel.Order.ShippingMethod ?? "";
 
             // If there are no items then exit
-            if (orderCreationViewModel.Order.Items == null || orderCreationViewModel.Order.Items?.Count == 0)
+            if (OrderCreationViewModel.Order.Items == null || OrderCreationViewModel.Order.Items?.Count == 0)
                 return;
 
             // Datagrid rows
-            for (int i = 0; i < orderCreationViewModel.Order.Items.Count; i++)
+            for (int i = 0; i < OrderCreationViewModel.Order.Items.Count; i++)
             {
                 Prescription prescription = new Prescription()
                 {
                     // If product has been reviewed, show 'checked' image next to product name
-                    ProductImagePath    = orderCreationViewModel.Order.Items[i].ProductDetail.ProductReviewed ? @"/Resources/CheckMarkCircle.png" : null,
-                    FirstName           = orderCreationViewModel.Order.Items[i].FirstName,
-                    _CustomerID         = new CustomerID() { Value = orderCreationViewModel.Order.Items[i].PatientID },
-                    LastName            = orderCreationViewModel.Order.Items[i].LastName,
-                    Eye                 = orderCreationViewModel.Order.Items[i].Eye,
-                    Quantity            = orderCreationViewModel.Order.Items[i].Quantity,
-                    Product             = orderCreationViewModel.Order.Items[i].ProductDetail.Name,
-                    ProductCode         = orderCreationViewModel.Order.Items[i].ProductDetail.ProductKey,
-                    BaseCurve           = orderCreationViewModel.Order.Items[i].ProductDetail.BaseCurve,
-                    Diameter            = orderCreationViewModel.Order.Items[i].ProductDetail.Diameter,
-                    Sphere              = orderCreationViewModel.Order.Items[i].ProductDetail.Sphere,
-                    Cylinder            = orderCreationViewModel.Order.Items[i].ProductDetail.Cylinder,
-                    Axis                = orderCreationViewModel.Order.Items[i].ProductDetail.Axis,
-                    Add                 = orderCreationViewModel.Order.Items[i].ProductDetail.Add,
-                    Color               = orderCreationViewModel.Order.Items[i].ProductDetail.Color,
-                    Multifocal          = orderCreationViewModel.Order.Items[i].ProductDetail.Multifocal,
-                    LensRx              = orderCreationViewModel.Order.Items[i].ProductDetail.LensRx,
-                    IsShipToPat         = orderCreationViewModel.Order.ShipToPatient == "Y" ? true : false 
+                    ProductImagePath    = OrderCreationViewModel.Order.Items[i].ProductDetail.ProductReviewed ? @"/Resources/CheckMarkCircle.png" : null,
+                    FirstName           = OrderCreationViewModel.Order.Items[i].FirstName,
+                    _CustomerID         = new CustomerID() { Value = OrderCreationViewModel.Order.Items[i].PatientID },
+                    LastName            = OrderCreationViewModel.Order.Items[i].LastName,
+                    Eye                 = OrderCreationViewModel.Order.Items[i].Eye,
+                    Quantity            = OrderCreationViewModel.Order.Items[i].Quantity,
+                    Product             = OrderCreationViewModel.Order.Items[i].ProductDetail.Name,
+                    ProductCode         = OrderCreationViewModel.Order.Items[i].ProductDetail.ProductKey,
+                    BaseCurve           = OrderCreationViewModel.Order.Items[i].ProductDetail.BaseCurve,
+                    Diameter            = OrderCreationViewModel.Order.Items[i].ProductDetail.Diameter,
+                    Sphere              = OrderCreationViewModel.Order.Items[i].ProductDetail.Sphere,
+                    Cylinder            = OrderCreationViewModel.Order.Items[i].ProductDetail.Cylinder,
+                    Axis                = OrderCreationViewModel.Order.Items[i].ProductDetail.Axis,
+                    Add                 = OrderCreationViewModel.Order.Items[i].ProductDetail.Add,
+                    Color               = OrderCreationViewModel.Order.Items[i].ProductDetail.Color,
+                    Multifocal          = OrderCreationViewModel.Order.Items[i].ProductDetail.Multifocal,
+                    LensRx              = OrderCreationViewModel.Order.Items[i].ProductDetail.LensRx,
+                    IsShipToPat         = OrderCreationViewModel.Order.ShipToPatient == "Y" ? true : false 
                 };
 
                 OrderCreationViewModel.Prescriptions.Add(prescription);
@@ -937,7 +936,7 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
-                Order order = orderCreationViewModel.Order;
+                Order order = OrderCreationViewModel.Order;
 
                 if (order == null)
                     order = new Order { Items = new List<Item>() };
@@ -1420,8 +1419,8 @@ namespace WVA_Connect_CDI.Views.Orders
                 string location = GetType().FullName + "." + nameof(UserControl_Unloaded);
                 string actionMessage = null;
 
-                if (orderCreationViewModel.Order != null && orderCreationViewModel.Order?.OrderName.Trim() != "")
-                    actionMessage = $"<Order.ID={orderCreationViewModel.Order?.ID}> <Order.Name={orderCreationViewModel.Order?.OrderName}>";
+                if (OrderCreationViewModel.Order != null && OrderCreationViewModel.Order?.OrderName.Trim() != "")
+                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
 
                 if (actionMessage == null)
                     ActionLogger.Log(location);
@@ -1442,8 +1441,8 @@ namespace WVA_Connect_CDI.Views.Orders
                 string location = GetType().FullName + "." + nameof(UserControl_Loaded);
                 string actionMessage = null;
 
-                if (orderCreationViewModel.Order != null)
-                    actionMessage = $"<Order.ID={orderCreationViewModel.Order?.ID}> <Order.Name={orderCreationViewModel.Order?.OrderName}>";
+                if (OrderCreationViewModel.Order != null)
+                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
 
                 if (actionMessage == null)
                     ActionLogger.Log(location);
