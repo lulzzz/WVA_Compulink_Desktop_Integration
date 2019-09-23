@@ -23,13 +23,13 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 {
     class OrderCreationViewModel
     {
-        public Order Order { get; set; }
-        public List<Prescription> Prescriptions { get; set; }
-        public string OrderName { get; set; }
+        public static Order Order { get; set; }
+        public static List<Prescription> Prescriptions { get; set; }
+        public static string OrderName { get; set; }
 
         public OrderCreationViewModel()
         {
-
+            
         }
 
         public OrderCreationViewModel(List<Prescription> listPrescriptions, string orderName)

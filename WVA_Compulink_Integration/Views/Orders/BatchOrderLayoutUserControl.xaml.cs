@@ -23,6 +23,7 @@ namespace WVA_Connect_CDI.Views.Orders
         private int SelectedRow { get; set; }
         private int SelectedColumn { get; set; }
         public BatchOrderCreationUserControlViewModel viewModel = new BatchOrderCreationUserControlViewModel();
+        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
 
         public BatchOrderLayoutUserControl(string orderName, List<Prescription> prescriptions)
         {
@@ -49,7 +50,7 @@ namespace WVA_Connect_CDI.Views.Orders
             try
             {
                 var validationWrapper = GetValidationWrapper(OrdersDataGrid.Items);
-                var validationResponse = OrderCreationViewModel.ValidateOrder(validationWrapper);
+                var validationResponse = orderCreationViewModel.ValidateOrder(validationWrapper);
 
                 if (validationResponse.Status == "FAIL" && validationResponse.Message != "Invalid")
                     throw new Exception($"An error has occurred while validating products. ErrorMessage: {validationResponse.Message}");

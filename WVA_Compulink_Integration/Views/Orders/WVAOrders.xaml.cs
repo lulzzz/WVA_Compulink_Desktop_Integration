@@ -22,7 +22,7 @@ namespace WVA_Connect_CDI.Views.Orders
 {
     public partial class WVAOrders : UserControl
     {
-
+        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
         ToolTip toolTip = new ToolTip();
         List<Order> ListOrders { get; set; }
 
@@ -287,7 +287,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 string actionMessage = $"<Delete_Order_Start>";
                 ActionLogger.Log(location, actionMessage);
 
-                OrderCreationViewModel.DeleteOrder(order.OrderName);
+                orderCreationViewModel.DeleteOrder(order.OrderName);
 
                 actionMessage = $"<Delete_Order_Start> <Order.Name={order.OrderName}>";
                 ActionLogger.Log(location, actionMessage);

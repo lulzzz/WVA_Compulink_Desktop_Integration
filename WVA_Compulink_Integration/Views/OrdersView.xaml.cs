@@ -20,6 +20,8 @@ namespace WVA_Connect_CDI.Views
 {
     public partial class OrdersView : UserControl
     {
+        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
+
         public OrdersView()
         {
             InitializeComponent();
@@ -54,7 +56,7 @@ namespace WVA_Connect_CDI.Views
                 case "OrderCreation":
 
                     // Check if order exists, if it does, return it
-                    Order order = OrderCreationViewModel.GetOrder(orderName);
+                    Order order = orderCreationViewModel.GetOrder(orderName);
 
                     // If (true) this order exists in the database on their server
                     // If (false) then this is a new order (i.e. doesn't exists in the database)

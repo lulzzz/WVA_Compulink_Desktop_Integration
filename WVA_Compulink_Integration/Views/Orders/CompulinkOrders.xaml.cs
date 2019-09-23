@@ -30,6 +30,7 @@ namespace WVA_Connect_CDI.Views.Orders
     {
         ToolTip toolTip = new ToolTip();
         List<Prescription> ListPrescriptions = new List<Prescription>();
+        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
 
         public CompulinkOrders()
         {
@@ -374,7 +375,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     // Determine if order is a batch order and should be split out 
                     bool isBatchOrder = new CompulinkOrdersViewModel().IsBatchOrder(listPrescriptions); ;
 
-                    if (isBatchOrder && OrderCreationViewModel.OrderExists(WvaOrdersComboBox.Text))
+                    if (isBatchOrder && orderCreationViewModel.OrderExists(WvaOrdersComboBox.Text))
                     {
                         MessageBox.Show("Cannot add a batch order to an existing WVA order!", "Warning", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         return;

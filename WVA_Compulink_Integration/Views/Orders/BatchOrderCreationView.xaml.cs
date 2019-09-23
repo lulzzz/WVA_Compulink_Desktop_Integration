@@ -26,6 +26,8 @@ namespace WVA_Connect_CDI.Views.Orders
 {
     public partial class BatchOrderCreationView : UserControl
     {
+        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
+
         public BatchOrderCreationView()
         {
             InitializeComponent();
@@ -73,7 +75,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 {
                     OrderName = childGrid.OrderNameLabel.Content.ToString(),
                     OrderedBy = OrderedByTextBox.Text,
-                    ShippingMethod = OrderCreationViewModel.GetShippingTypeID(ShippingTypeComboBox.Text),
+                    ShippingMethod = orderCreationViewModel.GetShippingTypeID(ShippingTypeComboBox.Text),
                     ShipToPatient = childGrid.OrderTypeLabel.Content.ToString().ToLower().Contains("patient") ? "Y" : "N",
                 };
 
@@ -176,7 +178,7 @@ namespace WVA_Connect_CDI.Views.Orders
             foreach (OutOrderWrapper order in orders)
             {
                 actionMessage += $"<Order.ID={order.OutOrder.PatientOrder.ID}> <Order.Name={order.OutOrder.PatientOrder.OrderName}>";
-                var response = OrderCreationViewModel.CreateOrder(order);
+                var response = orderCreationViewModel.CreateOrder(order);
                 responses.Add(response);
                 actionMessage += response?.Data?.Wva_order_id != null ? $" <Response.OrderID={response.Data.Wva_order_id}>" : $" <Response.OrderID=null> <Response.Message={response.Message}>";
             }
@@ -259,7 +261,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 foreach (OutOrderWrapper order in orders)
                 {
                     actionMessage += $"<Order.ID={order.OutOrder.PatientOrder.ID}> <Order.Name={order.OutOrder.PatientOrder.OrderName}> ";
-                    var response = OrderCreationViewModel.CreateOrder(order);
+                    var response = orderCreationViewModel.CreateOrder(order);
                     orderResponses.Add(response);
                     actionMessage += response?.Data?.Wva_order_id != null ? $" <Response.OrderID={response.Data.Wva_order_id}>" : $" <Response.OrderID=null> <Response.Message={response.Message}>";
                 }
@@ -342,7 +344,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 foreach (OutOrderWrapper order in orders)
                 {
                     actionMessage += $"<Order.ID={order.OutOrder.PatientOrder.ID}> <Order.Name={order.OutOrder.PatientOrder.OrderName}>";
-                    var response = OrderCreationViewModel.SaveOrder(order);
+                    var response = orderCreationViewModel.SaveOrder(order);
                     orderResponses.Add(response);
                     actionMessage += response?.Data?.Wva_order_id != null ? $" <Response.OrderID={response.Data.Wva_order_id}>" : $" <Response.OrderID=null> <Response.Message={response.Message}>";
                 }

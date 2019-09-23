@@ -12,7 +12,7 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
     {
         public static double MatchScore { get; set; }
 
-        public static List<MatchProduct> GetPredictionMatches(Prescription prescription, double matchScore, List<Product> wvaProducts, bool overrideNumPicks = false)
+        public static List<MatchProduct> GetPredictionMatches(Prescription prescription, double matchScore, List<Product> wvaProducts, bool limitReturnedResults = false)
         {
             // Check for nulls
             if (prescription == null || prescription.Product.Trim() == "")
@@ -37,7 +37,7 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             else
             {
                 //Get wva products that are similarly matched with the compulink product
-                List<MatchProduct> listMatches = GetMatches(prescription, wvaProducts, overrideNumPicks);
+                List<MatchProduct> listMatches = GetMatches(prescription, wvaProducts, limitReturnedResults);
 
                 return listMatches;
             }
@@ -89,13 +89,13 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
         }
 
         // Get a list of wva product matches for a given compulink product
-        private static List<MatchProduct> GetMatches(Prescription prescription, List<Product> wvaProducts, bool overrideNumPicks)
+        private static List<MatchProduct> GetMatches(Prescription prescription, List<Product> wvaProducts, bool limitReturnedResults)
         {
             var listMatches = new List<MatchProduct>();
 
             // If overrideNumPicks is true, the method will not limit the list based on numPicks
             int numPicks;
-            if (overrideNumPicks)
+            if (limitReturnedResults)
                 numPicks = 0;
             else
                 numPicks = Database.GetNumPicks(prescription.Product);
