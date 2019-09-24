@@ -219,6 +219,24 @@
     <Compile Include="Views\MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Orders - Copy\BatchOrderCreationView.xaml.cs">
+      <DependentUpon>BatchOrderCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders - Copy\BatchOrderLayoutUserControl.xaml.cs">
+      <DependentUpon>BatchOrderLayoutUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders - Copy\CompulinkOrders.xaml.cs">
+      <DependentUpon>CompulinkOrders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders - Copy\OrderCreationView.xaml.cs">
+      <DependentUpon>OrderCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders - Copy\ViewOrderDetails.xaml.cs">
+      <DependentUpon>ViewOrderDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Orders - Copy\WVAOrders.xaml.cs">
+      <DependentUpon>WVAOrders.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OrdersView.xaml.cs">
       <DependentUpon>OrdersView.xaml</DependentUpon>
     </Compile>
@@ -311,6 +329,30 @@
     <Page Include="Views\MessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Orders - Copy\BatchOrderCreationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Orders - Copy\BatchOrderLayoutUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Orders - Copy\CompulinkOrders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Orders - Copy\OrderCreationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Orders - Copy\ViewOrderDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Orders - Copy\WVAOrders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OrdersView.xaml">
       <SubType>Designer</SubType>

@@ -63,27 +63,34 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                var defaultSetting = new UserSettings()
-                {
-                    DeleteBlankCompulinkOrders = false,
-                    ProductMatcher = new Models.Users.ProductMatcher()
-                    {
-                        CharSequenceMaxScore = 40,
-                        SameWordMaxScore = 50,
-                        SkuTypeMaxScore = 5,
-                        QuantityMaxScore = 5
-                    }
-                };
-
-                string defaultSettings = JsonConvert.SerializeObject(defaultSetting);
-
                 if (!Directory.Exists(AppPath.DataDir))
                     Directory.CreateDirectory(AppPath.DataDir);
 
+                // If no settings file exists, create one with the default settings
+                // If it does exist, check for missing properties and carry over currently saved settings
                 if (!File.Exists(AppPath.UserSettingsFile))
                 {
+                    var defaultSetting = new UserSettings()
+                    {
+                        DeleteBlankCompulinkOrders = false,
+                        AutoFillLearnedProducts = true,
+                        ProductMatcher = new Models.Users.ProductMatcher()
+                        {
+                            CharSequenceMaxScore = 40,
+                            SameWordMaxScore = 50,
+                            SkuTypeMaxScore = 5,
+                            QuantityMaxScore = 5
+                        }
+                    };
+
+                    string defaultSettings = JsonConvert.SerializeObject(defaultSetting);
+
                     File.Create(AppPath.UserSettingsFile).Close();
                     File.WriteAllText(AppPath.UserSettingsFile, defaultSettings);
+                }
+                else
+                {
+                    UpdateSettingsFile();
                 }
 
                 return JsonConvert.DeserializeObject<UserSettings>(File.ReadAllText($@"{AppPath.UserSettingsFile}"));
@@ -93,6 +100,33 @@ namespace WVA_Connect_CDI.ViewModels.Login
                 Error.ReportOrLog(ex);
                 return null;
             }
+        }
+
+        // Update any properties that may be missing from the settings file
+        private void UpdateSettingsFile()
+        {
+            // Get current users settings
+            string settingsFileText = File.ReadAllText($@"{AppPath.UserSettingsFile}");
+            UserSettings currentSettings = JsonConvert.DeserializeObject<UserSettings>(settingsFileText);
+            var updateSettings = new UserSettings
+            {
+                DeleteBlankCompulinkOrders = currentSettings.DeleteBlankCompulinkOrders,
+                AutoFillLearnedProducts = currentSettings.AutoFillLearnedProducts,
+                ProductMatcher = currentSettings.ProductMatcher
+            };
+            
+            // If property doesn't exist in file, rewrite the file using their saved user settings
+            if (!settingsFileText.Contains("DeleteBlankCompulinkOrders"))
+                OverWriteUserSettingsFile(updateSettings);
+            else if (!settingsFileText.Contains("AutoFillLearnedProducts"))
+                OverWriteUserSettingsFile(updateSettings);
+            else if (!settingsFileText.Contains("ProductMatcher"))
+                OverWriteUserSettingsFile(updateSettings);
+        }
+
+        private void OverWriteUserSettingsFile(UserSettings settings)
+        {
+            File.WriteAllText(AppPath.UserSettingsFile, JsonConvert.SerializeObject(settings));
         }
 
         public bool PasswordChangedRecently()
