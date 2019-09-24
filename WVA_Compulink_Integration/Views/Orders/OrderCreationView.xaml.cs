@@ -54,6 +54,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 SetUpOrdersDataGrid();
                 SetUpWvaAccountNumber();
                 CleanProductData();
+                AutoFillLearnedProductNames();
                 orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions());
                 SetMenuItems();
                 Verify();
@@ -618,8 +619,41 @@ namespace WVA_Connect_CDI.Views.Orders
             WVA_OrdersContextMenu.Items.Add(menuItem);
         }
 
+        private void AutoFillLearnedProductNames()
+        {
+            // Only autofill if feature enabled in settings. Will autofill product names by default
+            if (UserData.Data.Settings.AutoFillLearnedProducts)
+            {
+                for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+                {
+                    var o = (Prescription)OrdersDataGrid.Items[i];
+
+                    if (Database.GetNumPicks(o.Product) >= 5)
+                    {
+                        string wvaProduct = Database.ReturnWvaProductFor(o.Product);
+
+                        if (!string.IsNullOrEmpty(wvaProduct))
+                            o.Product = wvaProduct;
+                    }
+                }
+            }
+        }
+
+        private void AutoFillFromContextMenuClick(string unmatchedProduct, string matchedProduct)
+        {
+            
+        }
+
+        private void ReplaceProductName(string productToAutoFill, string autoFillText, int dataGridIndex)
+        {
+            var o = (Prescription)OrdersDataGrid.Items[dataGridIndex];
+
+            if (o.Product == productToAutoFill)
+                o.Product = autoFillText;
+        }
+
         // =======================================================================================================================
-        // ================================== CRUD Operations for Order ==========================================================
+        // ================================== Main Order Creation Functions ======================================================
         // =======================================================================================================================
 
         // Check the validity of the prescription items and update the datagrid with these changes 
@@ -1236,6 +1270,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     OrderCreationViewModel.Prescriptions[row].Product = selectedItem;
                     OrderCreationViewModel.Prescriptions[row].ProductImagePath = @"/Resources/CheckMarkCircle.png";
                     ProductPrediction.LearnProduct(compulinkProduct, selectedItem);
+
                 }
                 if (column == 5)
                     OrderCreationViewModel.Prescriptions[row].BaseCurve = selectedItem;

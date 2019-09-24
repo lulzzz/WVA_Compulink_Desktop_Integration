@@ -9,7 +9,7 @@ namespace WVA_Connect_CDI.Models.Users
     public class UserSettings
     {
         public bool DeleteBlankCompulinkOrders { get; set; } = false;
-
+        public bool AutoFillLearnedProducts { get; set; } = true; 
         public ProductMatcher ProductMatcher { get; set; }
     }
 }

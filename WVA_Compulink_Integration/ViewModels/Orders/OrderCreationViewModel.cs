@@ -179,7 +179,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                     if (matchProducts?.Count > 0)
                     {
                         ListMatchedProducts.Add(matchProducts);
-                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
                     }
                     else
                         ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
@@ -219,7 +219,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                     if (matchProducts?.Count > 0)
                     {
                         ListMatchedProducts.Add(matchProducts);
-                        OrderCreationViewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
                     }
                     else
                         ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
@@ -230,6 +230,5 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                 }
             }
         }
-
     }
 }
