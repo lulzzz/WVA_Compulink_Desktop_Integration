@@ -105,23 +105,30 @@ namespace WVA_Connect_CDI.ViewModels.Login
         // Update any properties that may be missing from the settings file
         private void UpdateSettingsFile()
         {
-            // Get current users settings
-            string settingsFileText = File.ReadAllText($@"{AppPath.UserSettingsFile}");
-            UserSettings currentSettings = JsonConvert.DeserializeObject<UserSettings>(settingsFileText);
-            var updateSettings = new UserSettings
+            try
             {
-                DeleteBlankCompulinkOrders = currentSettings.DeleteBlankCompulinkOrders,
-                AutoFillLearnedProducts = currentSettings.AutoFillLearnedProducts,
-                ProductMatcher = currentSettings.ProductMatcher
-            };
-            
-            // If property doesn't exist in file, rewrite the file using their saved user settings
-            if (!settingsFileText.Contains("DeleteBlankCompulinkOrders"))
-                OverWriteUserSettingsFile(updateSettings);
-            else if (!settingsFileText.Contains("AutoFillLearnedProducts"))
-                OverWriteUserSettingsFile(updateSettings);
-            else if (!settingsFileText.Contains("ProductMatcher"))
-                OverWriteUserSettingsFile(updateSettings);
+                // Get current users settings
+                string settingsFileText = File.ReadAllText($@"{AppPath.UserSettingsFile}");
+                UserSettings currentSettings = JsonConvert.DeserializeObject<UserSettings>(settingsFileText);
+                var updateSettings = new UserSettings
+                {
+                    DeleteBlankCompulinkOrders = currentSettings.DeleteBlankCompulinkOrders,
+                    AutoFillLearnedProducts = currentSettings.AutoFillLearnedProducts,
+                    ProductMatcher = currentSettings.ProductMatcher
+                };
+
+                // If property doesn't exist in file, rewrite the file using their saved user settings
+                if (!settingsFileText.Contains("DeleteBlankCompulinkOrders"))
+                    OverWriteUserSettingsFile(updateSettings);
+                else if (!settingsFileText.Contains("AutoFillLearnedProducts"))
+                    OverWriteUserSettingsFile(updateSettings);
+                else if (!settingsFileText.Contains("ProductMatcher"))
+                    OverWriteUserSettingsFile(updateSettings);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private void OverWriteUserSettingsFile(UserSettings settings)

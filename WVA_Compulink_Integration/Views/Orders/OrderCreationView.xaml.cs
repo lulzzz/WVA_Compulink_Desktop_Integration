@@ -967,7 +967,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 var listItems = new List<Item>();
                 IList rows = OrdersDataGrid.Items;
 
-                // Set orderID, created date if available
+                // Set orderID and created date if available
                 order.ID = order.ID ?? null;
                 order.CreatedDate = order.CreatedDate ?? null;
                 order.WvaStoreID = order.WvaStoreID ?? null;
