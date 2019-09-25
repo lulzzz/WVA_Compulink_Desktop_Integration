@@ -627,13 +627,17 @@ namespace WVA_Connect_CDI.Views.Orders
                 for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
                 {
                     var o = (Prescription)OrdersDataGrid.Items[i];
+                    var prodName = o.Product.Trim();
 
-                    if (Database.GetNumPicks(o.Product) >= 5)
+                    if (Database.GetNumPicks(prodName) >= 5)
                     {
-                        string wvaProduct = Database.ReturnWvaProductFor(o.Product);
+                        string wvaProduct = Database.ReturnWvaProductFor(prodName);
 
                         if (!string.IsNullOrEmpty(wvaProduct))
+                        {
                             o.Product = wvaProduct;
+                            o.ProductImagePath = @"/Resources/CheckMarkCircle.png";
+                        }
                     }
                 }
             }
@@ -1245,7 +1249,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 int row = OrdersDataGrid.Items.IndexOf(OrdersDataGrid.CurrentItem);
                 int column = OrdersDataGrid.CurrentColumn.DisplayIndex;
 
-                // Only want to change 'Products' column 
+                // Make sure user can't overwrite product data with these headings 
                 if (selectedItem == "No Matches Found" || selectedItem == "Not Available")
                     return;
 
@@ -1257,7 +1261,6 @@ namespace WVA_Connect_CDI.Views.Orders
                     OrderCreationViewModel.Prescriptions[row].Product = selectedItem;
                     OrderCreationViewModel.Prescriptions[row].ProductImagePath = @"/Resources/CheckMarkCircle.png";
                     ProductPrediction.LearnProduct(compulinkProduct, selectedItem);
-
                 }
                 if (column == 5)
                     OrderCreationViewModel.Prescriptions[row].BaseCurve = selectedItem;

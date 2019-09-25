@@ -14,6 +14,7 @@ using WVA_Connect_CDI.Errors;
 using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Models.Orders.Out;
 using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.Security;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.ViewModels.Orders;
 using WVA_Connect_CDI.WebTools;
@@ -169,8 +170,16 @@ namespace WVA_Connect_CDI.Views.Orders
 
                 WvaOrdersDataGrid.Items.Clear();
 
-                foreach (Order order in ListOrders)
+                foreach (Order o in ListOrders)
+                {
+                    var order = o;
+
+                    // Unencrypt stp field for fenton
+                    if (o.ShipToPatient != "Y" && o.ShipToPatient != "N")
+                        order.ShipToPatient = Crypto.Decrypt(order.ShipToPatient);
+
                     WvaOrdersDataGrid.Items.Add(order);
+                }
             }
             catch (Exception ex)
             {
