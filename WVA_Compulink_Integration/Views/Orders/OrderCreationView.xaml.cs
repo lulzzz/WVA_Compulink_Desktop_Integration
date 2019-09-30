@@ -49,15 +49,35 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
+                // Set the 'Match Percent' label text to match the slider value
                 MatchPercentLabel.Content = $"Match Percent: {Convert.ToInt16(MinScoreAdjustSlider.Value)}%";
+
+                // Determines if this is a new order or an order we are editing
                 DetermineViewMode();
+
+                // Pass list items from constructor to populate the datagrid 
                 SetUpOrdersDataGrid();
+
+                // Sets the account number field since user doesn't have access to change it 
                 SetUpWvaAccountNumber();
+
+                // Strip off some unnecessary data that comes from some compulink accounts 
                 CleanProductData();
+
+                // Auto fill product names if they have been selected a certain number of times 
                 AutoFillLearnedProductNames();
+
+                // Find product matches for each item in the datagrid 
                 orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions());
+
+                // Uses product matches to populate items in the datagrid context menu
                 SetMenuItems();
+
+                // Verifies products through validation api and updates cell colors to show valid/invalid products 
                 Verify();
+
+                // Auto-fills blank product parameters if there is only one option available 
+                //AutoFillParameters();
             }
             catch (Exception ex)
             {
@@ -641,6 +661,12 @@ namespace WVA_Connect_CDI.Views.Orders
                     }
                 }
             }
+        }
+
+        private void AutoFillParameters()
+        {
+            for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+                AutoFillParameterCells(i);
         }
 
         // =======================================================================================================================
@@ -1473,6 +1499,9 @@ namespace WVA_Connect_CDI.Views.Orders
                     ActionLogger.Log(location);
                 else
                     ActionLogger.Log(location, actionMessage);
+
+                AutoFillParameters();
+                Verify();
             }
             catch (Exception ex)
             {
