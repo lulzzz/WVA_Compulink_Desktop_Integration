@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.Models.Users;
 
 namespace WVA_Connect_CDI.ViewModels
 {
@@ -40,15 +41,16 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
-        public void UpdateUserSettings(bool deleteBlankCompulinkOrders)
+        public void UpdateUserSettings(UserSettings userSettings)
         {
             try
             {
                 // Updates user settings in memory
-                UserData.Data.Settings.DeleteBlankCompulinkOrders = deleteBlankCompulinkOrders;
+                UserData.Data.Settings.DeleteBlankCompulinkOrders = userSettings.DeleteBlankCompulinkOrders;
+                UserData.Data.Settings.AutoFillLearnedProducts = userSettings.AutoFillLearnedProducts;
 
                 // Updates user settings in settings file
-                string userSettings = JsonConvert.SerializeObject(UserData.Data?.Settings);
+                string strUserSettings = JsonConvert.SerializeObject(UserData.Data?.Settings);
 
                 if (!Directory.Exists(AppPath.DataDir))
                     Directory.CreateDirectory(AppPath.DataDir);
@@ -56,7 +58,7 @@ namespace WVA_Connect_CDI.ViewModels
                 if (!File.Exists(AppPath.UserSettingsFile))
                     File.Create(AppPath.UserSettingsFile).Close();
 
-                File.WriteAllText(AppPath.UserSettingsFile, userSettings);
+                File.WriteAllText(AppPath.UserSettingsFile, strUserSettings);
             }
             catch (Exception ex)
             {

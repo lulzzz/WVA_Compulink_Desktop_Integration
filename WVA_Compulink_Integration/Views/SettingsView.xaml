@@ -140,7 +140,6 @@
                        Fill="Black"/>
 
             <CheckBox Name="DeleteBlankCompulinkOrdersCheckBox"
-                      IsChecked="False"
                       Content="Delete blank compulink orders"
                       VerticalAlignment="Bottom"
                       HorizontalAlignment="Left" 
@@ -149,6 +148,16 @@
                       FontSize="20"
                       Checked="DeleteBlankCompulinkOrdersCheckBox_Checked"
                       Unchecked="DeleteBlankCompulinkOrdersCheckBox_Unchecked"/>
+
+            <CheckBox Name="AutoFillProductNamesCheckBox"
+                      Content="Auto-fill product names"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Left" 
+                      Margin="20,20,0,20"
+                      FontFamily="Sitka Text"
+                      FontSize="20"
+                      Checked="AutoFillProductNamesCheckBox_Checked"
+                      Unchecked="AutoFillProductNamesCheckBox_Unchecked"/>
 
             <Rectangle HorizontalAlignment="Stretch"
                        Height="2"
