@@ -74,8 +74,6 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
-       
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             try
