@@ -6,7 +6,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,7 +19,6 @@ using WVA_Connect_CDI.Models.Orders.Out;
 using WVA_Connect_CDI.Models.Patients;
 using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.Models.ProductParameters.Derived;
-using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.Models.Responses;
 using WVA_Connect_CDI.Models.Validations;
 using WVA_Connect_CDI.Utility.Actions;
@@ -64,20 +62,73 @@ namespace WVA_Connect_CDI.Views.Orders
                 // Strip off some unnecessary data that comes from some compulink accounts 
                 CleanProductData();
 
-                // Auto fill product names if they have been selected a certain number of times 
-                AutoFillLearnedProductNames();
-
                 // Find product matches for each item in the datagrid 
                 orderCreationViewModel.FindProductMatches(GetDataGridPrescriptions());
 
                 // Uses product matches to populate items in the datagrid context menu
                 SetMenuItems();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
 
+       
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Action Logging
+                string location = GetType().FullName + "." + nameof(UserControl_Loaded);
+                string actionMessage = null;
+
+                if (OrderCreationViewModel.Order != null)
+                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+
+                if (actionMessage == null)
+                    ActionLogger.Log(location);
+                else
+                    ActionLogger.Log(location, actionMessage);
+
+                // Only autofill if feature enabled in settings. Will autofill product names by default
+                if (UserData.Data.Settings.AutoFillLearnedProducts)
+                {
+                    // Auto fill product names if they have been selected a certain number of times 
+                    AutoFillLearnedProductNames();
+
+                    // Auto-fills blank product parameters if there is only one option available 
+                    AutoFillParameters();
+                }
+                 
                 // Verifies products through validation api and updates cell colors to show valid/invalid products 
-                Verify();
+                // NOTE: We still want to verify even if we don't autofill products & parameteres so we can highlight incorrect data
+                Verify(); 
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
 
-                // Auto-fills blank product parameters if there is only one option available 
-                //AutoFillParameters();
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OutOrderWrapper outOrderWrapper = GetCompleteOrder();
+                orderCreationViewModel.SaveOrder(outOrderWrapper);
+
+                string location = GetType().FullName + "." + nameof(UserControl_Unloaded);
+                string actionMessage = null;
+
+                if (OrderCreationViewModel.Order != null && OrderCreationViewModel.Order?.OrderName.Trim() != "")
+                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+
+                if (actionMessage == null)
+                    ActionLogger.Log(location);
+                else
+                    ActionLogger.Log(location, actionMessage);
             }
             catch (Exception ex)
             {
@@ -640,8 +691,7 @@ namespace WVA_Connect_CDI.Views.Orders
         }
 
         private void AutoFillLearnedProductNames()
-        {
-            // Only autofill if feature enabled in settings. Will autofill product names by default
+        {         
             if (UserData.Data.Settings.AutoFillLearnedProducts)
             {
                 for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
@@ -1460,54 +1510,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                OutOrderWrapper outOrderWrapper = GetCompleteOrder();
-                orderCreationViewModel.SaveOrder(outOrderWrapper);
-
-                string location = GetType().FullName + "." + nameof(UserControl_Unloaded);
-                string actionMessage = null;
-
-                if (OrderCreationViewModel.Order != null && OrderCreationViewModel.Order?.OrderName.Trim() != "")
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
-
-                if (actionMessage == null)
-                    ActionLogger.Log(location);
-                else
-                    ActionLogger.Log(location, actionMessage);
-            }
-            catch (Exception ex)
-            {
-                Error.ReportOrLog(ex);
-            }
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //AutosaveOrder();
-                string location = GetType().FullName + "." + nameof(UserControl_Loaded);
-                string actionMessage = null;
-
-                if (OrderCreationViewModel.Order != null)
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
-
-                if (actionMessage == null)
-                    ActionLogger.Log(location);
-                else
-                    ActionLogger.Log(location, actionMessage);
-
-                AutoFillParameters();
-                Verify();
-            }
-            catch (Exception ex)
-            {
-                Error.ReportOrLog(ex);
-            }
-        }
+       
 
         private void OrderNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
