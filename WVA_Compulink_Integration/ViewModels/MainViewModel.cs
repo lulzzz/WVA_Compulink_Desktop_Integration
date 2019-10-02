@@ -72,7 +72,7 @@ namespace WVA_Connect_CDI.ViewModels
         {
             List<ActionData> data = ActionLogger.GetDataNotToday();
 
-            if (data == null)
+            if (data == null || data.Count <= 0)
                 return;
 
             foreach (ActionData d in data)

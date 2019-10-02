@@ -1508,8 +1508,6 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
-       
-
         private void OrderNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             OrderNameLabel.Foreground = new SolidColorBrush(Colors.Black);

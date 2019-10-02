@@ -17,32 +17,37 @@ namespace WVA_Connect_CDI.WebTools
         {
             try
             {
-                string targetResponse = null;
+                // Convert the object to a json string
                 string json = JsonConvert.SerializeObject(jsonObject);
 
-                UTF8Encoding encoding = new UTF8Encoding();
+                // Convert json string to a byte array
+                var encoding = new UTF8Encoding();
                 byte[] byteArray = encoding.GetBytes(json);
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endpoint);
-                request.ContentLength = byteArray.Length;
-                request.ContentType = @"application/json";
-                request.Method = "POST";
-                request.Timeout = 30000;
+                // Build the request object
+                var request = (HttpWebRequest)WebRequest.Create(endpoint);
+                    request.ContentLength = byteArray.Length;
+                    request.ContentType = @"application/json";
+                    request.Method = "POST";
+                    request.Timeout = 30000;
 
+                // Open up a stream and write our data to it
                 using (Stream dataStream = request.GetRequestStream())
                 {
                     dataStream.Write(byteArray, 0, byteArray.Length);
                 }
 
-                WebResponse webResponse = request.GetResponse();
+                // Get the response object
+                var webResponse = request.GetResponse();
+
+                // Read data from the response object 
                 using (Stream responseStream = webResponse.GetResponseStream())
                 {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    targetResponse = reader.ReadToEnd();
-                    reader.Close();
+                    using (var reader = new StreamReader(responseStream, Encoding.UTF8))
+                    {
+                        return reader.ReadToEnd();
+                    }
                 }
-
-                return targetResponse;
             }
             catch (Exception x)
             {
@@ -56,31 +61,36 @@ namespace WVA_Connect_CDI.WebTools
         {
             try
             {
-                string targetResponse = null;
+               // Convert the object to a json string
                 string json = JsonConvert.SerializeObject(jsonString);
 
-                UTF8Encoding encoding = new UTF8Encoding();
+                // Convert json string to a byte array
+                var encoding = new UTF8Encoding();
                 byte[] byteArray = encoding.GetBytes(json);
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endpoint);
-                request.ContentLength = byteArray.Length;
-                request.ContentType = @"application/json";
-                request.Method = "POST";
+                // Build the request object
+                var request = (HttpWebRequest)WebRequest.Create(endpoint);
+                    request.ContentLength = byteArray.Length;
+                    request.ContentType = @"application/json";
+                    request.Method = "POST";
 
+                // Open up a stream and write our data to it
                 using (Stream dataStream = request.GetRequestStream())
                 {
                     dataStream.Write(byteArray, 0, byteArray.Length);
                 }
 
-                WebResponse webResponse = request.GetResponse();
+                // Get the response object
+                var webResponse = request.GetResponse();
+
+                // Read data from the response object 
                 using (Stream responseStream = webResponse.GetResponseStream())
                 {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    targetResponse = reader.ReadToEnd();
-                    reader.Close();
+                    using (var reader = new StreamReader(responseStream, Encoding.UTF8))
+                    {
+                        return reader.ReadToEnd();
+                    }
                 }
-
-                return targetResponse;
             }
             catch (Exception x)
             {
