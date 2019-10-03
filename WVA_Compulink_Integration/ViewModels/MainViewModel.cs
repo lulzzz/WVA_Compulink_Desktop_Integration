@@ -7,11 +7,9 @@ using WVA_Connect_CDI.Utility.Files;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.MatchFinder.ProductPredictions;
+using WVA_Connect_CDI.ProductMatcher;
 
 namespace WVA_Connect_CDI.ViewModels
 {

@@ -10,7 +10,7 @@ using WVA_Connect_CDI.MatchFinder.ProductPredictions;
 using WVA_Connect_CDI.ProductMatcher.ProductPredictions;
 using WVA_Connect_CDI.Utility.Files;
 
-namespace WVA_Connect_CDI.Models.Products
+namespace WVA_Connect_CDI.ProductMatcher
 {
     class ProductCrossRefDict
     {

@@ -145,7 +145,7 @@
     <Compile Include="Models\ProductParameters\Derived\Sphere.cs" />
     <Compile Include="Models\ProductParameters\Derived\UPC.cs" />
     <Compile Include="Models\Products\Product.cs" />
-    <Compile Include="Models\Products\ProductCrossRefDict.cs" />
+    <Compile Include="ProductMatcher\ProductCrossRefDict.cs" />
     <Compile Include="Models\Products\ProductIn\ProductIn.cs" />
     <Compile Include="Models\Products\ProductItem.cs" />
     <Compile Include="Models\Products\ProductOut\ProductOut.cs" />

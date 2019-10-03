@@ -168,3 +168,4 @@ C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Inte
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\bin\Release\System.Xml.XPath.dll
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\bin\Release\System.Xml.XPath.XDocument.dll
 C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Release\WVA_Connect_CDI.exe.config
+C:\Users\evan\Desktop\Repos\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Release\WVA_Connect_CDI.csprojAssemblyReference.cache
