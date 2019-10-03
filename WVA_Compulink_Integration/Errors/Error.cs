@@ -13,7 +13,7 @@ using WVA_Connect_CDI.Utility.Actions;
 
 namespace WVA_Connect_CDI.Errors
 {
-    class Error
+    public class Error
     {
         public static void ReportOrLog(Exception e)
         {
