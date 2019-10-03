@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Models.Patients
 {
-    class Patient
+    public class Patient
     {
         [JsonProperty("patientID")]
         public string PatientID { get; set; }

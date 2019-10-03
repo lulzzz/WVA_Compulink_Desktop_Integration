@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\OrderTests.cs" />
+    <Compile Include="Models\ParameterTests.cs" />
+    <Compile Include="Models\PatientTests.cs" />
+    <Compile Include="Models\PrescriptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
