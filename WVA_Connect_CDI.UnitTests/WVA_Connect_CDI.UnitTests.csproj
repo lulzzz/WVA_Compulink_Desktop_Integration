@@ -54,6 +54,8 @@
     <Compile Include="Models\ParameterTests.cs" />
     <Compile Include="Models\PatientTests.cs" />
     <Compile Include="Models\PrescriptionTests.cs" />
+    <Compile Include="Models\ValidationDetailTests.cs" />
+    <Compile Include="Models\ValidatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

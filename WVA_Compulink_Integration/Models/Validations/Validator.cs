@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Models.Validations
 {
-    class Validator
+    public class Validator
     {
         public static bool CheckIfValid(SKU sku)
         {

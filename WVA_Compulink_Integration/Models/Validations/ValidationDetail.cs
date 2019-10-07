@@ -9,7 +9,7 @@ using WVA_Connect_CDI.Errors;
 
 namespace WVA_Connect_CDI.Models.Validations
 {
-    class ValidationDetail : ItemDetail 
+    public class ValidationDetail : ItemDetail 
     {
         internal string _PatientName;
 
@@ -37,6 +37,7 @@ namespace WVA_Connect_CDI.Models.Validations
             SetValidationDetail(checkDetail);
         }
 
+        // Sets the ValidationDetail properties equal to the ItemDetail properties 
         private void SetItemDetail(ItemDetail checkDetail)
         {
             try
@@ -123,6 +124,7 @@ namespace WVA_Connect_CDI.Models.Validations
             };
         }
 
+        // Sets the ValidationDetail properties equal to the ItemDetail properties
         private void SetValidationDetail(ValidationDetail checkDetail)
         {
             try
