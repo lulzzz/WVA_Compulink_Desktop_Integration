@@ -43,80 +43,61 @@ namespace WVA_Connect_CDI.Models.Validations
             try
             {
                 // _PatientName
-                if (checkDetail.PatientName != null)
-                    PatientName = checkDetail.PatientName;
+                PatientName = checkDetail?.PatientName;
 
                 // _Eye
-                if (checkDetail.Eye != null)
-                    Eye = checkDetail.Eye;
+                Eye = checkDetail?.Eye;
 
                 // _Quantity
-                if (checkDetail.Quantity != null)
-                    Quantity = checkDetail.Quantity;
+                Quantity = checkDetail?.Quantity;
 
                 // _Description
-                if (checkDetail.Description != null)
-                    Description = checkDetail.Description;
+                Description = checkDetail?.Description;
 
                 // _Vendor
-                if (checkDetail.Vendor != null)
-                    Vendor = checkDetail.Vendor;
+                Vendor = checkDetail?.Vendor;
 
                 // _Price
-                if (checkDetail.Price != null)
-                    Price = checkDetail.Price;
+                Price = checkDetail?.Price;
 
                 // _ID
-                if (checkDetail._ID != null)
-                    _ID = checkDetail._ID;
+                _ID = checkDetail?._ID;
 
                 // _ProductKey
-                if (checkDetail._ProductKey != null)
-                    _ProductKey = checkDetail._ProductKey;
+                _ProductKey = checkDetail?._ProductKey;
 
                 // _CustomerID
-                if (checkDetail._CustomerID != null)
-                    _CustomerID = checkDetail._CustomerID;
+                _CustomerID = checkDetail?._CustomerID;
 
                 // _BaseCurve
-                if (checkDetail._BaseCurve != null)
-                    _BaseCurve = checkDetail._BaseCurve;
+                _BaseCurve = checkDetail?._BaseCurve;
 
                 // _Diameter
-                if (checkDetail._Diameter != null)
-                    _Diameter = checkDetail._Diameter;
+                _Diameter = checkDetail?._Diameter;
 
                 // _Sphere
-                if (checkDetail._Sphere != null)
-                    _Sphere = checkDetail._Sphere;
+                _Sphere = checkDetail?._Sphere;
 
                 // _Cylinder
-                if (checkDetail._Cylinder != null)
-                    _Cylinder = checkDetail._Cylinder;
+                _Cylinder = checkDetail?._Cylinder;
 
                 // _Axis
-                if (checkDetail._Axis != null)
-                    _Axis = checkDetail._Axis;
+                _Axis = checkDetail?._Axis;
 
-                // _Add
-                if (checkDetail._Add != null)
-                    _Add = checkDetail._Add;
+                // _Adddd != null)
+                _Add = checkDetail?._Add;
 
                 // _Color
-                if (checkDetail._Color != null)
-                    _Color = checkDetail._Color;
+                _Color = checkDetail?._Color;
 
                 // _Multifocal
-                if (checkDetail._Multifocal != null)
-                    _Multifocal = checkDetail._Multifocal;
+                _Multifocal = checkDetail?._Multifocal;
 
                 // _UPC
-                if (checkDetail._UPC != null)
-                    _UPC = checkDetail._UPC;
+                _UPC = checkDetail?._UPC;
 
                 // _SKU
-                if (checkDetail._SKU != null)
-                    _SKU = checkDetail._SKU;
+                _SKU = checkDetail?._SKU;
             }
             catch (Exception x)
             {
@@ -124,90 +105,70 @@ namespace WVA_Connect_CDI.Models.Validations
             };
         }
 
-        // Sets the ValidationDetail properties equal to the ItemDetail properties
+        // Sets the ValidationDetail properties equal to the ValidationDetail properties
         private void SetValidationDetail(ValidationDetail checkDetail)
         {
             try
             {
                 // _PatientName
-                if (checkDetail.PatientName != null)
-                    PatientName = checkDetail.PatientName;
+                PatientName = checkDetail?.PatientName;
 
                 // _Eye
-                if (checkDetail.Eye != null)
-                    Eye = checkDetail.Eye;
+                Eye = checkDetail?.Eye;
 
                 // _Quantity
-                if (checkDetail.Quantity != null)
-                    Quantity = checkDetail.Quantity;
+                Quantity = checkDetail?.Quantity;
 
                 // _Description
-                if (checkDetail.Description != null)
-                    Description = checkDetail.Description;
+                Description = checkDetail?.Description;
 
                 // _Vendor
-                if (checkDetail.Vendor != null)
-                    Vendor = checkDetail.Vendor;
+                Vendor = checkDetail?.Vendor;
 
                 // _Price
-                if (checkDetail.Price != null)
-                    Price = checkDetail.Price;
+                Price = checkDetail?.Price;
 
                 // _ID
-                if (checkDetail._ID != null)
-                    _ID = checkDetail._ID;
+                _ID = checkDetail?._ID;
 
                 // _ProductKey
-                if (checkDetail._ProductKey != null)
-                    _ProductKey = checkDetail._ProductKey;
+                _ProductKey = checkDetail?._ProductKey;
 
                 // _CustomerID
-                if (checkDetail._CustomerID != null)
-                    _CustomerID = checkDetail._CustomerID;
+                _CustomerID = checkDetail?._CustomerID;
 
                 // _BaseCurve
-                if (checkDetail._BaseCurve != null)
-                    _BaseCurve = checkDetail._BaseCurve;
+                _BaseCurve = checkDetail?._BaseCurve;
 
                 // _Diameter
-                if (checkDetail._Diameter != null)
-                    _Diameter = checkDetail._Diameter;
+                _Diameter = checkDetail?._Diameter;
 
                 // _Sphere
-                if (checkDetail._Sphere != null)
-                    _Sphere = checkDetail._Sphere;
+                _Sphere = checkDetail?._Sphere;
 
                 // _Cylinder
-                if (checkDetail._Cylinder != null)
-                    _Cylinder = checkDetail._Cylinder;
+                _Cylinder = checkDetail?._Cylinder;
 
                 // _Axis
-                if (checkDetail._Axis != null)
-                    _Axis = checkDetail._Axis;
+                _Axis = checkDetail?._Axis;
 
                 // _Add
-                if (checkDetail._Add != null)
-                    _Add = checkDetail._Add;
+                _Add = checkDetail?._Add;
 
                 // _Color
-                if (checkDetail._Color != null)
-                    _Color = checkDetail._Color;
+                _Color = checkDetail?._Color;
 
                 // _Multifocal
-                if (checkDetail._Multifocal != null)
-                    _Multifocal = checkDetail._Multifocal;
+                _Multifocal = checkDetail?._Multifocal;
 
                 // _UPC
-                if (checkDetail._UPC != null)
-                    _UPC = checkDetail._UPC;
+                _UPC = checkDetail?._UPC;
 
                 // _SKU
-                if (checkDetail._SKU != null)
-                    _SKU = checkDetail._SKU;
+                _SKU = checkDetail?._SKU;
 
                 // Status
-                if (checkDetail.Status != null)
-                    Status = checkDetail.Status;
+                Status = checkDetail?.Status;
             }
             catch (Exception x)
             {

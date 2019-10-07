@@ -13,7 +13,7 @@ namespace WVA_Connect_CDI.UnitTests.Models
     public class ValidationDetailTests
     {
         [TestMethod]
-        public void TestMethod()
+        public void ValidationDetail_PatientName_MatchesItemDetailPatientName()
         {
           
 
