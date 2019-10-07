@@ -8,17 +8,15 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Security
 {
-    class Crypto
+    public class Crypto
     {
-        private const string initVector = "deb3riagpR1pnh54";
-        private const string passPhrase = "a3x2i7das5a";
-        private const int keysize = 256;
-
         public static string ConvertToHash(string inputString)
         {
-            // Check for null, blank, or invalid data
-            if (inputString == null || inputString.Trim() == "" || inputString.Length < 6)
-                return null;
+            if (inputString == null || inputString.Length < 6)
+                throw new Exception("'inputString' must be at least 6 characters");
+
+            if (inputString.Length > 63)
+                throw new Exception("'inputString' must not exceed 63 characters");
 
             using (SHA256 sha256Hash = SHA256.Create())
             {
@@ -51,6 +49,10 @@ namespace WVA_Connect_CDI.Security
                 return finalHash.ToString();
             }
         }
+
+        private const string initVector = "deb3riagpR1pnh54";
+        private const string passPhrase = "a3x2i7das5a";
+        private const int keysize = 256;
 
         public static string Decrypt(string stringToDecrypt)
         {
