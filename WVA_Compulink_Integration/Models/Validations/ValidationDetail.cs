@@ -40,140 +40,50 @@ namespace WVA_Connect_CDI.Models.Validations
         // Sets the ValidationDetail properties equal to the ItemDetail properties 
         private void SetItemDetail(ItemDetail checkDetail)
         {
-            try
-            {
-                // _PatientName
-                PatientName = checkDetail?.PatientName;
-
-                // _Eye
-                Eye = checkDetail?.Eye;
-
-                // _Quantity
-                Quantity = checkDetail?.Quantity;
-
-                // _Description
-                Description = checkDetail?.Description;
-
-                // _Vendor
-                Vendor = checkDetail?.Vendor;
-
-                // _Price
-                Price = checkDetail?.Price;
-
-                // _ID
-                _ID = checkDetail?._ID;
-
-                // _ProductKey
-                _ProductKey = checkDetail?._ProductKey;
-
-                // _CustomerID
-                _CustomerID = checkDetail?._CustomerID;
-
-                // _BaseCurve
-                _BaseCurve = checkDetail?._BaseCurve;
-
-                // _Diameter
-                _Diameter = checkDetail?._Diameter;
-
-                // _Sphere
-                _Sphere = checkDetail?._Sphere;
-
-                // _Cylinder
-                _Cylinder = checkDetail?._Cylinder;
-
-                // _Axis
-                _Axis = checkDetail?._Axis;
-
-                // _Adddd != null)
-                _Add = checkDetail?._Add;
-
-                // _Color
-                _Color = checkDetail?._Color;
-
-                // _Multifocal
-                _Multifocal = checkDetail?._Multifocal;
-
-                // _UPC
-                _UPC = checkDetail?._UPC;
-
-                // _SKU
-                _SKU = checkDetail?._SKU;
-            }
-            catch (Exception x)
-            {
-                Error.ReportOrLog(x);
-            };
+            PatientName = checkDetail?.PatientName;
+            Eye = checkDetail?.Eye;
+            Quantity = checkDetail?.Quantity;
+            Description = checkDetail?.Description;
+            Vendor = checkDetail?.Vendor;
+            Price = checkDetail?.Price;
+            _ID = checkDetail?._ID;
+            _ProductKey = checkDetail?._ProductKey;
+            _CustomerID = checkDetail?._CustomerID;
+            _BaseCurve = checkDetail?._BaseCurve;
+            _Diameter = checkDetail?._Diameter;
+            _Sphere = checkDetail?._Sphere;
+            _Cylinder = checkDetail?._Cylinder;
+            _Axis = checkDetail?._Axis;
+            _Add = checkDetail?._Add;
+            _Color = checkDetail?._Color;
+            _Multifocal = checkDetail?._Multifocal;
+            _UPC = checkDetail?._UPC;
+            _SKU = checkDetail?._SKU;
         }
 
         // Sets the ValidationDetail properties equal to the ValidationDetail properties
         private void SetValidationDetail(ValidationDetail checkDetail)
         {
-            try
-            {
-                // _PatientName
-                PatientName = checkDetail?.PatientName;
-
-                // _Eye
-                Eye = checkDetail?.Eye;
-
-                // _Quantity
-                Quantity = checkDetail?.Quantity;
-
-                // _Description
-                Description = checkDetail?.Description;
-
-                // _Vendor
-                Vendor = checkDetail?.Vendor;
-
-                // _Price
-                Price = checkDetail?.Price;
-
-                // _ID
-                _ID = checkDetail?._ID;
-
-                // _ProductKey
-                _ProductKey = checkDetail?._ProductKey;
-
-                // _CustomerID
-                _CustomerID = checkDetail?._CustomerID;
-
-                // _BaseCurve
-                _BaseCurve = checkDetail?._BaseCurve;
-
-                // _Diameter
-                _Diameter = checkDetail?._Diameter;
-
-                // _Sphere
-                _Sphere = checkDetail?._Sphere;
-
-                // _Cylinder
-                _Cylinder = checkDetail?._Cylinder;
-
-                // _Axis
-                _Axis = checkDetail?._Axis;
-
-                // _Add
-                _Add = checkDetail?._Add;
-
-                // _Color
-                _Color = checkDetail?._Color;
-
-                // _Multifocal
-                _Multifocal = checkDetail?._Multifocal;
-
-                // _UPC
-                _UPC = checkDetail?._UPC;
-
-                // _SKU
-                _SKU = checkDetail?._SKU;
-
-                // Status
-                Status = checkDetail?.Status;
-            }
-            catch (Exception x)
-            {
-                Error.ReportOrLog(x);
-            };
+            PatientName = checkDetail?.PatientName;
+            Eye = checkDetail?.Eye;
+            Quantity = checkDetail?.Quantity;
+            Description = checkDetail?.Description;
+            Vendor = checkDetail?.Vendor;
+            Price = checkDetail?.Price;
+            _ID = checkDetail?._ID;
+            _ProductKey = checkDetail?._ProductKey;
+            _CustomerID = checkDetail?._CustomerID;
+            _BaseCurve = checkDetail?._BaseCurve;
+            _Diameter = checkDetail?._Diameter;
+            _Sphere = checkDetail?._Sphere;
+            _Cylinder = checkDetail?._Cylinder;
+            _Axis = checkDetail?._Axis;
+            _Add = checkDetail?._Add;
+            _Color = checkDetail?._Color;
+            _Multifocal = checkDetail?._Multifocal;
+            _UPC = checkDetail?._UPC;
+            _SKU = checkDetail?._SKU;
+            Status = checkDetail?.Status;
         }
     }
 }
