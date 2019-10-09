@@ -27,7 +27,6 @@ namespace WVA_Connect_CDI.Views.Login
 
         public IpConfigWindow()
         {
-            Task.Run(() => Updater.CheckForUpdates());
             InitializeComponent();
             ipConfigViewModel = new IpConfigViewModel();
             IpConfigTextBox.Focus();

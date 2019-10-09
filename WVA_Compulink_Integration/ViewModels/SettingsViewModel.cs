@@ -76,6 +76,7 @@ namespace WVA_Connect_CDI.ViewModels
                 // Updates user settings in memory
                 UserData.Data.Settings.DeleteBlankCompulinkOrders = userSettings.DeleteBlankCompulinkOrders;
                 UserData.Data.Settings.AutoFillLearnedProducts = userSettings.AutoFillLearnedProducts;
+                UserData.Data.Settings.AutoUpdate = userSettings.AutoUpdate;
 
                 // Updates user settings in settings file
                 string strUserSettings = JsonConvert.SerializeObject(UserData.Data?.Settings);

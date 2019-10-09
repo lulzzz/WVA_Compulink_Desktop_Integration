@@ -32,7 +32,8 @@ namespace WVA_Connect_CDI.Views
             {
                 // Set check box values equal to current user settings 
                 DeleteBlankCompulinkOrdersCheckBox.IsChecked = UserData.Data?.Settings?.DeleteBlankCompulinkOrders ?? false;
-                AutoFillProductNamesCheckBox.IsChecked = UserData.Data?.Settings?.AutoFillLearnedProducts ?? false;
+                AutoFillProductNamesCheckBox.IsChecked = UserData.Data?.Settings?.AutoFillLearnedProducts ?? true;
+                AutoUpdateCheckBox.IsChecked = UserData.Data?.Settings?.AutoUpdate ?? true;
 
                 // Subscribe to AccountTextBox event delegate
                 IsVisibleChanged += new DependencyPropertyChangedEventHandler(AvailableActsComboBox_IsVisibleChanged);
@@ -179,8 +180,32 @@ namespace WVA_Connect_CDI.Views
             // Get current user settings
             var userSettings = UserData.Data.Settings;
 
-            // Update the settings object to have deletedBlankCompulinkOrders set to 'false'
+            // Update the settings object to have AutoFillLearnedProducts set to 'false'
             userSettings.AutoFillLearnedProducts = false;
+
+            // Update the user settings in memory and in the save file
+            settingsViewModel.UpdateUserSettings(userSettings);
+        }
+
+        private void AutoUpdateCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            // Get current user settings
+            var userSettings = UserData.Data.Settings;
+
+            // Update the settings object to have AutoUpdate set to 'true'
+            userSettings.AutoUpdate = true;
+
+            // Update the user settings in memory and in the save file
+            settingsViewModel.UpdateUserSettings(userSettings);
+        }
+
+        private void AutoUpdateCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Get current user settings
+            var userSettings = UserData.Data.Settings;
+
+            // Update the settings object to have AutoUpdate set to 'false'
+            userSettings.AutoUpdate = false;
 
             // Update the user settings in memory and in the save file
             settingsViewModel.UpdateUserSettings(userSettings);
@@ -192,5 +217,7 @@ namespace WVA_Connect_CDI.Views
             UpdateActTextBox.Text = "";
             SetUpWvaAccountNumber();
         }
+
+       
     }
 }

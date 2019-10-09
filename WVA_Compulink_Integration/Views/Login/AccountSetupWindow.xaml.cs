@@ -13,8 +13,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Memory;
+using WVA_Connect_CDI.Updates;
 using WVA_Connect_CDI.Utility.Files;
 using WVA_Connect_CDI.ViewModels;
+using WVA_Connect_CDI.ViewModels.Login;
 
 namespace WVA_Connect_CDI.Views.Login
 {
@@ -27,9 +30,28 @@ namespace WVA_Connect_CDI.Views.Login
         {
             InitializeComponent();
             SetUpAvailableActsFile();
+            RunWindowSetup();
+        }
+
+        private async void RunWindowSetup()
+        {
             if (AvailableAccountsSet())
             {
-                GoToLogin();
+                var userSettings = new LoginViewModel().GetUserSettings();
+
+                // Check user setting to determine if we prompt user to install updates 
+                if (userSettings?.AutoUpdate ?? false)
+                {
+                    // Silently run the update and open login window 
+                    Task.Run(() => Updater.CheckForUpdates());
+                    GoToLogin();
+                }
+                else
+                {
+                    // Ask user if they want to run an update or hold off on it until later
+                    if (await Task.Run(() => Updater.UpdatesAvailable()))
+                        GoToUpdateAvailbleWindow();
+                }
             }
             else
             {
@@ -105,6 +127,19 @@ namespace WVA_Connect_CDI.Views.Login
             {
                 Error.ReportOrLog(ex);
                 return false;
+            }
+        }
+
+        private void GoToUpdateAvailbleWindow()
+        {
+            try
+            {
+                new UpdateAvailableWindow().Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
         }
 

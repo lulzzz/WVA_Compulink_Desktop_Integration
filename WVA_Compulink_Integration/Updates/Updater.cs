@@ -30,5 +30,20 @@ namespace WVA_Connect_CDI.Updates
                 Error.Log(e.Message);
             }
         }
+
+        public static bool UpdatesAvailable()
+        {
+            using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/WVATeam/WVA_Compulink_Desktop_Integration").Result)
+            {
+                var updateInfo = mgr.CheckForUpdate().Result;
+
+                if (updateInfo.ReleasesToApply.Any())
+                    return true;
+                else
+                    return true;
+            }
+        }
+
+
     }
 }

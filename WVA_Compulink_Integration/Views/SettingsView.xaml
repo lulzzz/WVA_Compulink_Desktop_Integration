@@ -159,6 +159,16 @@
                       Checked="AutoFillProductNamesCheckBox_Checked"
                       Unchecked="AutoFillProductNamesCheckBox_Unchecked"/>
 
+            <CheckBox Name="AutoUpdateCheckBox"
+                      Content="Auto-update application"
+                      VerticalAlignment="Bottom"
+                      HorizontalAlignment="Left" 
+                      Margin="20,0,0,20"
+                      FontFamily="Sitka Text"
+                      FontSize="20"
+                      Checked="AutoUpdateCheckBox_Checked"
+                      Unchecked="AutoUpdateCheckBox_Unchecked"/>
+
             <Rectangle HorizontalAlignment="Stretch"
                        Height="2"
                        Fill="Black"/>

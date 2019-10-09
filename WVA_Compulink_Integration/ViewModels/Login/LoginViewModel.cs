@@ -74,6 +74,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
                     {
                         DeleteBlankCompulinkOrders = false,
                         AutoFillLearnedProducts = true,
+                        AutoUpdate = true,
                         ProductMatcher = new Models.Users.ProductMatcher()
                         {
                             CharSequenceMaxScore = 40,
