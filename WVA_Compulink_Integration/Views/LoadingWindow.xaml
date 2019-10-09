@@ -288,13 +288,13 @@
                VerticalAlignment="Top"
                Width="236"/>
 
-        <Label Content="Loading Data..."
-               HorizontalAlignment="Left"
-               Margin="133,195,0,0"
+        <Label Name="DisplayText"
+               Content="Loading Data..."
+               HorizontalAlignment="Center"
                VerticalAlignment="Top"
                Height="36" 
-               Width="181" 
                FontSize="24"
+               Margin="0,190,0,0"
                FontFamily="Sitka Text"/>
 
     </Grid>

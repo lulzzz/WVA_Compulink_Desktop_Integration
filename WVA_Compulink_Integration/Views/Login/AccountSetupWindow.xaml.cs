@@ -51,6 +51,8 @@ namespace WVA_Connect_CDI.Views.Login
                     // Ask user if they want to run an update or hold off on it until later
                     if (await Task.Run(() => Updater.UpdatesAvailable()))
                         GoToUpdateAvailbleWindow();
+                    else
+                        GoToLogin();
                 }
             }
             else

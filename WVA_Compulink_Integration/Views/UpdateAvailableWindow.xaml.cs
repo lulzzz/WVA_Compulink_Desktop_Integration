@@ -33,32 +33,25 @@ namespace WVA_Connect_CDI.Views
             Close();
         }
 
-        private async void WaitForUpdate()
-        {
-            var task = new Task(() => WaitSeconds(5));
-            task.Wait();
-        }
-
-        private async void WaitSeconds(int seconds)
-        {
-            for (int i = 0; i < seconds; i++)
-                Thread.Sleep(1000);
-        }
-
-
-        private void YesButton_Click(object sender, RoutedEventArgs e)
+        private async void YesButton_Click(object sender, RoutedEventArgs e)
         {
             Cursor = Cursors.Wait;
             YesButton.IsEnabled = false;
 
-            // Start running loading window in the background
-            Task.Run(() => Updater.CheckForUpdates());
+            // Hide this window from view so the loading window doesn't over lap it 
+            Hide();
 
-            var loadingWindow = new LoadingWindow();
+            // Open a loading window
+            LoadingWindow loadingWindow = new LoadingWindow("Installing Update...");
             loadingWindow.Show();
 
-            WaitForUpdate();
+            // Install updates async
+            Task.Run(() => Updater.CheckForUpdates());
 
+            // Wait 5 seconds for update to install files
+            await Task.Run(() => Thread.Sleep(5000));
+
+            // Close loading window 
             loadingWindow.Close();
 
             YesButton.IsEnabled = true;

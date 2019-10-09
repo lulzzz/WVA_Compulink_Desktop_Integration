@@ -24,5 +24,11 @@ namespace WVA_Connect_CDI.Views
         {
             InitializeComponent();
         }
+
+        public LoadingWindow(string displayText)
+        {
+            InitializeComponent();
+            DisplayText.Content = displayText;
+        }
     }
 }

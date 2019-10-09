@@ -40,7 +40,7 @@ namespace WVA_Connect_CDI.Updates
                 if (updateInfo.ReleasesToApply.Any())
                     return true;
                 else
-                    return true;
+                    return false;
             }
         }
 
