@@ -22,8 +22,8 @@ namespace WVA_Connect_CDI.Views
         public SettingsView()
         {
             InitializeComponent();
-            SetUpUI();
             SetUpWvaAccountNumber();
+            SetUpUI();
         }
 
         private void SetUpUI()
@@ -36,12 +36,23 @@ namespace WVA_Connect_CDI.Views
 
                 // Subscribe to AccountTextBox event delegate
                 IsVisibleChanged += new DependencyPropertyChangedEventHandler(AvailableActsComboBox_IsVisibleChanged);
+
+                // If user role is a manager or above, 
+                if (UserData.Data?.RoleId > 1)
+                {
+                    LoadUpdateAct();
+                }
             }
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
             }
         }
+
+        private void LoadUpdateAct()
+        {
+            UpdateActNumStackPanel.Visibility = Visibility.Visible;
+        } 
              
         private void SetUpWvaAccountNumber()
         {
@@ -56,7 +67,10 @@ namespace WVA_Connect_CDI.Views
 
                 // Add accounts to combo box
                 foreach (string account in availableActs)
-                    AvailableActsComboBox.Items.Add(account);
+                {
+                    if (!AvailableActsComboBox.Items.Contains(account))
+                        AvailableActsComboBox.Items.Add(account);
+                }
 
                 // Pull account number from file if its there
                 string actNum = File.ReadAllText(AppPath.ActNumFile).Trim();
@@ -84,13 +98,8 @@ namespace WVA_Connect_CDI.Views
             }
         }
 
-        private void SendDebugDataButton_Click(object sender, RoutedEventArgs e)
-        {
-            ActionLogger.ReportAllDataNow();
-        }
-
         // Allow SearchTextBox to get focus
-        void AvailableActsComboBox_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void AvailableActsComboBox_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             try
             {
@@ -121,11 +130,10 @@ namespace WVA_Connect_CDI.Views
                     actNumFile.Close();
                 }
 
-                File.WriteAllText(AppPath.ActNumFile, (sender as ComboBox).SelectedItem as string);
+                File.WriteAllText(AppPath.ActNumFile, (string)AvailableActsComboBox.SelectedValue);
             }
             catch (Exception x)
             {
-                NotifyLabel.Visibility = Visibility.Visible;
                 Error.ReportOrLog(x);
             }
         }
@@ -176,6 +184,13 @@ namespace WVA_Connect_CDI.Views
 
             // Update the user settings in memory and in the save file
             settingsViewModel.UpdateUserSettings(userSettings);
+        }
+
+        private void UpdateActBtn_Click(object sender, RoutedEventArgs e)
+        {
+            settingsViewModel.AddAvailableAccount(UpdateActTextBox.Text);
+            UpdateActTextBox.Text = "";
+            SetUpWvaAccountNumber();
         }
     }
 }

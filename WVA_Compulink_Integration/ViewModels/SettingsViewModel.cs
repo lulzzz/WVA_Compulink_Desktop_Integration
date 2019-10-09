@@ -41,6 +41,34 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        private void SetAvailableAccounts(List<string> accounts)
+        {
+            try
+            {
+                File.WriteAllLines(AppPath.AvailableActsFile, accounts);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
+
+        public void AddAvailableAccount(string accountToAdd)
+        {
+            if (accountToAdd == null || accountToAdd.Trim() == "")
+                return;
+
+            // Get list of available accounts from file
+            var accounts = GetAvailableAccounts();
+
+            // Add 'accountToAdd' if it doesn't exist in that file
+            if (!accounts.Contains(accountToAdd))
+                accounts.Add(accountToAdd);
+
+            // Update available accounts file with new account
+            SetAvailableAccounts(accounts);
+        }
+
         public void UpdateUserSettings(UserSettings userSettings)
         {
             try
@@ -63,6 +91,18 @@ namespace WVA_Connect_CDI.ViewModels
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
+            }
+        }
+
+        public string GetSavedAccountNumber()
+        {
+            try
+            {
+                return File.ReadAllText(AppPath.ActNumFile);
+            }
+            catch
+            {
+                return "";
             }
         }
 
