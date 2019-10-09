@@ -208,24 +208,24 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         Visibility="Hidden">
-                
-                <TextBox Name="UpdateActTextBox"
-                         Width="180"
-                         Height="30"
-                         FontFamily="Sitka Text"
-                         FontSize ="20"
-                         Margin="20,20,0,0"
-                         HorizontalAlignment="Right"/>
 
-                <Button Name="UpdateActBtn"
-                        Width="200"
+                <ComboBox Name="AllAvailableActsComboBox"
+                          Height="35"
+                          FontFamily="Sitka Text"
+                          FontSize="22" 
+                          Width="150"
+                          MaxDropDownHeight="300"
+                          Margin="0,20,0,0"/>
+
+                <Button Name="AddAvailableActBtn"
+                        Width="280"
                         Height="30"
                         FontFamily="Sitka Text"
                         FontSize="17"
-                        Content="Add Account Number"
+                        Content="Add to Available Acct. Numbers"
                         HorizontalAlignment="Center"
                         Margin="20,20,0,0"
-                        Click="UpdateActBtn_Click"/>
+                        Click="AddAvailableActBtn_Click"/>
 
             </StackPanel>
 

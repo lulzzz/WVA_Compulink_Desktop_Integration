@@ -65,7 +65,6 @@ namespace WVA_Connect_CDI.ViewModels
             if (!accounts.Contains(accountToAdd))
                 accounts.Add(accountToAdd);
 
-            // Update available accounts file with new account
             SetAvailableAccounts(accounts);
         }
 

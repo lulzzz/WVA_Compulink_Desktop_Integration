@@ -53,12 +53,25 @@ namespace WVA_Connect_CDI.Views
         private void LoadUpdateAct()
         {
             UpdateActNumStackPanel.Visibility = Visibility.Visible;
+            AddAllAvailableAccounts();
         } 
+
+        private void AddAllAvailableAccounts()
+        {
+            string dsn = File.ReadAllText(AppPath.IpConfigFile).Trim();
+            var availableAccounts = settingsViewModel.GetAllAvailableAccounts(dsn);
+
+            foreach (string account in availableAccounts)
+                AllAvailableActsComboBox.Items.Add(account);
+        }
              
         private void SetUpWvaAccountNumber()
         {
             try
             {
+                // Clear combo box items so this can be called again and reset the items
+                AvailableActsComboBox.Items.Clear();
+
                 // Populate AvailableActComboBox with user's accounts
                 List<string> availableActs = settingsViewModel.GetAvailableAccounts();
 
@@ -211,13 +224,18 @@ namespace WVA_Connect_CDI.Views
             settingsViewModel.UpdateUserSettings(userSettings);
         }
 
-        private void UpdateActBtn_Click(object sender, RoutedEventArgs e)
+        private void AddAvailableActBtn_Click(object sender, RoutedEventArgs e)
         {
-            settingsViewModel.AddAvailableAccount(UpdateActTextBox.Text);
-            UpdateActTextBox.Text = "";
-            SetUpWvaAccountNumber();
-        }
+            try
+            {
+                settingsViewModel.AddAvailableAccount(AllAvailableActsComboBox.SelectedItem.ToString());
+                SetUpWvaAccountNumber();
+                AvailableActsComboBox.SelectedIndex = AvailableActsComboBox.Items.Count - 1;
+            }
+            catch
+            {
 
-       
+            }
+        }
     }
 }
