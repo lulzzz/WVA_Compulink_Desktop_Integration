@@ -44,6 +44,5 @@ namespace WVA_Connect_CDI.Updates
             }
         }
 
-
     }
 }

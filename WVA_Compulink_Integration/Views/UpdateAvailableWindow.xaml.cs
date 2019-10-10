@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WVA_Connect_CDI.Errors;
 using WVA_Connect_CDI.Updates;
 using WVA_Connect_CDI.Views.Login;
 
@@ -33,14 +34,8 @@ namespace WVA_Connect_CDI.Views
             Close();
         }
 
-        private async void YesButton_Click(object sender, RoutedEventArgs e)
+        private async void RunUpdater()
         {
-            Cursor = Cursors.Wait;
-            YesButton.IsEnabled = false;
-
-            // Hide this window from view so the loading window doesn't over lap it 
-            Hide();
-
             // Open a loading window
             LoadingWindow loadingWindow = new LoadingWindow("Installing Update...");
             loadingWindow.Show();
@@ -53,12 +48,33 @@ namespace WVA_Connect_CDI.Views
 
             // Close loading window 
             loadingWindow.Close();
+        }
 
-            YesButton.IsEnabled = true;
-            Cursor = Cursors.Arrow;
+        private void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Cursor = Cursors.Wait;
+            YesButton.IsEnabled = false;
 
-            // Open login window and close this window 
-            GoToLogin();
+            try
+            {
+                // Hide this window from view so the loading window doesn't over lap it 
+                Hide();
+
+                // Open a loading window and install the update 
+                RunUpdater();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+            finally
+            {
+                YesButton.IsEnabled = true;
+                Cursor = Cursors.Arrow;
+
+                // Open login window and close this window 
+                GoToLogin();
+            }
         }
 
         private void NotNowButton_Click(object sender, RoutedEventArgs e)
