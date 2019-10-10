@@ -11,5 +11,8 @@ namespace WVA_Connect_CDI.Models.Validations.Emails
     {
         [JsonProperty("email_code")]
         public string EmailCode { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
     }
 }
