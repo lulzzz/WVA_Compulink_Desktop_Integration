@@ -709,9 +709,13 @@ namespace WVA_Connect_CDI.Views.Orders
             try
             {
                 if (e.EditAction == DataGridEditAction.Commit)
-                {                  
-                    FindProductMatches((e.EditingElement as TextBox).Text.ToString(), e.Row.GetIndex());
-                    SetMenuItems();                   
+                {
+                    // Only change text in product name cells
+                    if (SelectedColumn == 3)
+                    {
+                        FindProductMatches((e.EditingElement as TextBox).Text.ToString(), e.Row.GetIndex());
+                        SetMenuItems();
+                    }
                 }
             }
             catch (Exception x)
