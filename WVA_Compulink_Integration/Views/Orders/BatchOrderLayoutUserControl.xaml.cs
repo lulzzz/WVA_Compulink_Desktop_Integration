@@ -205,6 +205,32 @@ namespace WVA_Connect_CDI.Views.Orders
             return validationWrapper;
         }
 
+        public void AutofillProductNames()
+        {
+            for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+            {
+                var o = (Prescription)OrdersDataGrid.Items[i];
+                var prodName = o.Product.Trim();
+
+                if (Database.GetNumPicks(prodName) >= 5)
+                {
+                    string wvaProduct = Database.ReturnWvaProductFor(prodName);
+
+                    if (!string.IsNullOrEmpty(wvaProduct))
+                    {
+                        o.Product = wvaProduct;
+                        o.ProductImagePath = @"/Resources/CheckMarkCircle.png";
+                    }
+                }
+            }
+        }
+
+        public void AutofillParameters()
+        {
+            for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+                AutoFillParameterCells(i);
+        }
+
         // =======================================================================================================================
         // ================================== Match Algorithm ====================================================================
         // =======================================================================================================================
@@ -536,6 +562,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 Error.ReportOrLog(x);
             }
         }
+
         private void AutoFillParameterCells(int row)
         {
             if (viewModel.Prescriptions.Count > 0)
@@ -594,7 +621,6 @@ namespace WVA_Connect_CDI.Views.Orders
                 }
             }
         }
-
 
         private void SetNotAvailableMenuItem()
         {
@@ -683,11 +709,9 @@ namespace WVA_Connect_CDI.Views.Orders
             try
             {
                 if (e.EditAction == DataGridEditAction.Commit)
-                {
-                    int row = e.Row.GetIndex();
-
+                {                  
                     FindProductMatches((e.EditingElement as TextBox).Text.ToString(), e.Row.GetIndex());
-                    SetMenuItems();
+                    SetMenuItems();                   
                 }
             }
             catch (Exception x)

@@ -27,6 +27,9 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             // Set the match score
             MatchScore = matchScore;
 
+            // Trim whitespace off of product name
+            prescription.Product = prescription.Product.Trim();
+
             // If 'product' is a stored wva match product, leave method. There is no reason to find any matches for it.
             MatchProduct matchProduct = WvaProductExists(prescription.Product, wvaProducts);
 

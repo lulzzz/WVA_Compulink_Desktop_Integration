@@ -7,13 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WVA_Connect_CDI.Errors;
 using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Models.Orders.Out;
@@ -139,6 +132,26 @@ namespace WVA_Connect_CDI.Views.Orders
                 });
             }
             return listOrders;
+        }
+
+        // ----------------------------------------------------------------------------------------
+        // Automatically fill out product names and parameters 
+        // ----------------------------------------------------------------------------------------
+
+        private void AutofillAllProductNames()
+        {
+            foreach (BatchOrderLayoutUserControl c in BatchScrollViewerStackPanel.Children)
+            {
+                c.AutofillProductNames();
+            }
+        }
+
+        private void AutofillAllParameters()
+        {
+            foreach (BatchOrderLayoutUserControl c in BatchScrollViewerStackPanel.Children)
+            {
+                c.AutofillParameters();
+            }
         }
 
         // ----------------------------------------------------------------------------------------
@@ -408,6 +421,24 @@ namespace WVA_Connect_CDI.Views.Orders
                 actionMessage += $"<Order.Name={orderName}>";
 
             ActionLogger.Log(location, actionMessage);
+
+
+            // Only autofill if feature enabled in settings. Will autofill product names by default
+            if (UserData.Data.Settings.AutoFillLearnedProducts)
+            {
+                // AutofillLearnedProductNames
+                AutofillAllProductNames();
+
+                // AutofillProductParameters
+                AutofillAllParameters();
+
+
+                VerifyAllChildrenTables();
+
+                // Verifies products through validation api and updates cell colors to show valid/invalid products 
+                // NOTE: We still want to verify even if we don't autofill products & parameteres so we can highlight incorrect data
+            }
+
         }
 
         private void MinScoreAdjustSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

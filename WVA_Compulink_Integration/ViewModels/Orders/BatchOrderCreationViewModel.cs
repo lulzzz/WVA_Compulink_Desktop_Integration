@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.MatchFinder.ProductPredictions;
+using WVA_Connect_CDI.Models.Products;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
@@ -71,7 +73,6 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 
             return splitOrders;
         }
-        
 
         private List<string> GetOrderNames(string orderName, int numSplitPrescriptions)
         {

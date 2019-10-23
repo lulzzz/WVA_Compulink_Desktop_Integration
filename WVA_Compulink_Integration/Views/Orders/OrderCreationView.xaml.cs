@@ -74,66 +74,6 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Action Logging
-                string location = GetType().FullName + "." + nameof(UserControl_Loaded);
-                string actionMessage = null;
-
-                if (OrderCreationViewModel.Order != null)
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
-
-                if (actionMessage == null)
-                    ActionLogger.Log(location);
-                else
-                    ActionLogger.Log(location, actionMessage);
-
-                // Only autofill if feature enabled in settings. Will autofill product names by default
-                if (UserData.Data.Settings.AutoFillLearnedProducts)
-                {
-                    // Auto fill product names if they have been selected a certain number of times 
-                    AutoFillLearnedProductNames();
-
-                    // Auto-fills blank product parameters if there is only one option available 
-                    AutoFillParameters();
-                }
-                 
-                // Verifies products through validation api and updates cell colors to show valid/invalid products 
-                // NOTE: We still want to verify even if we don't autofill products & parameteres so we can highlight incorrect data
-                Verify(); 
-            }
-            catch (Exception ex)
-            {
-                Error.ReportOrLog(ex);
-            }
-        }
-
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                OutOrderWrapper outOrderWrapper = GetCompleteOrder();
-                orderCreationViewModel.SaveOrder(outOrderWrapper);
-
-                string location = GetType().FullName + "." + nameof(UserControl_Unloaded);
-                string actionMessage = null;
-
-                if (OrderCreationViewModel.Order != null && OrderCreationViewModel.Order?.OrderName.Trim() != "")
-                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
-
-                if (actionMessage == null)
-                    ActionLogger.Log(location);
-                else
-                    ActionLogger.Log(location, actionMessage);
-            }
-            catch (Exception ex)
-            {
-                Error.ReportOrLog(ex);
-            }
-        }
-
         private void AutoSaveOrderAsync()
         {
             int numEr = 0;
@@ -690,22 +630,19 @@ namespace WVA_Connect_CDI.Views.Orders
 
         private void AutoFillLearnedProductNames()
         {         
-            if (UserData.Data.Settings.AutoFillLearnedProducts)
+            for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
             {
-                for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
+                var o = (Prescription)OrdersDataGrid.Items[i];
+                var prodName = o.Product.Trim();
+
+                if (Database.GetNumPicks(prodName) >= 5)
                 {
-                    var o = (Prescription)OrdersDataGrid.Items[i];
-                    var prodName = o.Product.Trim();
+                    string wvaProduct = Database.ReturnWvaProductFor(prodName);
 
-                    if (Database.GetNumPicks(prodName) >= 5)
+                    if (!string.IsNullOrEmpty(wvaProduct))
                     {
-                        string wvaProduct = Database.ReturnWvaProductFor(prodName);
-
-                        if (!string.IsNullOrEmpty(wvaProduct))
-                        {
-                            o.Product = wvaProduct;
-                            o.ProductImagePath = @"/Resources/CheckMarkCircle.png";
-                        }
+                        o.Product = wvaProduct;
+                        o.ProductImagePath = @"/Resources/CheckMarkCircle.png";
                     }
                 }
             }
@@ -1562,5 +1499,66 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             MatchPercentLabel.Content = $"Match Percent: {Convert.ToInt16(MinScoreAdjustSlider.Value)}%";
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Action Logging
+                string location = GetType().FullName + "." + nameof(UserControl_Loaded);
+                string actionMessage = null;
+
+                if (OrderCreationViewModel.Order != null)
+                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+
+                if (actionMessage == null)
+                    ActionLogger.Log(location);
+                else
+                    ActionLogger.Log(location, actionMessage);
+
+                // Only autofill if feature enabled in settings. Will autofill product names by default
+                if (UserData.Data.Settings.AutoFillLearnedProducts)
+                {
+                    // Auto fill product names if they have been selected a certain number of times 
+                    AutoFillLearnedProductNames();
+
+                    // Auto-fills blank product parameters if there is only one option available 
+                    AutoFillParameters();
+                }
+
+                // Verifies products through validation api and updates cell colors to show valid/invalid products 
+                // NOTE: We still want to verify even if we don't autofill products & parameteres so we can highlight incorrect data
+                Verify();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OutOrderWrapper outOrderWrapper = GetCompleteOrder();
+                orderCreationViewModel.SaveOrder(outOrderWrapper);
+
+                string location = GetType().FullName + "." + nameof(UserControl_Unloaded);
+                string actionMessage = null;
+
+                if (OrderCreationViewModel.Order != null && OrderCreationViewModel.Order?.OrderName.Trim() != "")
+                    actionMessage = $"<Order.ID={OrderCreationViewModel.Order?.ID}> <Order.Name={OrderCreationViewModel.Order?.OrderName}>";
+
+                if (actionMessage == null)
+                    ActionLogger.Log(location);
+                else
+                    ActionLogger.Log(location, actionMessage);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
+
     }
 }
