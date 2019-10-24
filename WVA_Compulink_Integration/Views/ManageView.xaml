@@ -119,41 +119,75 @@
     <Grid>
 
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF327EC3" Offset="0.393"/>
-                <GradientStop Color="White" Offset="1"/>
+            <LinearGradientBrush EndPoint="1,1" StartPoint="1,0">
+                <GradientStop Color="White"/>
+                <GradientStop Color="#FF72A6D5" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="79"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
-
         <!-- Row Def 0 -->
         <Label Name="TitleLabel"
-               Margin="0,0,0,0"
+               Margin="0,20,0,0"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Content="Learned Products"
-               FontFamily="SitkaText"
+               FontFamily="Sitka Text"
                FontSize="30"/>
+
+        <!-- Row Def 1 -->
+        <DataGrid Name="LearnedProductsDataGrid"
+                  Margin="20,20,20,20"
+                  Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  CanUserResizeRows="False"
+                  CanUserResizeColumns="False"
+                  ItemsSource="{Binding LearnedProducts}"
+                  CanUserSortColumns="False"
+                  CanUserAddRows="False"
+                  IsReadOnly="False">
+
+            <DataGrid.OpacityMask>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#FF040404"/>
+                </RadialGradientBrush>
+            </DataGrid.OpacityMask>
+
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="1,1" MappingMode="RelativeToBoundingBox" StartPoint="0,1">
+                    <GradientStop Color="#FF327EC3" Offset="0.994"/>
+                    <GradientStop Color="White"/>
+                    <GradientStop Color="#FF4485C0" Offset="0.54"/>
+                    <GradientStop Color="#FF8FB6D9"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Binding="{Binding Path=ComulinkProduct}"  Header="Compulink Products" />
+                <DataGridTextColumn Width="*" Binding="{Binding Path=WvaProduct}"      Header="WVA Products" />
+                <DataGridTemplateColumn Width="100" Header="Change Enabled" IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=ChangeEnabled, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Rectangle Grid.Row="0"
                    Height="3"
                    Fill="Black"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Bottom"
-                   Margin="20,0,20,0"/>
-
-
-        <!-- Row Def 1 -->
-        <DataGrid Name="LearnedProductsDataGrid"
-                  Margin="20,20,20,20"
-                  Grid.Row="1"/>
-
+                   Margin="0,0,0,0"/>
 
         <!-- Row Def 2 -->
 
@@ -184,13 +218,16 @@
                 <Label Name="CompulinkProductLabel"
                        Margin="0,0,0,0"
                        Content="Compulink Product"
-                       Height="27"
+                       Height="30"
                        HorizontalAlignment="Left"
-                       FontFamily="SitkaText"
+                       FontFamily="Sitka Text"
                        FontSize="18"/>
 
                 <TextBox Name="CompulinkProductTextBox"
-                         Height="30"/>
+                         Height="30"
+                         FontSize="20"
+                         VerticalContentAlignment="Center"
+                         FontFamily="Sitka Text"/>
 
             </StackPanel>
 
@@ -202,13 +239,16 @@
                 
                 <Label Name="WvaProductLabel"
                        Content="WVA Product"
-                       FontFamily="SitkaText"
+                       FontFamily="Sitka Text"
                        HorizontalAlignment="Left"
-                       Height="27"
+                       Height="30"
                        FontSize="18"/>
 
                 <TextBox Name="WvaProductTextBox"
-                         Height="30"/>
+                         Height="30"
+                         FontSize="20"
+                         VerticalContentAlignment="Center"
+                         FontFamily="Sitka Text"/>
 
             </StackPanel>
 
@@ -220,16 +260,18 @@
                 <Label Name="IsEditableLabel"
                        Margin="10,0,0,0"
                        Content="Editable"
-                       FontFamily="SitkaText"
-                       FontSize="20"/>
+                       FontFamily="Sitka Text"
+                       FontSize="20"
+                       Height="30"/>
 
                 <CheckBox Name="IsEditableCheckBox"
                           IsChecked="True"
                           Width="15"
-                          Height="15">
+                          Height="15"
+                          Margin="0,0,0,0">
                     <CheckBox.LayoutTransform>
-                        <ScaleTransform ScaleX="1.8" 
-                                        ScaleY="1.8" />
+                        <ScaleTransform ScaleX="1.5" 
+                                        ScaleY="1.5" />
                     </CheckBox.LayoutTransform>
                 </CheckBox>
 
@@ -264,7 +306,6 @@
                         Click="ImportButton_Click"/>
 
             </StackPanel>
-            
 
         </Grid>
 

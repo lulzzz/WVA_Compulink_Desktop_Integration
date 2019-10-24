@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WVA_Connect_CDI.Models.Products;
 
 namespace WVA_Connect_CDI.Views
 {
@@ -20,6 +21,8 @@ namespace WVA_Connect_CDI.Views
     /// </summary>
     public partial class ManageView : UserControl
     {
+        List<LearnedProduct> LearnedProducts = new List<LearnedProduct>();
+
         public ManageView()
         {
             InitializeComponent();
