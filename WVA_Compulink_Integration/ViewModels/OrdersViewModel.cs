@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.ViewModels
 {
-    class OrdersViewModel
+    public class OrdersViewModel
     {
         public static string SelectedView { get; set; }
         public static List<Prescription> ListPrescriptions { get; set; }

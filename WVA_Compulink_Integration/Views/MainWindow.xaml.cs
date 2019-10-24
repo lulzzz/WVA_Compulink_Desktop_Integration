@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.ViewModels;
 using WVA_Connect_CDI.Views.Login;
@@ -30,15 +31,20 @@ namespace WVA_Connect_CDI.Views
 
         public MainWindow()
         {
-            InitializeComponent();
             mainViewModel = new MainViewModel();
+
+            InitializeComponent();
             mainViewModel.SetupDatabase();
             mainViewModel.CheckForProductPredictionUpdates();
+            SetupRoleBasedFeatures();
             SetUpApp();
             Task.Run(() => StartInactivityTimer());
         }
 
+        //
         // Check for user inacvitity 
+        //
+
         private async void StartInactivityTimer()
         {
             bool shouldCheckForInactivity = true;
@@ -81,6 +87,10 @@ namespace WVA_Connect_CDI.Views
             });
         }
 
+        //
+        // View Set Up
+        //
+
         private void SetUpApp()
         {
             try
@@ -104,6 +114,38 @@ namespace WVA_Connect_CDI.Views
                 Error.ReportOrLog(ex);
             }
         }
+
+        private void SetupRoleBasedFeatures()
+        {
+            // SuperUser
+            if (UserData.Data.RoleId == 3)
+            {
+               
+            }
+            // IT Admin
+            else if (UserData.Data.RoleId == 2)
+            {
+                Environment.Exit(0); // We do not allow IT Admins to log in to this app
+            }
+            // Manager
+            else if (UserData.Data.RoleId == 1)
+            {
+
+            }
+            else
+            {
+                RemoveManageButtonFromNav();
+            }
+        }
+
+        private void RemoveManageButtonFromNav()
+        {
+            NavButtonGroupStackPanel.Children.Remove(ManageButton);
+        }
+
+        //
+        // Load Views
+        //
 
         private async void TryLoadOrderView()
         {
@@ -139,12 +181,26 @@ namespace WVA_Connect_CDI.Views
             }
         }
 
-        private void TabOrders_Click(object sender, RoutedEventArgs e)
+        private void LoadManageView()
+        {
+            MainContentControl.DataContext = new ManageViewModel();
+        }
+
+        //
+        // UI Events
+        //
+
+        private void OrdersButton_Click(object sender, RoutedEventArgs e)
         {
             SetUpApp();
         }
 
-        private void TabSettings_Click(object sender, RoutedEventArgs e)
+        private void ManageButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadManageView();
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             MainContentControl.DataContext = new SettingsView();
         }
@@ -172,5 +228,6 @@ namespace WVA_Connect_CDI.Views
             string actionMessage = " <App_Exit>\n";
             ActionLogger.Log(location, actionMessage);
         }
+
     }
 }

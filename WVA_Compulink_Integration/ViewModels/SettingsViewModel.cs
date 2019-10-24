@@ -13,7 +13,7 @@ using WVA_Connect_CDI.Models.Users;
 
 namespace WVA_Connect_CDI.ViewModels
 {
-    class SettingsViewModel
+    public class SettingsViewModel
     {
         public List<string> GetAvailableAccounts()
         {
