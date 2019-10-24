@@ -19,12 +19,21 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
 
     class SqliteDataAccess
     {
-        
+
+        public static List<LearnedProduct> GetLearnedProducts()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            {
+                var products = cnn.Query<LearnedProduct>($"SELECT * FROM products ").ToList();
+                return products;
+            }
+        }
+
         public static string GetWvaProduct(string compulinkProduct)
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
             {
-                var product = cnn.Query<Product>($"SELECT WvaProduct FROM products WHERE CompulinkProduct = '{compulinkProduct}'").FirstOrDefault();
+                var product = cnn.Query<LearnedProduct>($"SELECT WvaProduct FROM products WHERE CompulinkProduct = '{compulinkProduct}'").FirstOrDefault();
                 return product?.WvaProduct;
             }
         }
@@ -33,7 +42,7 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
             {
-                var product = cnn.Query<Product>($"SELECT CompulinkProduct FROM products WHERE CompulinkProduct = '{compulinkProduct}'").FirstOrDefault();
+                var product = cnn.Query<LearnedProduct>($"SELECT CompulinkProduct FROM products WHERE CompulinkProduct = '{compulinkProduct}'").FirstOrDefault();
                 return product?.CompulinkProduct;
             }
         }
@@ -42,17 +51,16 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
             {
-                var product = cnn.Query<Product>($"SELECT CompulinkProduct FROM products WHERE CompulinkProduct = '{compulinkProduct}' AND WvaProduct = '{wvaProduct}'").FirstOrDefault();
+                var product = cnn.Query<LearnedProduct>($"SELECT CompulinkProduct FROM products WHERE CompulinkProduct = '{compulinkProduct}' AND WvaProduct = '{wvaProduct}'").FirstOrDefault();
                 return product?.CompulinkProduct;
             }
-            
         }
 
         public static int GetNumPicks(string compulinkProduct)
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
             {
-                var product = cnn.Query<Product>($"SELECT NumPicks FROM products WHERE Compulinkproduct = '{compulinkProduct}'").FirstOrDefault();
+                var product = cnn.Query<LearnedProduct>($"SELECT NumPicks FROM products WHERE Compulinkproduct = '{compulinkProduct}'").FirstOrDefault();
                 return product != null ? product.NumPicks : 0;
             }
         }

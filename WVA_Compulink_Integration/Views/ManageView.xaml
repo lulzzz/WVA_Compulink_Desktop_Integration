@@ -144,9 +144,10 @@
         <DataGrid Name="LearnedProductsDataGrid"
                   Margin="20,20,20,20"
                   Grid.Row="1"
+                  FontWeight="Bold"
                   AutoGenerateColumns="False"
                   CanUserResizeRows="False"
-                  CanUserResizeColumns="False"
+                  CanUserResizeColumns="True"
                   ItemsSource="{Binding LearnedProducts}"
                   CanUserSortColumns="False"
                   CanUserAddRows="False"
@@ -170,7 +171,7 @@
             </DataGrid.Background>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=ComulinkProduct}"  Header="Compulink Products" />
+                <DataGridTextColumn Width="*" Binding="{Binding Path=CompulinkProduct}"  Header="Compulink Products" />
                 <DataGridTextColumn Width="*" Binding="{Binding Path=WvaProduct}"      Header="WVA Products" />
                 <DataGridTemplateColumn Width="100" Header="Change Enabled" IsReadOnly="False">
                     <DataGridTemplateColumn.CellTemplate>
@@ -204,8 +205,8 @@
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="244"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="223"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
@@ -290,7 +291,7 @@
                         VerticalAlignment="Center"
                         Click="AddButton_Click"/>
 
-                <Rectangle Margin="20,20,20,20"
+                <Rectangle Margin="10,20,10,20"
                            Width="3"
                            VerticalAlignment="Stretch"
                            Fill="Black"/>

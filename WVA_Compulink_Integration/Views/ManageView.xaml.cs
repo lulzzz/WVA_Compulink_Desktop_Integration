@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.ViewModels;
 
 namespace WVA_Connect_CDI.Views
 {
@@ -21,7 +22,7 @@ namespace WVA_Connect_CDI.Views
     /// </summary>
     public partial class ManageView : UserControl
     {
-        List<LearnedProduct> LearnedProducts = new List<LearnedProduct>();
+        ManageViewModel manageViewModel = new ManageViewModel();
 
         public ManageView()
         {
@@ -31,7 +32,7 @@ namespace WVA_Connect_CDI.Views
 
         private void SetUpGrid()
         {
-
+            LearnedProductsDataGrid.ItemsSource = manageViewModel.LearnedProducts;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

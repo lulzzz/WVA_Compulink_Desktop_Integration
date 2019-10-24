@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WVA_Connect_CDI.ProductMatcher.ProductPredictions;
 using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 
 namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
 {
@@ -43,16 +44,50 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
         }
 
-        public static string ReturnWvaProductFor(string compulinkProduct)
+        //
+        // CREATE
+        //
+
+        public static bool CreateCompulinkProduct(string compulinkProduct, string wvaProduct)
         {
             try
             {
-                return SqliteDataAccess.GetWvaProduct(compulinkProduct);
+                SqliteDataAccess.CreateCompulinkProduct(compulinkProduct, wvaProduct);
+                return true;
             }
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
-                return null;
+                return false;
+            }
+        }
+
+        //
+        // READ
+        //
+
+        public static List<LearnedProduct> GetLearnedProducts()
+        {
+            try
+            {
+                return SqliteDataAccess.GetLearnedProducts();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return new List<LearnedProduct>();
+            }
+        }
+
+        public static int GetNumPicks(string compulinkProduct)
+        {
+            try
+            {
+                return SqliteDataAccess.GetNumPicks(compulinkProduct);
+            }
+            catch
+            {
+                return 0;
             }
         }
 
@@ -87,15 +122,32 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
         }
 
-        public static int GetNumPicks(string compulinkProduct)
+        public static string ReturnWvaProductFor(string compulinkProduct)
         {
             try
             {
-                return SqliteDataAccess.GetNumPicks(compulinkProduct);
+                return SqliteDataAccess.GetWvaProduct(compulinkProduct);
             }
-            catch 
+            catch (Exception ex)
             {
-                return 0;
+                Error.ReportOrLog(ex);
+                return null;
+            }
+        }
+
+        //
+        // UPDATE
+        //
+
+        public static void UpdateCompulinkProductMatch(string compulinkProduct, string wvaProduct)
+        {
+            try
+            {
+                SqliteDataAccess.UpdateCompulinkProductMatch(compulinkProduct, wvaProduct);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
         }
 
@@ -123,31 +175,9 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
         }
 
-        public static void UpdateCompulinkProductMatch(string compulinkProduct, string wvaProduct)
-        {
-            try
-            {
-                SqliteDataAccess.UpdateCompulinkProductMatch(compulinkProduct, wvaProduct);
-            }
-            catch (Exception ex)
-            {
-                Error.ReportOrLog(ex);
-            }
-        }
-
-        public static bool CreateCompulinkProduct(string compulinkProduct, string wvaProduct)
-        {
-            try
-            {
-                SqliteDataAccess.CreateCompulinkProduct(compulinkProduct, wvaProduct);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Error.ReportOrLog(ex);
-                return false;
-            }
-        }
+        //
+        // DESTROY  
+        //
 
     }
 }

@@ -144,7 +144,6 @@
     <Compile Include="Models\ProductParameters\Derived\SKU.cs" />
     <Compile Include="Models\ProductParameters\Derived\Sphere.cs" />
     <Compile Include="Models\ProductParameters\Derived\UPC.cs" />
-    <Compile Include="Models\Products\LearnedProduct.cs" />
     <Compile Include="Models\Products\Product.cs" />
     <Compile Include="ProductMatcher\ProductCrossRefDict.cs" />
     <Compile Include="Models\Products\ProductIn\ProductIn.cs" />
@@ -172,7 +171,7 @@
     <Compile Include="ProductMatcher\MatchProduct.cs" />
     <Compile Include="ProductMatcher\DescriptionMatcher.cs" />
     <Compile Include="ProductMatcher\ProductPredictions\Database.cs" />
-    <Compile Include="ProductMatcher\ProductPredictions\Models\Product.cs" />
+    <Compile Include="ProductMatcher\ProductPredictions\Models\LearnedProduct.cs" />
     <Compile Include="ProductMatcher\ProductPredictions\ProductPrediction.cs" />
     <Compile Include="ProductMatcher\ProductPredictions\SqliteDataAccess.cs" />
     <Compile Include="Security\Crypto.cs" />
