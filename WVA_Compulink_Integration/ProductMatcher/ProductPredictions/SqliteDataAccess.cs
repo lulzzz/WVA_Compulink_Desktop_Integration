@@ -19,12 +19,26 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
 
     class SqliteDataAccess
     {
+        public static void AddChangeEnabledColumn()
+        {
+            try
+            {
+                using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+                {
+                    cnn.Execute("ALTER TABLE products ADD COLUMN ChangeEnabled INT");
+                }
+            }
+            catch
+            {
+                // Ignore error because column exists
+            }
+        }
 
         public static List<LearnedProduct> GetLearnedProducts()
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
             {
-                var products = cnn.Query<LearnedProduct>($"SELECT * FROM products ").ToList();
+                var products = cnn.Query<LearnedProduct>($"SELECT * FROM products").ToList();
                 return products;
             }
         }
@@ -101,6 +115,24 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
                                             $"'{compulinkProduct}', " +
                                             $"'{wvaProduct}', " +
                                             $"'{numPicks}'" +
+                                            ")");
+            }
+        }
+
+        public static void CreateProduct(LearnedProduct product)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            {
+                cnn.Execute("INSERT OR IGNORE into products (" +
+                                        "CompulinkProduct, " +
+                                        "WvaProduct, " +
+                                        "NumPicks, " +
+                                        "ChangeEnabled) " +
+                                        "values (" +
+                                            $"'{product.CompulinkProduct}', " +
+                                            $"'{product.WvaProduct}', " +
+                                            $"'{product.NumPicks}'," +
+                                            $"'{(product.ChangeEnabled ? 1 : 0)}'" +
                                             ")");
             }
         }

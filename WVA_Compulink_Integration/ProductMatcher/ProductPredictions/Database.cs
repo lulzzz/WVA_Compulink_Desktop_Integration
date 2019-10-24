@@ -37,6 +37,9 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
                 // Check if products table exists 
                 if (!SqliteDataAccess.ProductTableExists())
                     SqliteDataAccess.CreateProductsTable();
+
+                // Create the ChangeEnabled column if it doesn't exist
+                SqliteDataAccess.AddChangeEnabledColumn();
             }
             catch (Exception ex)
             {
@@ -53,6 +56,20 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             try
             {
                 SqliteDataAccess.CreateCompulinkProduct(compulinkProduct, wvaProduct);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return false;
+            }
+        }
+
+        public static bool CreateLearnedProduct(LearnedProduct product)
+        {
+            try
+            {
+                SqliteDataAccess.CreateProduct(product);
                 return true;
             }
             catch (Exception ex)
@@ -178,6 +195,10 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
         //
         // DESTROY  
         //
+
+
+      
+        
 
     }
 }

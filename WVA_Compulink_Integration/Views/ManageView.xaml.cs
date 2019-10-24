@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 using WVA_Connect_CDI.ViewModels;
 
 namespace WVA_Connect_CDI.Views
@@ -27,17 +28,39 @@ namespace WVA_Connect_CDI.Views
         public ManageView()
         {
             InitializeComponent();
-            SetUpGrid();
+            RefreshGrid();
         }
 
-        private void SetUpGrid()
+        private void RefreshGrid()
         {
-            LearnedProductsDataGrid.ItemsSource = manageViewModel.LearnedProducts;
+            LearnedProductsDataGrid.ItemsSource = manageViewModel.GetLearnedProducts();
+            LearnedProductsDataGrid.Items.Refresh();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            var learnedProduct = new LearnedProduct()
+            {
+                CompulinkProduct = CompulinkProductTextBox.Text,
+                WvaProduct = WvaProductTextBox.Text,
+                ChangeEnabled = (bool)IsEditableCheckBox.IsChecked,
+                NumPicks = 0
+            };
 
+            bool productCreated = manageViewModel.CreateLearnedProduct(learnedProduct);
+
+            if (productCreated)
+            {
+                CompulinkProductTextBox.Text = "";
+                WvaProductTextBox.Text = "";
+                IsEditableCheckBox.IsChecked = true;
+
+                RefreshGrid();
+            }
+            else
+            {
+                MessageBox.Show("An error has occurred. Product not added","");
+            }
         }
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)

@@ -18,7 +18,7 @@ namespace WVA_Connect_CDI.ViewModels
             SetLearnedProducts();
         }
 
-        private void SetLearnedProducts()
+        public void SetLearnedProducts()
         {
             LearnedProducts = GetLearnedProducts();
         }
@@ -28,6 +28,10 @@ namespace WVA_Connect_CDI.ViewModels
             return Database.GetLearnedProducts();
         }
 
+        public bool CreateLearnedProduct(LearnedProduct product)
+        {
+            return Database.CreateLearnedProduct(product);
+        }
 
     }
 }
