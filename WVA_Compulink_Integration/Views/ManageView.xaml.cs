@@ -31,30 +31,39 @@ namespace WVA_Connect_CDI.Views
             RefreshGrid();
         }
 
-        private void RefreshGrid()
+        private LearnedProduct GetCreatedLearnedProduct()
         {
-            LearnedProductsDataGrid.ItemsSource = manageViewModel.GetLearnedProducts();
-            LearnedProductsDataGrid.Items.Refresh();
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            var learnedProduct = new LearnedProduct()
+            return new LearnedProduct()
             {
                 CompulinkProduct = CompulinkProductTextBox.Text,
                 WvaProduct = WvaProductTextBox.Text,
                 ChangeEnabled = (bool)IsEditableCheckBox.IsChecked,
                 NumPicks = 0
             };
+        }
 
+        private void RefreshGrid()
+        {
+            LearnedProductsDataGrid.ItemsSource = manageViewModel.GetLearnedProducts();
+            LearnedProductsDataGrid.Items.Refresh();
+        }
+
+        private void ResetCreateLearnedProductElements()
+        {
+            CompulinkProductTextBox.Text = "";
+            WvaProductTextBox.Text = "";
+            IsEditableCheckBox.IsChecked = true;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var learnedProduct = GetCreatedLearnedProduct();
+ 
             bool productCreated = manageViewModel.CreateLearnedProduct(learnedProduct);
 
             if (productCreated)
             {
-                CompulinkProductTextBox.Text = "";
-                WvaProductTextBox.Text = "";
-                IsEditableCheckBox.IsChecked = true;
-
+                ResetCreateLearnedProductElements();
                 RefreshGrid();
             }
             else
