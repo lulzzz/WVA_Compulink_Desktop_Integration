@@ -72,7 +72,19 @@ namespace WVA_Connect_CDI.Views
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var learnedProduct = GetCreatedLearnedProduct();
- 
+
+            if (learnedProduct.CompulinkProduct.Trim() == "")
+            {
+                MessageBox.Show("Compulink Product cannot be blank!", "");
+                return;
+            }
+
+            if (learnedProduct.WvaProduct.Trim() == "")
+            {
+                MessageBox.Show("WVA Product cannot be blank!", "");
+                return;
+            }
+
             bool productCreated = manageViewModel.CreateLearnedProduct(learnedProduct);
 
             if (productCreated)
