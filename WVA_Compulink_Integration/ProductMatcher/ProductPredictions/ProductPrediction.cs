@@ -43,6 +43,18 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
         }
 
+        public static bool ProductChangeEnabled(string compulinkProduct)
+        {
+            var product = Database.GetLearnedProduct(compulinkProduct);
+
+            if (product == null)
+                return true;
+            else if (product.ChangeEnabled)
+                return true;
+            else
+                return false;
+        }
+
         public static void LearnProduct(string compulinkProduct, string wvaProduct)
         {
             // Check for nulls

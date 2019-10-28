@@ -1271,7 +1271,9 @@ namespace WVA_Connect_CDI.Views.Orders
                     string compulinkProduct = (OrdersDataGrid.CurrentItem as Prescription).Product;
                     OrderCreationViewModel.Prescriptions[row].Product = selectedItem;
                     OrderCreationViewModel.Prescriptions[row].ProductImagePath = @"/Resources/CheckMarkCircle.png";
-                    ProductPrediction.LearnProduct(compulinkProduct, selectedItem);
+
+                    // Only learn product if product change is enabled for this compulink product 
+                    if (ProductPrediction.ProductChangeEnabled(compulinkProduct))  ProductPrediction.LearnProduct(compulinkProduct, selectedItem);
                 }
                 if (column == 5)
                     OrderCreationViewModel.Prescriptions[row].BaseCurve = selectedItem;

@@ -116,6 +116,15 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
         // READ
         // 
 
+        public static LearnedProduct GetLearnedProduct(string compulinkProduct)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            {
+                var product = cnn.Query<LearnedProduct>($"SELECT * FROM products WHERE CompulinkProduct = '{compulinkProduct}'").FirstOrDefault();
+                return product;
+            }
+        }
+
         public static List<LearnedProduct> GetLearnedProducts()
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))

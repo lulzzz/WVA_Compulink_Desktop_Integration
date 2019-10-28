@@ -79,6 +79,19 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
         // READ
         //
 
+        public static LearnedProduct GetLearnedProduct(string compulinkProduct)
+        {
+            try
+            {
+                return SqliteDataAccess.GetLearnedProduct(compulinkProduct);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return null;
+            }
+        }
+
         public static List<LearnedProduct> GetLearnedProducts()
         {
             try

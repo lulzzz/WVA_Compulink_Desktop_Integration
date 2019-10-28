@@ -41,7 +41,6 @@ namespace WVA_Connect_CDI.MatchFinder
             }
         }
 
-
         // Will return a list of possible matches. The lowest index will have the highest match rating
         private static List<MatchProduct> RunMatchFinder(Prescription prescription, List<Product> listProducts, double minimumScore)
         {
