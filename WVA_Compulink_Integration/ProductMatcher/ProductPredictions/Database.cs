@@ -13,12 +13,8 @@ using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 
 namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
 {
-    class Database
+    public class Database
     {
-        // ===============================================================================================
-        //          Product Prediction
-        // ===============================================================================================
-
         public static void SetUpDatabase()
         {
             try
@@ -196,9 +192,34 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
         // DESTROY  
         //
 
+        public static bool DeleteLearnedProduct(LearnedProduct product)
+        {
+            try
+            {
+                SqliteDataAccess.DeleteLearnedProduct(product);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return false;
+            }
+        }
 
-      
-        
+        public static bool DeleteLearnedProduct(List<LearnedProduct> products)
+        {
+            try
+            {
+                SqliteDataAccess.DeleteLearnedProduct(products);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return false;
+            }
+        }
+
 
     }
 }

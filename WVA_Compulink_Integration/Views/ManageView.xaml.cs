@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.MatchFinder.ProductPredictions;
 using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 using WVA_Connect_CDI.ViewModels;
@@ -29,6 +31,14 @@ namespace WVA_Connect_CDI.Views
         {
             InitializeComponent();
             RefreshGrid();
+            SetUpContextMenu();
+        }
+
+        private void SetUpContextMenu()
+        {
+            MenuItem menuItem = new MenuItem() { Header = "Delete" };
+            menuItem.Click += new RoutedEventHandler(WvaProductsContextMenu_Click);
+            WvaProductsContextMenu.Items.Add(menuItem);
         }
 
         private LearnedProduct GetCreatedLearnedProduct()
@@ -68,13 +78,34 @@ namespace WVA_Connect_CDI.Views
             }
             else
             {
-                MessageBox.Show("An error has occurred. Product not added","");
+                MessageBox.Show("An error has occurred. Product not added.","");
             }
         }
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void WvaProductsContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Confirm with user that they want to delete the selected products 
+                var result = MessageBox.Show("Are you sure you want to delete the selected products? They will not be able to be recovered.", "Attention!", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    var products = LearnedProductsDataGrid.SelectedItems.Cast<LearnedProduct>().ToList();
+
+                    Database.DeleteLearnedProduct(products);
+                    RefreshGrid();
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
     }
 }

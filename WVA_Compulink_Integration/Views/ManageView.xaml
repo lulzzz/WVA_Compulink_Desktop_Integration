@@ -153,6 +153,12 @@
                   CanUserAddRows="False"
                   IsReadOnly="False">
 
+            <DataGrid.ContextMenu>
+                <ContextMenu Name="WvaProductsContextMenu"
+                             MaxHeight="300">
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+
             <DataGrid.OpacityMask>
                 <RadialGradientBrush>
                     <GradientStop Color="Black" Offset="0"/>

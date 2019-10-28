@@ -17,8 +17,13 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
     // NOTE: This class ONLY handles direct SQL queries. It is not intended to handle any other logic - that is taken care of in the Database class.
     //
 
-    class SqliteDataAccess
+    public class SqliteDataAccess
     {
+
+        //
+        // TABLE MODIFICATION
+        //
+            
         public static void AddChangeEnabledColumn()
         {
             try
@@ -33,6 +38,83 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
                 // Ignore error because column exists
             }
         }
+
+        public static bool ProductTableExists()
+        {
+            var cnn = new SQLiteConnection(GetDbConnectionString());
+
+            cnn.Open();
+
+            string query = "SELECT name " +
+                            "FROM sqlite_master " +
+                            "WHERE type='table' " +
+                            "AND name='products'";
+
+            SQLiteCommand command = new SQLiteCommand(query, cnn);
+            using (SQLiteDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    return reader[0].ToString() == "products" ? true : false;
+                }
+            }
+
+            return false;
+        }
+
+        //
+        // CREATE
+        //
+
+        public static void CreateCompulinkProduct(string compulinkProduct, string wvaProduct, int numPicks = 1)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            {
+                cnn.Execute("INSERT OR IGNORE into products (" +
+                                        "CompulinkProduct, " +
+                                        "WvaProduct, " +
+                                        "NumPicks) " +
+                                        "values (" +
+                                            $"'{compulinkProduct}', " +
+                                            $"'{wvaProduct}', " +
+                                            $"'{numPicks}'" +
+                                            ")");
+            }
+        }
+
+        public static void CreateProduct(LearnedProduct product)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            {
+                cnn.Execute("INSERT OR IGNORE into products (" +
+                                        "CompulinkProduct, " +
+                                        "WvaProduct, " +
+                                        "NumPicks, " +
+                                        "ChangeEnabled) " +
+                                        "values (" +
+                                            $"'{product.CompulinkProduct}', " +
+                                            $"'{product.WvaProduct}', " +
+                                            $"'{product.NumPicks}'," +
+                                            $"'{(product.ChangeEnabled ? 1 : 0)}'" +
+                                            ")");
+            }
+        }
+
+        public static void CreateProductsTable()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            {
+                cnn.Execute("CREATE TABLE products (" +
+                                    "Id                     INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                    "CompulinkProduct       TEXT, " +
+                                    "WvaProduct             TEXT, " +
+                                    "NumPicks               INT); ");
+            }
+        }
+
+        //
+        // READ
+        // 
 
         public static List<LearnedProduct> GetLearnedProducts()
         {
@@ -79,6 +161,10 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
             }
         }
 
+        //
+        // UPDATE
+        //
+
         public static void IncrementNumPicks(string compulinkProduct)
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
@@ -103,82 +189,32 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
             }
         }
 
-        public static void CreateCompulinkProduct(string compulinkProduct, string wvaProduct, int numPicks = 1)
+        // 
+        // DESTROY
+        //
+
+        public static void DeleteLearnedProduct(LearnedProduct product)
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
             {
-                cnn.Execute("INSERT OR IGNORE into products (" +
-                                        "CompulinkProduct, " +
-                                        "WvaProduct, " +
-                                        "NumPicks) " +
-                                        "values (" +
-                                            $"'{compulinkProduct}', " +
-                                            $"'{wvaProduct}', " +
-                                            $"'{numPicks}'" +
-                                            ")");
+                cnn.Execute($"DELETE FROM products WHERE CompulinkProduct = '{product.CompulinkProduct}'");
             }
         }
 
-        public static void CreateProduct(LearnedProduct product)
+        public static void DeleteLearnedProduct(List<LearnedProduct> products)
         {
-            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            foreach (LearnedProduct product in products)
             {
-                cnn.Execute("INSERT OR IGNORE into products (" +
-                                        "CompulinkProduct, " +
-                                        "WvaProduct, " +
-                                        "NumPicks, " +
-                                        "ChangeEnabled) " +
-                                        "values (" +
-                                            $"'{product.CompulinkProduct}', " +
-                                            $"'{product.WvaProduct}', " +
-                                            $"'{product.NumPicks}'," +
-                                            $"'{(product.ChangeEnabled ? 1 : 0)}'" +
-                                            ")");
-            }
-        }
-
-        public static bool ProductTableExists()
-        {
-            var cnn = new SQLiteConnection(GetDbConnectionString());
-
-            cnn.Open();
-
-            string query = "SELECT name " +
-                            "FROM sqlite_master " +
-                            "WHERE type='table' " +
-                            "AND name='products'";
-
-            SQLiteCommand command = new SQLiteCommand(query, cnn);
-            using (SQLiteDataReader reader = command.ExecuteReader())
-            {
-                while (reader.Read())
+                using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
                 {
-                    return reader[0].ToString() == "products" ? true : false;
+                    cnn.Execute($"DELETE FROM products WHERE CompulinkProduct = '{product.CompulinkProduct}'");
                 }
             }
-
-            return false;
         }
 
-        public static void CreateProductsTable()
-        {
-            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
-            {
-                cnn.Execute("CREATE TABLE products (" +
-                                    "Id                     INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                    "CompulinkProduct       TEXT, " +
-                                    "WvaProduct             TEXT, " +
-                                    "NumPicks               INT); ");
-            }
-        }
-
-        public static void DeleteProductsTable()
-        {
-            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
-            {
-                cnn.Execute("DELETE FROM Products;");
-            }
-        }
+        //
+        // HELPER METHODS
+        //
 
         private static string GetDbConnectionString(string id = "Default")
         {

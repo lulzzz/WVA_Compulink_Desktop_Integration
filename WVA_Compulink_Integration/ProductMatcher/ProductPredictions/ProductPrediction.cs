@@ -19,10 +19,7 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
                 throw new Exception("string 'compulinkProduct' cannot be null or blank.");
 
             if (wvaProducts == null || wvaProducts?.Count < 1)
-                throw new Exception("List of WVA products cannot be null or empty.");
-
-            // Make sure database is set up
-            Database.SetUpDatabase();
+                throw new Exception("List of WVA products cannot be null or empty.");        
 
             // Set the match score
             MatchScore = matchScore;
@@ -57,9 +54,6 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
 
             // Clean up any whitespace around the product
             compulinkProduct = compulinkProduct.Trim();
-
-            // Make sure database is set up 
-            Database.SetUpDatabase();
 
             // Increase number of times this product has been picked or create a new object if it has not been used already
             if (Database.ProductMatchExists(compulinkProduct: compulinkProduct, wvaProduct: wvaProduct))
