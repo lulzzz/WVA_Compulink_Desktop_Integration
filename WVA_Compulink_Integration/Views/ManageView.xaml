@@ -177,12 +177,12 @@
             </DataGrid.Background>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=CompulinkProduct}"  Header="Compulink Products" />
-                <DataGridTextColumn Width="*" Binding="{Binding Path=WvaProduct}"      Header="WVA Products" />
-                <DataGridTemplateColumn Width="100" Header="Change Enabled" IsReadOnly="False">
+                <DataGridTextColumn Width="*" Binding="{Binding Path=CompulinkProduct}"     Header="Compulink Products" IsReadOnly="True"/>
+                <DataGridTextColumn Width="*" Binding="{Binding Path=WvaProduct}"           Header="WVA Products"       IsReadOnly="True" />
+                <DataGridTemplateColumn Width="100"                                         Header="Change Enabled"     IsReadOnly="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Path=ChangeEnabled, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                            <CheckBox IsChecked="{Binding Path=ChangeEnabled, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -194,7 +194,7 @@
                    Fill="Black"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Bottom"
-                   Margin="0,0,0,0"/>
+                   Margin="20,0,20,0"/>
 
         <!-- Row Def 2 -->
 

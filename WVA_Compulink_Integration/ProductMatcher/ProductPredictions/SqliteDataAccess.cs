@@ -189,6 +189,16 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
             }
         }
 
+        public static void UpdateChangeEnabled(string compulinkProduct, bool changeEnabled)
+        {
+            int intChangeEnabled = changeEnabled ? 1 : 0;
+
+            using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
+            {
+                cnn.Execute($"UPDATE products SET ChangeEnabled = '{intChangeEnabled}' WHERE CompulinkProduct = '{compulinkProduct}'");
+            }
+        }
+
         // 
         // DESTROY
         //

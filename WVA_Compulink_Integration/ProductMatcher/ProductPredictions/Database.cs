@@ -188,6 +188,18 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
         }
 
+        public static void UpdateChangeEnabled(string compulinkProduct, bool changeEnabled)
+        {
+            try
+            {
+                SqliteDataAccess.UpdateChangeEnabled(compulinkProduct, changeEnabled);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
+
         //
         // DESTROY  
         //

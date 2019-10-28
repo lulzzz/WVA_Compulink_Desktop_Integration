@@ -65,6 +65,10 @@ namespace WVA_Connect_CDI.Views
             IsEditableCheckBox.IsChecked = true;
         }
 
+        //
+        // UI Events
+        //
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var learnedProduct = GetCreatedLearnedProduct();
@@ -87,6 +91,7 @@ namespace WVA_Connect_CDI.Views
 
         }
 
+        // Datagrid context menu
         private void WvaProductsContextMenu_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -105,6 +110,24 @@ namespace WVA_Connect_CDI.Views
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (LearnedProductsDataGrid.SelectedItem != null)
+            {
+                string compulinkProduct = ((LearnedProduct)LearnedProductsDataGrid.SelectedItem).CompulinkProduct;
+                Database.UpdateChangeEnabled(compulinkProduct, true);
+            }
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (LearnedProductsDataGrid.SelectedItem != null)
+            {
+                string compulinkProduct = ((LearnedProduct)LearnedProductsDataGrid.SelectedItem).CompulinkProduct;
+                Database.UpdateChangeEnabled(compulinkProduct, false);
             }
         }
     }
