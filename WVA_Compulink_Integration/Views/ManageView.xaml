@@ -127,11 +127,13 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="79"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
         <!-- Row Def 0 -->
+        
         <Label Name="TitleLabel"
                Margin="0,20,0,0"
                HorizontalAlignment="Center"
@@ -140,10 +142,47 @@
                FontFamily="Sitka Text"
                FontSize="30"/>
 
+        <Rectangle Grid.Row="0"
+                   Height="3"
+                   Fill="Black"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Bottom"
+                   Margin="20,0,20,0"/>
+
         <!-- Row Def 1 -->
+        
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+
+            <Button Name="CheckAllButton"
+                    Width="120"
+                    Height="30"
+                    Margin="0,0,20,0"
+                    Content="Check All"
+                    FontSize="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="CheckAllButton_Click"/>
+
+            <Button Name="UnCheckAllButton"
+                    Width="120"
+                    Height="30"
+                    Margin="0,0,20,0"
+                    Content="UnCheck All"
+                    FontSize="18"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Click="UnCheckAllButton_Click"/>
+
+        </StackPanel>
+
+        <!-- Row Def 2 -->
+
         <DataGrid Name="LearnedProductsDataGrid"
                   Margin="20,20,20,20"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   FontWeight="Bold"
                   AutoGenerateColumns="False"
                   CanUserResizeRows="False"
@@ -188,24 +227,17 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <!-- Row Def 3 -->
 
-        <Rectangle Grid.Row="0"
-                   Height="3"
-                   Fill="Black"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Bottom"
-                   Margin="20,0,20,0"/>
-
-        <!-- Row Def 2 -->
-
-        <Rectangle Grid.Row="2"
+        <Rectangle Grid.Row="3"
                    Height="3"
                    Fill="Black"
                    Margin="20,0,20,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Top"/>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>

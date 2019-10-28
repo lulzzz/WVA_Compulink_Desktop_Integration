@@ -130,5 +130,39 @@ namespace WVA_Connect_CDI.Views
                 Database.UpdateChangeEnabled(compulinkProduct, false);
             }
         }
+
+        private void CheckAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
+                {
+                    Database.UpdateChangeEnabled(product.CompulinkProduct, true);
+                }
+
+                RefreshGrid();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
+
+        private void UnCheckAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
+                {
+                    Database.UpdateChangeEnabled(product.CompulinkProduct, false);
+                }
+
+                RefreshGrid();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
     }
 }
