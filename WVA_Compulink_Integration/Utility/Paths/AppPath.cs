@@ -12,8 +12,8 @@ namespace WVA_Connect_CDI.Utility.Files
         /* ---------------------------------------- ROOT PATHS --------------------------------------------------------- */
 
         public static readonly string AppDataLocal              = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        private static readonly string PublicDocs               = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
-        private static readonly string AppName                  = Assembly.GetCallingAssembly().GetName().Name.ToString();
+        public static readonly string PublicDocs                = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
+        public static readonly string AppName                   = Assembly.GetCallingAssembly().GetName().Name.ToString();
         public static readonly string DesktopDir                = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
 
@@ -21,14 +21,13 @@ namespace WVA_Connect_CDI.Utility.Files
 
         // DIRECTORIES 
         public static readonly string TempDir                   = $@"{AppDataLocal}\{AppName}\Temp\";
-        public static readonly string DataDir                   = $@"{AppDataLocal}\{AppName}\Data\";
+        public static readonly string UserDataDir               = $@"{AppDataLocal}\{AppName}\Data\";
         public static readonly string ErrorLogDir               = $@"{AppDataLocal}\{AppName}\ErrorLog\";
         public static readonly string ActNumDir                 = $@"{AppDataLocal}\{AppName}\ActNum\";
         public static readonly string AppBasePath               = $@"{AppDataLocal}\{AppName}\";
 
         // FILES
         public static readonly string ActNumFile                = $@"{AppDataLocal}\{AppName}\ActNum\ActNum.txt";
-        public static readonly string ProductDatabaseFile       = $@"{AppDataLocal}\{AppName}\Data\ProductPrediction.sqlite";
         public static readonly string UserSettingsFile          = $@"{AppDataLocal}\{AppName}\Data\Settings.json";
         public static readonly string PrevTimePassChangeFile    = $@"{AppDataLocal}\{AppName}\Temp\PrevTimePassChange.txt";
         public static readonly string AppExecFile               = $@"{AppDataLocal}\{AppName}\{AppName}.exe";
@@ -40,10 +39,12 @@ namespace WVA_Connect_CDI.Utility.Files
         // DIRECTORIES 
         public static readonly string ApiKeyDir                 = $@"{PublicDocs}\{AppName}\ApiKey\";
         public static readonly string IpConfigDir               = $@"{PublicDocs}\{AppName}\IpConfig\";
+        public static readonly string PublicDataDir             = $@"{PublicDocs}\{AppName}\Data\";
 
         // FILES
         public static readonly string ApiKeyFile                = $@"{PublicDocs}\{AppName}\ApiKey\ApiKey.txt";
         public static readonly string IpConfigFile              = $@"{PublicDocs}\{AppName}\IpConfig\IpConfig.txt";
+        public static readonly string ProductDatabaseFile       = $@"{PublicDataDir}ProductPrediction.sqlite";
 
 
         /* -------------------------------------------- WEB PATHS --------------------------------------------------------- */

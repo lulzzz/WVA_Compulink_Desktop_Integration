@@ -80,8 +80,8 @@ namespace WVA_Connect_CDI.ViewModels
                 // Updates user settings in settings file
                 string strUserSettings = JsonConvert.SerializeObject(UserData.Data?.Settings);
 
-                if (!Directory.Exists(AppPath.DataDir))
-                    Directory.CreateDirectory(AppPath.DataDir);
+                if (!Directory.Exists(AppPath.UserDataDir))
+                    Directory.CreateDirectory(AppPath.UserDataDir);
 
                 if (!File.Exists(AppPath.UserSettingsFile))
                     File.Create(AppPath.UserSettingsFile).Close();

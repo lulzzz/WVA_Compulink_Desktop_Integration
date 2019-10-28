@@ -91,8 +91,8 @@ namespace WVA_Connect_CDI.ViewModels.Login
 
             string defaultSettings = JsonConvert.SerializeObject(defaultSetting);
 
-            if (!Directory.Exists(AppPath.DataDir))
-                Directory.CreateDirectory(AppPath.DataDir);
+            if (!Directory.Exists(AppPath.UserDataDir))
+                Directory.CreateDirectory(AppPath.UserDataDir);
 
             // If there is no user settings file, create a new one using default parameters
             if (!File.Exists(AppPath.UserSettingsFile))

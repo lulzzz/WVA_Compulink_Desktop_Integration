@@ -63,8 +63,8 @@ namespace WVA_Connect_CDI.ViewModels.Login
         {
             try
             {
-                if (!Directory.Exists(AppPath.DataDir))
-                    Directory.CreateDirectory(AppPath.DataDir);
+                if (!Directory.Exists(AppPath.UserDataDir))
+                    Directory.CreateDirectory(AppPath.UserDataDir);
 
                 // If no settings file exists, create one with the default settings
                 // If it does exist, check for missing properties and carry over currently saved settings

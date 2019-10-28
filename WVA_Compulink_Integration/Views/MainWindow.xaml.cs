@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using WVA_Connect_CDI.Errors;
 using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Utility.Actions;
+using WVA_Connect_CDI.Utility.Files;
 using WVA_Connect_CDI.ViewModels;
 using WVA_Connect_CDI.Views.Login;
 
@@ -95,8 +97,13 @@ namespace WVA_Connect_CDI.Views
         {
             try
             {
-                // Set app version at bottom of view
-                AppVersionLabel.Content = $"Version: {FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion}";
+                 string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+
+                 // Set app version at bottom of view
+                 AppVersionLabel.Content = $"Version: {version}";
+
+                 // Move Product Prediction database from AppData to Public docs in case user has an older version of the app
+                 if (ShouldMoveProductPredictionDatabase(version))  MoveProductPredictionDatabase();
 
                 // Set the main data context to the Compulink orders view if their account number is set
                 if (mainViewModel.AccountNumAvailable())
@@ -107,6 +114,35 @@ namespace WVA_Connect_CDI.Views
                 {
                     new MessageWindow("You must set your account number in the settings tab before continuing.").Show();
                     MainContentControl.DataContext = new SettingsViewModel();
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+        }
+
+        private bool ShouldMoveProductPredictionDatabase(string version)
+        {
+            try
+            {
+                return Convert.ToInt32(version.Replace(".", "")) < 1212 ? true : false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void MoveProductPredictionDatabase()
+        {
+            try
+            {
+                if (!File.Exists(AppPath.ProductDatabaseFile))
+                {
+                    Directory.CreateDirectory(AppPath.PublicDataDir);
+                    string oldFileLocation = AppPath.AppDataLocal + @"\" + AppPath.AppName + @"\Data\ProductPrediction.sqlite";
+                    File.Move(oldFileLocation, AppPath.ProductDatabaseFile);
                 }
             }
             catch (Exception ex)
