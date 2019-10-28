@@ -177,6 +177,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                     else
                         ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
                 }
+                catch { }
                 finally
                 {
                     index++;
