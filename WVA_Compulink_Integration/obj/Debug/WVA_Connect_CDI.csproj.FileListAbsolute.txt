@@ -291,7 +291,6 @@ C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integrat
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\bin\Debug\Squirrel.pdb
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\bin\Debug\System.Data.SQLite.xml
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\bin\Debug\System.Data.SQLite.dll.config
-C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.csprojAssemblyReference.cache
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.exe.config
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\ResourceDict\Styles.baml
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\LoadingWindow.g.cs
@@ -344,3 +343,6 @@ C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integrat
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.csproj.CopyComplete
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.exe
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.pdb
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\ManageView.g.cs
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\ManageView.baml
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.csprojAssemblyReference.cache

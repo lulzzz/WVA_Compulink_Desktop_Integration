@@ -48,7 +48,7 @@ namespace WVA_Connect_CDI.Views
                 CompulinkProduct = CompulinkProductTextBox.Text,
                 WvaProduct = WvaProductTextBox.Text,
                 ChangeEnabled = (bool)IsEditableCheckBox.IsChecked,
-                NumPicks = 0
+                NumPicks = 10
             };
         }
 
