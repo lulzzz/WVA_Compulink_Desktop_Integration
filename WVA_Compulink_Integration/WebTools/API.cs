@@ -10,9 +10,12 @@ using WVA_Connect_CDI.Errors;
 
 namespace WVA_Connect_CDI.WebTools
 {
-    class API
+    public class API
     {
+        //
         // POST
+        //
+
         static public string Post(string endpoint, object jsonObject)
         {
             try
@@ -99,7 +102,10 @@ namespace WVA_Connect_CDI.WebTools
             }
         }
 
+        //
         // GET
+        //
+
         static public string Get(string endpoint, out string httpStatus)
         {
             try
