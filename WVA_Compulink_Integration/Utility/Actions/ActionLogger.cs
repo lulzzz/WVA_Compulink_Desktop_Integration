@@ -176,6 +176,8 @@ namespace WVA_Connect_CDI.Utility.Actions
             string data = "";
             var listActionData = GetAllData();
 
+            if (listActionData == null) return;
+
             foreach (ActionData d in listActionData)
                 data += d.Content;
 

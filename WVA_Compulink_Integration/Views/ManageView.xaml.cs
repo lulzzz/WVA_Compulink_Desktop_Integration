@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,7 +101,28 @@ namespace WVA_Connect_CDI.Views
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                manageViewModel.ImportLearnedProducts();
+                RefreshGrid();
+                MessageBox.Show("Products imported! Check your desktop to see import results.", "");
+            }
+            catch (FileFormatException ex)
+            {
+                MessageBox.Show("The selected CSV file was not in the correct format. Format is as follows: CompulinkProduct, WvaProduct, true/false ","File Format Error");
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "");
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
+            finally
+            {
+                
+            }
         }
 
         // Datagrid context menu
