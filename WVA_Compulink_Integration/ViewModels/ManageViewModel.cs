@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WVA_Connect_CDI.MatchFinder.ProductPredictions;
 using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.Utility.Files;
 
 namespace WVA_Connect_CDI.ViewModels
@@ -21,6 +22,24 @@ namespace WVA_Connect_CDI.ViewModels
             SetLearnedProducts();
         }
 
+        //
+        // CREATE
+        //
+
+        public bool CreateLearnedProduct(LearnedProduct product)
+        {
+            return Database.CreateLearnedProduct(product);
+        }
+
+        public bool CompulinkProductExists(string compulinkProduct)
+        {
+            return Database.CompulinkProductExists(compulinkProduct);
+        }
+
+        //
+        // READ
+        //
+
         public void SetLearnedProducts()
         {
             LearnedProducts = GetLearnedProducts();
@@ -31,9 +50,50 @@ namespace WVA_Connect_CDI.ViewModels
             return Database.GetLearnedProducts();
         }
 
-        public bool CreateLearnedProduct(LearnedProduct product)
+        private List<LearnedProduct> GetLearnedProducts(string[] csvLines)
         {
-            return Database.CreateLearnedProduct(product);
+            var learnedProducts = new List<LearnedProduct>();
+
+            foreach (string line in csvLines)
+            {
+                string[] lineItems = line.Split(',');
+
+                var product = new LearnedProduct()
+                {
+                    CompulinkProduct = lineItems[0].Trim(),
+                    WvaProduct = lineItems[1].Trim(),
+                    NumPicks = 10
+                };
+
+                // Product change enabled is true by default. User does not have to include it
+                try
+                {
+                    product.ChangeEnabled = Convert.ToBoolean(lineItems[2].Trim());
+                }
+                catch
+                {
+                    product.ChangeEnabled = true;
+                }
+
+                learnedProducts.Add(product);
+            }
+
+            return learnedProducts;
+        }
+
+        //
+        // UPDATE
+        //
+
+
+
+        //
+        // DELETE
+        //
+
+        public bool DeleteLearnedProduct(List<LearnedProduct> products)
+        {
+            return Database.DeleteLearnedProduct(products);
         }
 
         //
@@ -70,6 +130,10 @@ namespace WVA_Connect_CDI.ViewModels
                     {
                         created = CreateLearnedProduct(product);
                         message = created ? $"SUCCESS! Compulink product '{product.CompulinkProduct}' added!" : $"Failed to add line: {product.ChangeEnabled}, {product.WvaProduct}, {product.ChangeEnabled}";
+
+                        string location = GetType().FullName + "." + "." + nameof(GetLearnedProducts);
+                        string actionMessage = $"<Importing product: {product.CompulinkProduct}, {product.WvaProduct}, {product.ChangeEnabled}> <created={created}, message={message}>";
+                        ActionLogger.Log(location, actionMessage);
                     }
                     else
                         message = $"FAIL! Compulink product '{product.CompulinkProduct}' already exists.";
@@ -111,37 +175,6 @@ namespace WVA_Connect_CDI.ViewModels
             return true;
         }
 
-        private List<LearnedProduct> GetLearnedProducts(string[] csvLines)
-        {
-            var learnedProducts = new List<LearnedProduct>();
-
-            foreach (string line in csvLines)
-            {
-                string[] lineItems = line.Split(',');
-
-                var product = new LearnedProduct()
-                {
-                    CompulinkProduct = lineItems[0].Trim(),
-                    WvaProduct = lineItems[1].Trim(),
-                    NumPicks = 10
-                };
-
-                // Product change enabled is true by default. User does not have to include it
-                try
-                {
-                    product.ChangeEnabled = Convert.ToBoolean(lineItems[2].Trim());
-                }
-                catch 
-                {
-                    product.ChangeEnabled = true;
-                }
-
-                learnedProducts.Add(product);
-            }
-
-            return learnedProducts;
-        }
-
-
+        
     }
 }

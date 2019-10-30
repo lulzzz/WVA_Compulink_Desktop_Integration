@@ -16,10 +16,11 @@ namespace WVA_Connect_CDI.Utility.Actions
 {
     class ActionLogger
     {
-        // -----------------------------------------------------------------------------------------------------
-        // --------------------------------- LOGGING ACTIONS ---------------------------------------------------
-        // -----------------------------------------------------------------------------------------------------
+        // 
+        // LOGGING ACTIONS
+        //
 
+        // Accepts a function name (location of the action) and an action message to report
         public static void Log(string actionLocation, string actionMessage = null)
         {
             try
@@ -37,6 +38,7 @@ namespace WVA_Connect_CDI.Utility.Actions
             }
         }
 
+        // Creates a new action logger file with todays date if it does not exist 
         private static void CreateLogFile()
         {
             string file = GetLogFileName();
@@ -48,11 +50,13 @@ namespace WVA_Connect_CDI.Utility.Actions
                 File.Create(file).Close(); ;
         }
 
+        // Returns a file name based on todays data
         private static string GetLogFileName()
         {
             return $"{AppPath.TempDir}CDI_Action_Log_{DateTime.Today.ToString("MM-dd-yy")}.txt";
         }
 
+        // Returns a string containing data specific to this machine instance and app insallation
         private static string GetFileContents(string actionLocation)
         {
             try
@@ -71,6 +75,7 @@ namespace WVA_Connect_CDI.Utility.Actions
             return GetFileContents(actionLocation) + $" => {actionMessage}";
         }
 
+        // Creates a log file if it doesn't exist, and appends the contents to it
         private static void WriteToLogFile(string file, string contents)
         {
             try
@@ -88,10 +93,11 @@ namespace WVA_Connect_CDI.Utility.Actions
             }
         }
 
-        // -----------------------------------------------------------------------------------------------------
-        // --------------------------------- GETTING ACTION DATA -----------------------------------------------
-        // -----------------------------------------------------------------------------------------------------
+        // 
+        // GETTING ACTION DATA 
+        // 
 
+        // Returns all action logger file data that is not labeled with todays date
         public static List<ActionData> GetDataNotToday()
         {
             try
@@ -117,6 +123,7 @@ namespace WVA_Connect_CDI.Utility.Actions
             }
         }
 
+        // Returns all action logger file data 
         public static List<ActionData> GetAllData()
         {
             try
@@ -142,12 +149,11 @@ namespace WVA_Connect_CDI.Utility.Actions
             }
         }
 
+        // 
+        //  SENDING ACTION DATA 
+        // 
 
-
-        // -----------------------------------------------------------------------------------------------------
-        // --------------------------------- SENDING ACTION DATA -----------------------------------------------
-        // -----------------------------------------------------------------------------------------------------
-
+        // Sends all data to WVA and reports it to everyone on the email list
         public static bool ReportData(string data)
         {
             try
@@ -171,6 +177,7 @@ namespace WVA_Connect_CDI.Utility.Actions
             }
         }
 
+        // Gathers all action logger file data and reports it to WVA
         public static void ReportAllDataNow()
         {
             string data = "";

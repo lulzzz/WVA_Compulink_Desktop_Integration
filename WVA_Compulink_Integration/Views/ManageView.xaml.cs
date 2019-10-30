@@ -17,6 +17,7 @@ using WVA_Connect_CDI.Errors;
 using WVA_Connect_CDI.MatchFinder.ProductPredictions;
 using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.ViewModels;
 
 namespace WVA_Connect_CDI.Views
@@ -26,14 +27,20 @@ namespace WVA_Connect_CDI.Views
     /// </summary>
     public partial class ManageView : UserControl
     {
-        ManageViewModel manageViewModel = new ManageViewModel();
+        ManageViewModel manageViewModel;
 
         public ManageView()
         {
+            manageViewModel = new ManageViewModel();
+
             InitializeComponent();
             RefreshGrid();
             SetUpContextMenu();
         }
+
+        //
+        // UI Support Methods
+        //
 
         private void SetUpContextMenu()
         {
@@ -72,35 +79,69 @@ namespace WVA_Connect_CDI.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var learnedProduct = GetCreatedLearnedProduct();
+            // Action Logging
+            string location = GetType().FullName + "." + "." + nameof(AddButton_Click);
+            string actionMessage = $"<Create_LearnedProduct_Start>";
+            ActionLogger.Log(location, actionMessage);
 
-            if (learnedProduct.CompulinkProduct.Trim() == "")
+            try
             {
-                MessageBox.Show("Compulink Product cannot be blank!", "");
-                return;
+                // Get product from text fields
+                var learnedProduct = GetCreatedLearnedProduct();
+
+                // Make sure there is a compulink product
+                if (learnedProduct.CompulinkProduct.Trim() == "")
+                {
+                    MessageBox.Show("Compulink Product cannot be blank!", "");
+                    return;
+                }
+
+                // Make sure there is a wva product
+                if (learnedProduct.WvaProduct.Trim() == "")
+                {
+                    MessageBox.Show("WVA Product cannot be blank!", "");
+                    return;
+                }
+
+                // Make sure product doesn't exist
+                if (manageViewModel.CompulinkProductExists(learnedProduct.CompulinkProduct))
+                {
+                    MessageBox.Show("Compulink product already exists!", "");
+                    return;
+                }
+
+                // Create a new learned product
+                bool productCreated = manageViewModel.CreateLearnedProduct(learnedProduct);
+
+                if (productCreated)
+                {
+                    // Action Logging
+                    actionMessage = $"<Adding product: Compulink={learnedProduct.CompulinkProduct}, Wva={learnedProduct.WvaProduct}, ChangeEnabled={learnedProduct.ChangeEnabled}>";
+                    ActionLogger.Log(location, actionMessage);
+
+                    // Update UI
+                    ResetCreateLearnedProductElements();
+                    RefreshGrid();
+                }
+                else
+                {
+                    MessageBox.Show("An error has occurred. Product not added.", "");
+                }
             }
-
-            if (learnedProduct.WvaProduct.Trim() == "")
+            finally
             {
-                MessageBox.Show("WVA Product cannot be blank!", "");
-                return;
-            }
-
-            bool productCreated = manageViewModel.CreateLearnedProduct(learnedProduct);
-
-            if (productCreated)
-            {
-                ResetCreateLearnedProductElements();
-                RefreshGrid();
-            }
-            else
-            {
-                MessageBox.Show("An error has occurred. Product not added.","");
+                actionMessage = $"<Create_LearnedProduct_End>";
+                ActionLogger.Log(location, actionMessage);
             }
         }
 
         private void ImportButton_Click(object sender, RoutedEventArgs e)
         {
+            // Action Logging
+            string location = GetType().FullName + "." + "." + nameof(ImportButton_Click);
+            string actionMessage = $"<Import_Products_Start>";
+            ActionLogger.Log(location, actionMessage);
+
             try
             {
                 manageViewModel.ImportLearnedProducts();
@@ -121,13 +162,18 @@ namespace WVA_Connect_CDI.Views
             }
             finally
             {
-                
+                actionMessage = $"<Import_Products_End>";
+                ActionLogger.Log(location, actionMessage);
             }
         }
 
-        // Datagrid context menu
         private void WvaProductsContextMenu_Click(object sender, RoutedEventArgs e)
         {
+            // Action Logging
+            string location = GetType().FullName + "." + "." + nameof(WvaProductsContextMenu_Click);
+            string actionMessage = $"<Delete_Products_Start>";
+            ActionLogger.Log(location, actionMessage);
+
             try
             {
                 // Confirm with user that they want to delete the selected products 
@@ -135,15 +181,28 @@ namespace WVA_Connect_CDI.Views
 
                 if (result == MessageBoxResult.Yes)
                 {
+                    // Get products from datagrid and cast them into a list
                     var products = LearnedProductsDataGrid.SelectedItems.Cast<LearnedProduct>().ToList();
 
-                    Database.DeleteLearnedProduct(products);
+                    manageViewModel.DeleteLearnedProduct(products);
                     RefreshGrid();
+
+                    // Action Logging
+                    foreach (LearnedProduct product in products)
+                    {
+                        actionMessage = $"<Deleting product: Compulink={product.CompulinkProduct}, WVA={product.WvaProduct}, NumPicks={product.NumPicks}, ChangeEnabled={product.ChangeEnabled}>";
+                        ActionLogger.Log(location, actionMessage);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
+            }
+            finally
+            {
+                actionMessage = $"<Delete_Products_End>";
+                ActionLogger.Log(location, actionMessage);
             }
         }
 
@@ -197,6 +256,24 @@ namespace WVA_Connect_CDI.Views
             {
                 Error.ReportOrLog(ex);
             }
+        }
+
+        //
+        // Loaded and Unloaded Events
+        //
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            string location = GetType().FullName + "." + "." + nameof(UserControl_Loaded);
+            string actionMessage = $"<ManageView_Enter>";
+            ActionLogger.Log(location, actionMessage);
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            string location = GetType().FullName + "." + "." + nameof(UserControl_Unloaded);
+            string actionMessage = $"<ManageViewLeave>";
+            ActionLogger.Log(location, actionMessage);
         }
     }
 }
