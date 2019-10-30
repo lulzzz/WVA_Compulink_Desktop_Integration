@@ -10,6 +10,12 @@ namespace WVA_Connect_CDI.Security
 {
     public class Crypto
     {
+
+        //
+        // Hash Creation
+        //
+
+        // Creates a standard SHA256 hash with an extra step of scrambling the input string and taking chunks of hashes
         public static string ConvertToHash(string inputString)
         {
             if (inputString == null || inputString.Length < 6)
@@ -54,6 +60,11 @@ namespace WVA_Connect_CDI.Security
         private const string passPhrase = "a3x2i7das5a";
         private const int keysize = 256;
 
+        //
+        // Decryption
+        //
+
+        // Decrypts strings using the same init vector and passphrase that is defined server side to encrypt the data originally
         public static string Decrypt(string stringToDecrypt)
         {
             try
