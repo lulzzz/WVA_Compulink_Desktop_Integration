@@ -9,9 +9,10 @@ using WVA_Connect_CDI.Utility.Files;
 
 namespace WVA_Connect_CDI.Updates
 {
-    class Updater
+    public class Updater
     {
-        // This is called asychronously in IpConfigWindow, the first view that spawns for the application
+        // This is called asychronously when the app is launched
+        // Checks Github for any new releases. If there are any, it installs them
         public static async Task CheckForUpdates()
         {
             try
@@ -31,6 +32,7 @@ namespace WVA_Connect_CDI.Updates
             }
         }
 
+        // Checks Github for any new releases. Does not install anything if an update is available
         public static bool UpdatesAvailable()
         {
             using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/WVATeam/WVA_Compulink_Desktop_Integration").Result)
@@ -43,6 +45,5 @@ namespace WVA_Connect_CDI.Updates
                     return false;
             }
         }
-
     }
 }
