@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Utility.Files
 {
-    class AppPath
+    public class AppPath
     {
         /* ---------------------------------------- ROOT PATHS --------------------------------------------------------- */
 

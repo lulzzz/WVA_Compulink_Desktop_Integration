@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Utility.Actions
 {
-    class ActionLogger
+    public class ActionLogger
     {
         // 
         // LOGGING ACTIONS
