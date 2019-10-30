@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
@@ -16,6 +17,6 @@ namespace WVA_Connect_CDI.ViewModels.Orders
     {
         public string OrderName { get; set; }
         public List<Prescription> Prescriptions = new List<Prescription>();
-        public List<List<MatchProduct>> Matches = new List<List<MatchProduct>>();
+        public List<List<MatchedProduct>> Matches = new List<List<MatchedProduct>>();
     }
 }

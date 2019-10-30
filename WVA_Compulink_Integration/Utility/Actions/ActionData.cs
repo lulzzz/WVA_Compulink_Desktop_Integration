@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Utility.Actions
 {
-    class ActionData
+    public class ActionData
     {
         public string FileName { get; set; }
         public string Content { get; set; }

@@ -13,6 +13,7 @@ using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.Models.ProductParameters.Derived;
 using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.Models.Validations;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 using WVA_Connect_CDI.Utility.UI_Tools;
 using WVA_Connect_CDI.ViewModels.Orders;
 
@@ -266,15 +267,15 @@ namespace WVA_Connect_CDI.Views.Orders
                         throw new Exception("List<WVA_Products> is null or empty!");
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    List<MatchProduct> matchProducts = ProductPrediction.GetPredictionMatches(prescription, MatchScore, wvaProducts, overrideNumPicks);
+                    List<MatchedProduct> matchProducts = ProductPrediction.GetPredictionMatches(prescription, MatchScore, overrideNumPicks);
 
                     if (matchProducts?.Count > 0)
                     {
                         viewModel.Matches.Add(matchProducts);
-                        viewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        viewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductCode;
                     }
                     else
-                        viewModel.Matches.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
+                        viewModel.Matches.Add(new List<MatchedProduct> { new MatchedProduct("No Matches Found", 0) });
                 }
                 catch { }
                 finally
@@ -319,15 +320,15 @@ namespace WVA_Connect_CDI.Views.Orders
                         throw new Exception("List<WVA_Products> is null or empty!");
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    List<MatchProduct> matchProducts = ProductPrediction.GetPredictionMatches(prescription, MatchScore, wvaProducts, overrideNumPicks);
+                    List<MatchedProduct> matchProducts = ProductPrediction.GetPredictionMatches(prescription, MatchScore, overrideNumPicks);
 
                     if (matchProducts?.Count > 0)
                     {
                         viewModel.Matches.Add(matchProducts);
-                        viewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        viewModel.Prescriptions[index].ProductCode = matchProducts[0].ProductCode;
                     }
                     else
-                        viewModel.Matches.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
+                        viewModel.Matches.Add(new List<MatchedProduct> { new MatchedProduct("No Matches Found", 0) });
                 }
                 catch { }
                 finally
@@ -370,9 +371,9 @@ namespace WVA_Connect_CDI.Views.Orders
                     switch (SelectedColumn)
                     {
                         case 3: // If column is a 'Product'
-                            foreach (MatchProduct match in viewModel.Matches[SelectedRow])
+                            foreach (MatchedProduct match in viewModel.Matches[SelectedRow])
                             {
-                                MenuItem menuItem = new MenuItem() { Header = match.Name };
+                                MenuItem menuItem = new MenuItem() { Header = match.ProductName };
                                 menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                 WVA_OrdersContextMenu.Items.Add(menuItem);
                             }

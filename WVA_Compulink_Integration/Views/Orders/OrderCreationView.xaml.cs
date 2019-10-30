@@ -21,6 +21,7 @@ using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.Models.ProductParameters.Derived;
 using WVA_Connect_CDI.Models.Responses;
 using WVA_Connect_CDI.Models.Validations;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.Utility.Files;
 using WVA_Connect_CDI.Utility.UI_Tools;
@@ -428,9 +429,9 @@ namespace WVA_Connect_CDI.Views.Orders
                     switch (SelectedColumn)
                     {
                         case 3: // If column is a 'Product'
-                            foreach (MatchProduct match in orderCreationViewModel.ListMatchedProducts[SelectedRow])
+                            foreach (MatchedProduct match in orderCreationViewModel.ListMatchedProducts[SelectedRow])
                             {
-                                MenuItem menuItem = new MenuItem() { Header = match.Name };
+                                MenuItem menuItem = new MenuItem() { Header = match.ProductName };
                                 menuItem.Click += new RoutedEventHandler(WVA_OrdersContextMenu_Click);
                                 WVA_OrdersContextMenu.Items.Add(menuItem);
                             }

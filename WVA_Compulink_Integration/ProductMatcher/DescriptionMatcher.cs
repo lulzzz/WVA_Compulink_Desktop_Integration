@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 
 namespace WVA_Connect_CDI.MatchFinder
 {
@@ -21,7 +22,7 @@ namespace WVA_Connect_CDI.MatchFinder
         private static int SkuTypeMaxScore  = UserData.Data.Settings.ProductMatcher.SkuTypeMaxScore;
         private static int QuantityMaxScore = UserData.Data.Settings.ProductMatcher.QuantityMaxScore; 
 
-        public static List<MatchProduct> FindMatch(Prescription prescription, List<Product> listProducts, double minimumScore)
+        public static List<MatchedProduct> FindMatches(Prescription prescription, double minimumScore)
         {
             try
             {
@@ -29,10 +30,10 @@ namespace WVA_Connect_CDI.MatchFinder
                 if (prescription == null || prescription.Product.Trim() == "")
                     throw new NullReferenceException("'matchString' cannot be null or blank.");
 
-                if (listProducts == null || listProducts?.Count < 1)
+                if (WvaProducts.ListProducts == null || WvaProducts.ListProducts?.Count < 1)
                     throw new NullReferenceException("'listProducts' cannot be null or empty");
 
-                return RunMatchFinder(prescription, listProducts, minimumScore);
+                return GetMatches(prescription, minimumScore);
             }
             catch (Exception ex)
             {
@@ -41,74 +42,62 @@ namespace WVA_Connect_CDI.MatchFinder
             }
         }
 
-        // Will return a list of possible matches. The lowest index will have the highest match rating
-        private static List<MatchProduct> RunMatchFinder(Prescription prescription, List<Product> listProducts, double minimumScore)
+        // Returns a list of possible matches. The lowest index will have the highest match rating
+        private static List<MatchedProduct> GetMatches(Prescription prescription, double minimumScore)
         {
-            // Check for nulls
-            if (prescription == null || prescription?.Product.Trim() == "")
-                return new List<MatchProduct>();
+            var listMatchProducts = new List<MatchedProduct>();
 
-            if (listProducts == null || listProducts?.Count < 1)
-                return new List<MatchProduct>();
-
-            var ListMatchProducts = new List<MatchProduct>();
-
-           
-
-            foreach (Product product in listProducts)
+            foreach (Product product in WvaProducts.ListProducts)
             {
-                var matcherObject = BuildMatcherObject(prescription, product.Description);
-
-                if (matcherObject == null)
-                    continue;
-
-                // If the product score meets the minimum score defined by the caller, add it to list of possible matches
-                if (matcherObject?.TotalScore > minimumScore)
+                try
                 {
-                    if (!ListMatchProducts.Exists(x => x.Name == product.Description))
-                        ListMatchProducts.Add(new MatchProduct(product.Description, matcherObject.TotalScore) { ProductKey = product.ProductKey });
+                    var matcherObject = BuildMatcherObject(prescription, product.Description);
+
+                    // If the product score meets the minimum score defined by the caller, add it to list of possible matches
+                    if (matcherObject?.MatchScore > minimumScore)
+                    {
+                        // Make sure this product doesn't exist in our list of matches already
+                        if (!listMatchProducts.Exists(x => x.ProductName == product.Description))
+                            listMatchProducts.Add(new MatchedProduct(product.Description, matcherObject.MatchScore) { ProductCode = product.ProductKey });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Error.Log(ex.Message);
                 }
             }
 
-            // This just puts the matched items in a neat order so that the highest match is at the lowest index, i.e. the 100% match is at index[0] and the 98% match is at index[1]
-            return ListMatchProducts.OrderBy(o => o.MatchScore).Reverse().ToList();
+            // This puts the matched items in a neat order so that the highest match is at the lowest index, i.e. the 100% match is at index[0] and the 98% match is at index[1]
+            return listMatchProducts.OrderBy(o => o.MatchScore).Reverse().ToList();
         }
 
         // ----------------------------------------------------------------------------------------------------
         //              Build a Matcher Object 
         // ----------------------------------------------------------------------------------------------------
 
-        private static MatcherProduct BuildMatcherObject(Prescription compulinkPrescription, string wisVisProduct)
+        private static PreMatchedProduct BuildMatcherObject(Prescription compulinkPrescription, string wisVisProduct)
         {
-            // Null check 
-            if (compulinkPrescription == null || string.IsNullOrWhiteSpace(wisVisProduct))
-                return null;
-
             string p = compulinkPrescription.Product + compulinkPrescription.Type ?? "";
 
             // Clean up the WVA product
             wisVisProduct = SanitizeProductName(wisVisProduct);
 
-            var MatcherProduct = new MatcherProduct()
+            var MatcherProduct = new PreMatchedProduct()
             {
-                MatchProduct = SanitizeProductName(p),
+                CompulinkProduct = SanitizeProductName(p),
                 SKU = GetSkuType(p),
             };
 
             MatcherProduct = SetQuantity(MatcherProduct);
-            MatcherProduct.MatchProduct = RemoveQuantityFromProductName(MatcherProduct.MatchProduct);
-            MatcherProduct.CharacterSequenceMatchScore = GetCharacterSequenceMatchScore(MatcherProduct.MatchProduct, wisVisProduct);
-            MatcherProduct.WordMatchScore = GetWordMatchScore(MatcherProduct.MatchProduct, wisVisProduct);
+            MatcherProduct.CompulinkProduct = RemoveQuantityFromProductName(MatcherProduct.CompulinkProduct);
+            MatcherProduct.CharacterSequenceMatchScore = GetCharacterSequenceMatchScore(MatcherProduct.CompulinkProduct, wisVisProduct);
+            MatcherProduct.WordMatchScore = GetWordMatchScore(MatcherProduct.CompulinkProduct, wisVisProduct);
             MatcherProduct.SkuTypeMatchScore = GetSkuTypeMatchScore(GetSkuType(compulinkPrescription), GetSkuType(wisVisProduct));
             MatcherProduct.QuantityMatchScore = GetQuantityMatchScore(MatcherProduct.Quantity, wisVisProduct);
-            MatcherProduct = AverageOutCharSequenceToWordMatchScores(MatcherProduct);
+            MatcherProduct = AverageOutWordMatchScore(MatcherProduct);
 
             return MatcherProduct;
         }
-
-        // ----------------------------------------------------------------------------------------------------
-        //              Product String Manipulation
-        // ----------------------------------------------------------------------------------------------------
 
         private static string SanitizeProductName(string productName)
         {
@@ -130,12 +119,12 @@ namespace WVA_Connect_CDI.MatchFinder
             productName = productName.ToLower();
             productName = productName.Trim();
 
-            Regex regex0 = new Regex("trial", RegexOptions.IgnoreCase);
+            var regex0 = new Regex("trial", RegexOptions.IgnoreCase);
             MatchCollection matches0 = regex0.Matches(productName);
             if (matches0.Count > 1)
                 productName = ReplaceLastOccurrence(productName, "trials", "");
 
-            Regex regex1 = new Regex("trial", RegexOptions.IgnoreCase);
+            var regex1 = new Regex("trial", RegexOptions.IgnoreCase);
             MatchCollection matches1 = regex1.Matches(productName);
             if (matches1.Count > 1)
                 productName = ReplaceLastOccurrence(productName, "trial", "");
@@ -258,24 +247,24 @@ namespace WVA_Connect_CDI.MatchFinder
             return originalString;
         }
 
-        private static MatcherProduct SetQuantity(MatcherProduct matcherProduct)
+        private static PreMatchedProduct SetQuantity(PreMatchedProduct matcherProduct)
         {
             // Null check
             if (matcherProduct == null)
                 return null;
 
             // Sets the matcherProduct's quantity using the product name 
-            if (matcherProduct.MatchProduct.Contains("90"))
+            if (matcherProduct.CompulinkProduct.Contains("90"))
                 matcherProduct.Quantity = "90";
-            else if (matcherProduct.MatchProduct.Contains("30"))
+            else if (matcherProduct.CompulinkProduct.Contains("30"))
                 matcherProduct.Quantity = "30";
-            else if (matcherProduct.MatchProduct.Contains("24"))
+            else if (matcherProduct.CompulinkProduct.Contains("24"))
                 matcherProduct.Quantity = "24";
-            else if (matcherProduct.MatchProduct.Contains("12"))
+            else if (matcherProduct.CompulinkProduct.Contains("12"))
                 matcherProduct.Quantity = "12";
-            else if (matcherProduct.MatchProduct.Contains("6") && !matcherProduct.MatchProduct.Contains("trial"))
+            else if (matcherProduct.CompulinkProduct.Contains("6") && !matcherProduct.CompulinkProduct.Contains("trial"))
                 matcherProduct.Quantity = "6";
-            else if (matcherProduct.MatchProduct.Contains("trial"))
+            else if (matcherProduct.CompulinkProduct.Contains("trial"))
                 matcherProduct.Quantity = "trial";
 
             return matcherProduct;
@@ -313,7 +302,7 @@ namespace WVA_Connect_CDI.MatchFinder
         }
 
         // ----------------------------------------------------------------------------------------------------
-        //              Core Match Functions
+        //              Core Matching Functions
         // ----------------------------------------------------------------------------------------------------
 
         private static double GetCharacterSequenceMatchScore(string compulinkProductName, string wvaProductName)
@@ -468,29 +457,20 @@ namespace WVA_Connect_CDI.MatchFinder
                 return null;
         }
 
-        private static string GetProductKey(string productName, List<Product> listProducts)
-        {
-            if (listProducts == null || listProducts?.Count > 1 || productName == null || productName.Trim() == "")
-                return null;
-
-            foreach (Product prod in listProducts)
-                if (productName == prod.Description)
-                    return prod.ProductKey;
-
-            return null;
-        }
-
-        private static MatcherProduct AverageOutCharSequenceToWordMatchScores(MatcherProduct matcherProduct)
+        private static PreMatchedProduct AverageOutWordMatchScore(PreMatchedProduct matcherProduct)
         {
             // The purpose of this is to balance out character sequence and word match score.
             // Gives products with no spaces in them the ability to have a high score instead of needing to be spelled and spaced out correctly 
 
             if (matcherProduct.WordMatchScore >= 20)
                 matcherProduct.WordMatchScore += 15;
+
             if (matcherProduct.WordMatchScore >= 25)
                 matcherProduct.WordMatchScore += 20;
+
             if (matcherProduct.WordMatchScore >= 30)
                 matcherProduct.WordMatchScore += 25;
+
             if (matcherProduct.WordMatchScore >= 35)
                 matcherProduct.WordMatchScore += 30;
 

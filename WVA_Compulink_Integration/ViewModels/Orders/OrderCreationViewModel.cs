@@ -13,12 +13,13 @@ using System.Collections.Generic;
 using System.Linq;
 using WVA_Connect_CDI.Utility.UI_Tools;
 using WVA_Connect_CDI.Utility.Files;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
     class OrderCreationViewModel
     {
-        public List<List<MatchProduct>> ListMatchedProducts = new List<List<MatchProduct>>();
+        public List<List<MatchedProduct>> ListMatchedProducts = new List<List<MatchedProduct>>();
 
         // <note> These MUST remain static! They are accessed from other classes to properly load this view
         public static Order Order { get; set; }
@@ -167,15 +168,15 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                     prescription.Product = prescription.Product.Trim();
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, WvaProducts.ListProducts, limitReturnedResults);
+                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, limitReturnedResults);
 
                     if (matchProducts?.Count > 0)
                     {
                         ListMatchedProducts.Add(matchProducts);
-                        Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        Prescriptions[index].ProductCode = matchProducts[0].ProductCode;
                     }
                     else
-                        ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
+                        ListMatchedProducts.Add(new List<MatchedProduct> { new MatchedProduct("No Matches Found", 0) });
                 }
                 catch { }
                 finally
@@ -208,15 +209,15 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                     prescription.Product = prescription.Product.Trim();
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, WvaProducts.ListProducts, overrideNumPicks);
+                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, overrideNumPicks);
 
                     if (matchProducts?.Count > 0)
                     {
                         ListMatchedProducts.Add(matchProducts);
-                        Prescriptions[index].ProductCode = matchProducts[0].ProductKey;
+                        Prescriptions[index].ProductCode = matchProducts[0].ProductCode;
                     }
                     else
-                        ListMatchedProducts.Add(new List<MatchProduct> { new MatchProduct("No Matches Found", 0) });
+                        ListMatchedProducts.Add(new List<MatchedProduct> { new MatchedProduct("No Matches Found", 0) });
                 }
                 finally
                 {

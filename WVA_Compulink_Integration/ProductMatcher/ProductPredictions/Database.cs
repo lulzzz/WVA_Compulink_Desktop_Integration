@@ -245,6 +245,5 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
         }
 
-
     }
 }

@@ -235,7 +235,7 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions
         // HELPER METHODS
         //
 
-        private static string GetDbConnectionString(string id = "Default")
+        private static string GetDbConnectionString()
         {
             return $@"Data Source={AppPath.ProductDatabaseFile};Version=3;";
         }

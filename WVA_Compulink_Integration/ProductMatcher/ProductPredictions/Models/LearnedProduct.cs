@@ -8,6 +8,7 @@ namespace WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models
 {
     public class LearnedProduct
     {
+        // Represents the columns in the Product Predictions database
         public int Id { get; set; }
         public string CompulinkProduct { get; set; }
         public string WvaProduct { get; set; }

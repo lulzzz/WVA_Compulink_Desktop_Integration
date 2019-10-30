@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.Memory;
 
 namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
 {
@@ -12,13 +14,13 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
     {
         public static double MatchScore { get; set; }
 
-        public static List<MatchProduct> GetPredictionMatches(Prescription prescription, double matchScore, List<Product> wvaProducts, bool limitReturnedResults = false)
+        public static List<MatchedProduct> GetPredictionMatches(Prescription prescription, double matchScore, bool limitReturnedResults = false)
         {
             // Check for nulls
             if (prescription == null || prescription.Product.Trim() == "")
                 throw new Exception("string 'compulinkProduct' cannot be null or blank.");
 
-            if (wvaProducts == null || wvaProducts?.Count < 1)
+            if (WvaProducts.ListProducts == null || WvaProducts.ListProducts?.Count < 1)
                 throw new Exception("List of WVA products cannot be null or empty.");        
 
             // Set the match score
@@ -28,16 +30,16 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             prescription.Product = prescription.Product.Trim();
 
             // If 'product' is a stored wva match product, leave method. There is no reason to find any matches for it.
-            MatchProduct matchProduct = WvaProductExists(prescription.Product, wvaProducts);
+            MatchedProduct matchProduct = WvaProductExists(prescription.Product);
 
             if (matchProduct != null)
             {
-                return new List<MatchProduct>() { matchProduct };
+                return new List<MatchedProduct>() { matchProduct };
             }
             else
             {
                 //Get wva products that are similarly matched with the compulink product
-                var listMatches = GetMatches(prescription, wvaProducts, limitReturnedResults);
+                var listMatches = GetMatches(prescription, limitReturnedResults);
 
                 return listMatches;
             }
@@ -87,20 +89,20 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             }
         }
 
-        public static MatchProduct WvaProductExists(string product, List<Product> wvaProducts)
+        public static MatchedProduct WvaProductExists(string product)
         {
-            Product wvaProduct = wvaProducts.Where(x => x.Description == product).FirstOrDefault();
+            Product wvaProduct = WvaProducts.ListProducts.Where(x => x.Description == product).FirstOrDefault();
 
             if (wvaProduct != null)
-                return new MatchProduct(wvaProduct?.Description, 100) { ProductKey = wvaProduct.ProductKey };
+                return new MatchedProduct(wvaProduct?.Description, 100) { ProductCode = wvaProduct.ProductKey };
             else
                 return null;
         }
 
         // Get a list of wva product matches for a given compulink product
-        private static List<MatchProduct> GetMatches(Prescription prescription, List<Product> wvaProducts, bool limitReturnedResults)
+        private static List<MatchedProduct> GetMatches(Prescription prescription, bool limitReturnedResults)
         {
-            var listMatches = new List<MatchProduct>();
+            var listMatches = new List<MatchedProduct>();
 
             // If overrideNumPicks is true, the method will not limit the list based on numPicks
             int numPicks;
@@ -112,8 +114,8 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             // If 10 or more numPicks only show suggested product (confidence: extremely confident)
             if (numPicks >= 7)
             {
-                MatchProduct matchProduct;
-                matchProduct = WvaProductExists(Database.ReturnWvaProductFor(prescription.Product), wvaProducts);
+                MatchedProduct matchProduct;
+                matchProduct = WvaProductExists(Database.ReturnWvaProductFor(prescription.Product));
 
                 listMatches.Add(matchProduct);
                 return listMatches;
@@ -121,48 +123,48 @@ namespace WVA_Connect_CDI.MatchFinder.ProductPredictions
             // If 5 numPicks show suggested product and 4 matches (high confidence)
             else if (numPicks >= 5)
             {
-                listMatches = FilterList(3, prescription, wvaProducts, new MatchProduct(name: Database.ReturnWvaProductFor(prescription.Product), matchScore: 100));
+                listMatches = FilterList(3, prescription, new MatchedProduct(productName: Database.ReturnWvaProductFor(prescription.Product), matchScore: 100));
                 return listMatches;
             }
             // If 3 numPicks show suggested product and 14 matches (medium confidence)
             else if (numPicks >= 3)
             {
-                listMatches = FilterList(10, prescription, wvaProducts, new MatchProduct(name: Database.ReturnWvaProductFor(prescription.Product), matchScore: 100));
+                listMatches = FilterList(10, prescription, new MatchedProduct(productName: Database.ReturnWvaProductFor(prescription.Product), matchScore: 100));
                 return listMatches;
             }
             // If 1 numPicks show suggested product and all matches (low confidence)
             else if (numPicks >= 1)
             {
-                listMatches = FilterList(999, prescription, wvaProducts, new MatchProduct(name: Database.ReturnWvaProductFor(prescription.Product), matchScore: 100));
+                listMatches = FilterList(999, prescription, new MatchedProduct(productName: Database.ReturnWvaProductFor(prescription.Product), matchScore: 100));
                 return listMatches;
             }
             // If 0 numPicks show all matches (no confidence)
             else
             {
-                listMatches = DescriptionMatcher.FindMatch(prescription, wvaProducts, MatchScore);
+                listMatches = DescriptionMatcher.FindMatches(prescription, MatchScore);
                 return listMatches;
             }
         }
 
-        private static List<MatchProduct> FilterList(int countLimit, Prescription prescription, List<Product> wvaProducts = null, MatchProduct suggestedProduct = null)
+        private static List<MatchedProduct> FilterList(int countLimit, Prescription prescription, MatchedProduct suggestedProduct = null)
         {
-            var listMatches = new List<MatchProduct>();
+            var listMatches = new List<MatchedProduct>();
 
             if (suggestedProduct != null)
             {
                 string wvaProd = Database.ReturnWvaProductFor(prescription.Product);
-                listMatches.Add(new MatchProduct(name: wvaProd, matchScore: 100));
+                listMatches.Add(new MatchedProduct(productName: wvaProd, matchScore: 100));
 
                 // Set the product key
-                listMatches[0].ProductKey = wvaProducts.Where(x => x.Description == wvaProd).Select(x => x.ProductKey).First();
+                listMatches[0].ProductCode = WvaProducts.ListProducts.Where(x => x.Description == wvaProd).Select(x => x.ProductKey).First();
             }
 
-            if (wvaProducts != null)
-                listMatches.AddRange(DescriptionMatcher.FindMatch(prescription, wvaProducts, MatchScore));
+            if (WvaProducts.ListProducts != null)
+                listMatches.AddRange(DescriptionMatcher.FindMatches(prescription, MatchScore));
 
             // Remove match product in list that is the same as the suggested product
             if (listMatches.Count > 1)
-                listMatches = listMatches.GroupBy(x => x.Name).Select(x => x.First()).ToList();
+                listMatches = listMatches.GroupBy(x => x.ProductName).Select(x => x.First()).ToList();
 
             // Get only top x matches
             for (int i = listMatches.Count; i > countLimit; i--)

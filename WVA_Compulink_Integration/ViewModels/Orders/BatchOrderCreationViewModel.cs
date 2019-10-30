@@ -10,8 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Connect_CDI.MatchFinder.ProductPredictions;
-using WVA_Connect_CDI.Models.Products;
+using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
@@ -20,7 +19,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
         public static int MatchScoreTargetValue { get; set; }
         public static List<string> OrderNames = new List<string>();
         public static List<List<Prescription>> BatchPrescriptions = new List<List<Prescription>>();
-        public static List<List<MatchProduct>> BatchPrescriptionMatches = new List<List<MatchProduct>>();
+        public static List<List<MatchedProduct>> BatchPrescriptionMatches = new List<List<MatchedProduct>>();
 
         public BatchOrderCreationViewModel()
         {
