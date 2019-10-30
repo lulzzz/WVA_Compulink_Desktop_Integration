@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.Utility.UI_Tools
 {
-    class ShippingTools
+    public class ShippingTools
     {
         public static string GetShippingString(string shipID)
         {
