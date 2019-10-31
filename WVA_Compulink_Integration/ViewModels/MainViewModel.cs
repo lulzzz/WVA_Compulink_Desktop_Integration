@@ -20,11 +20,6 @@ namespace WVA_Connect_CDI.ViewModels
             Database.SetUpDatabase();
         }
 
-        public void CheckForProductPredictionUpdates()
-        {
-            ProductCrossRefDict.CheckForUpdates();
-        }
-
         public bool AccountNumAvailable()
         {
             try

@@ -37,7 +37,6 @@ namespace WVA_Connect_CDI.Views
 
             InitializeComponent();
             mainViewModel.SetupDatabase();
-            mainViewModel.CheckForProductPredictionUpdates();
             SetupRoleBasedFeatures();
             SetUpApp();
             Task.Run(() => StartInactivityTimer());
