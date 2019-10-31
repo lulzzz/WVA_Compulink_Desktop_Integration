@@ -10,7 +10,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Connect_CDI.MatchFinder;
 
 namespace WVA_Connect_CDI.ViewModels.Login
 {

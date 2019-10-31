@@ -1,7 +1,5 @@
 ﻿using WVA_Connect_CDI.WebTools;
 using WVA_Connect_CDI.Errors;
-using WVA_Connect_CDI.MatchFinder;
-using WVA_Connect_CDI.MatchFinder.ProductPredictions;
 using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Models.Orders.Out;
 using WVA_Connect_CDI.Models.Prescriptions;
@@ -13,7 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using WVA_Connect_CDI.Utility.UI_Tools;
 using WVA_Connect_CDI.Utility.Files;
-using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.ProductMatcher.Models;
+using WVA_Connect_CDI.ProductPredictions;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {

@@ -8,8 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using WVA_Connect_CDI.MatchFinder.ProductPredictions;
-using WVA_Connect_CDI.ProductMatcher;
+using WVA_Connect_CDI.ProductMatcher.Data;
 
 namespace WVA_Connect_CDI.ViewModels
 {

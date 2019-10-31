@@ -5,9 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WVA_Connect_CDI.MatchFinder.ProductPredictions;
-using WVA_Connect_CDI.Models.Products;
-using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.ProductMatcher.Data;
+using WVA_Connect_CDI.ProductMatcher.Models;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.Utility.Files;
 

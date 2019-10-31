@@ -1,15 +1,7 @@
-﻿using WVA_Connect_CDI.MatchFinder;
-using WVA_Connect_CDI.MatchFinder.ProductPredictions;
-using WVA_Connect_CDI.Memory;
-using WVA_Connect_CDI.Models.Prescriptions;
-using WVA_Connect_CDI.Models.Products;
-using WVA_Connect_CDI.Models.Validations;
+﻿using WVA_Connect_CDI.Models.Prescriptions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.ProductMatcher.Models;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {

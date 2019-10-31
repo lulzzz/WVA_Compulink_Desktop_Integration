@@ -5,15 +5,15 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using WVA_Connect_CDI.Errors;
-using WVA_Connect_CDI.MatchFinder;
-using WVA_Connect_CDI.MatchFinder.ProductPredictions;
 using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Models.Orders;
 using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.Models.ProductParameters.Derived;
 using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.Models.Validations;
-using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.ProductMatcher.Data;
+using WVA_Connect_CDI.ProductMatcher.Models;
+using WVA_Connect_CDI.ProductPredictions;
 using WVA_Connect_CDI.Utility.UI_Tools;
 using WVA_Connect_CDI.ViewModels.Orders;
 

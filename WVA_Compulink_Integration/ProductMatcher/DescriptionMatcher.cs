@@ -5,14 +5,11 @@ using WVA_Connect_CDI.Models.Products;
 using WVA_Connect_CDI.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.ProductMatcher.Models;
 
-namespace WVA_Connect_CDI.MatchFinder
+namespace WVA_Connect_CDI.ProductMatcher
 {
     class DescriptionMatcher
     {

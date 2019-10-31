@@ -1,16 +1,12 @@
 ﻿using WVA_Connect_CDI.WebTools;
-using WVA_Connect_CDI.MatchFinder;
 using WVA_Connect_CDI.Memory;
-using WVA_Connect_CDI.Models.Orders.Out;
 using WVA_Connect_CDI.Models.Patients;
 using WVA_Connect_CDI.Models.Prescriptions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WVA_Connect_CDI.ProductMatcher.ProductPredictions.Models;
+using WVA_Connect_CDI.ProductMatcher.Models;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
