@@ -11,9 +11,13 @@ using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.ViewModels.Orders
 {
-    class CompulinkOrdersViewModel
+    public class CompulinkOrdersViewModel
     {
         public static List<Prescription> ListPrescriptions = new List<Prescription>();
+
+        //
+        // Constructors
+        // 
 
         public CompulinkOrdersViewModel()
         {
@@ -28,6 +32,8 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             ListPrescriptions.AddRange(prescriptions);
         }
 
+
+        // Determines if prescription items should be turned into a batch order 
         public bool IsBatchOrder(List<Prescription> listPrescriptions)
         {
             bool isBatchOrder;
@@ -54,7 +60,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return isBatchOrder;
         }
 
-        // returns true if any account numbers match 
+        // Returns true if any account numbers match 
         private bool AccountNumsMatch(List<Prescription> prescriptions)
         {
             // Null check   
@@ -72,7 +78,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                 return false;
         }
 
-        // returns true if any addresses match 
+        // Returns true if any addresses match 
         private bool AddressesMatch(List<Prescription> prescriptions)
         {
             // Null check   
@@ -97,7 +103,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                 return true;
         }
 
-        // returns true if there are more than one ship to patients 
+        // Returns true if there are more than one ship to patients 
         private bool AreMultipleSTPs(List<Prescription> prescriptions)
         {
             string origPatientName = "";
@@ -118,6 +124,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return areMultiplePatients;
         }
 
+        // Returns true if there are STP and STO prescriptions 
         private bool IsMixedTypeOrder(List<Prescription> prescriptions)
         {
             int numStps = prescriptions.Where(x => x.IsShipToPat).Count();
@@ -129,6 +136,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                 return false;
         }
         
+        // Gets detailed patient information based on given patient id
         public static Patient GetPatientInfo(string patientID)
         {
             string dsn = UserData.Data?.DSN;

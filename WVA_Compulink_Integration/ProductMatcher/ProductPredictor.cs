@@ -14,7 +14,7 @@ namespace WVA_Connect_CDI.ProductPredictions
 {
     public class ProductPredictor
     {
-        public static double MatchScore { get; set; }
+        double MatchScore { get; set; }
 
         DescriptionMatcher matcher;
 
@@ -58,12 +58,7 @@ namespace WVA_Connect_CDI.ProductPredictions
         {
             var product = Database.GetLearnedProduct(compulinkProduct);
 
-            if (product == null)
-                return true;
-            else if (product.ChangeEnabled)
-                return true;
-            else
-                return false;
+            return (product == null || product.ChangeEnabled) ? true : false;
         }
 
         public void LearnProduct(string compulinkProduct, string wvaProduct)
@@ -113,8 +108,9 @@ namespace WVA_Connect_CDI.ProductPredictions
         {
             var listMatches = new List<MatchedProduct>();
 
-            // If overrideNumPicks is true, the method will not limit the list based on numPicks
+            // If limitReturnedResults is true, the method will not limit the list based on numPicks
             int numPicks;
+
             if (limitReturnedResults)
                 numPicks = 0;
             else

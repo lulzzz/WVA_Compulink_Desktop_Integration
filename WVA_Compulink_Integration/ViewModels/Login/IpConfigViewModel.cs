@@ -13,6 +13,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
 {
     public class IpConfigViewModel
     {
+        // Gets the ip configuration from the IpConfig file
         public string GetIpConfig()
         {
             try
@@ -28,6 +29,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Gets the api key from the ApiKey file
         public string GetApiKey()
         {
             try
@@ -43,6 +45,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Gets the account number from the ActNum file
         public string GetActNum()
         {
             try
@@ -58,6 +61,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Checks whether or not this install has access to other accounts 
         public void BlockExternalLocations(bool blockExternalLocations)
         {
             try
@@ -73,6 +77,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             } 
         }
 
+        // Returns json data from the settings file or return a default json UserSettings object if the file doesn't exist
         public UserSettings GetUserSettings()
         {
             var defaultSetting = new UserSettings()
@@ -104,6 +109,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             return JsonConvert.DeserializeObject<UserSettings>(File.ReadAllText($@"{AppPath.UserSettingsFile}"));
         }
 
+        // Updates the ipConfig, apiKey, and actNum files
         public void WriteToFiles(string ipConfig, string apiKey, string actNum)
         {
             try

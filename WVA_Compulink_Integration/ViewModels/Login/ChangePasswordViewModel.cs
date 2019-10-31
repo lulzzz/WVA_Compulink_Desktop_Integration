@@ -16,6 +16,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
 {
     public class ChangePasswordViewModel
     {
+        // Gets the dsn from the DSN file
         public string GetDSN()
         {
             try
@@ -34,6 +35,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Checks if password has: at least 8 characters, a capital letter, a number
         public bool IsComplexPassword(string password)
         {
             try
@@ -68,6 +70,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Requests a password change from the server
         public Response ChangePassword(string DSN, string username, string password)
         {
             string endpoint = $"http://{DSN}/api/user/changePass";
@@ -86,6 +89,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
                 return JsonConvert.DeserializeObject<Response>(strResponse);
         }
 
+        // Creates a file noting when the user changed their password
         public void LogTimePassChanged()
         {
             if (!Directory.Exists(AppPath.TempDir))

@@ -17,6 +17,10 @@ namespace WVA_Connect_CDI.ViewModels.Orders
         public static List<List<Prescription>> BatchPrescriptions = new List<List<Prescription>>();
         public static List<List<MatchedProduct>> BatchPrescriptionMatches = new List<List<MatchedProduct>>();
 
+        //
+        // Constructors
+        //
+
         public BatchOrderCreationViewModel()
         {
 
@@ -33,6 +37,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             OrderNames.AddRange(batchOrderNames);
         }
 
+        // Splits out prescriptions by stp, sto, account number, and address
         private List<List<Prescription>> SplitPrescriptions(List<Prescription> prescriptions)
         {
             if (prescriptions == null || prescriptions.Count < 1)
@@ -69,18 +74,18 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return splitOrders;
         }
 
+        // Appends a number to order name based on its sequence in the group of batch orders
         private List<string> GetOrderNames(string orderName, int numSplitPrescriptions)
         {
             var orderNames = new List<string>();
 
             for (int i = 0; i < numSplitPrescriptions; i++)
-            {
                 orderNames.Add(orderName + " (" + (i + 1) + ")");
-            }
 
             return orderNames;
         }
 
+        // Gets address information based on the given patient ID
         private string GetPatientAddress(string patientID)
         {
             string dsn = UserData.Data?.DSN;

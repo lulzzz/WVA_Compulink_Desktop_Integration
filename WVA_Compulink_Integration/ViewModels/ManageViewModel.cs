@@ -25,11 +25,13 @@ namespace WVA_Connect_CDI.ViewModels
         // CREATE
         //
 
+        // Creates a new learned product in the database
         public bool CreateLearnedProduct(LearnedProduct product)
         {
             return Database.CreateLearnedProduct(product);
         }
 
+        // Checks if a learned product exists for a given compulink product string
         public bool CompulinkProductExists(string compulinkProduct)
         {
             return Database.CompulinkProductExists(compulinkProduct);
@@ -39,16 +41,19 @@ namespace WVA_Connect_CDI.ViewModels
         // READ
         //
 
+        // Updates the 'LearnedProducts' list in memory
         public void SetLearnedProducts()
         {
             LearnedProducts = GetLearnedProducts();
         }
 
+        // Gets all learned products from the database
         public List<LearnedProduct> GetLearnedProducts()
         {
             return Database.GetLearnedProducts();
         }
-
+       
+        // Converts string array lines from a csv to a learned product list 
         private List<LearnedProduct> GetLearnedProducts(string[] csvLines)
         {
             var learnedProducts = new List<LearnedProduct>();
@@ -90,6 +95,7 @@ namespace WVA_Connect_CDI.ViewModels
         // DELETE
         //
 
+        // Removes a learned product from the database
         public bool DeleteLearnedProduct(List<LearnedProduct> products)
         {
             return Database.DeleteLearnedProduct(products);
@@ -99,6 +105,7 @@ namespace WVA_Connect_CDI.ViewModels
         // Import Learned Products
         //
 
+        // Imports a csv or txt file to inject product matches into the database
         public void ImportLearnedProducts()
         {
             string file = GetCsvPath();
@@ -142,6 +149,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Opens a file dialog for user to select a file to import
         private string GetCsvPath()
         {
             OpenFileDialog choofdlog = new OpenFileDialog();
@@ -152,6 +160,7 @@ namespace WVA_Connect_CDI.ViewModels
             return choofdlog.FileName;
         }
 
+        // Checks csv to be sure it is safe to import 
         private bool CsvInCorrectFormat(string[] csvLines)
         {
             foreach (string line in csvLines)
@@ -173,7 +182,6 @@ namespace WVA_Connect_CDI.ViewModels
 
             return true;
         }
-
         
     }
 }

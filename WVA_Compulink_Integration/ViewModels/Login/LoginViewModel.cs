@@ -5,16 +5,13 @@ using WVA_Connect_CDI.Security;
 using WVA_Connect_CDI.Utility.Files;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WVA_Connect_CDI.ViewModels.Login
 {
     public class LoginViewModel
     {
+        // Deletes the saved file determining the last time user password was changed 
         public void DelTimePassChangedFile()
         {
             try
@@ -34,6 +31,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Requests a login to the server and returns a User object with a response and credentials 
         public User LoginUser(string username, string password)
         {
             try
@@ -58,6 +56,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Reads the json from the user settings file and returns a UserSettings object
         public UserSettings GetUserSettings()
         {
             try
@@ -131,11 +130,13 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Rewrites the json settings file using the given UserSettings object
         private void OverWriteUserSettingsFile(UserSettings settings)
         {
             File.WriteAllText(AppPath.UserSettingsFile, JsonConvert.SerializeObject(settings));
         }
 
+        // Checks a file to see the last time user changed their password within the last 15 minutes
         public bool PasswordChangedRecently()
         {
             if (File.Exists(AppPath.PrevTimePassChangeFile))

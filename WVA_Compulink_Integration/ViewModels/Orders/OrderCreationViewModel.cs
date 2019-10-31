@@ -28,6 +28,10 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 
         ProductPredictor productPredictor;
 
+        //
+        // Constructors
+        //
+
         public OrderCreationViewModel()
         {
             productPredictor = new ProductPredictor();
@@ -74,6 +78,24 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             OrderName = orderName;
         }
 
+        //
+        // CREATE
+        //
+
+        public OrderResponse CreateOrder(OutOrderWrapper outOrderWrapper)
+        {
+            string dsn = UserData.Data.DSN;
+            string endpoint = $"http://{dsn}/api/order/submit/";
+            string strResponse = API.Post(endpoint, outOrderWrapper);
+            OrderResponse response = JsonConvert.DeserializeObject<OrderResponse>(strResponse);
+
+            return response;
+        }
+
+        //
+        // READ 
+        //
+
         public Order GetOrder(string orderName)
         {
             string dsn = UserData.Data.DSN;
@@ -102,25 +124,20 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return listOrders;
         }
 
-        public OrderResponse CreateOrder(OutOrderWrapper outOrderWrapper)
+        public bool OrderExists(string orderName)
         {
-            string dsn = UserData.Data.DSN;
-            string endpoint = $"http://{dsn}/api/order/submit/";
-            string strResponse = API.Post(endpoint, outOrderWrapper);
-            OrderResponse response = JsonConvert.DeserializeObject<OrderResponse>(strResponse);
+            // Make sure they do not add a batch order to an existing order
+            var existingOrder = GetOrder(orderName);
 
-            return response;
+            if (existingOrder == null)
+                return false;
+            else
+                return true;
         }
 
-        public OrderResponse DeleteOrder(string orderName)
-        {
-            string dsn = UserData.Data.DSN;
-            string endpoint = $"http://{dsn}/api/order/delete/";
-            string strResponse = API.Post(endpoint, orderName);
-            OrderResponse response = JsonConvert.DeserializeObject<OrderResponse>(strResponse);
-
-            return response;
-        }
+        //
+        // UPDATE
+        //
 
         public OrderResponse SaveOrder(OutOrderWrapper outOrderWrapper)
         {
@@ -135,6 +152,25 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return response;
         }
 
+        //
+        // DELETE
+        //
+
+        public OrderResponse DeleteOrder(string orderName)
+        {
+            string dsn = UserData.Data.DSN;
+            string endpoint = $"http://{dsn}/api/order/delete/";
+            string strResponse = API.Post(endpoint, orderName);
+            OrderResponse response = JsonConvert.DeserializeObject<OrderResponse>(strResponse);
+
+            return response;
+        }
+
+        //
+        // Validating and Matching
+        //
+
+        // Reaches out to validations api to check if product data is valid
         public ValidationResponse ValidateOrder(ValidationWrapper validationWrapper)
         {
             string endpoint = AppPath.WisVisValidations;
@@ -142,17 +178,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
             return JsonConvert.DeserializeObject<ValidationResponse>(strValidatedProducts);
         }
 
-        public bool OrderExists(string orderName)
-        {
-            // Make sure they do not add a batch order to an existing order
-            var existingOrder = GetOrder(orderName);
-
-            if (existingOrder == null)
-                return false;
-            else
-                return true;
-        }
-
+        // If limitReturnedResults is true, then results will not be limited by numPicks. All results will be returned
         public void FindProductMatches(List<Prescription> prescriptions, double matchScore = 30, bool limitReturnedResults = false)
         {
             // Reset list of matched products 

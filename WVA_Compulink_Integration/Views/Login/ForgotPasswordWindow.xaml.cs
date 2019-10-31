@@ -112,7 +112,7 @@ namespace WVA_Connect_CDI.Views.Login
                     return;
                 }
 
-                Response response = forgotPasswordViewModel.ResetEmail(DSN, UserEmail, CodeTextBox.Text.Trim(), API_Key);
+                Response response = forgotPasswordViewModel.ResetEmailCheck(DSN, UserEmail, CodeTextBox.Text.Trim(), API_Key);
 
                 if (response == null)
                 {

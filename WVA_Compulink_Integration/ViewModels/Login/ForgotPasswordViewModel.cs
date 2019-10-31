@@ -15,6 +15,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
 {
     public class ForgotPasswordViewModel
     {
+        // Gets the apiKey from the ApiKey file
         public string GetApiKey()
         {
             try
@@ -33,6 +34,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Gets the dsn from the DSN file
         public string GetDSN()
         {
             try
@@ -51,6 +53,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Gets the user's email from the server
         public User GetUserEmail(string username, string DSN)
         {
             try
@@ -74,7 +77,8 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
-        public Response ResetEmail(string DSN, string userEmail, string emailCode, string apiKey)
+        // // Checks to see if user entered in the right password reset code 
+        public Response ResetEmailCheck(string DSN, string userEmail, string emailCode, string apiKey)
         {
             try
             {
@@ -95,6 +99,7 @@ namespace WVA_Connect_CDI.ViewModels.Login
             }
         }
 
+        // Attempts to send an email to the user with a code to reset their password
         public Response SendEmail(string DSN, string userEmail, string apiKey)
         {
             try

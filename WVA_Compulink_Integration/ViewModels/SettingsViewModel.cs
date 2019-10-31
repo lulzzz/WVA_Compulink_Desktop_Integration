@@ -15,6 +15,7 @@ namespace WVA_Connect_CDI.ViewModels
 {
     public class SettingsViewModel
     {
+        // Get all accounts listed in the AvailableActs file
         public List<string> GetAvailableAccounts()
         {
             try
@@ -27,6 +28,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Get all accounts listed in the server's config file
         public List<string> GetAllAvailableAccounts(string dsn)
         {
             try
@@ -41,6 +43,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Set the available accounts for the AvailableActs file
         private void SetAvailableAccounts(List<string> accounts)
         {
             try
@@ -53,6 +56,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Add an available account to the AvailableActs file
         public void AddAvailableAccount(string accountToAdd)
         {
             if (accountToAdd == null || accountToAdd.Trim() == "")
@@ -68,6 +72,7 @@ namespace WVA_Connect_CDI.ViewModels
             SetAvailableAccounts(accounts);
         }
 
+        // Updates user settings in memory and in the settings file
         public void UpdateUserSettings(UserSettings userSettings)
         {
             try
@@ -94,6 +99,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Retreives the selected account number in the ActNum file
         public string GetSavedAccountNumber()
         {
             try

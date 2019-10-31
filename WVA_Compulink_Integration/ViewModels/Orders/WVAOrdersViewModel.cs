@@ -18,7 +18,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
 
         public WVAOrdersViewModel(List<Prescription> prescriptions)
         {
-            if (prescriptions == null)
+            if (prescriptions == null || prescriptions.Count == 0)
                 return;
 
             ListPrescriptions.AddRange(prescriptions);

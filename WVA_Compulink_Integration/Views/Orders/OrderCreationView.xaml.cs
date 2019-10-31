@@ -80,6 +80,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // (Not in use) Will periodically save order
         private void AutoSaveOrderAsync()
         {
             int numEr = 0;
@@ -110,6 +111,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Decides if this is a new order or an order to edit
         private void DetermineViewMode()
         {
             if (OrderCreationViewModel.Order != null)
@@ -139,11 +141,13 @@ namespace WVA_Connect_CDI.Views.Orders
         // ================================== UI Related Methods =================================================================
         // =======================================================================================================================
 
+        // Populates the OrdersDataGrid with list items carried over to this view
         private void SetUpOrdersDataGrid()
         {
             OrdersDataGrid.ItemsSource = OrderCreationViewModel.Prescriptions;
         }
 
+        // Determines color of datagrid cell
         private string AssignCellColor(string prodValue, bool isValid, string errorMessage, bool canBeValidated)
         {
             if (prodValue == null && errorMessage == null || prodValue == "" && errorMessage == null)
@@ -156,6 +160,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 return "Red";
         }
 
+        // Fills the STP items with the patient address information
         private void AutoFillStpItems()
         {
             AddresseeTextBox.Text   = OrderCreationViewModel.Order.Name1;
@@ -168,6 +173,7 @@ namespace WVA_Connect_CDI.Views.Orders
             DoBTextBox.Text         = OrderCreationViewModel.Order.DoB;
         }
 
+        // Hides STP elements if order is an STO
         private void HideStpItems()
         {
             AddresseeLabel.Visibility = Visibility.Hidden;
@@ -188,6 +194,7 @@ namespace WVA_Connect_CDI.Views.Orders
             DoBTextBox.Visibility = Visibility.Hidden;
         }
 
+        // Shows STP elements if order is a STP
         private void ShowStpItems()
         {
             AddresseeLabel.Visibility = Visibility.Visible;
@@ -206,6 +213,7 @@ namespace WVA_Connect_CDI.Views.Orders
             PhoneTextBox.Visibility = Visibility.Visible;
         }
 
+        // Safety net to clear view items so there is no overlap if they come back to this view 
         private void ClearView()
         {
             // Empty datagrid
@@ -229,6 +237,7 @@ namespace WVA_Connect_CDI.Views.Orders
             DoBTextBox.Text = "";
         }
 
+        // Removes characters in a string that may break sql queries
         private string RemoveUnsafeChars(string originalString)
         {
             if (originalString == null)
@@ -291,6 +300,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         } 
 
+        // Sets up view as a new order
         private void SetUpNewOrder()
         {
             // Autofill some user information      
@@ -305,6 +315,7 @@ namespace WVA_Connect_CDI.Views.Orders
                 SetUpStpFields();
         }
 
+        // Sets up view with an existing order
         private void SetUpEditOrder()
         {
             if (OrderCreationViewModel.Order.ShipToPatient == "Y")
@@ -368,6 +379,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Sets the account number on the UI
         private void SetUpWvaAccountNumber()
         {
             try
@@ -389,6 +401,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Removes extra data that is tagged on to compulink products from some accounts
         private void CleanProductData()
         {
             for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
@@ -403,6 +416,7 @@ namespace WVA_Connect_CDI.Views.Orders
             OrdersDataGrid.Items.Refresh();
         }
 
+        // Sets items that will populate the datagrid context menu
         private void SetMenuItems()
         {
             try
@@ -627,6 +641,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Set the datagrid context menu to an item that says there are no matches available
         private void SetNotAvailableMenuItem()
         {
             MenuItem menuItem = new MenuItem() { Header = "Not Available" };
@@ -634,6 +649,7 @@ namespace WVA_Connect_CDI.Views.Orders
             WVA_OrdersContextMenu.Items.Add(menuItem);
         }
 
+        // Auto-fills product names if NumPicks is greater than or equal to 5
         private void AutoFillLearnedProductNames()
         {         
             for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
@@ -654,6 +670,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Runs the auto-fill method on each row in data grid
         private void AutoFillParameters()
         {
             for (int i = 0; i < OrdersDataGrid.Items.Count; i++)
@@ -797,6 +814,7 @@ namespace WVA_Connect_CDI.Views.Orders
             return true;
         }
 
+        // Determines if this may is a duplicate order
         private bool IsPossibleDuplicateOrder()
         {
             try
@@ -811,6 +829,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Returns number of duplicate orders
         private int GetNumDuplicateOrders()
         {
             try
@@ -840,12 +859,14 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Notifies user that an item is not valid
         private void PostInvalidItem(string param)
         {
             var messageWindow = new MessageWindow($"A parameter '{param}' in the grid is not valid.");
             messageWindow.Show();
         }
 
+        // Reaches out to verify api to see if items are valid product
         private ValidationResponse Verify()
         {
             try
@@ -974,6 +995,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Scrapes UI elements to gather order data 
         private OutOrderWrapper GetCompleteOrder()
         {
             try
@@ -1069,6 +1091,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Updates this order in the database or creates one if it doesn't exist
         private void SaveOrder(OutOrderWrapper outOrderWrapper)
         {
             try
@@ -1088,6 +1111,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Deletes this order from the database 
         private string DeleteOrder()
         {
             string orderName = OrderNameTextBox.Text;
@@ -1112,6 +1136,7 @@ namespace WVA_Connect_CDI.Views.Orders
             return orderName;
         }
 
+        // Creates an order in the database
         private void CreateOrder()
         {
             string location = GetType().FullName + "." + nameof(CreateOrder);
@@ -1180,6 +1205,7 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // Will auto verify and select the correct product and parameters if available
         private void AutoFillParameterCells(int row)
         {
             if (OrderCreationViewModel.Prescriptions.Count > 0)

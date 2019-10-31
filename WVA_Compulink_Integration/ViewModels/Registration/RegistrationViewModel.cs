@@ -14,6 +14,7 @@ namespace WVA_Connect_CDI.ViewModels.Registration
 {
     public class RegistrationViewModel
     {
+        // Does a rought check to see if string is in an email format
         public bool IsValidEmail(string email)
         {
             try
@@ -28,6 +29,7 @@ namespace WVA_Connect_CDI.ViewModels.Registration
             }
         }
 
+        // Checks that string has: at least 8 characters, a capital letter, a number
         public bool IsComplexPassword(string password)
         {
             try
@@ -62,6 +64,7 @@ namespace WVA_Connect_CDI.ViewModels.Registration
             }
         }
 
+        // Creats a new user in the server database
         public User RegisterUser(string username, string password, string email)
         {
             // Post API response check

@@ -25,27 +25,14 @@ namespace WVA_Connect_CDI.ProductMatcher
         // minimum score requirement, the product will be added to the returned collection
         public List<MatchedProduct> FindMatches(Prescription prescription, double minimumScore)
         {
-            try
-            {
-                // Check for nulls
-                if (prescription == null || prescription.Product.Trim() == "")
-                    throw new NullReferenceException("'matchString' cannot be null or blank.");
+            // Check for nulls
+            if (prescription == null || prescription.Product.Trim() == "")
+                throw new NullReferenceException("'matchString' cannot be null or blank.");
 
-                if (WvaProducts.ListProducts == null || WvaProducts.ListProducts?.Count < 1)
-                    throw new NullReferenceException("'listProducts' cannot be null or empty");
+            if (WvaProducts.ListProducts == null || WvaProducts.ListProducts?.Count < 1)
+                throw new NullReferenceException("'listProducts' cannot be null or empty");
 
-                return GetMatches(prescription, minimumScore);
-            }
-            catch (Exception ex)
-            {
-                Error.ReportOrLog(ex);
-                return null;
-            }
-        }
-
-        // Returns a list of possible matches. The lowest index will have the highest match rating
-        private List<MatchedProduct> GetMatches(Prescription prescription, double minimumScore)
-        {
+            // Find Products 
             var listMatchProducts = new List<MatchedProduct>();
 
             foreach (Product product in WvaProducts.ListProducts)

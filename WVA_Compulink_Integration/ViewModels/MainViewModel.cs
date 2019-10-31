@@ -14,11 +14,13 @@ namespace WVA_Connect_CDI.ViewModels
 {
     public class MainViewModel
     {
+        // Does some checking to make sure database is set up properly and sets it up if it is not already
         public void SetupDatabase()
         {
             Database.SetUpDatabase();
         }
 
+        // Checks to see if account number was set in memory
         public bool AccountNumAvailable()
         {
             try
@@ -35,6 +37,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Sets important user data variables in memory by looking at some stored files 
         private void SetUserData()
         {
             // Set account number, api key, DSN to Mem user data
@@ -60,6 +63,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Reports all action data for this user for every day leading up to this point 
         public void ReportActionLogData()
         {
             List<ActionData> data = ActionLogger.GetDataNotToday();
@@ -76,6 +80,7 @@ namespace WVA_Connect_CDI.ViewModels
             }
         }
 
+        // Grabs WVA products from product endpoint and sets it in memory
         public async Task<bool> LoadProductsAsync()
         {
             try
