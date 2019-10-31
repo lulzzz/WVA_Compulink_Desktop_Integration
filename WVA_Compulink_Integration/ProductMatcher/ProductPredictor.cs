@@ -12,11 +12,18 @@ using WVA_Connect_CDI.ProductMatcher.Data;
 
 namespace WVA_Connect_CDI.ProductPredictions
 {
-    class ProductPrediction
+    public class ProductPredictor
     {
         public static double MatchScore { get; set; }
 
-        public static List<MatchedProduct> GetPredictionMatches(Prescription prescription, double matchScore, bool limitReturnedResults = false)
+        DescriptionMatcher matcher;
+
+        public ProductPredictor()
+        {
+            matcher = new DescriptionMatcher();
+        }
+
+        public List<MatchedProduct> GetPredictedMatches(Prescription prescription, double matchScore, bool limitReturnedResults = false)
         {
             // Check for nulls
             if (prescription == null || prescription.Product.Trim() == "")
@@ -47,7 +54,7 @@ namespace WVA_Connect_CDI.ProductPredictions
             }
         }
 
-        public static bool ProductChangeEnabled(string compulinkProduct)
+        public bool ProductChangeEnabled(string compulinkProduct)
         {
             var product = Database.GetLearnedProduct(compulinkProduct);
 
@@ -59,7 +66,7 @@ namespace WVA_Connect_CDI.ProductPredictions
                 return false;
         }
 
-        public static void LearnProduct(string compulinkProduct, string wvaProduct)
+        public void LearnProduct(string compulinkProduct, string wvaProduct)
         {
             // Check for nulls
             if (compulinkProduct == null || compulinkProduct.Trim() == "")
@@ -91,7 +98,7 @@ namespace WVA_Connect_CDI.ProductPredictions
             }
         }
 
-        public static MatchedProduct WvaProductExists(string product)
+        public MatchedProduct WvaProductExists(string product)
         {
             Product wvaProduct = WvaProducts.ListProducts.Where(x => x.Description == product).FirstOrDefault();
 
@@ -102,7 +109,7 @@ namespace WVA_Connect_CDI.ProductPredictions
         }
 
         // Get a list of wva product matches for a given compulink product
-        private static List<MatchedProduct> GetMatches(Prescription prescription, bool limitReturnedResults)
+        private List<MatchedProduct> GetMatches(Prescription prescription, bool limitReturnedResults)
         {
             var listMatches = new List<MatchedProduct>();
 
@@ -143,12 +150,12 @@ namespace WVA_Connect_CDI.ProductPredictions
             // If 0 numPicks show all matches (no confidence)
             else
             {
-                listMatches = DescriptionMatcher.FindMatches(prescription, MatchScore);
+                listMatches = matcher.FindMatches(prescription, MatchScore);
                 return listMatches;
             }
         }
 
-        private static List<MatchedProduct> FilterList(int countLimit, Prescription prescription, MatchedProduct suggestedProduct = null)
+        private List<MatchedProduct> FilterList(int countLimit, Prescription prescription, MatchedProduct suggestedProduct = null)
         {
             var listMatches = new List<MatchedProduct>();
 
@@ -162,7 +169,7 @@ namespace WVA_Connect_CDI.ProductPredictions
             }
 
             if (WvaProducts.ListProducts != null)
-                listMatches.AddRange(DescriptionMatcher.FindMatches(prescription, MatchScore));
+                listMatches.AddRange(matcher.FindMatches(prescription, MatchScore));
 
             // Remove match product in list that is the same as the suggested product
             if (listMatches.Count > 1)

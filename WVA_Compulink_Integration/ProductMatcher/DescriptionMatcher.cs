@@ -2,7 +2,6 @@
 using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.Models.Products;
-using WVA_Connect_CDI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +10,20 @@ using WVA_Connect_CDI.ProductMatcher.Models;
 
 namespace WVA_Connect_CDI.ProductMatcher
 {
-    class DescriptionMatcher
+    // This class is used to determine how close a compulink product (aka prescription)
+    // is to a WVA product by modifying it and assigning it a match score
+    public class DescriptionMatcher
     {
         // Pulls from user settings config file loaded after login 
         private static int CharSeqMaxScore  = UserData.Data.Settings.ProductMatcher.CharSequenceMaxScore;
         private static int WordMaxScore     = UserData.Data.Settings.ProductMatcher.SameWordMaxScore;
         private static int SkuTypeMaxScore  = UserData.Data.Settings.ProductMatcher.SkuTypeMaxScore;
-        private static int QuantityMaxScore = UserData.Data.Settings.ProductMatcher.QuantityMaxScore; 
+        private static int QuantityMaxScore = UserData.Data.Settings.ProductMatcher.QuantityMaxScore;
 
-        public static List<MatchedProduct> FindMatches(Prescription prescription, double minimumScore)
+        // This method will return a collection of Match Products for the given prescription and run 
+        // it against all WVA products. If the determined score is greater than or equal to the given
+        // minimum score requirement, the product will be added to the returned collection
+        public List<MatchedProduct> FindMatches(Prescription prescription, double minimumScore)
         {
             try
             {
@@ -40,7 +44,7 @@ namespace WVA_Connect_CDI.ProductMatcher
         }
 
         // Returns a list of possible matches. The lowest index will have the highest match rating
-        private static List<MatchedProduct> GetMatches(Prescription prescription, double minimumScore)
+        private List<MatchedProduct> GetMatches(Prescription prescription, double minimumScore)
         {
             var listMatchProducts = new List<MatchedProduct>();
 
@@ -51,7 +55,7 @@ namespace WVA_Connect_CDI.ProductMatcher
                     var matcherObject = BuildMatcherObject(prescription, product.Description);
 
                     // If the product score meets the minimum score defined by the caller, add it to list of possible matches
-                    if (matcherObject?.MatchScore > minimumScore)
+                    if (matcherObject?.MatchScore >= minimumScore)
                     {
                         // Make sure this product doesn't exist in our list of matches already
                         if (!listMatchProducts.Exists(x => x.ProductName == product.Description))
@@ -72,7 +76,7 @@ namespace WVA_Connect_CDI.ProductMatcher
         //              Build a Matcher Object 
         // ----------------------------------------------------------------------------------------------------
 
-        private static PreMatchedProduct BuildMatcherObject(Prescription compulinkPrescription, string wisVisProduct)
+        private PreMatchedProduct BuildMatcherObject(Prescription compulinkPrescription, string wisVisProduct)
         {
             string p = compulinkPrescription.Product + compulinkPrescription.Type ?? "";
 
@@ -96,7 +100,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return MatcherProduct;
         }
 
-        private static string SanitizeProductName(string productName)
+        private string SanitizeProductName(string productName)
         {
             productName = RemoveGarbage(productName);
             productName = AdjustProductName(productName);
@@ -107,7 +111,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return productName;
         }
 
-        private static string RemoveGarbage(string productName)
+        private string RemoveGarbage(string productName)
         {
             // Null check
             if (productName == null)
@@ -150,7 +154,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return productName;
         }
 
-        private static string AdjustProductName(string originalString)
+        private string AdjustProductName(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -183,7 +187,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return originalString;
         }
 
-        private static string AdjustSKUType(string originalString)
+        private string AdjustSKUType(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -213,7 +217,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return originalString.Trim();
         }
 
-        private static string AdjustQuantity(string originalString)
+        private string AdjustQuantity(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -228,7 +232,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return originalString;
         }
 
-        private static string BoostDullProducts(string originalString)
+        private string BoostDullProducts(string originalString)
         {
             // Null check
             if (originalString == null)
@@ -244,7 +248,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return originalString;
         }
 
-        private static PreMatchedProduct SetQuantity(PreMatchedProduct matcherProduct)
+        private PreMatchedProduct SetQuantity(PreMatchedProduct matcherProduct)
         {
             // Null check
             if (matcherProduct == null)
@@ -267,7 +271,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return matcherProduct;
         }
 
-        private static string RemoveQuantityFromProductName(string productName)
+        private string RemoveQuantityFromProductName(string productName)
         {
             // Null check
             if (productName == null)
@@ -283,7 +287,7 @@ namespace WVA_Connect_CDI.ProductMatcher
                               .Replace("trial", "");
         }
 
-        private static string ReplaceLastOccurrence(string source, string find, string replace)
+        private string ReplaceLastOccurrence(string source, string find, string replace)
         {
             // Check for null input
             if (source == null || find == null || replace == null)
@@ -302,7 +306,7 @@ namespace WVA_Connect_CDI.ProductMatcher
         //              Core Matching Functions
         // ----------------------------------------------------------------------------------------------------
 
-        private static double GetCharacterSequenceMatchScore(string compulinkProductName, string wvaProductName)
+        private double GetCharacterSequenceMatchScore(string compulinkProductName, string wvaProductName)
         {
             var a_charList = compulinkProductName.ToCharArray().ToList();
             a_charList.RemoveAll(x => x.Equals(' '));
@@ -336,7 +340,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return CharSeqMaxScore * (score / a_charList.Count);
         }
 
-        private static double GetWordMatchScore(string compulinkProductName, string wvaProductName)
+        private double GetWordMatchScore(string compulinkProductName, string wvaProductName)
         {
             List<string> a_Words = compulinkProductName.Split(' ').ToList();
             List<string> b_Words = wvaProductName.Split(' ').ToList();
@@ -350,7 +354,7 @@ namespace WVA_Connect_CDI.ProductMatcher
             return (WordMaxScore * ((double)sharedWords.Count() / a_Words.Count()));
         }
 
-        private static double GetSkuTypeMatchScore(string compulinkProductSKU, string wvaProductSKU)
+        private double GetSkuTypeMatchScore(string compulinkProductSKU, string wvaProductSKU)
         {
             if (compulinkProductSKU == wvaProductSKU)
                 return SkuTypeMaxScore;
@@ -358,7 +362,7 @@ namespace WVA_Connect_CDI.ProductMatcher
                 return 0;
         }
 
-        private static double GetQuantityMatchScore(string prodToMatch, string wvaProduct)
+        private double GetQuantityMatchScore(string prodToMatch, string wvaProduct)
         {
             // Null check
             if (prodToMatch == null || wvaProduct == null)
@@ -384,7 +388,7 @@ namespace WVA_Connect_CDI.ProductMatcher
         //              Helper Functions
         // ----------------------------------------------------------------------------------------------------
 
-        private static string GetSkuType(Prescription p)
+        private string GetSkuType(Prescription p)
         {
             // These params are required by all products. If one is null, something is wrong
             if (string.IsNullOrWhiteSpace(p.BaseCurve) || string.IsNullOrWhiteSpace(p.Sphere))
@@ -426,7 +430,7 @@ namespace WVA_Connect_CDI.ProductMatcher
                 return null;
         }
 
-        private static string GetSkuType(string productName)
+        private string GetSkuType(string productName)
         {
             // Null check
             if (productName == null)
@@ -454,7 +458,7 @@ namespace WVA_Connect_CDI.ProductMatcher
                 return null;
         }
 
-        private static PreMatchedProduct AverageOutWordMatchScore(PreMatchedProduct matcherProduct)
+        private PreMatchedProduct AverageOutWordMatchScore(PreMatchedProduct matcherProduct)
         {
             // The purpose of this is to balance out character sequence and word match score.
             // Gives products with no spaces in them the ability to have a high score instead of needing to be spelled and spaced out correctly 

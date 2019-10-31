@@ -36,10 +36,15 @@ namespace WVA_Connect_CDI.Views.Orders
         public int SelectedRow { get; set; }
         public int SelectedColumn { get; set; }
         public static string ViewMode { get; set; }
-        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
+
+        OrderCreationViewModel orderCreationViewModel;
+        ProductPredictor productPredictor;
 
         public OrderCreationView()
         {
+            orderCreationViewModel = new OrderCreationViewModel();
+            productPredictor = new ProductPredictor();
+
             InitializeComponent();
             SetUpUI();
         }
@@ -1274,7 +1279,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     OrderCreationViewModel.Prescriptions[row].ProductImagePath = @"/Resources/CheckMarkCircle.png";
 
                     // Only learn product if product change is enabled for this compulink product 
-                    if (ProductPrediction.ProductChangeEnabled(compulinkProduct))  ProductPrediction.LearnProduct(compulinkProduct, selectedItem);
+                    if (productPredictor.ProductChangeEnabled(compulinkProduct))  productPredictor.LearnProduct(compulinkProduct, selectedItem);
                 }
                 if (column == 5)
                     OrderCreationViewModel.Prescriptions[row].BaseCurve = selectedItem;

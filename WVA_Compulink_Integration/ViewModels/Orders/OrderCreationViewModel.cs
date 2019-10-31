@@ -26,9 +26,11 @@ namespace WVA_Connect_CDI.ViewModels.Orders
         public static string OrderName { get; set; }
         // </note>
 
+        ProductPredictor productPredictor;
+
         public OrderCreationViewModel()
         {
-            
+            productPredictor = new ProductPredictor();
         }
 
         public OrderCreationViewModel(List<Prescription> listPrescriptions, string orderName)
@@ -167,7 +169,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                     prescription.Product = prescription.Product.Trim();
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, limitReturnedResults);
+                    var matchProducts = productPredictor.GetPredictedMatches(prescription, matchScore, limitReturnedResults);
 
                     if (matchProducts?.Count > 0)
                     {
@@ -208,7 +210,7 @@ namespace WVA_Connect_CDI.ViewModels.Orders
                     prescription.Product = prescription.Product.Trim();
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    var matchProducts = ProductPrediction.GetPredictionMatches(prescription, matchScore, overrideNumPicks);
+                    var matchProducts = productPredictor.GetPredictedMatches(prescription, matchScore, overrideNumPicks);
 
                     if (matchProducts?.Count > 0)
                     {

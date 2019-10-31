@@ -23,11 +23,17 @@ namespace WVA_Connect_CDI.Views.Orders
     {
         private int SelectedRow { get; set; }
         private int SelectedColumn { get; set; }
-        public BatchOrderCreationUserControlViewModel viewModel = new BatchOrderCreationUserControlViewModel();
-        OrderCreationViewModel orderCreationViewModel = new OrderCreationViewModel();
+
+        public BatchOrderCreationUserControlViewModel viewModel;
+        OrderCreationViewModel orderCreationViewModel;
+        ProductPredictor productPredictor;
 
         public BatchOrderLayoutUserControl(string orderName, List<Prescription> prescriptions)
         {
+            viewModel = new BatchOrderCreationUserControlViewModel();
+            orderCreationViewModel = new OrderCreationViewModel();
+            productPredictor = new ProductPredictor();
+
             InitializeComponent();
             SetTitle(orderName, prescriptions);
             SetUpDatagrid(prescriptions);
@@ -267,7 +273,7 @@ namespace WVA_Connect_CDI.Views.Orders
                         throw new Exception("List<WVA_Products> is null or empty!");
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    List<MatchedProduct> matchProducts = ProductPrediction.GetPredictionMatches(prescription, MatchScore, overrideNumPicks);
+                    List<MatchedProduct> matchProducts = productPredictor.GetPredictedMatches(prescription, MatchScore, overrideNumPicks);
 
                     if (matchProducts?.Count > 0)
                     {
@@ -320,7 +326,7 @@ namespace WVA_Connect_CDI.Views.Orders
                         throw new Exception("List<WVA_Products> is null or empty!");
 
                     // Run match finder for product and return results based on numPicks (number of times same product has been chosen)
-                    List<MatchedProduct> matchProducts = ProductPrediction.GetPredictionMatches(prescription, MatchScore, overrideNumPicks);
+                    List<MatchedProduct> matchProducts = productPredictor.GetPredictedMatches(prescription, MatchScore, overrideNumPicks);
 
                     if (matchProducts?.Count > 0)
                     {
@@ -666,7 +672,7 @@ namespace WVA_Connect_CDI.Views.Orders
                     viewModel.Prescriptions[row].ProductImagePath = @"/Resources/CheckMarkCircle.png";
 
                     // Only learn product if product change is enabled for this compulink product 
-                    if (ProductPrediction.ProductChangeEnabled(compulinkProduct)) ProductPrediction.LearnProduct(compulinkProduct, selectedItem);
+                    if (productPredictor.ProductChangeEnabled(compulinkProduct)) productPredictor.LearnProduct(compulinkProduct, selectedItem);
                 }
                 if (column == 5)
                     viewModel.Prescriptions[row].BaseCurve = selectedItem;
