@@ -102,7 +102,7 @@ namespace WVA_Connect_CDI.Views
                  AppVersionLabel.Content = $"Version: {version}";
 
                  // Move Product Prediction database from AppData to Public docs in case user has an older version of the app
-                 if (ShouldMoveProductPredictionDatabase(version))  MoveProductPredictionDatabase();
+                 if (ShouldMoveProductPredictionDatabase())  MoveProductPredictionDatabase();
 
                 // Set the main data context to the Compulink orders view if their account number is set
                 if (mainViewModel.AccountNumAvailable())
@@ -121,11 +121,11 @@ namespace WVA_Connect_CDI.Views
             }
         }
 
-        private bool ShouldMoveProductPredictionDatabase(string version)
+        private bool ShouldMoveProductPredictionDatabase()
         {
             try
             {
-                return Convert.ToInt32(version.Replace(".", "")) < 1212 ? true : false;
+                return File.Exists(AppPath.UserDataDir + "ProductPrediction.sqlite") ? true : false;
             }
             catch
             {
