@@ -25,13 +25,16 @@ namespace WVA_Connect_CDI.ProductMatcher.Data
                 // Create product database file if it's not created already and set up table
                 if (!File.Exists($"{AppPath.ProductDatabaseFile}"))
                 {
+                    Directory.CreateDirectory(AppPath.PublicDataDir);
                     SQLiteConnection.CreateFile($"{AppPath.ProductDatabaseFile}");
                     SqliteDataAccess.CreateProductsTable();
                 }
 
                 // Check if products table exists 
                 if (!SqliteDataAccess.ProductTableExists())
+                {
                     SqliteDataAccess.CreateProductsTable();
+                }
 
                 // Create the ChangeEnabled column if it doesn't exist
                 SqliteDataAccess.AddChangeEnabledColumn();
