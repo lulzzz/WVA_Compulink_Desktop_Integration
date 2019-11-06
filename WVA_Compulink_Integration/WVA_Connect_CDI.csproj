@@ -38,8 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\logo_plain_vector_72_white_TMD_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -107,7 +106,6 @@
     </ApplicationDefinition>
     <Compile Include="Errors\Error.cs" />
     <Compile Include="Errors\JsonError.cs" />
-    <Compile Include="Memory\ListPatients.cs" />
     <Compile Include="Memory\Orders.cs" />
     <Compile Include="Memory\UserData.cs" />
     <Compile Include="Memory\WvaProducts.cs" />
@@ -146,7 +144,6 @@
     <Compile Include="Models\ProductParameters\Derived\Sphere.cs" />
     <Compile Include="Models\ProductParameters\Derived\UPC.cs" />
     <Compile Include="Models\Products\Product.cs" />
-    <Compile Include="ProductMatcher\ProductCrossRefDict.cs" />
     <Compile Include="Models\Products\ProductIn\ProductIn.cs" />
     <Compile Include="Models\Products\ProductItem.cs" />
     <Compile Include="Models\Products\ProductOut\ProductOut.cs" />
@@ -168,13 +165,13 @@
     <Compile Include="Models\Validations\ValidationResponse.cs" />
     <Compile Include="Models\Validations\ValidationWrapper.cs" />
     <Compile Include="Models\Validations\Validator.cs" />
-    <Compile Include="ProductMatcher\MatcherProduct.cs" />
-    <Compile Include="ProductMatcher\MatchProduct.cs" />
+    <Compile Include="ProductMatcher\Models\PreMatchedProduct.cs" />
+    <Compile Include="ProductMatcher\Models\MatchedProduct.cs" />
     <Compile Include="ProductMatcher\DescriptionMatcher.cs" />
-    <Compile Include="ProductMatcher\ProductPredictions\Database.cs" />
-    <Compile Include="ProductMatcher\ProductPredictions\Models\LearnedProduct.cs" />
-    <Compile Include="ProductMatcher\ProductPredictions\ProductPrediction.cs" />
-    <Compile Include="ProductMatcher\ProductPredictions\SqliteDataAccess.cs" />
+    <Compile Include="ProductMatcher\Data\Database.cs" />
+    <Compile Include="ProductMatcher\Models\LearnedProduct.cs" />
+    <Compile Include="ProductMatcher\ProductPredictor.cs" />
+    <Compile Include="ProductMatcher\Data\SqliteDataAccess.cs" />
     <Compile Include="Security\Crypto.cs" />
     <Compile Include="Updates\Updater.cs" />
     <Compile Include="Utility\Actions\ActionData.cs" />

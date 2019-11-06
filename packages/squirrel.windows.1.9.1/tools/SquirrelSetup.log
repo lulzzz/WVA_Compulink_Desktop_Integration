@@ -1389,3 +1389,257 @@ File name: 'C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desk
 2019-11-05 16:37:44> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
 2019-11-05 16:37:44> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
 2019-11-05 16:37:44> Program: Building embedded zip file for Setup.exe
+2019-11-05 16:48:59> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.12.nupkg --setupIcon C:\Users\evan\Desktop\Resources\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-11-05 16:48:59> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-11-05 16:48:59> Program: Creating release package: C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.12.nupkg
+2019-11-05 16:48:59> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.12.nupkg => C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.12-full.nupkg
+2019-11-05 16:48:59> ReleasePackage: Extracting dependent packages: []
+2019-11-05 16:48:59> ReleasePackage: Removing unnecessary data
+2019-11-05 16:48:59> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempa\WVA_Connect_CDI.nuspec
+2019-11-05 16:49:00> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.11-full.nupkg and C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.12-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempb
+2019-11-05 16:49:00> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempa\lib\net45\Dapper.dll => C:\Users\evan\AppData\Local\SquirrelTemp\tempb\lib\net45\Dapper.dll
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Microsoft.Win32.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\netstandard.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.AppContext.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Collections.Concurrent.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Collections.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Collections.NonGeneric.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Collections.Specialized.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.ComponentModel.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.ComponentModel.EventBasedAsync.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.ComponentModel.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.ComponentModel.TypeConverter.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Console.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Data.Common.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.diff not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.shasum not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Contracts.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Debug.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.FileVersionInfo.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Process.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.StackTrace.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.TextWriterTraceListener.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Tools.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.TraceSource.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Tracing.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Drawing.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Dynamic.Runtime.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Globalization.Calendars.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Globalization.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Globalization.Extensions.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.Compression.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.Compression.ZipFile.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.DriveInfo.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.Watcher.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.IsolatedStorage.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.MemoryMappedFiles.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.Pipes.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.IO.UnmanagedMemoryStream.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Linq.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Linq.Expressions.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Linq.Parallel.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Linq.Queryable.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.Http.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.NameResolution.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.NetworkInformation.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.Ping.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.Requests.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.Security.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.Sockets.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.WebHeaderCollection.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.WebSockets.Client.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Net.WebSockets.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.ObjectModel.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Reflection.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Reflection.Extensions.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Reflection.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Resources.Reader.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Resources.ResourceManager.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Resources.Writer.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.CompilerServices.VisualC.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.Extensions.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.Handles.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.InteropServices.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.Numerics.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Formatters.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Json.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Xml.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.Claims.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Algorithms.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Csp.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Encoding.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Primitives.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.X509Certificates.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.Principal.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Security.SecureString.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Text.Encoding.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Text.Encoding.Extensions.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Text.RegularExpressions.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Threading.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Threading.Overlapped.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Threading.Tasks.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Threading.Tasks.Parallel.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Threading.Thread.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Threading.ThreadPool.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Threading.Timer.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.ValueTuple.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Xml.ReaderWriter.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Xml.XDocument.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Xml.XmlDocument.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Xml.XmlSerializer.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Xml.XPath.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: \lib\net45\System.Xml.XPath.XDocument.dll not found in base package, marking as new
+2019-11-05 16:49:00> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempa\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempb\lib\net45\WVA_Connect_CDI.exe
+2019-11-05 16:49:01> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-11-05 16:49:01> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempa\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempb\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-11-05 16:49:01> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-11-05 16:49:01> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-11-05 16:49:01> Program: Building embedded zip file for Setup.exe
+2019-11-06 07:24:11> Program: Starting Squirrel Updater: --releasify Versions\WVA_Connect_CDI.1.2.13.nupkg --setupIcon C:\Users\evan\Desktop\Resources\Icons\logo_plain_vector_72_white_TMD_icon.ico
+2019-11-06 07:24:12> Program: Bootstrapper EXE found at:C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\packages\squirrel.windows.1.9.1\tools\Setup.exe
+2019-11-06 07:24:12> Program: Creating release package: C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.13.nupkg
+2019-11-06 07:24:12> ReleasePackage: Creating release package: C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI.1.2.13.nupkg => C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.13-full.nupkg
+2019-11-06 07:24:12> ReleasePackage: Extracting dependent packages: []
+2019-11-06 07:24:12> ReleasePackage: Removing unnecessary data
+2019-11-06 07:24:12> ReleasePackage: No release notes found in C:\Users\evan\AppData\Local\SquirrelTemp\tempa\WVA_Connect_CDI.nuspec
+2019-11-06 07:24:12> DeltaPackageBuilder: Extracting .\Releases\WVA_Connect_CDI-1.2.12-full.nupkg and C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\Releases\WVA_Connect_CDI-1.2.13-full.nupkg into C:\Users\evan\AppData\Local\SquirrelTemp\tempb
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Dapper.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.MsDelta.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\DeltaCompressionDotNet.PatchApi.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Microsoft.Win32.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Mono.Cecil.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Mdb.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Pdb.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Mono.Cecil.Rocks.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\netstandard.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Newtonsoft.Json.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\NuGet.Squirrel.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\SharpCompress.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Splat.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\Squirrel.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.AppContext.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Collections.Concurrent.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Collections.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Collections.NonGeneric.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Collections.Specialized.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.ComponentModel.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.ComponentModel.EventBasedAsync.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.ComponentModel.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.ComponentModel.TypeConverter.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Console.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Data.Common.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.config hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.diff not found in base package, marking as new
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Data.SQLite.dll.shasum not found in base package, marking as new
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Contracts.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Debug.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.FileVersionInfo.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Process.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.StackTrace.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.TextWriterTraceListener.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Tools.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.TraceSource.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Diagnostics.Tracing.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Drawing.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Dynamic.Runtime.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Globalization.Calendars.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Globalization.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Globalization.Extensions.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.Compression.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.Compression.ZipFile.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.DriveInfo.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.FileSystem.Watcher.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.IsolatedStorage.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.MemoryMappedFiles.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.Pipes.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.IO.UnmanagedMemoryStream.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Linq.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Linq.Expressions.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Linq.Parallel.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Linq.Queryable.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.Http.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.NameResolution.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.NetworkInformation.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.Ping.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.Requests.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.Security.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.Sockets.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.WebHeaderCollection.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.WebSockets.Client.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Net.WebSockets.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.ObjectModel.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Reflection.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Reflection.Extensions.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Reflection.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Resources.Reader.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Resources.ResourceManager.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Resources.Writer.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.CompilerServices.VisualC.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.Extensions.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.Handles.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.InteropServices.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.Numerics.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Formatters.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Json.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Runtime.Serialization.Xml.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.Claims.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Algorithms.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Csp.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Encoding.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.Primitives.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.Cryptography.X509Certificates.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.Principal.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Security.SecureString.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Text.Encoding.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Text.Encoding.Extensions.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Text.RegularExpressions.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Threading.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Threading.Overlapped.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Threading.Tasks.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Threading.Tasks.Parallel.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Threading.Thread.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Threading.ThreadPool.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Threading.Timer.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.ValueTuple.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Xml.ReaderWriter.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Xml.XDocument.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Xml.XmlDocument.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Xml.XmlSerializer.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Xml.XPath.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\System.Xml.XPath.XDocument.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempa\lib\net45\WVA_Connect_CDI.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempb\lib\net45\WVA_Connect_CDI.exe
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\WVA_Connect_CDI.exe.config hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: Delta patching C:\Users\evan\AppData\Local\SquirrelTemp\tempa\lib\net45\WVA_Connect_CDI_ExecutionStub.exe => C:\Users\evan\AppData\Local\SquirrelTemp\tempb\lib\net45\WVA_Connect_CDI_ExecutionStub.exe
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\x64\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-11-06 07:24:13> DeltaPackageBuilder: \lib\net45\x86\SQLite.Interop.dll hasn't changed, writing dummy file
+2019-11-06 07:24:14> Program: Building embedded zip file for Setup.exe

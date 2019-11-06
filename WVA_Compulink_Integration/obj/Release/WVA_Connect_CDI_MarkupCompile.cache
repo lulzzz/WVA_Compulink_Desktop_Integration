@@ -12,9 +12,9 @@ TRACE
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\App.xaml
 2148047397
 
-112-555581473
+112-838305152
 134-222025977
 Views\LoadingWindow.xaml;Views\Login\AccountSetupWindow.xaml;Views\Login\ChangePasswordWindow.xaml;Views\Login\ForgotPasswordWindow.xaml;Views\Login\IpConfigWindow.xaml;Views\Login\LoginWindow.xaml;Views\MainWindow.xaml;Views\ManageView.xaml;Views\MessageWindow.xaml;Views\OrdersView.xaml;Views\Orders\BatchOrderCreationView.xaml;Views\Orders\BatchOrderLayoutUserControl.xaml;Views\Orders\CompulinkOrders.xaml;Views\Orders\OrderCreationView.xaml;Views\Orders\ViewOrderDetails.xaml;Views\Orders\WVAOrders.xaml;Views\Registration\RegistrationWindow.xaml;Views\ResourceDict\Styles.xaml;Views\SettingsView.xaml;Views\UpdateAvailableWindow.xaml;Views\WindowErrors\ErrorWindow.xaml;
 
-True
+False
 

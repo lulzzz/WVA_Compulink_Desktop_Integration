@@ -306,6 +306,7 @@ namespace WVA_Connect_CDI.Views.Orders
             RefreshOrders();
         }
 
+        // Datagrid row click double click event
         private void WvaOrdersDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
@@ -324,12 +325,14 @@ namespace WVA_Connect_CDI.Views.Orders
             }
         }
 
+        // View loaded
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             string location = GetType().FullName + nameof(UserControl_Loaded);
             ActionLogger.Log(location);
         }
 
+        // View unloaded
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             string location = GetType().FullName + nameof(UserControl_Unloaded);
