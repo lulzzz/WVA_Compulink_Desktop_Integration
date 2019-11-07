@@ -5,8 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.ProductMatcher.Data;
 using WVA_Connect_CDI.ProductMatcher.Models;
+using WVA_Connect_CDI.ProductPredictions;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.Utility.Files;
 
@@ -185,5 +188,32 @@ namespace WVA_Connect_CDI.ViewModels
             return true;
         }
         
+        //
+        // Get product matches
+        //
+
+        public List<string> GetWvaDropDownMatches(string compulinkProduct)
+        {
+            try
+            {
+                // Find a match for product and return list of matches
+                var listWvaMatches = new List<string>();
+                var prescription = new Prescription() { Product = compulinkProduct };
+                var matches = new ProductPredictor().GetPredictedMatches(prescription, 50);
+
+                // Set List<matchedProduct> to list<string> matches 
+                foreach (MatchedProduct match in matches)
+                    listWvaMatches.Add(match.ProductName);
+
+                return listWvaMatches;
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+                return null;
+            }
+        }
+
+
     }
 }

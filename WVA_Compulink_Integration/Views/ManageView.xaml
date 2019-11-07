@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WVA_Connect_CDI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="500" 
-             d:DesignWidth="800"
+             d:DesignWidth="900"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded">
 
@@ -275,7 +275,7 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="275"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="100"/>

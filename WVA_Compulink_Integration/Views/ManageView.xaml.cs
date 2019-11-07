@@ -286,20 +286,8 @@ namespace WVA_Connect_CDI.Views
 
             if (compulinkProduct.Trim() != "")
             {
-                // Find a match for product and return list of matches
-                var ListWvaMatches = new List<string>();
-
-                var prescription = new Prescription() { Product = compulinkProduct };
-                var matches = new ProductPredictor().GetPredictedMatches(prescription, 50);
-
-                // Set List<matchedProduct> to list<string> matches 
-                foreach (MatchedProduct match in matches)
-                {
-                    ListWvaMatches.Add(match.ProductName);
-                }
-
                 // Set combo box items
-                WvaProductComboBox.ItemsSource = ListWvaMatches;
+                WvaProductComboBox.ItemsSource = manageViewModel.GetWvaDropDownMatches(compulinkProduct);
             }
         }
     }
