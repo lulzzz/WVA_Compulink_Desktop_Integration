@@ -131,6 +131,7 @@
             <RowDefinition Height="79"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
@@ -151,12 +152,13 @@
                    VerticalAlignment="Bottom"
                    Margin="20,0,20,0"/>
 
-        <!-- Row Def 1 -->
+        <!-- Row Def 1 -->     
         
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom">
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,20,0">
 
             <Button Name="CheckAllButton"
                     Width="120"
@@ -171,7 +173,7 @@
             <Button Name="UnCheckAllButton"
                     Width="120"
                     Height="30"
-                    Margin="0,0,20,0"
+                    Margin="0,0,0,0"
                     Content="UnCheck All"
                     FontSize="18"
                     HorizontalAlignment="Center"
@@ -183,7 +185,7 @@
         <!-- Row Def 2 -->
 
         <DataGrid Name="LearnedProductsDataGrid"
-                  Margin="20,10,20,20"
+                  Margin="20,10,20,0"
                   Grid.Row="2"
                   FontWeight="Bold"
                   AutoGenerateColumns="False"
@@ -232,21 +234,51 @@
         
         <!-- Row Def 3 -->
 
-        <Rectangle Grid.Row="3"
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,20,0">
+
+            <Button Name="ImportMatchesButton"
+                    Width="200"
+                    Height="30"
+                    Margin="20,0,0,0"
+                    Content="Import Matches"
+                    FontSize="16"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="ImportMatchesButton_Click"/>
+
+            <Button Name="ImportCompulinkProductsButton"
+                    Width="250"
+                    Height="30"
+                    Margin="20,0,0,0"
+                    Content="Import Compulink Products"
+                    FontSize="16"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="ImportCompulinkProductsButton_Click"/>
+            
+        </StackPanel>
+
+        <!-- Row Def 4 -->
+        
+        <Rectangle Grid.Row="4"
                    Height="3"
                    Fill="Black"
                    Margin="20,0,20,0"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Top"/>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="110"/>
-                <ColumnDefinition Width="223"/>
+                <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
@@ -268,7 +300,8 @@
                          Height="30"
                          FontSize="20"
                          VerticalContentAlignment="Center"
-                         FontFamily="Sitka Text"/>
+                         FontFamily="Sitka Text"
+                         MouseLeave="CompulinkProductTextBox_MouseLeave"/>
 
             </StackPanel>
 
@@ -277,7 +310,7 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Center"
                         Grid.Column="2">
-                
+
                 <Label Name="WvaProductLabel"
                        Content="WVA Product"
                        FontFamily="Sitka Text"
@@ -285,12 +318,14 @@
                        Height="30"
                        FontSize="18"/>
 
-                <TextBox Name="WvaProductTextBox"
-                         Height="30"
-                         FontSize="20"
-                         VerticalContentAlignment="Center"
-                         FontFamily="Sitka Text"/>
-
+                <ComboBox Name="WvaProductComboBox"
+                          Height="30"
+                          FontSize="16"
+                          IsEditable="True"
+                          VerticalContentAlignment="Center"
+                          FontFamily="Sitka Text" 
+                          Margin="0,0,-0,0"/>
+                   
             </StackPanel>
 
             <StackPanel Orientation="Vertical"
@@ -330,21 +365,6 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Click="AddButton_Click"/>
-
-                <Rectangle Margin="10,20,10,20"
-                           Width="3"
-                           VerticalAlignment="Stretch"
-                           Fill="Black"/>
-
-                <Button Name="ImportButton"
-                        Width="100"
-                        Height="30"
-                        Margin="0,0,0,0"
-                        Content="Import"
-                        FontSize="20"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Click="ImportButton_Click"/>
 
             </StackPanel>
 

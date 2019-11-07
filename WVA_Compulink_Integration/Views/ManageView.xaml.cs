@@ -6,8 +6,10 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.ProductMatcher.Data;
 using WVA_Connect_CDI.ProductMatcher.Models;
+using WVA_Connect_CDI.ProductPredictions;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.ViewModels;
 
@@ -23,7 +25,7 @@ namespace WVA_Connect_CDI.Views
         public ManageView()
         {
             manageViewModel = new ManageViewModel();
-
+            
             InitializeComponent();
             RefreshGrid();
             SetUpContextMenu();
@@ -45,7 +47,7 @@ namespace WVA_Connect_CDI.Views
             return new LearnedProduct()
             {
                 CompulinkProduct = CompulinkProductTextBox.Text,
-                WvaProduct = WvaProductTextBox.Text,
+                WvaProduct = WvaProductComboBox.Text,
                 ChangeEnabled = (bool)IsEditableCheckBox.IsChecked,
                 NumPicks = 10
             };
@@ -60,7 +62,7 @@ namespace WVA_Connect_CDI.Views
         private void ResetCreateLearnedProductElements()
         {
             CompulinkProductTextBox.Text = "";
-            WvaProductTextBox.Text = "";
+            WvaProductComboBox.Text = "";
             IsEditableCheckBox.IsChecked = true;
         }
 
@@ -126,18 +128,22 @@ namespace WVA_Connect_CDI.Views
             }
         }
 
-        private void ImportButton_Click(object sender, RoutedEventArgs e)
+        private void ImportMatchesButton_Click(object sender, RoutedEventArgs e)
         {
             // Action Logging
-            string location = GetType().FullName + "." + "." + nameof(ImportButton_Click);
+            string location = GetType().FullName + "." + "." + nameof(ImportMatchesButton_Click);
             string actionMessage = $"<Import_Products_Start>";
             ActionLogger.Log(location, actionMessage);
 
             try
             {
-                manageViewModel.ImportLearnedProducts();
-                RefreshGrid();
-                MessageBox.Show("Products imported! Check your desktop to see import results.", "");
+                bool imported = manageViewModel.ImportLearnedProducts();
+
+                if (imported)
+                {
+                    RefreshGrid();
+                    MessageBox.Show("Products imported! Check your desktop to see import results.", "");
+                }
             }
             catch (FileFormatException ex)
             {
@@ -145,10 +151,11 @@ namespace WVA_Connect_CDI.Views
             }
             catch (FileNotFoundException ex)
             {
-                MessageBox.Show(ex.Message, "");
+                MessageBox.Show("Could not find file!", "");
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message, "");
                 Error.ReportOrLog(ex);
             }
             finally
@@ -156,6 +163,11 @@ namespace WVA_Connect_CDI.Views
                 actionMessage = $"<Import_Products_End>";
                 ActionLogger.Log(location, actionMessage);
             }
+        }
+
+        private void ImportCompulinkProductsButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void WvaProductsContextMenu_Click(object sender, RoutedEventArgs e)
@@ -265,6 +277,30 @@ namespace WVA_Connect_CDI.Views
             string location = GetType().FullName + "." + "." + nameof(UserControl_Unloaded);
             string actionMessage = $"<ManageViewLeave>";
             ActionLogger.Log(location, actionMessage);
+        }
+
+        private void CompulinkProductTextBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            // Get the compulink product to match 
+            string compulinkProduct = CompulinkProductTextBox.Text;
+
+            if (compulinkProduct.Trim() != "")
+            {
+                // Find a match for product and return list of matches
+                var ListWvaMatches = new List<string>();
+
+                var prescription = new Prescription() { Product = compulinkProduct };
+                var matches = new ProductPredictor().GetPredictedMatches(prescription, 50);
+
+                // Set List<matchedProduct> to list<string> matches 
+                foreach (MatchedProduct match in matches)
+                {
+                    ListWvaMatches.Add(match.ProductName);
+                }
+
+                // Set combo box items
+                WvaProductComboBox.ItemsSource = ListWvaMatches;
+            }
         }
     }
 }

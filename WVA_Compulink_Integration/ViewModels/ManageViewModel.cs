@@ -106,13 +106,13 @@ namespace WVA_Connect_CDI.ViewModels
         //
 
         // Imports a csv or txt file to inject product matches into the database
-        public void ImportLearnedProducts()
+        public bool ImportLearnedProducts()
         {
             string file = GetCsvPath();
 
             if (file == null || file.Trim() == "")
             {
-                return;
+                return false;
             }
             else if (!CsvInCorrectFormat(File.ReadAllLines(file)))
             {
@@ -146,6 +146,8 @@ namespace WVA_Connect_CDI.ViewModels
                     
                     File.AppendAllText(importFile, message + "\n");
                 }
+
+                return true;
             }
         }
 
