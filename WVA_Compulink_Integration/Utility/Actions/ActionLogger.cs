@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace WVA_Connect_CDI.Utility.Actions
 {
@@ -62,7 +63,14 @@ namespace WVA_Connect_CDI.Utility.Actions
             try
             {
                 string time = DateTime.Now.ToString("hh:mm:ss");
-                return $"ApiKey={UserData.Data?.ApiKey} => MachName={Environment.MachineName} => EnvUserName={Environment.UserName} => AppUserName={UserData.Data?.UserName} => ActNum={UserData.Data?.Account} => {time} => {actionLocation}";
+                return $"ApiKey={UserData.Data?.ApiKey} => " +
+                       $"MachName={Environment.MachineName} => " +
+                       $"EnvUserName={Environment.UserName} => " +
+                       $"AppUserName={UserData.Data?.UserName} => " +
+                       $"ActNum={UserData.Data?.Account} => " +
+                       $"AppVersion={FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion} => " +
+                       $"{time} => " +
+                       $"{actionLocation}";
             }
             catch
             {
