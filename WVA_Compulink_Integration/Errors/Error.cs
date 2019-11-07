@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WVA_Connect_CDI.Utility.Actions;
+using System.Diagnostics;
 
 namespace WVA_Connect_CDI.Errors
 {
@@ -70,7 +71,7 @@ namespace WVA_Connect_CDI.Errors
                 ActNum = UserData.Data?.Account,
                 Error = e.ToString(),
                 Application = Assembly.GetCallingAssembly().GetName().Name,
-                AppVersion = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString(),
+                AppVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion,
                 UserName = Environment.UserName,
                 MachineName = Environment.MachineName
             };
