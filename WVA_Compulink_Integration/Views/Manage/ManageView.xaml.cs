@@ -11,9 +11,9 @@ using WVA_Connect_CDI.ProductMatcher.Data;
 using WVA_Connect_CDI.ProductMatcher.Models;
 using WVA_Connect_CDI.ProductPredictions;
 using WVA_Connect_CDI.Utility.Actions;
-using WVA_Connect_CDI.ViewModels;
+using WVA_Connect_CDI.ViewModels.Manage;
 
-namespace WVA_Connect_CDI.Views
+namespace WVA_Connect_CDI.Views.Manage
 {
     /// <summary>
     /// Interaction logic for ManageView.xaml
@@ -167,7 +167,29 @@ namespace WVA_Connect_CDI.Views
 
         private void ImportCompulinkProductsButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                bool resultsWindowOpen = false; 
 
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.Name == "ImportCompulinkProductsResultsWindow")
+                    {
+                        window.Topmost = true;
+                        window.Topmost = false;
+                        window.Focus();
+                        resultsWindowOpen = true;
+                    }
+                }
+
+                // if window is already open then bring it to the front, otherwise open a new instance of the window
+                if (!resultsWindowOpen)
+                    new ImportResultsWindow().Show();
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private void WvaProductsContextMenu_Click(object sender, RoutedEventArgs e)
@@ -290,5 +312,6 @@ namespace WVA_Connect_CDI.Views
                 WvaProductComboBox.ItemsSource = manageViewModel.GetWvaDropDownMatches(compulinkProduct);
             }
         }
+
     }
 }

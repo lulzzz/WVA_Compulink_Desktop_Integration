@@ -4,8 +4,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:local="clr-namespace:WVA_Connect_CDI"
-         xmlns:viewmodels="clr-namespace:WVA_Connect_CDI.ViewModels"
+        xmlns:viewmodels="clr-namespace:WVA_Connect_CDI.ViewModels"
+        xmlns:manageviewmodels="clr-namespace:WVA_Connect_CDI.ViewModels.Manage"
         xmlns:views="clr-namespace:WVA_Connect_CDI.Views"
+        xmlns:manageviews="clr-namespace:WVA_Connect_CDI.Views.Manage"
         mc:Ignorable="d" 
         Height="650"
         Width="1200"
@@ -116,8 +118,8 @@
             <views:OrdersView DataContext="{Binding ElementName=ordersViewTemplate}"/>
         </DataTemplate>
 
-        <DataTemplate x:Name="manageViewTemplate" DataType="{x:Type viewmodels:ManageViewModel}">
-            <views:ManageView DataContext="{Binding ElementName=manageViewTemplate}"/>
+        <DataTemplate x:Name="manageViewTemplate" DataType="{x:Type manageviewmodels:ManageViewModel}">
+            <manageviews:ManageView DataContext="{Binding ElementName=manageViewTemplate}"/>
         </DataTemplate>
 
         <DataTemplate x:Name="settingsViewTemplate" DataType="{x:Type viewmodels:SettingsViewModel}">

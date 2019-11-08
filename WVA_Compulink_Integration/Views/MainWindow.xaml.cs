@@ -13,6 +13,7 @@ using WVA_Connect_CDI.Memory;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.Utility.Files;
 using WVA_Connect_CDI.ViewModels;
+using WVA_Connect_CDI.ViewModels.Manage;
 using WVA_Connect_CDI.Views.Login;
 
 namespace WVA_Connect_CDI.Views
@@ -242,6 +243,13 @@ namespace WVA_Connect_CDI.Views
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            // Close other windows spawned by this app
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.Name == "ImportCompulinkProductsResultsWindow")
+                    window.Close();
+            }
+
             string location = GetType().FullName + nameof(Window_Closing);
             string actionMessage = "<Exiting>";
             ActionLogger.Log(location, actionMessage);

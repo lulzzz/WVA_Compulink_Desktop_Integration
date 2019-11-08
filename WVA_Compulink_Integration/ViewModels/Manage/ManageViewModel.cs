@@ -13,7 +13,7 @@ using WVA_Connect_CDI.ProductPredictions;
 using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.Utility.Files;
 
-namespace WVA_Connect_CDI.ViewModels
+namespace WVA_Connect_CDI.ViewModels.Manage
 {
     public class ManageViewModel
     {
