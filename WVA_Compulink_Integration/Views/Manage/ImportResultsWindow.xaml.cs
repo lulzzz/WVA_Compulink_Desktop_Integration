@@ -20,5 +20,20 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             InitializeComponent();
         }
+
+        private void RedButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void YellowButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GreenButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
