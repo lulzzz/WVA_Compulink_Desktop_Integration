@@ -156,7 +156,6 @@
         
         <!-- Row Def 1 -->
 
-
         <StackPanel Grid.Row="1"
                     Grid.Column="1"
                     Orientation="Horizontal"
@@ -222,7 +221,6 @@
 
         </StackPanel>
 
-
         <StackPanel Grid.Row="1"
                     Grid.Column="1"
                     Orientation="Horizontal"
@@ -245,6 +243,7 @@
         </StackPanel>
 
         <!-- Row Def 2 -->
+        
         <DataGrid Name="LearnedProductsDataGrid"
                   Margin="0,0,0,0"
                   Grid.Row="2"
@@ -255,6 +254,7 @@
                   CanUserResizeColumns="True"
                   CanUserSortColumns="False"
                   CanUserAddRows="False"
+                  ItemsSource="{Binding MatchedProductResult}"
                   IsReadOnly="False">
 
             <DataGrid.ContextMenu>
@@ -281,8 +281,82 @@
             </DataGrid.Background>
 
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=CompulinkProduct}"     Header="Compulink Products" IsReadOnly="True"/>
-                <DataGridTextColumn Width="*" Binding="{Binding Path=WvaProduct}"           Header="WVA Products"       IsReadOnly="True" />
+                
+                <!-- Compulink Product -->
+                <DataGridTextColumn Width="*" Binding="{Binding Path=CompulinkProduct}"     Header="Compulink Products" IsReadOnly="True">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Green">
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Yellow">
+                                    <Setter Property="Background" Value="#EBE834" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Red">
+                                    <Setter Property="Background" Value="#FFF03C3C" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="White">
+                                    <Setter Property="Background" Value="White" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+            
+                <!-- WVA Product -->
+                <DataGridTextColumn Width="*" Binding="{Binding Path=WvaProduct}"           Header="WVA Products"       IsReadOnly="True" >
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Green">
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Yellow">
+                                    <Setter Property="Background" Value="#EBE834" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Red">
+                                    <Setter Property="Background" Value="#FFF03C3C" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="White">
+                                    <Setter Property="Background" Value="White" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+
+                <!-- Match Percent -->
+                <DataGridTextColumn Width="100" Binding="{Binding Path=MatchPercent}"           Header="Match Percent"       IsReadOnly="True" >
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Green">
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Yellow">
+                                    <Setter Property="Background" Value="#EBE834" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Red">
+                                    <Setter Property="Background" Value="#FFF03C3C" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="White">
+                                    <Setter Property="Background" Value="White" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                
+                <!-- Is Selected -->
+                <DataGridTemplateColumn Width="80"                                         Header="Is Selected"     IsReadOnly="False">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
 
@@ -309,7 +383,6 @@
                     FontSize="18"/>
 
         </StackPanel>
-
 
         <StackPanel Grid.Row="3"
                     Grid.Column="1"
@@ -360,8 +433,6 @@
 
         </StackPanel>
     
-        
-
     </Grid>
     
 </Window>
