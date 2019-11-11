@@ -24,7 +24,7 @@ namespace WVA_Connect_CDI.ProductMatcher.Models
 
         public double MatchScore
         {
-            get { return CharacterSequenceMatchScore + WordMatchScore + SkuTypeMatchScore + QuantityMatchScore; }
+            get { return Math.Round((CharacterSequenceMatchScore + WordMatchScore + SkuTypeMatchScore + QuantityMatchScore), 2); }
             set { MatchScore = value; }
         }
     }
