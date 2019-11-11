@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using WVA_Connect_CDI.Errors;
+using WVA_Connect_CDI.Models.Manage;
 using WVA_Connect_CDI.Models.Prescriptions;
 using WVA_Connect_CDI.ProductMatcher.Data;
 using WVA_Connect_CDI.ProductMatcher.Models;
@@ -34,6 +36,49 @@ namespace WVA_Connect_CDI.Views.Manage
         //
         // UI Support Methods
         //
+
+        private void OpenImportResultsWindow(List<MatchedProductResult> listMatchProductResults)
+        {
+            bool resultsWindowOpen = false;
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                // Bring Import Results Window to the front 
+                if (window.Name == "ImportCompulinkProductsResultsWindow")
+                {
+                    window.Topmost = true;
+                    window.Topmost = false;
+                    window.Focus();
+                    resultsWindowOpen = true;
+                }
+            }
+
+            // Create new instance of ImporResultsWindow with match results for the compulink product in the selected file
+            if (!resultsWindowOpen)
+                new ImportResultsWindow(listMatchProductResults).Show();
+        }
+
+        private List<MatchedProductResult> GetMatchedProductResults(List<string> compulinkProducts, List<List<MatchedProduct>> listMatchedProducts)
+        {
+            var listMatchProductResults = new List<MatchedProductResult>();
+
+            int count = 0;
+            foreach (List<MatchedProduct> listMatches in listMatchedProducts)
+            {
+                listMatchProductResults.Add(new MatchedProductResult()
+                {
+                    CompulinkProduct = compulinkProducts[count],
+                    WvaProduct = listMatches[0].ProductName,
+                    MatchPercent = listMatches[0].MatchScore,
+                    RowColor = "Green",
+                    MatchedProducts = listMatches
+                });
+
+                count++;
+            }
+
+            return listMatchProductResults;
+        }
 
         private void SetUpContextMenu()
         {
@@ -169,26 +214,37 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             try
             {
-                bool resultsWindowOpen = false; 
+                // Get the file to import 
+                string file = manageViewModel.GetCsvPath();
+                List<string> compulinkProducts = manageViewModel.GetCompulinkProductsFromCsv(file);
 
-                foreach (Window window in Application.Current.Windows)
-                {
-                    if (window.Name == "ImportCompulinkProductsResultsWindow")
-                    {
-                        window.Topmost = true;
-                        window.Topmost = false;
-                        window.Focus();
-                        resultsWindowOpen = true;
-                    }
-                }
+                // Display a loading window while we are looking for matches 
+                var loadingWindow = new LoadingWindow();
+                loadingWindow.Show();
 
-                // if window is already open then bring it to the front, otherwise open a new instance of the window
-                if (!resultsWindowOpen)
-                    new ImportResultsWindow().Show();
+                // Get a list of possible matches for the compulink products
+                var listMatchedProducts = manageViewModel.ImportCompulinkProducts(compulinkProducts);
+
+                // Convert list of matches to a format that will be easy to display in results view 
+                var listMatchProductResults = GetMatchedProductResults(compulinkProducts, listMatchedProducts);
+               
+                // Close loading window before loading new view
+                loadingWindow.Close();
+
+                // Open the results view 
+                OpenImportResultsWindow(listMatchProductResults);
             }
-            catch (Exception ex)
+            catch (InvalidOperationException)
             {
-                Error.ReportOrLog(ex);
+                return;
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("Could not find path to specified file.", "File Not Found");
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Could not get access to specified file.", "Unauthorized Access");
             }
         }
 
@@ -312,6 +368,5 @@ namespace WVA_Connect_CDI.Views.Manage
                 WvaProductComboBox.ItemsSource = manageViewModel.GetWvaDropDownMatches(compulinkProduct);
             }
         }
-
     }
 }

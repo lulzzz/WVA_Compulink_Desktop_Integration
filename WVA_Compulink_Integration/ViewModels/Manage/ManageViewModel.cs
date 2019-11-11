@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WVA_Connect_CDI.Errors;
 using WVA_Connect_CDI.Models.Prescriptions;
+using WVA_Connect_CDI.ProductMatcher;
 using WVA_Connect_CDI.ProductMatcher.Data;
 using WVA_Connect_CDI.ProductMatcher.Models;
 using WVA_Connect_CDI.ProductPredictions;
@@ -117,7 +118,7 @@ namespace WVA_Connect_CDI.ViewModels.Manage
             {
                 return false;
             }
-            else if (!CsvInCorrectFormat(File.ReadAllLines(file)))
+            else if (!CsvInLearnedProductFormat(File.ReadAllLines(file)))
             {
                 throw new FileFormatException();
             }
@@ -154,8 +155,54 @@ namespace WVA_Connect_CDI.ViewModels.Manage
             }
         }
 
+        public List<List<MatchedProduct>> ImportCompulinkProducts(List<string> compulinkProducts)
+        {
+                // Find matches
+                var listPrescriptions = new List<Prescription>();
+
+                foreach (string product in compulinkProducts)
+                {
+                    listPrescriptions.Add(new Prescription()
+                    {
+                        Product = product
+                    });
+                }
+
+                var matcher = new DescriptionMatcher();
+                var listMatchedProducts = new List<List<MatchedProduct>>();
+                foreach (Prescription prescription in listPrescriptions)
+                {
+                    List<MatchedProduct> matches = matcher.FindMatches(prescription, 30);
+                    listMatchedProducts.Add(matches);
+                }
+
+                return listMatchedProducts;
+        }
+
+        public List<string> GetCompulinkProductsFromCsv(string csvFilePath)
+        {
+
+            if (csvFilePath == null || csvFilePath.Trim() == "")
+            {
+                throw new InvalidOperationException();
+            }
+            else if (!File.Exists(csvFilePath))
+            {
+                throw new FileNotFoundException($"Could not find file {csvFilePath}.");
+            }
+            else
+            {
+                // Get clean verion of products from file
+                List<string> compulinkProducts = File.ReadAllText(csvFilePath).Replace("\r\n", "").Split(',').ToList();
+                compulinkProducts.RemoveAll(x => x.Trim() == ""); // Remove any blank rows
+
+                return compulinkProducts;
+            }
+
+        }
+
         // Opens a file dialog for user to select a file to import
-        private string GetCsvPath()
+        public string GetCsvPath()
         {
             OpenFileDialog choofdlog = new OpenFileDialog();
             choofdlog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -166,7 +213,7 @@ namespace WVA_Connect_CDI.ViewModels.Manage
         }
 
         // Checks csv to be sure it is safe to import 
-        private bool CsvInCorrectFormat(string[] csvLines)
+        private bool CsvInLearnedProductFormat(string[] csvLines)
         {
             foreach (string line in csvLines)
             {
