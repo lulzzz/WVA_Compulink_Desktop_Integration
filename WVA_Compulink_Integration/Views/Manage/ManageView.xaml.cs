@@ -69,7 +69,7 @@ namespace WVA_Connect_CDI.Views.Manage
                 {
                     CompulinkProduct = compulinkProducts[count],
                     WvaProduct = listMatches[0].ProductName,
-                    MatchPercent = listMatches[0].MatchScore,
+                    MatchScore = listMatches[0].MatchScore,
                     RowColor = "Green",
                     MatchedProducts = listMatches
                 });
@@ -245,6 +245,10 @@ namespace WVA_Connect_CDI.Views.Manage
             catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("Could not get access to specified file.", "Unauthorized Access");
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
         }
 

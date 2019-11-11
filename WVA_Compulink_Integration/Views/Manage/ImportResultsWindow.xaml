@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WVA_Connect_CDI.Views.Manage"
         mc:Ignorable="d"
         Name="ImportCompulinkProductsResultsWindow"
-        Title="Import Compulink Prouduct Results"
+        Title="Import Compulink Product Results"
         WindowStartupLocation="CenterOwner"
         Height="500"
         Width="900"
@@ -329,7 +329,7 @@
                 </DataGridTextColumn>
 
                 <!-- Match Percent -->
-                <DataGridTextColumn Width="100" Binding="{Binding Path=MatchPercent}"           Header="Match Percent"       IsReadOnly="True" >
+                <DataGridTextColumn Width="100" Binding="{Binding Path=MatchScore}"           Header="Match Score"       IsReadOnly="True" >
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Style.Triggers>
@@ -357,6 +357,24 @@
                             <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Green">
+                                    <Setter Property="Background" Value="LightGreen" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Yellow">
+                                    <Setter Property="Background" Value="#EBE834" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="Red">
+                                    <Setter Property="Background" Value="#FFF03C3C" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding RowColor}" Value="White">
+                                    <Setter Property="Background" Value="White" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTemplateColumn.CellStyle>
                 </DataGridTemplateColumn>
 
             </DataGrid.Columns>
