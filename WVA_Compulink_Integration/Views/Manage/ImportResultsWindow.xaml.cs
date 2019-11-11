@@ -53,10 +53,8 @@ namespace WVA_Connect_CDI.Views.Manage
         private void RedButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (MatchedProductResult result in LearnedProductsDataGrid.Items.Cast<MatchedProductResult>())
-            {
                 if (result.RowColor == "Red")
                     result.IsSelected = true;
-            }
 
             LearnedProductsDataGrid.Items.Refresh();
         }
@@ -64,10 +62,8 @@ namespace WVA_Connect_CDI.Views.Manage
         private void YellowButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (MatchedProductResult result in LearnedProductsDataGrid.Items.Cast<MatchedProductResult>())
-            {
                 if (result.RowColor == "Yellow")
                     result.IsSelected = true;
-            }
 
             LearnedProductsDataGrid.Items.Refresh();
         }
@@ -75,10 +71,8 @@ namespace WVA_Connect_CDI.Views.Manage
         private void GreenButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (MatchedProductResult result in LearnedProductsDataGrid.Items.Cast<MatchedProductResult>())
-            {
                 if (result.RowColor == "Green")
                     result.IsSelected = true;
-            }
 
             LearnedProductsDataGrid.Items.Refresh();
         }
@@ -93,5 +87,45 @@ namespace WVA_Connect_CDI.Views.Manage
 
         }
 
+        private void SelectAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (MatchedProductResult result in LearnedProductsDataGrid.Items.Cast<MatchedProductResult>())
+                result.IsSelected = true;
+
+            LearnedProductsDataGrid.Items.Refresh();
+        }
+
+        private void UnselectAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (MatchedProductResult result in LearnedProductsDataGrid.Items.Cast<MatchedProductResult>())
+                result.IsSelected = false;
+
+            LearnedProductsDataGrid.Items.Refresh();
+        }
+
+        private void AddSelectedButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteSelectedButton_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < LearnedProductsDataGrid.Items.Count; i++)
+                if (((MatchedProductResult)LearnedProductsDataGrid.Items[i]).IsSelected)
+                    LearnedProductsDataGrid.Items.RemoveAt(i);
+
+            LearnedProductsDataGrid.Items.Refresh();
+        }
+
+        private void AddAllButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            LearnedProductsDataGrid.Items.Clear();
+            LearnedProductsDataGrid.Items.Refresh();
+        }
     }
 }

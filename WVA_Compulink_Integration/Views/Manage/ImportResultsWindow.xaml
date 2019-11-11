@@ -134,7 +134,7 @@
 
         <Grid.Background>
             <LinearGradientBrush EndPoint="1,1" StartPoint="1,0">
-                <GradientStop Color="White"/>
+                <GradientStop Color="#E8E8E6"/>
                 <GradientStop Color="#FF72A6D5" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
@@ -177,12 +177,12 @@
                     Click="GreenButton_Click">
 
                 <Image Name="GreenBubbleImage" 
-                   HorizontalAlignment="Center" 
-                   Height="30" 
-                   Margin="0,0,0,0" 
-                   VerticalAlignment="Center" 
-                   Width="30" 
-                   Source="/Resources/GreenBubble.png"/>
+                       HorizontalAlignment="Center" 
+                       Height="30" 
+                       Margin="0,0,0,0" 
+                       VerticalAlignment="Center" 
+                       Width="30" 
+                       Source="/Resources/GreenBubble.png"/>
             </Button>
             
             <Button Name="YellowButton"
@@ -194,12 +194,12 @@
                     Click="YellowButton_Click">
 
                 <Image Name="YellowBubbleImage" 
-                   HorizontalAlignment="Center" 
-                   Height="30" 
-                   Margin="0,0,0,0" 
-                   VerticalAlignment="Center" 
-                   Width="30" 
-                   Source="/Resources/YellowBubble.png"/>
+                       HorizontalAlignment="Center" 
+                       Height="30" 
+                       Margin="0,0,0,0" 
+                       VerticalAlignment="Center" 
+                       Width="30" 
+                       Source="/Resources/YellowBubble.png"/>
             </Button>
             
             <Button Name="RedButton"
@@ -211,12 +211,12 @@
                     Click="RedButton_Click">
 
                 <Image Name="RedBubbleImage" 
-                   HorizontalAlignment="Center" 
-                   Height="30" 
-                   Margin="0,0,0,0" 
-                   VerticalAlignment="Center" 
-                   Width="30" 
-                   Source="/Resources/RedBubble.png"/>
+                       HorizontalAlignment="Center" 
+                       Height="30" 
+                       Margin="0,0,0,0" 
+                       VerticalAlignment="Center" 
+                       Width="30" 
+                       Source="/Resources/RedBubble.png"/>
             </Button>
 
         </StackPanel>
@@ -227,18 +227,20 @@
                     HorizontalAlignment="Right">
 
             <Button Name="SelectAllButton"
-                        Width="150"
-                        Height="30"
-                        Margin="0,0,20,0"
-                        Content="Select All"
-                        FontSize="20"/>
+                    Width="150"
+                    Height="30"
+                    Margin="0,0,20,0"
+                    Content="Select All"
+                    FontSize="20"
+                    Click="SelectAllButton_Click"/>
 
             <Button Name="UnselectAllButton"
-                        Width="150"
-                        Height="30"
-                        Margin="0,0,0,0"
-                        Content="Unselect All"
-                        FontSize="20"/>
+                    Width="150"
+                    Height="30"
+                    Margin="0,0,0,0"
+                    Content="Unselect All"
+                    FontSize="20"
+                    Click="UnselectAllButton_Click"/>
 
         </StackPanel>
 
@@ -391,9 +393,9 @@
                     VerticalAlignment="Bottom">
 
             <StackPanel Grid.Row="3"
-                    Grid.Column="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
                         Margin="0,0,0,10">
 
                 <Button Name="AddSelectedButton"
@@ -401,14 +403,16 @@
                         Height="30"
                         Margin="0,0,20,0"
                         Content="Add Selected"
-                        FontSize="17"/>
+                        FontSize="17"
+                        Click="AddSelectedButton_Click"/>
 
                 <Button Name="DeleteSelectedButton"
                         Width="150"
                         Height="30"
                         Margin="0,0,0,0"
                         Content="Delete Selected"
-                        FontSize="17"/>
+                        FontSize="17"
+                        Click="DeleteSelectedButton_Click"/>
             </StackPanel>
 
             <StackPanel Grid.Row="3"
@@ -421,14 +425,16 @@
                         Height="30"
                         Margin="0,0,20,0"
                         Content="Add All"
-                        FontSize="18"/>
+                        FontSize="18"
+                        Click="AddAllButton_Click"/>
 
                 <Button Name="DeleteAllButton"
                         Width="150"
                         Height="30"
                         Margin="0,0,0,0"
                         Content="Delete All"
-                        FontSize="18"/>
+                        FontSize="18"
+                        Click="DeleteAllButton_Click"/>
             </StackPanel>
 
         </StackPanel>
