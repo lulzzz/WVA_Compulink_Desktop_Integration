@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using WVA_Connect_CDI.Errors;
 using WVA_Connect_CDI.Models.Manage;
 using WVA_Connect_CDI.Models.Prescriptions;
@@ -22,6 +24,7 @@ namespace WVA_Connect_CDI.Views.Manage
     /// </summary>
     public partial class ManageView : UserControl
     {
+        ToolTip toolTip = new ToolTip();
         ManageViewModel manageViewModel;
 
         public ManageView()
@@ -377,6 +380,35 @@ namespace WVA_Connect_CDI.Views.Manage
                 // Set combo box items
                 WvaProductComboBox.ItemsSource = manageViewModel.GetWvaDropDownMatches(compulinkProduct);
             }
+        }
+
+        private void RefreshButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            // Open tool tip on mouseover, and change image color
+            toolTip.Content = "Refresh Content";
+            toolTip.IsOpen = true;
+            RefreshImage.Source = new BitmapImage(new Uri(@"/Resources/icons8-available-updates-48.png", UriKind.Relative));
+        }
+
+        private void RefreshButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            // Close tool tip on mouseleave, and change image color
+            toolTip.IsOpen = false;
+            RefreshImage.Source = new BitmapImage(new Uri(@"/Resources/icons8-available-updates-filled-48.png", UriKind.Relative));
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Spawn a loading window and change cursor to waiting cursor
+            LoadingWindow loadingWindow = new LoadingWindow();
+            loadingWindow.Show();
+            Mouse.OverrideCursor = Cursors.Wait;
+
+            RefreshGrid();
+
+            // Close loading window and change cursor back to default arrow cursor
+            loadingWindow.Close();
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
     }
 }

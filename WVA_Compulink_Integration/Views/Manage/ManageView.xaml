@@ -180,6 +180,24 @@
                     VerticalAlignment="Center"
                     Click="UnCheckAllButton_Click"/>
 
+            <Button Name="RefreshButton"
+                    Width="40"
+                    Grid.Column="2"
+                    Margin="10,0,0,0"
+                    Height="30"
+                    HorizontalAlignment="Right"
+                    MouseEnter="RefreshButton_MouseEnter"
+                    MouseLeave="RefreshButton_MouseLeave"
+                    Click="RefreshButton_Click">
+
+                <Image x:Name="RefreshImage" 
+                   HorizontalAlignment="Center" 
+                   Height="27"                 
+                   Margin="0,0,0,0" 
+                   VerticalAlignment="Center" 
+                   Width="30" 
+                   Source="/Resources/icons8-available-updates-filled-48.png" />
+            </Button>
         </StackPanel>
 
         <!-- Row Def 2 -->
