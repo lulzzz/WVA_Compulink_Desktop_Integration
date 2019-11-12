@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WVA_Connect_CDI.Models.Manage;
+using WVA_Connect_CDI.ProductMatcher.Models;
+using WVA_Connect_CDI.ViewModels.Manage;
 
 namespace WVA_Connect_CDI.Views.Manage
 {
@@ -76,16 +78,6 @@ namespace WVA_Connect_CDI.Views.Manage
             LearnedProductsDataGrid.Items.Refresh();
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void SelectAllButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (MatchedProductResult result in LearnedProductsDataGrid.Items.Cast<MatchedProductResult>())
@@ -104,7 +96,33 @@ namespace WVA_Connect_CDI.Views.Manage
 
         private void AddSelectedButton_Click(object sender, RoutedEventArgs e)
         {
+            var manageViewModel = new ManageViewModel();
+            var productMatches = new List<MatchedProductResult>();
+            productMatches.AddRange(LearnedProductsDataGrid.Items.Cast<MatchedProductResult>());
 
+            int index = 0;
+            foreach (MatchedProductResult result in productMatches)
+            {
+                if (result.IsSelected == true)
+                {
+                    var learnedProduct = new LearnedProduct()
+                    {
+                        CompulinkProduct = result.CompulinkProduct,
+                        WvaProduct = result.WvaProduct,
+                        ChangeEnabled = true,
+                        NumPicks = 10
+                    };
+
+                    if (!manageViewModel.CompulinkProductExists(result.CompulinkProduct)) manageViewModel.CreateLearnedProduct(learnedProduct);
+                    LearnedProductsDataGrid.Items.RemoveAt(index);
+                    LearnedProductsDataGrid.Items.Refresh();
+                    index--;
+                }
+
+                index++;
+            }
+
+            MessageBox.Show("Product matches added!","");
         }
 
         private void DeleteSelectedButton_Click(object sender, RoutedEventArgs e)
@@ -118,7 +136,26 @@ namespace WVA_Connect_CDI.Views.Manage
 
         private void AddAllButton_Click(object sender, RoutedEventArgs e)
         {
+            var manageViewModel = new ManageViewModel();
+            var productMatches = new List<MatchedProductResult>();
+            productMatches.AddRange(LearnedProductsDataGrid.Items.Cast<MatchedProductResult>());
 
+            foreach (MatchedProductResult result in productMatches)
+            {
+                var learnedProduct = new LearnedProduct()
+                {
+                    CompulinkProduct = result.CompulinkProduct,
+                    WvaProduct = result.WvaProduct,
+                    ChangeEnabled = true,
+                    NumPicks = 10
+                };
+
+                if (!manageViewModel.CompulinkProductExists(result.CompulinkProduct))  manageViewModel.CreateLearnedProduct(learnedProduct);
+                LearnedProductsDataGrid.Items.RemoveAt(0);
+                LearnedProductsDataGrid.Items.Refresh();
+            }
+
+            MessageBox.Show("Product matches added!", "");
         }
 
         private void DeleteAllButton_Click(object sender, RoutedEventArgs e)

@@ -304,7 +304,6 @@
             
                 <!-- WVA Product -->
                 <DataGridTemplateColumn Width="*" Header="WVA Products">
-
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox SelectedIndex="0" 
@@ -314,7 +313,6 @@
                                       DropDownClosed="DatagridComboBox_DropDownClosed"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-
                     <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Style.Triggers>
@@ -336,7 +334,7 @@
                 </DataGridTemplateColumn>
 
                 <!-- Match Percent -->
-                <DataGridTextColumn Width="100" Binding="{Binding Path=MatchScore}"           Header="Match Score"       IsReadOnly="True" >
+                <DataGridTextColumn Width="90" Binding="{Binding Path=MatchScore}" Header="Match Score" IsReadOnly="True" >
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Style.Triggers>
@@ -361,7 +359,7 @@
                 <DataGridTemplateColumn Width="80" Header="Is Selected" IsReadOnly="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                            <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellStyle>
