@@ -126,5 +126,19 @@ namespace WVA_Connect_CDI.Views.Manage
             LearnedProductsDataGrid.Items.Clear();
             LearnedProductsDataGrid.Items.Refresh();
         }
+
+        private void DatagridComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            string selectedProduct = cb.SelectedValue.ToString();
+            int selectedIndex = LearnedProductsDataGrid.SelectedIndex;
+
+            if (selectedIndex >= 0 && selectedIndex < LearnedProductsDataGrid.Items.Count)
+            {
+                ((MatchedProductResult)LearnedProductsDataGrid.Items[selectedIndex]).WvaProduct = selectedProduct;
+
+                LearnedProductsDataGrid.Items.Refresh();
+            }
+        }
     }
 }

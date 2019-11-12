@@ -307,7 +307,11 @@
 
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding SuggestedWvaProducts}"/>
+                            <ComboBox SelectedIndex="0" 
+                                      Name="DatagridComboBox"
+                                      Text="{Binding WvaProduct}" 
+                                      ItemsSource="{Binding SuggestedWvaProducts}" 
+                                      DropDownClosed="DatagridComboBox_DropDownClosed"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
 
@@ -354,7 +358,7 @@
                 </DataGridTextColumn>
                 
                 <!-- Is Selected -->
-                <DataGridTemplateColumn Width="80"                                         Header="Is Selected"     IsReadOnly="False">
+                <DataGridTemplateColumn Width="80" Header="Is Selected" IsReadOnly="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
