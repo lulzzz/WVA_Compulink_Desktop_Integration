@@ -49,7 +49,6 @@ namespace WVA_Connect_CDI.Views.Manage
         // UI Events
         //
 
-
         private void RedButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (MatchedProductResult result in LearnedProductsDataGrid.Items.Cast<MatchedProductResult>())

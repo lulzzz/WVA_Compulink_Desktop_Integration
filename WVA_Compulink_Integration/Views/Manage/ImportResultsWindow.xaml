@@ -252,12 +252,8 @@
                   Grid.Column="1"
                   FontWeight="Bold"
                   AutoGenerateColumns="False"
-                  CanUserResizeRows="False"
-                  CanUserResizeColumns="True"
-                  CanUserSortColumns="False"
                   CanUserAddRows="False"
-                  ItemsSource="{Binding MatchedProductResult}"
-                  IsReadOnly="False">
+                  ItemsSource="{Binding MatchedProductResult}">
 
             <DataGrid.ContextMenu>
                 <ContextMenu Name="WvaProductsContextMenu"
@@ -307,8 +303,15 @@
                 </DataGridTextColumn>
             
                 <!-- WVA Product -->
-                <DataGridTextColumn Width="*" Binding="{Binding Path=WvaProduct}"           Header="WVA Products"       IsReadOnly="True" >
-                    <DataGridTextColumn.CellStyle>
+                <DataGridTemplateColumn Width="*" Header="WVA Products">
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding SuggestedWvaProducts}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                    <DataGridTemplateColumn.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding RowColor}" Value="Green">
@@ -325,8 +328,8 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </DataGridTextColumn.CellStyle>
-                </DataGridTextColumn>
+                    </DataGridTemplateColumn.CellStyle>
+                </DataGridTemplateColumn>
 
                 <!-- Match Percent -->
                 <DataGridTextColumn Width="100" Binding="{Binding Path=MatchScore}"           Header="Match Score"       IsReadOnly="True" >

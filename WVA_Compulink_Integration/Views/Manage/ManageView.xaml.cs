@@ -65,13 +65,19 @@ namespace WVA_Connect_CDI.Views.Manage
             int count = 0;
             foreach (List<MatchedProduct> listMatches in listMatchedProducts)
             {
+                var suggestedMatches = new List<string>();
+
+                foreach (MatchedProduct match in listMatches)
+                    suggestedMatches.Add(match.ProductName);
+
                 listMatchProductResults.Add(new MatchedProductResult()
                 {
                     CompulinkProduct = compulinkProducts[count],
                     WvaProduct = listMatches[0].ProductName,
                     MatchScore = listMatches[0].MatchScore,
                     RowColor = "Green",
-                    MatchedProducts = listMatches
+                    MatchedProducts = listMatches,
+                    SuggestedWvaProducts = suggestedMatches
                 });
 
                 count++;
