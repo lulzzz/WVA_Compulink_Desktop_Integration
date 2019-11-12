@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +48,6 @@ namespace WVA_Connect_CDI.Views.Manage
                 LearnedProductsDataGrid.Items.Add(result);
             }
         }
-
 
         //
         // UI Events
@@ -192,6 +194,47 @@ namespace WVA_Connect_CDI.Views.Manage
             {
 
             }
+        }
+
+        private void SaveResultsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // open up file dialog and ask where they want the file saved
+            using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
+            {
+                System.Windows.Forms.DialogResult result = fbd.ShowDialog();
+
+                if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    string path = fbd.SelectedPath;
+
+                    // save file at specified location 
+                    if (Directory.Exists(path))
+                    {
+                        var listMatchedProductResults = LearnedProductsDataGrid.Items.Cast<MatchedProductResult>();
+                        string jsonProducts = JsonConvert.SerializeObject(listMatchedProductResults);
+                        File.WriteAllText(path + "//SavedResults.txt", jsonProducts);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Path to file was not valid.", "");
+                    }
+                }
+            }
+        }
+
+        private void LoadSavedResultsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // as for location of saved file
+
+
+            // read from file at specified location 
+
+
+            // convert string json data to object
+
+
+            // add json data items to datagrid 
+            
         }
     }
 }

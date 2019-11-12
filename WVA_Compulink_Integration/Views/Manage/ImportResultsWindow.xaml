@@ -398,14 +398,16 @@
                     Height="30"
                     Margin="0,0,20,0"
                     Content="Save Results"
-                    FontSize="18"/>
+                    FontSize="18"
+                    Click="SaveResultsButton_Click"/>
 
             <Button Name="LoadSavedResultsButton"
                     Width="150"
                     Height="30"
                     Margin="0,0,20,0"
                     Content="Load Results"
-                    FontSize="18"/>
+                    FontSize="18"
+                    Click="LoadSavedResultsButton_Click"/>
 
         </StackPanel>
 

@@ -11,7 +11,5 @@ namespace WVA_Connect_CDI.ViewModels.Manage
     {
         public List<MatchedProductResult> MatchedProductResults = new List<MatchedProductResult>();
 
-
-
     }
 }
