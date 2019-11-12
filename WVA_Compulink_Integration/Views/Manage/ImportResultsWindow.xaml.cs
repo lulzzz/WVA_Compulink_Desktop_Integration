@@ -129,15 +129,31 @@ namespace WVA_Connect_CDI.Views.Manage
 
         private void DatagridComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            ComboBox cb = sender as ComboBox;
-            string selectedProduct = cb.SelectedValue.ToString();
-            int selectedIndex = LearnedProductsDataGrid.SelectedIndex;
-
-            if (selectedIndex >= 0 && selectedIndex < LearnedProductsDataGrid.Items.Count)
+            try
             {
-                ((MatchedProductResult)LearnedProductsDataGrid.Items[selectedIndex]).WvaProduct = selectedProduct;
+                ComboBox cb = sender as ComboBox;
+                int selectedRowIndex = LearnedProductsDataGrid.SelectedIndex;
 
-                LearnedProductsDataGrid.Items.Refresh();
+                if (selectedRowIndex >= 0 && selectedRowIndex < LearnedProductsDataGrid.Items.Count)
+                {
+                    string selectedProduct = cb.SelectedValue.ToString();
+                    int selectedDropDownIndex = cb.SelectedIndex;
+
+                    // Get selected row in datagrid
+                    var selectedRowItem = ((MatchedProductResult)LearnedProductsDataGrid.Items[selectedRowIndex]);
+
+                    // Update WvaProduct
+                    selectedRowItem.WvaProduct = selectedProduct;
+
+                    // Update MatchScore
+                    selectedRowItem.MatchScore = selectedRowItem.MatchedProducts[selectedDropDownIndex].MatchScore;
+
+                   LearnedProductsDataGrid.Items.Refresh();
+                }
+            }
+            catch 
+            {
+
             }
         }
     }
