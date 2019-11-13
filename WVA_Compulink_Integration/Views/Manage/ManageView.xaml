@@ -237,15 +237,35 @@
                 </LinearGradientBrush>
             </DataGrid.Background>
 
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <EventSetter Event="Click" Handler="DataGridColumnHeader_Click" />
+                </Style>
+            </DataGrid.Resources>
+
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Compulink Products" Width="*" Binding="{Binding Path=CompulinkProduct}" IsReadOnly="True"/>
+                <!-- Compulink Products -->
+                <DataGridTextColumn Header="Compulink Products" 
+                                    Width="*" 
+                                    Binding="{Binding Path=CompulinkProduct}" 
+                                    IsReadOnly="True"/>
 
-                <DataGridTextColumn Header="WVA Products" Width="*" Binding="{Binding Path=WvaProduct}" IsReadOnly="True" />
+                <!-- WVA Products -->
+                <DataGridTextColumn Header="WVA Products" 
+                                    Width="*"
+                                    Binding="{Binding Path=WvaProduct}" 
+                                    IsReadOnly="True" />
 
-                <DataGridTemplateColumn Header="Change Enabled" Width="100" IsReadOnly="False">
+                <!-- Change Enabled -->
+                <DataGridTemplateColumn Header="Change Enabled" 
+                                        Width="100" 
+                                        IsReadOnly="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Path=ChangeEnabled, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Checked="CheckBox_Checked"  Unchecked="CheckBox_Unchecked"/>
+                            <CheckBox IsChecked="{Binding Path=ChangeEnabled, UpdateSourceTrigger=PropertyChanged}" 
+                                      HorizontalAlignment="Center" 
+                                      Checked="CheckBox_Checked"  
+                                      Unchecked="CheckBox_Unchecked"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

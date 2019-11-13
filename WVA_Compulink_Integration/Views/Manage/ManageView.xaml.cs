@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using WVA_Connect_CDI.Errors;
@@ -25,6 +27,9 @@ namespace WVA_Connect_CDI.Views.Manage
     {
         ToolTip toolTip = new ToolTip();
         ManageViewModel manageViewModel;
+
+        private bool SortCompulinkProductsAscending = true;
+        private bool SortWvaProductsAscending = true;
 
         public ManageView()
         {
@@ -141,6 +146,75 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
                 Database.UpdateChangeEnabled(product.CompulinkProduct, changeEnabled);
+        }
+
+        private void SortByCompulinkProduct()
+        {
+            var column = LearnedProductsDataGrid.Columns[0];
+            LearnedProductsDataGrid.Items.SortDescriptions.Clear();
+
+            // Toggle between sort ascending and descending 
+            if (SortCompulinkProductsAscending)
+            {
+                LearnedProductsDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, ListSortDirection.Ascending));
+
+                foreach (var col in LearnedProductsDataGrid.Columns)
+                    col.SortDirection = null;
+
+                column.SortDirection = ListSortDirection.Ascending;
+
+                SortCompulinkProductsAscending = false;
+            }
+            else
+            {
+                LearnedProductsDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, ListSortDirection.Descending));
+
+                foreach (var col in LearnedProductsDataGrid.Columns)
+                    col.SortDirection = null;
+
+                column.SortDirection = ListSortDirection.Descending;
+
+                SortCompulinkProductsAscending = true;
+            }
+
+            LearnedProductsDataGrid.Items.Refresh();
+        }
+
+        private void SortByWvaProduct()
+        {
+            var column = LearnedProductsDataGrid.Columns[1];
+            LearnedProductsDataGrid.Items.SortDescriptions.Clear();
+
+            // Toggle between sort ascending and descending 
+            if (SortCompulinkProductsAscending)
+            {
+                LearnedProductsDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, ListSortDirection.Ascending));
+
+                foreach (var col in LearnedProductsDataGrid.Columns)
+                    col.SortDirection = null;
+
+                column.SortDirection = ListSortDirection.Ascending;
+
+                SortCompulinkProductsAscending = false;
+            }
+            else
+            {
+                LearnedProductsDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, ListSortDirection.Descending));
+
+                foreach (var col in LearnedProductsDataGrid.Columns)
+                    col.SortDirection = null;
+
+                column.SortDirection = ListSortDirection.Descending;
+
+                SortCompulinkProductsAscending = true;
+            }
+
+            LearnedProductsDataGrid.Items.Refresh();
+        }
+
+        private void SortByChangeEnabled()
+        {
+
         }
 
         //
@@ -499,6 +573,26 @@ namespace WVA_Connect_CDI.Views.Manage
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
+            }
+        }
+
+        private void DataGridColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            switch ((sender as DataGridColumnHeader).Content) 
+            {
+                case "Compulink Products":
+                    SortByCompulinkProduct();
+                    break;
+
+                case "WVA Products":
+                    SortByWvaProduct();
+                    break;
+
+                case "Changed Enabled":
+                    SortByChangeEnabled();
+                    break;
+
+                default: break;
             }
         }
     }
