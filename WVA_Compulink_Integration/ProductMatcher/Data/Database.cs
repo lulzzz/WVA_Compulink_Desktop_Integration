@@ -94,11 +94,11 @@ namespace WVA_Connect_CDI.ProductMatcher.Data
             }
         }
 
-        public static List<LearnedProduct> GetLearnedProducts()
+        public static async Task<List<LearnedProduct>> GetLearnedProducts()
         {
             try
             {
-                return SqliteDataAccess.GetLearnedProducts();
+                return await SqliteDataAccess.GetLearnedProducts();
             }
             catch (Exception ex)
             {

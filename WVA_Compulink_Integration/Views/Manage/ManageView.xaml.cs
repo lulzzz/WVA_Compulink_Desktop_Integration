@@ -126,9 +126,9 @@ namespace WVA_Connect_CDI.Views.Manage
             };
         }
 
-        private void RefreshGrid()
+        private async Task RefreshGrid()
         {
-            LearnedProductsDataGrid.ItemsSource = manageViewModel.GetLearnedProducts();
+            LearnedProductsDataGrid.ItemsSource = await manageViewModel.GetLearnedProducts();
             LearnedProductsDataGrid.Items.Refresh();
         }
 
@@ -201,7 +201,7 @@ namespace WVA_Connect_CDI.Views.Manage
             }
         }
 
-        private void ImportMatchesButton_Click(object sender, RoutedEventArgs e)
+        private async void ImportMatchesButton_Click(object sender, RoutedEventArgs e)
         {
             // Action Logging
             string location = GetType().FullName + "." + "." + nameof(ImportMatchesButton_Click);
@@ -214,15 +214,15 @@ namespace WVA_Connect_CDI.Views.Manage
 
                 if (imported)
                 {
-                    RefreshGrid();
+                    await RefreshGrid();
                     MessageBox.Show("Products imported! Check your desktop to see import results.", "");
                 }
             }
-            catch (FileFormatException ex)
+            catch (FileFormatException)
             {
                 MessageBox.Show("The selected CSV file was not in the correct format. Format is as follows: CompulinkProduct, WvaProduct, true/false ","File Format Error");
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
                 MessageBox.Show("Could not find file!", "");
             }
@@ -438,7 +438,7 @@ namespace WVA_Connect_CDI.Views.Manage
             }
         }
 
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        private async void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -447,7 +447,7 @@ namespace WVA_Connect_CDI.Views.Manage
                 loadingWindow.Show();
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                RefreshGrid();
+                await RefreshGrid();
 
                 // Close loading window and change cursor back to default arrow cursor
                 loadingWindow.Close();

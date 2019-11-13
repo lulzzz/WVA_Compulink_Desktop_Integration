@@ -46,13 +46,13 @@ namespace WVA_Connect_CDI.ViewModels.Manage
         //
 
         // Updates the 'LearnedProducts' list in memory
-        public void SetLearnedProducts()
+        public async void SetLearnedProducts()
         {
-            LearnedProducts = GetLearnedProducts();
+            LearnedProducts = await GetLearnedProducts();
         }
 
         // Gets all learned products from the database
-        public List<LearnedProduct> GetLearnedProducts()
+        public Task<List<LearnedProduct>> GetLearnedProducts()
         {
             return Database.GetLearnedProducts();
         }

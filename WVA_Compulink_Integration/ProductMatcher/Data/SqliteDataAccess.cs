@@ -125,7 +125,7 @@ namespace WVA_Connect_CDI.ProductMatcher.Data
             }
         }
 
-        public static List<LearnedProduct> GetLearnedProducts()
+        public static async Task<List<LearnedProduct>> GetLearnedProducts()
         {
             using (IDbConnection cnn = new SQLiteConnection(GetDbConnectionString()))
             {
