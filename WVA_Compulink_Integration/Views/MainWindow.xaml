@@ -15,7 +15,6 @@
         MinHeight="550" 
         WindowStartupLocation="CenterScreen" 
         ResizeMode="CanResize" 
-        Icon="/WVA_Connect_CDI;component/Resources/wva_square_logo.jpg"
         Closing="Window_Closing"
         Loaded="Window_Loaded"
         Closed="Window_Closed">
