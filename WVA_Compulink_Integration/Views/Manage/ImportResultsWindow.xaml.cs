@@ -266,27 +266,23 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             try
             {
-                // open up file dialog and ask where they want the file saved
-                using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "JSON File|*.json";
+                saveFileDialog.Title = "Save Import Data";
+                saveFileDialog.FileName = "SavedResults.json";
+                saveFileDialog.ShowDialog();
+
+                string path = saveFileDialog.FileName;
+
+                if (!string.IsNullOrWhiteSpace(path))
                 {
-                    System.Windows.Forms.DialogResult result = fbd.ShowDialog();
-
-                    if (!string.IsNullOrWhiteSpace(fbd.SelectedPath))
-                    {
-                        string path = fbd.SelectedPath;
-
-                        // save file at specified location 
-                        if (Directory.Exists(path))
-                        {
-                            var listMatchedProductResults = LearnedProductsDataGrid.Items.Cast<MatchedProductResult>();
-                            string jsonProducts = JsonConvert.SerializeObject(listMatchedProductResults);
-                            File.WriteAllText(path + "//SavedResults.txt", jsonProducts);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Path to file was not valid.", "");
-                        }
-                    }
+                    var listMatchedProductResults = LearnedProductsDataGrid.Items.Cast<MatchedProductResult>();
+                    string jsonProducts = JsonConvert.SerializeObject(listMatchedProductResults);
+                    File.WriteAllText(path, jsonProducts);
+                }
+                else
+                {
+                    MessageBox.Show("File name was not valid!", "");
                 }
             }
             catch (Exception ex)
