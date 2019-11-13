@@ -139,6 +139,12 @@ namespace WVA_Connect_CDI.Views.Manage
             IsEditableCheckBox.IsChecked = true;
         }
 
+        private async Task UpdateChangeEnabled(bool changeEnabled)
+        {
+            foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
+                Database.UpdateChangeEnabled(product.CompulinkProduct, changeEnabled);
+        }
+
         //
         // UI Events
         //
@@ -342,14 +348,12 @@ namespace WVA_Connect_CDI.Views.Manage
             }
         }
 
-        private void CheckAllButton_Click(object sender, RoutedEventArgs e)
+        private async void CheckAllButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
-                    Database.UpdateChangeEnabled(product.CompulinkProduct, true);
-
-                RefreshGrid();
+                await UpdateChangeEnabled(true);
+                await RefreshGrid();
             }
             catch (Exception ex)
             {
@@ -357,14 +361,12 @@ namespace WVA_Connect_CDI.Views.Manage
             }
         }
 
-        private void UnCheckAllButton_Click(object sender, RoutedEventArgs e)
+        private async void UnCheckAllButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
-                    Database.UpdateChangeEnabled(product.CompulinkProduct, false);
-
-                RefreshGrid();
+                await UpdateChangeEnabled(false);
+                await RefreshGrid();
             }
             catch (Exception ex)
             {
