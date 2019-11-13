@@ -127,7 +127,8 @@ C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integrat
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Login\IpConfigWindow.g.cs
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Login\LoginWindow.g.cs
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\MainWindow.g.cs
-C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\ManageView.g.cs
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Manage\ImportResultsWindow.g.cs
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Manage\ManageView.g.cs
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\MessageWindow.g.cs
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\OrdersView.g.cs
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Orders\BatchOrderCreationView.g.cs
@@ -152,7 +153,8 @@ C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integrat
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Login\IpConfigWindow.baml
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Login\LoginWindow.baml
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\MainWindow.baml
-C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\ManageView.baml
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Manage\ImportResultsWindow.baml
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Manage\ManageView.baml
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\MessageWindow.baml
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\OrdersView.baml
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\Views\Orders\BatchOrderCreationView.baml
@@ -171,3 +173,4 @@ C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integrat
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.csproj.CopyComplete
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.exe
 C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.pdb
+C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\WVA_Connect_CDI.csprojAssemblyReference.cache

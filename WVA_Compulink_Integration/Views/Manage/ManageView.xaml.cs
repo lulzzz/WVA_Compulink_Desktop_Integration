@@ -40,7 +40,7 @@ namespace WVA_Connect_CDI.Views.Manage
         // UI Support Methods
         //
 
-        private void OpenImportResultsWindow(List<MatchedProductResult> listMatchProductResults)
+        private bool BringResultsWindowToViewIfOpen()
         {
             bool resultsWindowOpen = false;
 
@@ -56,9 +56,13 @@ namespace WVA_Connect_CDI.Views.Manage
                 }
             }
 
+            return resultsWindowOpen;
+        }
+
+        private void OpenImportResultsWindow(List<MatchedProductResult> listMatchProductResults)
+        {
             // Create new instance of ImporResultsWindow with match results for the compulink product in the selected file
-            if (!resultsWindowOpen)
-                new ImportResultsWindow(listMatchProductResults).Show();
+            new ImportResultsWindow(listMatchProductResults).Show();
         }
 
         private List<MatchedProductResult> GetMatchedProductResults(List<string> compulinkProducts, List<List<MatchedProduct>> listMatchedProducts)
@@ -223,25 +227,30 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             try
             {
-                // Get the file to import 
-                string file = manageViewModel.GetCsvPath();
-                List<string> compulinkProducts = manageViewModel.GetCompulinkProductsFromCsv(file);
+                bool resultsWindowOpen = BringResultsWindowToViewIfOpen();
 
-                // Display a loading window while we are looking for matches 
-                var loadingWindow = new LoadingWindow();
-                loadingWindow.Show();
+                if (!resultsWindowOpen)
+                {
+                    // Get the file to import 
+                    string file = manageViewModel.GetCsvPath();
+                    List<string> compulinkProducts = manageViewModel.GetCompulinkProductsFromCsv(file);
 
-                // Get a list of possible matches for the compulink products
-                var listMatchedProducts = manageViewModel.ImportCompulinkProducts(compulinkProducts);
+                    // Display a loading window while we are looking for matches 
+                    var loadingWindow = new LoadingWindow();
+                    loadingWindow.Show();
 
-                // Convert list of matches to a format that will be easy to display in results view 
-                var listMatchProductResults = GetMatchedProductResults(compulinkProducts, listMatchedProducts);
-               
-                // Close loading window before loading new view
-                loadingWindow.Close();
+                    // Get a list of possible matches for the compulink products
+                    var listMatchedProducts = manageViewModel.ImportCompulinkProducts(compulinkProducts);
 
-                // Open the results view 
-                OpenImportResultsWindow(listMatchProductResults);
+                    // Convert list of matches to a format that will be easy to display in results view 
+                    var listMatchProductResults = GetMatchedProductResults(compulinkProducts, listMatchedProducts);
+
+                    // Close loading window before loading new view
+                    loadingWindow.Close();
+
+                    // Open the results view 
+                    OpenImportResultsWindow(listMatchProductResults);
+                }
             }
             catch (InvalidOperationException)
             {

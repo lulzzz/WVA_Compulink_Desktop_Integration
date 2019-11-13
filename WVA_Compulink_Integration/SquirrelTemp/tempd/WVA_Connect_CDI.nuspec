@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>WVA_Connect_CDI</id>
+    <version>1.2.12</version>
+    <title>WVA_Connect_CDI</title>
+    <authors>Wisconsin Vision Associates</authors>
+    <owners>Wisconsin Vision Associates</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>file:///C:/Users/evan/Desktop/Icons/logo_plain_vector_72_white_TMD_icon.ico</iconUrl>
+    <description>WVA Connect  - Compulink Desktop Integration</description>
+    <language>en-US</language>
+  </metadata>
+</package>

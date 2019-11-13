@@ -1,4 +1,4 @@
-﻿C:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\App.xaml;;
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\LoadingWindow.xaml;;
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\Login\AccountSetupWindow.xaml;;
@@ -7,7 +7,8 @@ FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integra
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\Login\IpConfigWindow.xaml;;
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\Login\LoginWindow.xaml;;
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\MainWindow.xaml;;
-FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\ManageView.xaml;;
+FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\Manage\ImportResultsWindow.xaml;;
+FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\Manage\ManageView.xaml;;
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\MessageWindow.xaml;;
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\OrdersView.xaml;;
 FC:\Users\evan\Desktop\Languages\C#\Compulink Apps\WVA_Compulink_Desktop_Integration\WVA_Compulink_Integration\Views\Orders\BatchOrderCreationView.xaml;;
