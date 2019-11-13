@@ -176,8 +176,13 @@ namespace WVA_Connect_CDI.Views.Manage
             try
             {
                 for (int i = 0; i < LearnedProductsDataGrid.Items.Count; i++)
+                {
                     if (((MatchedProductResult)LearnedProductsDataGrid.Items[i]).IsSelected)
+                    {
                         LearnedProductsDataGrid.Items.RemoveAt(i);
+                        i--;
+                    }
+                }
 
                 LearnedProductsDataGrid.Items.Refresh();
             }
@@ -309,7 +314,7 @@ namespace WVA_Connect_CDI.Views.Manage
                     string strJsonData = File.ReadAllText(file);
 
                     // convert string json data to object
-                    List<MatchedProductResult> results = JsonConvert.DeserializeObject<List<MatchedProductResult>>(strJsonData);
+                     var results = JsonConvert.DeserializeObject<List<MatchedProductResult>>(strJsonData);
 
                     // add json data items to datagrid 
                     foreach (MatchedProductResult result in results)
