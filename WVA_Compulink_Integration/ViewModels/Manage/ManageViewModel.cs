@@ -62,28 +62,35 @@ namespace WVA_Connect_CDI.ViewModels.Manage
         {
             var learnedProducts = new List<LearnedProduct>();
 
-            foreach (string line in csvLines)
+            try
             {
-                string[] lineItems = line.Split(',');
-
-                var product = new LearnedProduct()
+                foreach (string line in csvLines)
                 {
-                    CompulinkProduct = lineItems[0].Trim(),
-                    WvaProduct = lineItems[1].Trim(),
-                    NumPicks = 10
-                };
+                    string[] lineItems = line.Split(',');
 
-                // Product change enabled is true by default. User does not have to include it
-                try
-                {
-                    product.ChangeEnabled = Convert.ToBoolean(lineItems[2].Trim());
+                    var product = new LearnedProduct()
+                    {
+                        CompulinkProduct = lineItems[0].Trim(),
+                        WvaProduct = lineItems[1].Trim(),
+                        NumPicks = 10
+                    };
+
+                    // Product change enabled is true by default. User does not have to include it
+                    try
+                    {
+                        product.ChangeEnabled = Convert.ToBoolean(lineItems[2].Trim());
+                    }
+                    catch
+                    {
+                        product.ChangeEnabled = true;
+                    }
+
+                    learnedProducts.Add(product);
                 }
-                catch
-                {
-                    product.ChangeEnabled = true;
-                }
-
-                learnedProducts.Add(product);
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
 
             return learnedProducts;
@@ -112,51 +119,60 @@ namespace WVA_Connect_CDI.ViewModels.Manage
         // Imports a csv or txt file to inject product matches into the database
         public bool ImportLearnedProducts()
         {
-            string file = GetCsvPath();
+            try
+            {
+                string file = GetCsvPath();
 
-            if (file == null || file.Trim() == "")
+                if (file == null || file.Trim() == "")
+                {
+                    return false;
+                }
+                else if (!CsvInLearnedProductFormat(File.ReadAllLines(file)))
+                {
+                    throw new FileFormatException();
+                }
+                else if (!File.Exists(file))
+                {
+                    throw new FileNotFoundException($"Could not find file {file}.");
+                }
+                else
+                {
+                    var learnedProducts = GetLearnedProducts(File.ReadAllLines(file));
+
+                    foreach (LearnedProduct product in learnedProducts)
+                    {
+                        bool created = false;
+                        string importFile = AppPath.DesktopDir + "\\Product Import Log.txt";
+                        string message = "";
+
+                        if (!Database.CompulinkProductExists(product.CompulinkProduct))
+                        {
+                            created = CreateLearnedProduct(product);
+                            message = created ? $"SUCCESS! Compulink product '{product.CompulinkProduct}' added!" : $"Failed to add line: {product.ChangeEnabled}, {product.WvaProduct}, {product.ChangeEnabled}";
+
+                            string location = GetType().FullName + "." + "." + nameof(GetLearnedProducts);
+                            string actionMessage = $"<Importing product: {product.CompulinkProduct}, {product.WvaProduct}, {product.ChangeEnabled}> <created={created}, message={message}>";
+                            ActionLogger.Log(location, actionMessage);
+                        }
+                        else
+                            message = $"FAIL! Compulink product '{product.CompulinkProduct}' already exists.";
+
+                        File.AppendAllText(importFile, message + "\n");
+                    }
+
+                    return true;
+                }
+            }
+            catch
             {
                 return false;
-            }
-            else if (!CsvInLearnedProductFormat(File.ReadAllLines(file)))
-            {
-                throw new FileFormatException();
-            }
-            else if (!File.Exists(file))
-            {
-                throw new FileNotFoundException($"Could not find file {file}.");
-            }
-            else
-            {
-                var learnedProducts = GetLearnedProducts(File.ReadAllLines(file));
-
-                foreach (LearnedProduct product in learnedProducts)
-                {
-                    bool created = false;
-                    string importFile = AppPath.DesktopDir + "\\Product Import Log.txt";
-                    string message = "";
-
-                    if (!Database.CompulinkProductExists(product.CompulinkProduct))
-                    {
-                        created = CreateLearnedProduct(product);
-                        message = created ? $"SUCCESS! Compulink product '{product.CompulinkProduct}' added!" : $"Failed to add line: {product.ChangeEnabled}, {product.WvaProduct}, {product.ChangeEnabled}";
-
-                        string location = GetType().FullName + "." + "." + nameof(GetLearnedProducts);
-                        string actionMessage = $"<Importing product: {product.CompulinkProduct}, {product.WvaProduct}, {product.ChangeEnabled}> <created={created}, message={message}>";
-                        ActionLogger.Log(location, actionMessage);
-                    }
-                    else
-                        message = $"FAIL! Compulink product '{product.CompulinkProduct}' already exists.";
-                    
-                    File.AppendAllText(importFile, message + "\n");
-                }
-
-                return true;
             }
         }
 
         public List<List<MatchedProduct>> ImportCompulinkProducts(List<string> compulinkProducts)
         {
+            try
+            {
                 // Find matches
                 var listPrescriptions = new List<Prescription>();
 
@@ -177,6 +193,11 @@ namespace WVA_Connect_CDI.ViewModels.Manage
                 }
 
                 return listMatchedProducts;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public List<string> GetCompulinkProductsFromCsv(string csvFilePath)
@@ -198,41 +219,54 @@ namespace WVA_Connect_CDI.ViewModels.Manage
 
                 return compulinkProducts;
             }
-
         }
 
         // Opens a file dialog for user to select a file to import
         public string GetCsvPath()
         {
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            try
+            {
+                OpenFileDialog choofdlog = new OpenFileDialog();
+                choofdlog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            choofdlog.ShowDialog();
+                choofdlog.ShowDialog();
 
-            return choofdlog.FileName;
+                return choofdlog.FileName;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         // Checks csv to be sure it is safe to import 
         private bool CsvInLearnedProductFormat(string[] csvLines)
         {
-            foreach (string line in csvLines)
+            try
             {
-                string[] lineItems = line.Split(',');
+                foreach (string line in csvLines)
+                {
+                    string[] lineItems = line.Split(',');
 
-                // Make sure there are 2 || 3 items
-                if (lineItems.Count() < 2 || lineItems.Count() > 3)
-                    return false;
+                    // Make sure there are 2 || 3 items
+                    if (lineItems.Count() < 2 || lineItems.Count() > 3)
+                        return false;
 
-                // Check first item
-                if (lineItems[0].Trim() == "")
-                    return false;
+                    // Check first item
+                    if (lineItems[0].Trim() == "")
+                        return false;
 
-                // Check second item
-                if (lineItems[1].Trim() == "")
-                    return false;
+                    // Check second item
+                    if (lineItems[1].Trim() == "")
+                        return false;
+                }
+
+                return true;
             }
-
-            return true;
+            catch
+            {
+                return false;
+            }
         }
         
         //
@@ -260,7 +294,6 @@ namespace WVA_Connect_CDI.ViewModels.Manage
                 return null;
             }
         }
-
 
     }
 }

@@ -44,16 +44,23 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             bool resultsWindowOpen = false;
 
-            foreach (Window window in Application.Current.Windows)
+            try
             {
-                // Bring Import Results Window to the front 
-                if (window.Name == "ImportCompulinkProductsResultsWindow")
+                foreach (Window window in Application.Current.Windows)
                 {
-                    window.Topmost = true;
-                    window.Topmost = false;
-                    window.Focus();
-                    resultsWindowOpen = true;
+                    // Bring Import Results Window to the front 
+                    if (window.Name == "ImportCompulinkProductsResultsWindow")
+                    {
+                        window.Topmost = true;
+                        window.Topmost = false;
+                        window.Focus();
+                        resultsWindowOpen = true;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
 
             return resultsWindowOpen;
@@ -69,25 +76,32 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             var listMatchProductResults = new List<MatchedProductResult>();
 
-            int count = 0;
-            foreach (List<MatchedProduct> listMatches in listMatchedProducts)
+            try
             {
-                var suggestedMatches = new List<string>();
-
-                foreach (MatchedProduct match in listMatches)
-                    suggestedMatches.Add(match.ProductName);
-
-                listMatchProductResults.Add(new MatchedProductResult()
+                int count = 0;
+                foreach (List<MatchedProduct> listMatches in listMatchedProducts)
                 {
-                    CompulinkProduct = compulinkProducts[count],
-                    WvaProduct = listMatches[0].ProductName,
-                    MatchScore = listMatches[0].MatchScore,
-                    RowColor = "Green",
-                    MatchedProducts = listMatches,
-                    SuggestedWvaProducts = suggestedMatches
-                });
+                    var suggestedMatches = new List<string>();
 
-                count++;
+                    foreach (MatchedProduct match in listMatches)
+                        suggestedMatches.Add(match.ProductName);
+
+                    listMatchProductResults.Add(new MatchedProductResult()
+                    {
+                        CompulinkProduct = compulinkProducts[count],
+                        WvaProduct = listMatches[0].ProductName,
+                        MatchScore = listMatches[0].MatchScore,
+                        RowColor = "Green",
+                        MatchedProducts = listMatches,
+                        SuggestedWvaProducts = suggestedMatches
+                    });
+
+                    count++;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
 
             return listMatchProductResults;
@@ -313,7 +327,7 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             if (LearnedProductsDataGrid.SelectedItem != null)
             {
-                string compulinkProduct = ((LearnedProduct)LearnedProductsDataGrid.SelectedItem).CompulinkProduct;
+                string compulinkProduct = ((LearnedProduct)LearnedProductsDataGrid.SelectedItem).CompulinkProduct ?? "";
                 Database.UpdateChangeEnabled(compulinkProduct, true);
             }
         }
@@ -322,7 +336,7 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             if (LearnedProductsDataGrid.SelectedItem != null)
             {
-                string compulinkProduct = ((LearnedProduct)LearnedProductsDataGrid.SelectedItem).CompulinkProduct;
+                string compulinkProduct = ((LearnedProduct)LearnedProductsDataGrid.SelectedItem).CompulinkProduct ?? "";
                 Database.UpdateChangeEnabled(compulinkProduct, false);
             }
         }
@@ -332,9 +346,7 @@ namespace WVA_Connect_CDI.Views.Manage
             try
             {
                 foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
-                {
                     Database.UpdateChangeEnabled(product.CompulinkProduct, true);
-                }
 
                 RefreshGrid();
             }
@@ -349,9 +361,7 @@ namespace WVA_Connect_CDI.Views.Manage
             try
             {
                 foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
-                {
                     Database.UpdateChangeEnabled(product.CompulinkProduct, false);
-                }
 
                 RefreshGrid();
             }
@@ -381,43 +391,71 @@ namespace WVA_Connect_CDI.Views.Manage
 
         private void CompulinkProductTextBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            // Get the compulink product to match 
-            string compulinkProduct = CompulinkProductTextBox.Text;
-
-            if (compulinkProduct.Trim() != "")
+            try
             {
-                // Set combo box items
-                WvaProductComboBox.ItemsSource = manageViewModel.GetWvaDropDownMatches(compulinkProduct);
+                // Get the compulink product to match 
+                string compulinkProduct = CompulinkProductTextBox.Text;
+
+                if (compulinkProduct.Trim() != "")
+                {
+                    // Set combo box items
+                    WvaProductComboBox.ItemsSource = manageViewModel.GetWvaDropDownMatches(compulinkProduct);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
             }
         }
 
         private void RefreshButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            // Open tool tip on mouseover, and change image color
-            toolTip.Content = "Refresh Content";
-            toolTip.IsOpen = true;
-            RefreshImage.Source = new BitmapImage(new Uri(@"/Resources/icons8-available-updates-48.png", UriKind.Relative));
+            try
+            {
+                // Open tool tip on mouseover, and change image color
+                toolTip.Content = "Refresh Content";
+                toolTip.IsOpen = true;
+                RefreshImage.Source = new BitmapImage(new Uri(@"/Resources/icons8-available-updates-48.png", UriKind.Relative));
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private void RefreshButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            // Close tool tip on mouseleave, and change image color
-            toolTip.IsOpen = false;
-            RefreshImage.Source = new BitmapImage(new Uri(@"/Resources/icons8-available-updates-filled-48.png", UriKind.Relative));
+            try
+            {
+                // Close tool tip on mouseleave, and change image color
+                toolTip.IsOpen = false;
+                RefreshImage.Source = new BitmapImage(new Uri(@"/Resources/icons8-available-updates-filled-48.png", UriKind.Relative));
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            // Spawn a loading window and change cursor to waiting cursor
-            LoadingWindow loadingWindow = new LoadingWindow();
-            loadingWindow.Show();
-            Mouse.OverrideCursor = Cursors.Wait;
+            try
+            {
+                // Spawn a loading window and change cursor to waiting cursor
+                LoadingWindow loadingWindow = new LoadingWindow();
+                loadingWindow.Show();
+                Mouse.OverrideCursor = Cursors.Wait;
 
-            RefreshGrid();
+                RefreshGrid();
 
-            // Close loading window and change cursor back to default arrow cursor
-            loadingWindow.Close();
-            Mouse.OverrideCursor = Cursors.Arrow;
+                // Close loading window and change cursor back to default arrow cursor
+                loadingWindow.Close();
+                Mouse.OverrideCursor = Cursors.Arrow;
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
     }
 }

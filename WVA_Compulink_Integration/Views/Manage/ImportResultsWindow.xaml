@@ -245,7 +245,7 @@
         </StackPanel>
 
         <!-- Row Def 2 -->
-        
+
         <DataGrid Name="LearnedProductsDataGrid"
                   Margin="0,0,0,0"
                   Grid.Row="2"
@@ -254,12 +254,6 @@
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   ItemsSource="{Binding MatchedProductResult}">
-
-            <DataGrid.ContextMenu>
-                <ContextMenu Name="WvaProductsContextMenu"
-                             MaxHeight="300">
-                </ContextMenu>
-            </DataGrid.ContextMenu>
 
             <DataGrid.OpacityMask>
                 <RadialGradientBrush>
