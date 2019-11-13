@@ -266,11 +266,11 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             try
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "JSON File|*.json";
-                saveFileDialog.Title = "Save Import Data";
-                saveFileDialog.FileName = "SavedResults.json";
-                saveFileDialog.ShowDialog();
+                var saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "JSON File|*.json";
+                    saveFileDialog.Title = "Save Import Data";
+                    saveFileDialog.FileName = "SavedResults.json";
+                    saveFileDialog.ShowDialog();
 
                 string path = saveFileDialog.FileName;
 
@@ -293,17 +293,37 @@ namespace WVA_Connect_CDI.Views.Manage
 
         private void LoadSavedResultsButton_Click(object sender, RoutedEventArgs e)
         {
-            // as for location of saved file
+            try
+            {
+                // ask for location of saved file
+                var choofdlog = new OpenFileDialog();
+                choofdlog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                choofdlog.ShowDialog();
 
+                string file = choofdlog.FileName;
 
-            // read from file at specified location 
+                // make sure path is valid
+                if (File.Exists(file))
+                {
+                    // read from file at specified location 
+                    string strJsonData = File.ReadAllText(file);
 
+                    // convert string json data to object
+                    List<MatchedProductResult> results = JsonConvert.DeserializeObject<List<MatchedProductResult>>(strJsonData);
 
-            // convert string json data to object
+                    // add json data items to datagrid 
+                    foreach (MatchedProductResult result in results)
+                    {
+                        LearnedProductsDataGrid.Items.Add(result);
+                    }
 
-
-            // add json data items to datagrid 
-            
+                    LearnedProductsDataGrid.Items.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.ReportOrLog(ex);
+            }
         }
     }
 }
