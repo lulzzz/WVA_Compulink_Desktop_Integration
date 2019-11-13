@@ -12,7 +12,9 @@
         Width="900"
         MinHeight="400"
         MinWidth="715"
-        Closing="ImportCompulinkProductsResultsWindow_Closing">
+        Closing="ImportCompulinkProductsResultsWindow_Closing"
+        Loaded="ImportCompulinkProductsResultsWindow_Loaded"
+        Unloaded="ImportCompulinkProductsResultsWindow_Unloaded">
 
     <Window.Resources>
 

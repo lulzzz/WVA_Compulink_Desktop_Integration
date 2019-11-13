@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +21,6 @@ using WVA_Connect_CDI.ViewModels.Manage;
 
 namespace WVA_Connect_CDI.Views.Manage
 {
-    /// <summary>
-    /// Interaction logic for ManageView.xaml
-    /// </summary>
     public partial class ManageView : UserControl
     {
         ToolTip toolTip = new ToolTip();
@@ -126,9 +124,9 @@ namespace WVA_Connect_CDI.Views.Manage
             };
         }
 
-        private async Task RefreshGrid()
+        private async void RefreshGrid()
         {
-            LearnedProductsDataGrid.ItemsSource = await manageViewModel.GetLearnedProducts();
+            LearnedProductsDataGrid.ItemsSource = manageViewModel.GetLearnedProducts();
             LearnedProductsDataGrid.Items.Refresh();
         }
 
@@ -139,7 +137,7 @@ namespace WVA_Connect_CDI.Views.Manage
             IsEditableCheckBox.IsChecked = true;
         }
 
-        private async Task UpdateChangeEnabled(bool changeEnabled)
+        private async Task UpdateChangeEnabledAsync(bool changeEnabled)
         {
             foreach (LearnedProduct product in LearnedProductsDataGrid.Items.Cast<LearnedProduct>().ToList())
                 Database.UpdateChangeEnabled(product.CompulinkProduct, changeEnabled);
@@ -211,18 +209,43 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             // Action Logging
             string location = GetType().FullName + "." + "." + nameof(ImportMatchesButton_Click);
-            string actionMessage = $"<Import_Products_Start>";
+            string actionMessage = $"<Import_Matches_Start>";
             ActionLogger.Log(location, actionMessage);
 
             try
             {
-                bool imported = manageViewModel.ImportLearnedProducts();
+                string file = manageViewModel.GetCsvPath();
 
-                if (imported)
+                if (file == null || file.Trim() == "")
                 {
-                    await RefreshGrid();
-                    MessageBox.Show("Products imported! Check your desktop to see import results.", "");
+                    return;
                 }
+                else if (!manageViewModel.CsvInLearnedProductFormat(File.ReadAllLines(file)))
+                {
+                    throw new FileFormatException();
+                }
+                else if (!File.Exists(file))
+                {
+                    throw new FileNotFoundException($"Could not find file {file}.");
+                }
+                else
+                {
+                    LoadingWindow loadingWindow = new LoadingWindow("Importing...");
+                    loadingWindow.Show();
+                    Cursor = Cursors.Wait;
+
+                    bool imported = await Task.Run(() => manageViewModel.ImportLearnedProducts(file));
+
+                    Cursor = Cursors.Arrow;
+                    loadingWindow.Close();
+
+                    if (imported)
+                    {
+                        RefreshGrid();
+                        MessageBox.Show("Products imported! Check your desktop to see import results.", "");
+                    }
+                }
+
             }
             catch (FileFormatException)
             {
@@ -239,13 +262,18 @@ namespace WVA_Connect_CDI.Views.Manage
             }
             finally
             {
-                actionMessage = $"<Import_Products_End>";
+                actionMessage = $"<Import_Matches_End>";
                 ActionLogger.Log(location, actionMessage);
             }
         }
 
-        private void ImportCompulinkProductsButton_Click(object sender, RoutedEventArgs e)
+        private async void ImportCompulinkProductsButton_Click(object sender, RoutedEventArgs e)
         {
+            // Action Logging
+            string location = GetType().FullName + "." + "." + nameof(ImportCompulinkProductsButton_Click);
+            string actionMessage = $"<Import_Compulink_Products_Start>";
+            ActionLogger.Log(location, actionMessage);
+
             try
             {
                 bool resultsWindowOpen = BringResultsWindowToViewIfOpen();
@@ -261,7 +289,7 @@ namespace WVA_Connect_CDI.Views.Manage
                     loadingWindow.Show();
 
                     // Get a list of possible matches for the compulink products
-                    var listMatchedProducts = manageViewModel.ImportCompulinkProducts(compulinkProducts);
+                    var listMatchedProducts = await Task.Run(() => manageViewModel.ImportCompulinkProducts(compulinkProducts));
 
                     // Convert list of matches to a format that will be easy to display in results view 
                     var listMatchProductResults = GetMatchedProductResults(compulinkProducts, listMatchedProducts);
@@ -289,6 +317,9 @@ namespace WVA_Connect_CDI.Views.Manage
             {
                 Error.ReportOrLog(ex);
             }
+
+            actionMessage = $"<Import_Compulink_Products_End>";
+            ActionLogger.Log(location, actionMessage);
         }
 
         private void WvaProductsContextMenu_Click(object sender, RoutedEventArgs e)
@@ -352,8 +383,15 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             try
             {
-                await UpdateChangeEnabled(true);
-                await RefreshGrid();
+                var loadingWindow = new LoadingWindow("Updating...");
+                loadingWindow.Show();
+                Cursor = Cursors.Wait;
+
+                await Task.Run(() => UpdateChangeEnabledAsync(true));
+                RefreshGrid();
+
+                Cursor = Cursors.Arrow;
+                loadingWindow.Close();
             }
             catch (Exception ex)
             {
@@ -365,18 +403,21 @@ namespace WVA_Connect_CDI.Views.Manage
         {
             try
             {
-                await UpdateChangeEnabled(false);
-                await RefreshGrid();
+                var loadingWindow = new LoadingWindow("Updating...");
+                loadingWindow.Show();
+                Cursor = Cursors.Wait;
+
+                await Task.Run(() => UpdateChangeEnabledAsync(false));
+                RefreshGrid();
+
+                Cursor = Cursors.Arrow;
+                loadingWindow.Close();
             }
             catch (Exception ex)
             {
                 Error.ReportOrLog(ex);
             }
         }
-
-        //
-        // Loaded and Unloaded Events
-        //
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -449,7 +490,7 @@ namespace WVA_Connect_CDI.Views.Manage
                 loadingWindow.Show();
                 Mouse.OverrideCursor = Cursors.Wait;
 
-                await RefreshGrid();
+                await Task.Run(() => RefreshGrid());
 
                 // Close loading window and change cursor back to default arrow cursor
                 loadingWindow.Close();

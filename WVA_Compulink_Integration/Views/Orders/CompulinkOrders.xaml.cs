@@ -23,6 +23,7 @@ using WVA_Connect_CDI.Utility.Actions;
 using WVA_Connect_CDI.ViewModels;
 using WVA_Connect_CDI.ViewModels.Orders;
 using WVA_Connect_CDI.Models.ProductParameters.Derived;
+using System.Threading;
 
 namespace WVA_Connect_CDI.Views.Orders
 {
@@ -142,6 +143,8 @@ namespace WVA_Connect_CDI.Views.Orders
         {
             try
             {
+                Thread.Sleep(2000);
+
                 string dsn = UserData.Data.DSN;
                 string actNum = UserData.Data.Account;
                 string endpoint = $"http://{dsn}/api/openorder/{actNum}";
