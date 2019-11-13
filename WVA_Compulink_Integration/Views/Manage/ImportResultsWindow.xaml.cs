@@ -330,5 +330,16 @@ namespace WVA_Connect_CDI.Views.Manage
                 Error.ReportOrLog(ex);
             }
         }
+
+        private void ImportCompulinkProductsResultsWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (LearnedProductsDataGrid.Items.Count > 0)
+            {
+                MessageBoxResult result = MessageBox.Show("You have saved products in the grid, are you sure you want to exit without saving? Products in the grid will not be imported until you add them.", "", MessageBoxButton.YesNo);
+            
+                if (result != MessageBoxResult.Yes)
+                    e.Cancel = true;
+            }
+        }
     }
 }

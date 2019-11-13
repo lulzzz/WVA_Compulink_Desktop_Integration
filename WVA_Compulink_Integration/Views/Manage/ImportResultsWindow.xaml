@@ -11,7 +11,8 @@
         Height="500"
         Width="900"
         MinHeight="400"
-        MinWidth="715">
+        MinWidth="715"
+        Closing="ImportCompulinkProductsResultsWindow_Closing">
 
     <Window.Resources>
 
@@ -143,7 +144,7 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
@@ -410,6 +411,10 @@
                     Orientation="Vertical"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom">
+
+            <Label Name="DuplicateProductLabel"
+                   Content="NOTE: Duplicate Compulink products will not be added!"
+                   Margin="0,0,0,0"/>
 
             <StackPanel Grid.Row="3"
                         Grid.Column="1"
